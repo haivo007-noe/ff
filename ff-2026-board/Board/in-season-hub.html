@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>In-Season Hub — 2026</title>
+<!--
+  in-season-hub.html — surface #3 of 3 (manage weekly). R4 D3.
+  Reads Data/weekly-sidecar.json (the §9 HARD in-season layer) — falls back to the
+  embedded SAMPLE_WEEKLY when fetch fails (file:// double-click) or the file is absent.
+  Owns ONE piece of state: the set weekly lineup (localStorage ffhub.lineup.{season}-W{N}).
+  Never reads draft ranks or draft state; never writes the sidecar.
+  Shared atoms injected between SHARED:JS markers by Skills/build-digest.py sync.
+  Palette is its own (game-day green) — CSS deliberately not shared across surfaces.
+-->
+<style>
+  :root{
+    --bg:#0a0f0c; --panel:#101712; --card:#141d17; --rule:#213026;
+    --ink:#e7eee9; --dim:#93a39a; --acc:#3fb950; --accdim:#238636;
+    --warn:#d29922; --bad:#f85149; --edge:#a371f7; --link:#58a6ff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+  header{position:sticky;top:0;z-index:9;background:var(--panel);border-bottom:1px solid var(--rule);padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  header h1{font-size:16px;margin:0;letter-spacing:.3px}
+  .wk{background:var(--accdim);color:#fff;border-radius:6px;padding:2px 10px;font-weight:700}
+  .sample-badge{background:var(--warn);color:#1a1a1a;border-radius:6px;padding:2px 10px;font-weight:700;display:none}
+  .hlinks{margin-left:auto;display:flex;gap:10px;font-size:12.5px}
+  .fresh{width:100%;font-size:11.5px;color:var(--dim)}
+  #alerts{display:flex;flex-direction:column;gap:6px;padding:10px 16px 0}
+  .alert{border:1px solid var(--rule);border-left:4px solid var(--warn);background:var(--panel);border-radius:6px;padding:7px 12px;font-size:13px}
+  .alert.bad{border-left-color:var(--bad)}
+  .alert b{margin-right:6px}
+  main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px;padding:14px 16px;max-width:1280px;margin:0 auto}
+  @media(max-width:900px){main{grid-template-columns:1fr}}
+  section{background:var(--panel);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  section>h2{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin:0;padding:9px 14px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:8px}
+  section>h2 .right{margin-left:auto;display:flex;gap:8px}
+  button{background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:6px;padding:3px 10px;font-size:11.5px;cursor:pointer}
+  button:hover{border-color:var(--acc)}
+  .slot{display:grid;grid-template-columns:54px minmax(0,1fr) 86px 64px;gap:8px;align-items:center;padding:8px 14px;border-bottom:1px solid var(--rule);cursor:pointer}
+  .slot:hover{background:var(--card)}
+  .slot.gap{background:rgba(248,81,73,.08)}
+  .slot .tag{font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.5px}
+  .slot .who{min-width:0}
+  .slot .who .nm{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .slot .who .sub{font-size:11.5px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .slot .proj{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+  .slot .proj .lbl{display:block;font-size:10px;color:var(--dim);font-weight:400}
+  .slot .st{text-align:right;font-size:11px}
+  .chip{display:inline-block;border-radius:5px;padding:1px 6px;font-size:10.5px;font-weight:700}
+  .chip.ok{background:rgba(63,185,80,.15);color:var(--acc)}
+  .chip.q{background:rgba(210,153,34,.18);color:var(--warn)}
+  .chip.out{background:rgba(248,81,73,.18);color:var(--bad)}
+  .chip.edge{background:rgba(163,113,247,.16);color:var(--edge)}
+  .chip.bye{background:rgba(248,81,73,.18);color:var(--bad)}
+  .chip.waiver{background:rgba(88,166,255,.14);color:var(--link)}
+  .chip.rostered{background:rgba(147,163,154,.15);color:var(--dim)}
+  .empty{color:var(--bad);font-weight:700}
+  .swaplist{border-bottom:1px solid var(--rule);background:var(--card);padding:6px 14px 10px}
+  .swaplist .opt{display:flex;gap:10px;align-items:baseline;padding:5px 8px;border-radius:6px;cursor:pointer;font-size:13px}
+  .swaplist .opt:hover{background:var(--panel)}
+  .swaplist .opt .p{margin-left:auto;font-variant-numeric:tabular-nums;font-weight:600}
+  .swaplist .hint{font-size:11px;color:var(--dim);padding:2px 8px 6px}
+  .rowline{display:flex;gap:10px;align-items:baseline;padding:7px 14px;border-bottom:1px solid var(--rule);font-size:13px}
+  .rowline:last-child{border-bottom:none}
+  .rowline .nm{font-weight:600}
+  .rowline .meta{color:var(--dim);font-size:11.5px}
+  .rowline .p{margin-left:auto;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+  .rowline .note{flex-basis:100%;color:var(--dim);font-size:11.5px;margin-top:-3px}
+  .rowline{flex-wrap:wrap}
+  .xl{font-size:10.5px;white-space:nowrap}
+  .hl{outline:2px solid var(--acc);outline-offset:-2px;border-radius:4px}
+  .delta-pos{color:var(--acc)} .delta-neg{color:var(--bad)}
+  footer{max-width:1280px;margin:0 auto;padding:6px 16px 26px;color:var(--dim);font-size:11.5px}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .twocol>div{min-width:0}
+  .twocol>div:first-child{border-right:1px solid var(--rule)}
+  .subhead{font-size:11px;color:var(--dim);font-weight:700;letter-spacing:.5px;padding:7px 14px 2px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🏈 In-Season Hub</h1>
+  <span class="wk" id="wk">Week —</span>
+  <span class="sample-badge" id="sampleBadge">SAMPLE DATA</span>
+  <div class="hlinks">
+    <a id="lnkBoard" href="draft-board.html">⤴ draft board</a>
+    <a id="lnkDigest" href="research-digest.html">🔎 research digest</a>
+  </div>
+  <div class="fresh" id="fresh">loading weekly sidecar…</div>
+</header>
+
+<div id="alerts"></div>
+
+<main>
+  <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+    <section id="lineupSec">
+      <h2>Start / Sit — my lineup
+        <span class="right"><button id="resetBtn" title="Clear manual overrides for this week">reset to skill verdicts</button></span>
+      </h2>
+      <div id="lineup"></div>
+    </section>
+    <section>
+      <h2>FLEX optimizer</h2>
+      <div id="flexOpt"></div>
+    </section>
+    <section>
+      <h2>Bench — sit (and why)</h2>
+      <div id="bench"></div>
+    </section>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+    <section>
+      <h2>Streaming — D/ST &amp; K</h2>
+      <div class="twocol">
+        <div><div class="subhead">D/ST</div><div id="strDST"></div></div>
+        <div><div class="subhead">K</div><div id="strK"></div></div>
+      </div>
+    </section>
+    <section>
+      <h2>Waiver targets</h2>
+      <div id="waivers"></div>
+    </section>
+  </div>
+</main>
+
+<footer id="foot"></footer>
+
+<script>
+/* SHARED:JS:START — generated from Board/_shared.js by Skills/build-digest.py; do not edit between markers */
+/* ============================================================
+   _shared.js — canonical cross-surface helpers for the FF 2026 boards.
+
+   This is the SINGLE SOURCE OF TRUTH for the key / lifecycle-flag / CSV-parse
+   logic used by BOTH surfaces. Skills/build-digest.py injects this file verbatim
+   between the SHARED:JS markers in draft-board.html AND research-digest.html.
+
+   DO NOT edit the injected copies (between markers) in those files — edit THIS
+   file, then run:  python3 Skills/build-digest.py sync
+   Documented in Skills/_conventions.md (§ Surfaces — shared logic).
+
+   NOTE: CSS is intentionally NOT shared — the two surfaces use different visual
+   languages (draft tool vs. reading view) and divergent token palettes. Only the
+   data/logic layer is de-duped. See _conventions.md for the rationale.
+   ============================================================ */
+
+/* Canonical player key, shared by both surfaces. Produces an identical string
+   for a board player (p.Name/p.Position) and a digest player (CSV Name/Position),
+   so sidecar joins line up across surfaces. */
+function keyOf(name, pos){ return `${name}|${pos}`; }
+
+/* Lifecycle-flag readers. Take a sidecar ENTRY (researchSidecar.players[key]),
+   NOT a player object. edge = verified + still-unpriced (set/cleared by
+   /edge-board-update on Verify/demote); hype = a verified hype-train claim. */
+function scIsEdge(sc){ return !!(sc && sc.research_flags && sc.research_flags.edge); }
+function scIsHype(sc){ return !!(sc && sc.research_flags && sc.research_flags.hype); }
+
+/* Parse the canonical players CSV (Data/players.csv schema) into row objects,
+   coercing numeric columns. Validation is non-fatal: missing required columns
+   and unparseable numbers are logged via console.warn so the surface still
+   renders with partial data. */
+function parseCSV(text){
+  const lines = text.trim().split(/\r?\n/);
+  const headers = parseCSVLine(lines[0]);
+  const REQUIRED = ["Name","Position","NFL_Team","Consensus_Rank","ADP","Bye_Week","Tier"];
+  const missing = REQUIRED.filter(h => !headers.includes(h));
+  if(missing.length) console.warn("parseCSV: missing required column(s): " + missing.join(", ") + ". Surface will render with partial data.");
+  const INT_COLS = ["Consensus_Rank","Consensus_Pos_Rank","ESPN_Rank","ESPN_Pos_Rank","Bye_Week","Tier"];
+  const FLOAT_COLS = ["ADP","Projection"];
+  return lines.slice(1).map((line,idx) => {
+    const vals = parseCSVLine(line);
+    const row = {};
+    headers.forEach((h,i) => row[h] = vals[i] || "");
+    INT_COLS.forEach(k => { if(row[k]!==""){ const n = parseInt(row[k],10); if(isNaN(n)) console.warn(`parseCSV: row ${idx+2} (${row.Name||"?"}) — non-numeric ${k}: "${row[k]}"`); else row[k] = n; } });
+    FLOAT_COLS.forEach(k => { if(row[k]!==""){ const n = parseFloat(row[k]); if(isNaN(n)) console.warn(`parseCSV: row ${idx+2} (${row.Name||"?"}) — non-numeric ${k}: "${row[k]}"`); else row[k] = n; } });
+    return row;
+  });
+}
+function parseCSVLine(line){
+  const result = []; let cur = ""; let inQ = false;
+  for(let i=0;i<line.length;i++){
+    const c = line[i];
+    if(c === '"'){ inQ = !inQ; continue; }
+    if(c === ',' && !inQ){ result.push(cur); cur=""; continue; }
+    cur += c;
+  }
+  result.push(cur);
+  return result;
+}
+/* SHARED:JS:END */
+
+/* ---------- embedded sample (fallback when fetch fails / file:// open) ---------- */
+const SAMPLE_WEEKLY = {"generated":"2026-06-04 07:30","sample":true,"week":1,"season":"2026",
+"sources":{"projections":"SAMPLE (embedded)","status":"SAMPLE","pulled_at":"2026-06-04 07:30"},
+"roster":{
+"Joe Burrow|QB":{"team":"CIN","opponent":"CLE","home":true,"weekly_projection":21.4,"matchup_note":"SAMPLE — soft secondary, high implied total","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"locked-in QB1, no thought required"},
+"Chase Brown|RB":{"team":"CIN","opponent":"CLE","home":true,"weekly_projection":15.8,"matchup_note":"SAMPLE — bell-cow usage vs middling run D","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"volume floor holds in any script"},
+"Bucky Irving|RB":{"team":"TB","opponent":"ATL","home":false,"weekly_projection":14.9,"matchup_note":"SAMPLE — pass-game role keeps PPR floor","injury_status":"Q","bye":false,"verdict":"start","verdict_note":"Q (ankle) — re-check Sunday morning"},
+"Amon-Ra St. Brown|WR":{"team":"DET","opponent":"GB","home":true,"weekly_projection":17.6,"matchup_note":"SAMPLE — slot volume vs zone-heavy D","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"target hog, every-week WR1"},
+"DeVonta Smith|WR":{"team":"PHI","opponent":"DAL","home":true,"weekly_projection":14.2,"matchup_note":"SAMPLE — target share up with A.J. Brown gone","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"post-AJB share bump still unpriced"},
+"Sam LaPorta|TE":{"team":"DET","opponent":"GB","home":true,"weekly_projection":11.8,"matchup_note":"SAMPLE — red-zone role intact","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"clear TE1 on the roster"},
+"Jaylen Warren|RB":{"team":"PIT","opponent":"NYJ","home":false,"weekly_projection":12.1,"matchup_note":"SAMPLE — lead-back share, tough front","injury_status":"Healthy","bye":false,"verdict":"flex","verdict_note":"coin-flip with Godwin — volume edge wins by a hair"},
+"Pittsburgh Steelers|DST":{"team":"PIT","opponent":"NYJ","home":false,"weekly_projection":7.5,"matchup_note":"SAMPLE — pressure rate vs shaky OL","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"hold — matchup fine, see streaming alt"},
+"Cameron Dicker|K":{"team":"LAC","opponent":"KC","home":true,"weekly_projection":8.2,"matchup_note":"SAMPLE — decent total, accurate leg","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"hold"},
+"Wan'Dale Robinson|WR":{"team":"TEN","opponent":"DEN","home":false,"weekly_projection":11.4,"matchup_note":"SAMPLE — slot PPR floor, low ceiling","injury_status":"Healthy","bye":false,"verdict":"sit","verdict_note":"floor play if Irving sits"},
+"Kyle Monangai|RB":{"team":"CHI","opponent":"MIN","home":true,"weekly_projection":9.8,"matchup_note":"SAMPLE — committee, TD-dependent","injury_status":"Healthy","bye":false,"verdict":"sit","verdict_note":"hold for the role to grow"},
+"Parker Washington|WR":{"team":"JAC","opponent":"CAR","home":true,"weekly_projection":8.9,"matchup_note":"SAMPLE — WR3 in a crowded room","injury_status":"Healthy","bye":false,"verdict":"sit","verdict_note":"stash"},
+"Bo Nix|QB":{"team":"DEN","opponent":"TEN","home":true,"weekly_projection":18.7,"matchup_note":"SAMPLE — rushing floor, soft matchup","injury_status":"Healthy","bye":false,"verdict":"sit","verdict_note":"QB2 — Burrow's slot, hold for byes"},
+"Kenneth Gainwell|RB":{"team":"TB","opponent":"ATL","home":false,"weekly_projection":6.2,"matchup_note":"SAMPLE — Irving handcuff","injury_status":"O","bye":false,"verdict":"sit","verdict_note":"OUT (hamstring) — do not start"},
+"Dalton Kincaid|TE":{"team":"BUF","opponent":"BAL","home":false,"weekly_projection":9.1,"matchup_note":"SAMPLE — TD-or-bust profile","injury_status":"Healthy","bye":false,"verdict":"sit","verdict_note":"TE2 behind LaPorta"},
+"Chris Godwin Jr.|WR":{"team":"TB","opponent":"ATL","home":false,"weekly_projection":12.6,"matchup_note":"SAMPLE — slot revival, chain-mover","injury_status":"Healthy","bye":false,"verdict":"sit","verdict_note":"coin-flip FLEX contender vs Warren — projection edge, role risk"}},
+"streaming":{"K":[{"name":"Cameron Dicker","team":"LAC","opponent":"KC","rationale":"SAMPLE — hold; decent implied total"},{"name":"Jason Myers","team":"SEA","opponent":"ARI","rationale":"SAMPLE — waiver alt if Dicker's total craters"}],
+"DST":[{"name":"Pittsburgh Steelers","team":"PIT","opponent":"NYJ","rationale":"SAMPLE — hold; top pressure rate vs shaky OL"},{"name":"Jacksonville Jaguars","team":"JAC","opponent":"CAR","rationale":"SAMPLE — waiver stream vs turnover-prone offense"}]},
+"waivers":[{"name":"Jadarian Price","position":"RB","reason":"SAMPLE — RB depth thin with Gainwell out; standalone flex weeks possible","priority":"medium","faab_pct":8}],
+"alerts":[{"type":"injury","subjects":["Kenneth Gainwell|RB"],"note":"OUT (hamstring) — bench, do not start"},{"type":"inactive","subjects":["Bucky Irving|RB"],"note":"Q (ankle) — re-check Sunday 90 min before kickoff; Wan'Dale is the pivot"}],
+"research_flags":{"DeVonta Smith|WR":{"edge":true},"Chase Brown|RB":{"edge":true}}};
+
+/* ---------- hub logic (renders only — /weekly-lineup computes; §9 contract) ---------- */
+const SLOTS = [
+  {id:"QB",  tag:"QB",   pos:["QB"]},
+  {id:"RB1", tag:"RB",   pos:["RB"]},
+  {id:"RB2", tag:"RB",   pos:["RB"]},
+  {id:"WR1", tag:"WR",   pos:["WR"]},
+  {id:"WR2", tag:"WR",   pos:["WR"]},
+  {id:"TE",  tag:"TE",   pos:["TE"]},
+  {id:"FLEX",tag:"FLEX", pos:["RB","WR","TE"]},
+  {id:"DST", tag:"D/ST", pos:["DST"]},
+  {id:"K",   tag:"K",    pos:["K"]}
+];
+const OUT_STATUSES = ["O","IR","NA","Out"];
+let DATA = null, MODE = "", openSwap = null;
+
+const esc = s => String(s==null?"":s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const stateKey = () => `ffhub.lineup.${DATA.season}-W${DATA.week}`;
+const loadOverrides = () => { try{ return JSON.parse(localStorage.getItem(stateKey())) || {}; }catch(e){ return {}; } };
+const saveOverrides = o => localStorage.setItem(stateKey(), JSON.stringify(o));
+
+function entries(){
+  return Object.entries(DATA.roster || {}).map(([k,v]) => {
+    const [name,pos] = k.split("|");
+    return Object.assign({key:k, name, pos}, v);
+  });
+}
+const isOut = e => e.bye || OUT_STATUSES.includes(e.injury_status);
+const isEdge = k => scIsEdge({research_flags:(DATA.research_flags||{})[k]});
+
+function resolveLineup(){
+  const ov = loadOverrides(); const used = new Set(); const lineup = {};
+  // pass 1 — apply valid overrides (player exists, eligible, not used; null = forced empty)
+  for(const s of SLOTS){
+    if(!(s.id in ov)) continue;
+    const k = ov[s.id];
+    if(k === null){ lineup[s.id] = null; continue; }
+    const e = DATA.roster[k];
+    if(e && s.pos.includes(k.split("|")[1]) && !used.has(k)){ lineup[s.id] = k; used.add(k); }
+  }
+  // pass 2 — fill the rest from skill verdicts (start > flex > sit, then projection)
+  const w = v => v==="start"?2 : v==="flex"?1 : 0;
+  for(const s of SLOTS){
+    if(s.id in lineup) continue;
+    let c = entries().filter(e => s.pos.includes(e.pos) && !used.has(e.key) && !isOut(e));
+    c.sort((a,b) => (w(b.verdict)-w(a.verdict)) || (b.weekly_projection||0)-(a.weekly_projection||0));
+    if(s.id==="FLEX"){
+      const fl = c.filter(e=>e.verdict==="flex");
+      if(fl.length) c = fl.concat(c.filter(e=>e.verdict!=="flex"));
+    }
+    if(c.length){ lineup[s.id] = c[0].key; used.add(c[0].key); }
+    else lineup[s.id] = null;
+  }
+  return lineup;
+}
+
+function statusChip(e){
+  if(e.bye) return '<span class="chip bye">BYE</span>';
+  if(OUT_STATUSES.includes(e.injury_status)) return `<span class="chip out">${esc(e.injury_status)}</span>`;
+  if(e.injury_status && e.injury_status!=="Healthy") return `<span class="chip q">${esc(e.injury_status)}</span>`;
+  return '<span class="chip ok">✓</span>';
+}
+const edgeBadge = k => isEdge(k) ? ' <span class="chip edge">⚡ edge</span>' : "";
+const xlinks = name => {
+  const q = encodeURIComponent(name);
+  return `<span class="xl"><a href="draft-board.html?q=${q}">⤴ board</a> · <a href="research-digest.html?q=${q}">🔎 digest</a></span>`;
+};
+
+function renderLineup(){
+  const lineup = resolveLineup(); const box = document.getElementById("lineup");
+  box.innerHTML = SLOTS.map(s => {
+    const k = lineup[s.id]; const e = k ? Object.assign({key:k,name:k.split("|")[0],pos:k.split("|")[1]}, DATA.roster[k]) : null;
+    const gap = !e || isOut(e);
+    let who, proj, st;
+    if(e){
+      who = `<div class="nm" data-name="${esc(e.name)}">${esc(e.name)}${edgeBadge(k)}</div>
+             <div class="sub">${esc(e.team)} ${e.opponent ? (e.home?"vs ":"@ ")+esc(e.opponent) : "<b>BYE</b>"} · ${esc(e.matchup_note||"")} ${xlinks(e.name)}</div>`;
+      proj = `${(e.weekly_projection??"–")}<span class="lbl">proj</span>`;
+      st = statusChip(e);
+    } else {
+      who = `<div class="nm empty">EMPTY SLOT</div><div class="sub">no startable option — bench can't cover; see waivers</div>`;
+      proj = "–"; st = '<span class="chip out">GAP</span>';
+    }
+    const open = openSwap === s.id ? renderSwap(s, lineup) : "";
+    return `<div class="slot${gap?" gap":""}" data-slot="${s.id}">
+      <span class="tag">${s.tag}</span><div class="who">${who}</div>
+      <span class="proj">${proj}</span><span class="st">${st}</span>
+    </div>${open}`;
+  }).join("");
+  box.querySelectorAll(".slot").forEach(el => el.addEventListener("click", ev => {
+    if(ev.target.closest("a")) return;
+    openSwap = openSwap === el.dataset.slot ? null : el.dataset.slot;
+    renderAll(false);
+  }));
+  box.querySelectorAll(".swaplist .opt").forEach(el => el.addEventListener("click", ev => {
+    ev.stopPropagation();
+    const ov = loadOverrides();
+    ov[el.dataset.forslot] = el.dataset.key === "" ? null : el.dataset.key;
+    saveOverrides(ov); openSwap = null; renderAll(false);
+  }));
+  return lineup;
+}
+
+function renderSwap(s, lineup){
+  const inSlots = new Set(Object.values(lineup).filter(Boolean));
+  const cur = lineup[s.id];
+  const c = entries().filter(e => s.pos.includes(e.pos) && e.key !== cur && !inSlots.has(e.key))
+                     .sort((a,b)=>(b.weekly_projection||0)-(a.weekly_projection||0));
+  const opts = c.map(e => `<div class="opt" data-forslot="${s.id}" data-key="${esc(e.key)}">
+      <span>${esc(e.name)} <span class="meta">${esc(e.pos)} · ${e.opponent?(e.home?"vs ":"@ ")+esc(e.opponent):"BYE"}</span> ${statusChip(e)}</span>
+      <span class="p">${e.weekly_projection??"–"}</span></div>`).join("");
+  return `<div class="swaplist"><div class="hint">swap ${s.tag} → (saved to this device for Week ${DATA.week})</div>
+    ${opts || '<div class="hint">no eligible bench option</div>'}
+    <div class="opt" data-forslot="${s.id}" data-key=""><span class="meta">— leave empty —</span></div></div>`;
+}
+
+function renderFlex(lineup){
+  const inSlots = new Set(Object.values(lineup).filter(Boolean));
+  const flexKey = lineup["FLEX"];
+  const flexE = flexKey ? DATA.roster[flexKey] : null;
+  const base = flexE ? (flexE.weekly_projection||0) : 0;
+  const cands = entries().filter(e => ["RB","WR","TE"].includes(e.pos) && !inSlots.has(e.key))
+                         .sort((a,b)=>(b.weekly_projection||0)-(a.weekly_projection||0)).slice(0,3);
+  const cur = flexKey ? `<div class="rowline"><span class="nm">current: ${esc(flexKey.split("|")[0])}</span>
+      <span class="meta">${esc(flexKey.split("|")[1])}</span><span class="p">${base}</span></div>` :
+      '<div class="rowline"><span class="nm empty">FLEX empty</span></div>';
+  document.getElementById("flexOpt").innerHTML = cur + (cands.map(e => {
+    const d = +((e.weekly_projection||0) - base).toFixed(1);
+    return `<div class="rowline"><span class="nm">${esc(e.name)}${edgeBadge(e.key)}</span>
+      <span class="meta">${esc(e.pos)} · ${e.opponent?(e.home?"vs ":"@ ")+esc(e.opponent):"BYE"}</span> ${statusChip(e)}
+      <span class="p">${e.weekly_projection??"–"} <span class="${d>=0?"delta-pos":"delta-neg"}">(${d>=0?"+":""}${d})</span></span>
+      <span class="note">${esc(e.verdict_note||"")}</span></div>`;
+  }).join("") || '<div class="rowline"><span class="meta">no contenders on the bench</span></div>');
+}
+
+function renderBench(lineup){
+  const inSlots = new Set(Object.values(lineup).filter(Boolean));
+  const b = entries().filter(e => !inSlots.has(e.key)).sort((a,b)=>(b.weekly_projection||0)-(a.weekly_projection||0));
+  document.getElementById("bench").innerHTML = b.map(e => `<div class="rowline">
+    <span class="nm" data-name="${esc(e.name)}">${esc(e.name)}${edgeBadge(e.key)}</span>
+    <span class="meta">${esc(e.pos)} · ${esc(e.team)} ${e.opponent?(e.home?"vs ":"@ ")+esc(e.opponent):"BYE"}</span>
+    ${statusChip(e)} ${xlinks(e.name)}<span class="p">${e.weekly_projection??"–"}</span>
+    <span class="note">${esc(e.verdict_note||"")}</span></div>`).join("")
+    || '<div class="rowline"><span class="meta">bench is empty</span></div>';
+}
+
+function renderStreaming(){
+  const rostered = new Set(Object.keys(DATA.roster||{}).map(k=>k.split("|")[0]));
+  const render = list => (list||[]).map(o => `<div class="rowline">
+    <span class="nm">${esc(o.name)}</span>
+    <span class="meta">${esc(o.team)} vs ${esc(o.opponent)}</span>
+    <span class="chip ${rostered.has(o.name)?"rostered":"waiver"}">${rostered.has(o.name)?"rostered":"waiver"}</span>
+    <span class="note">${esc(o.rationale||"")}</span></div>`).join("")
+    || '<div class="rowline"><span class="meta">—</span></div>';
+  document.getElementById("strDST").innerHTML = render((DATA.streaming||{}).DST);
+  document.getElementById("strK").innerHTML  = render((DATA.streaming||{}).K);
+}
+
+function renderWaivers(){
+  document.getElementById("waivers").innerHTML = (DATA.waivers||[]).map(o => `<div class="rowline">
+    <span class="nm">${esc(o.name)}</span><span class="meta">${esc(o.position)}</span>
+    <span class="chip ${o.priority==="high"?"out":o.priority==="medium"?"q":"ok"}">${esc(o.priority||"")}</span>
+    <span class="p">FAAB ${o.faab_pct!=null?o.faab_pct+"%":"–"}</span>
+    <span class="note">${esc(o.reason||"")}</span></div>`).join("")
+    || '<div class="rowline"><span class="meta">no targets this week</span></div>';
+}
+
+function renderAlerts(lineup){
+  const box = document.getElementById("alerts"); const out = [];
+  // computed gaps first — loudest line on the card
+  for(const s of SLOTS){
+    const k = lineup[s.id];
+    if(!k) out.push({bad:true, label:"EMPTY "+s.tag, note:"no startable option in the slot — fill from bench or waivers"});
+    else { const e = DATA.roster[k];
+      if(e.bye) out.push({bad:true, label:s.tag+" ON BYE", note:k.split("|")[0]+" is on bye in this slot"});
+      else if(OUT_STATUSES.includes(e.injury_status)) out.push({bad:true, label:s.tag+" "+e.injury_status, note:k.split("|")[0]+" is "+e.injury_status+" and still slotted"});
+    }
+  }
+  for(const a of (DATA.alerts||[])) out.push({bad:a.type==="inactive"||a.type==="empty-slot", label:(a.type||"").toUpperCase(), note:(a.subjects||[]).map(s=>s.split("|")[0]).join(", ")+" — "+(a.note||"")});
+  box.innerHTML = out.map(a=>`<div class="alert${a.bad?" bad":""}"><b>${esc(a.label)}</b>${esc(a.note)}</div>`).join("");
+}
+
+function renderAll(scrollQ){
+  const lineup = renderLineup();
+  renderFlex(lineup); renderBench(lineup); renderStreaming(); renderWaivers(); renderAlerts(lineup);
+  document.getElementById("wk").textContent = `Week ${DATA.week} · ${DATA.season}`;
+  document.getElementById("sampleBadge").style.display = DATA.sample ? "inline-block" : "none";
+  const n = Object.keys(DATA.roster||{}).length;
+  document.getElementById("fresh").textContent =
+    `${n} roster players · generated ${DATA.generated} · status pulled ${(DATA.sources||{}).pulled_at||"?"} · data: ${MODE}` +
+    (DATA.sample ? " · SAMPLE — not a real week" : "");
+  document.getElementById("foot").innerHTML =
+    `Hub renders only — <code>/weekly-lineup</code> computes and writes the sidecar (conventions §9). ` +
+    `State on this device: manual slot overrides for Week ${DATA.week} only.`;
+  if(scrollQ){
+    const q = new URLSearchParams(location.search).get("q");
+    if(q){ const el = [...document.querySelectorAll("[data-name]")].find(x => x.dataset.name.toLowerCase().includes(q.toLowerCase()));
+      if(el){ const row = el.closest(".slot,.rowline"); if(row){ row.classList.add("hl"); row.scrollIntoView({block:"center"}); } } }
+  }
+}
+
+function boot(data, mode){ DATA = data; MODE = mode; renderAll(true); }
+document.getElementById("resetBtn").addEventListener("click", () => {
+  localStorage.removeItem(stateKey()); openSwap = null; renderAll(false);
+});
+
+fetch("../Data/weekly-sidecar.json")
+  .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+  .then(d => boot(d, "live fetch"))
+  .catch(() => boot(SAMPLE_WEEKLY, "embedded sample (fetch unavailable)"));
+</script>
+</body>
+</html>
