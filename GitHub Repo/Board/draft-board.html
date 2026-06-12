@@ -1,0 +1,3135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Fantasy Draft 2026 — Hai's Board</title>
+<style>
+  :root{
+    --bg:#0e1117; --panel:#161b22; --panel2:#1c232c; --border:#2a323d;
+    --text:#e6edf3; --muted:#8b949e; --accent:#58a6ff; --good:#3fb950;
+    --warn:#d29922; --bad:#f85149; --me:#1f6feb; --other:#6e7681;
+    --target:#bc8cff; --value:#39d0d8; --sleeper:#f0b429; --dnd:#f85149;
+    --watch:#ffa657; --tierline:#30363d;
+  }
+  /* On-the-clock strip — always-on best-available + tier-scarcity, ignores board filters */
+  #clockStrip{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 8px;padding:7px 10px;background:var(--panel2);border:1px solid var(--border);border-radius:6px;font-size:12.5px}
+  #clockStrip:empty{display:none}
+  #clockStrip .cs-lab{font-size:10px;font-weight:700;letter-spacing:1px;color:var(--muted)}
+  #clockStrip .cs-chip{padding:3px 8px;border:1px solid var(--border);border-radius:12px;cursor:pointer;background:var(--panel);white-space:nowrap}
+  #clockStrip .cs-chip:hover{border-color:var(--accent)}
+  #clockStrip .cs-best{border-color:var(--good)}
+  #clockStrip .cs-warn{color:var(--bad);font-weight:700}
+  #clockStrip .cs-warn2{color:var(--warn);font-weight:600}
+  #clockStrip .cs-tier{color:var(--muted)}
+  /* ===== BASE / RESET ===== */
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  /* ===== HEADER ===== */
+  header{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:10px 14px;background:var(--panel);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+  header h1{font-size:14px;margin:0;font-weight:600;color:var(--accent)}
+  header .pill{background:var(--panel2);padding:4px 8px;border-radius:4px;border:1px solid var(--border);font-size:12px}
+  header label{font-size:12px;color:var(--muted);margin-right:4px}
+  header select,header input,header button{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:4px;padding:4px 8px;font:inherit}
+  header button{cursor:pointer}
+  header button:hover{background:var(--border)}
+  /* ===== LAYOUT (two-pane) ===== */
+  .layout{display:grid;grid-template-columns:1.7fr 1fr;gap:0;height:calc(100vh - 49px)}
+  .left,.right{overflow:auto}
+  .left{border-right:1px solid var(--border)}
+  /* ===== BIG BOARD — toolbar + table ===== */
+  .toolbar{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px;background:var(--panel);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5}
+  .toolbar button{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font:inherit;cursor:pointer}
+  .toolbar button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .toolbar input[type=search]{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:4px;padding:4px 8px;font:inherit;flex:1;min-width:120px}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:6px 8px;text-align:left;border-bottom:1px solid var(--border);font-size:12px}
+  th{position:sticky;top:38px;background:var(--panel);font-weight:600;color:var(--muted);text-transform:uppercase;font-size:11px;letter-spacing:.04em;cursor:pointer;user-select:none}
+  tr.player{cursor:pointer}
+  tr.player:hover{background:var(--panel2)}
+  tr.taken-me{background:rgba(31,111,235,.12)}
+  tr.taken-other{opacity:.4;text-decoration:line-through}
+  tr.best-available{box-shadow:inset 3px 0 0 var(--good)}
+  tr.tier-break td{border-top:2px solid var(--tierline)}
+  tr.watchlist td:nth-child(2){box-shadow:inset 3px 0 0 var(--watch)}
+  .pos-QB{color:#ef4444}.pos-RB{color:#22c55e}.pos-WR{color:#3b82f6}.pos-TE{color:#f59e0b}.pos-K{color:#a855f7}.pos-DST{color:#ec4899}
+  /* ===== TIERS & BADGES ===== */
+  .tier-pill{display:inline-block;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.02em;background:var(--panel2);color:var(--muted)}
+  /* risk tiers — shared with the in-season hub (range_model.RISK_TIERS) */
+  .risk-chip{display:inline-block;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:700;color:#fff}
+  .risk-safe{background:#1f6f3f} .risk-steady{background:#2d7d46} .risk-balanced{background:#9e6a1f}
+  .risk-boombust{background:#a85528} .risk-wild{background:#8b2f2f}
+  .tier-pill.t1{background:rgba(63,185,80,.22);color:var(--good)}
+  .tier-pill.t2{background:rgba(88,166,255,.22);color:var(--accent)}
+  .tier-pill.t3{background:rgba(240,180,41,.22);color:var(--sleeper)}
+  .tier-pill.t4{background:rgba(210,153,34,.20);color:var(--warn)}
+  .tier-pill.t5,.tier-pill.t6,.tier-pill.t7,.tier-pill.t8{background:rgba(248,81,73,.15);color:var(--bad)}
+  .badge.archetype{font-size:9px;letter-spacing:.04em;text-transform:uppercase}
+  tr.tier-section-header td{background:var(--panel);padding:7px 10px;border-top:2px solid var(--tierline);border-bottom:1px solid var(--border);position:sticky;top:38px;z-index:2}
+  tr.tier-section-header td .tier-pill{font-size:11px;padding:2px 8px}
+  .badge{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:600;letter-spacing:.02em;margin-left:4px;vertical-align:middle}
+  .badge.target{background:var(--target);color:#000}
+  .badge.value{background:var(--value);color:#000}
+  .badge.sleeper{background:var(--sleeper);color:#000}
+  .badge.dnd{background:var(--dnd);color:#fff}
+  .badge.watch{background:var(--watch);color:#000}
+  .badge.edge{background:#a371f7;color:#fff}
+  .badge.injury{background:var(--warn);color:#000}
+  .badge.out{background:var(--bad);color:#fff}
+  .delta-good{color:var(--good)}.delta-bad{color:var(--bad)}.delta-flat{color:var(--muted)}
+  /* ===== RIGHT PANE — tab strip ===== */
+  .right-tabs{display:flex;background:var(--panel);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5}
+  .right-tabs button{flex:1;background:transparent;color:var(--muted);border:none;border-bottom:2px solid transparent;padding:10px 6px;font:inherit;cursor:pointer;font-size:12px}
+  .right-tabs button.active{color:var(--text);border-bottom-color:var(--accent)}
+  .panel{padding:12px}
+  /* ===== ROSTER TAB ===== */
+  .roster-slot{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border:1px solid var(--border);border-radius:4px;margin-bottom:6px;background:var(--panel2)}
+  .roster-slot.empty{opacity:.5;font-style:italic}
+  .roster-slot .slot-label{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;min-width:50px}
+  .roster-slot .slot-player{flex:1;margin-left:8px}
+  .roster-slot .slot-bye{color:var(--muted);font-size:11px}
+  .needs{margin-top:12px;padding:8px;background:var(--panel2);border:1px solid var(--border);border-radius:4px;font-size:12px}
+  .needs .need{color:var(--warn)}
+  .needs .stack-warn{color:var(--bad);margin-top:4px}
+  /* ===== MY PICKS TAB — pick rows ===== */
+  .pick-row{display:flex;align-items:flex-start;gap:8px;padding:8px;margin-bottom:6px;background:var(--panel2);border:1px solid var(--border);border-radius:4px}
+  .pick-row .pick-no{font-weight:600;color:var(--accent);min-width:60px}
+  .pick-row .pick-status{flex:1;font-size:12px;color:var(--muted)}
+  .pick-row.current{border-color:var(--good);background:rgba(63,185,80,.08)}
+  .candidate-list{max-height:200px;overflow:auto;margin-top:4px;padding-left:8px;border-left:2px solid var(--border)}
+  .candidate{display:flex;justify-content:space-between;padding:3px 4px;font-size:11px;border-radius:3px;cursor:pointer}
+  .candidate:hover{background:var(--panel)}
+  .candidate.likely-gone{color:var(--bad)}
+  .candidate.bubble{color:var(--warn)}
+  .candidate.likely-avail{color:var(--good)}
+  .candidate .cand-name{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .candidate .cand-meta{flex:0 0 auto;display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:10px}
+  .pick-row.done{opacity:.55}
+  .pick-row.collapsed .candidate-list, .pick-row.collapsed .pick-meta{display:none}
+  .pick-row .pick-header{display:flex;align-items:center;gap:8px;cursor:pointer;width:100%}
+  .pick-row .pick-header .caret{font-size:10px;color:var(--muted);transition:transform .15s}
+  .pick-row:not(.collapsed) .pick-header .caret{transform:rotate(90deg)}
+  .pick-row .planned{color:var(--target);font-weight:600;font-size:11px}
+  .pick-row .planned::before{content:"▸ planning: ";color:var(--muted);font-weight:normal}
+  .pick-row .took{color:var(--good);font-weight:600;font-size:11px}
+  .pick-row .took::before{content:"✓ took: ";color:var(--muted);font-weight:normal}
+  .pos-counts{display:flex;gap:6px;font-size:10px;margin-top:4px;color:var(--muted)}
+  .pos-counts .pc{padding:1px 4px;border-radius:3px;background:var(--panel)}
+  .scarcity{font-size:11px;color:var(--warn);margin:6px 0;padding:6px 8px;background:rgba(210,153,34,.08);border-left:2px solid var(--warn);border-radius:3px}
+  /* ===== SNAKE GRID ===== */
+  .snake-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1px;margin:4px 0 6px;font-size:10px}
+  .snake-cell{padding:2px 0;text-align:center;background:var(--panel2);color:var(--muted);border-radius:2px;min-height:18px;font-weight:500;font-size:9px}
+  .snake-cell.taken-me{background:var(--good);color:#fff;font-weight:700}
+  .snake-cell.taken-other{background:#23292f;font-weight:600}
+  .snake-cell.taken-other.pos-QB{color:#ef4444}
+  .snake-cell.taken-other.pos-RB{color:#22c55e}
+  .snake-cell.taken-other.pos-WR{color:#3b82f6}
+  .snake-cell.taken-other.pos-TE{color:#f59e0b}
+  .snake-cell.taken-other.pos-K{color:#a855f7}
+  .snake-cell.taken-other.pos-DST{color:#ec4899}
+  .snake-cell.current{outline:1.5px solid var(--warn);outline-offset:1px;z-index:1;position:relative}
+  .snake-legend{display:flex;flex-wrap:wrap;gap:8px;font-size:10px;color:var(--muted);margin-top:4px;padding:4px 0}
+  .snake-legend .legend-item{display:flex;align-items:center;gap:3px}
+  .snake-legend .legend-swatch{width:10px;height:10px;border-radius:2px;display:inline-block}
+  details.snake-wrap{margin:6px 0 4px}
+  details.snake-wrap summary{cursor:pointer;font-size:11px;color:var(--muted);padding:4px 0;list-style:none;display:flex;align-items:center;gap:6px}
+  details.snake-wrap summary::-webkit-details-marker{display:none}
+  details.snake-wrap summary::before{content:"▸";display:inline-block;transition:transform .15s;font-size:9px}
+  details.snake-wrap[open] summary::before{transform:rotate(90deg)}
+  details.snake-wrap summary:hover{color:var(--text)}
+  /* ===== IDEAL TAB — round sections ===== */
+  .round-section{margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+  .round-section:last-child{border-bottom:none}
+  .round-header{display:flex;align-items:center;gap:8px;padding:4px 0 6px;font-size:13px}
+  .round-header strong{color:var(--text)}
+  .round-mypick{margin-left:auto;color:#fff;font-size:10px;font-weight:600;background:var(--accent);padding:2px 7px;border-radius:3px}
+  .round-mypick.done{background:var(--good)}
+  .round-mypick.current{background:var(--warn);color:#000}
+  .round-empty{color:var(--muted);font-size:11px;font-style:italic;padding:4px 6px}
+  .round-counts{display:flex;gap:6px;margin-bottom:4px;font-size:10px}
+  .round-counts .rc{padding:1px 5px;border-radius:3px;background:var(--panel2);color:var(--muted)}
+  .snake-cell.mine{background:var(--accent);color:#fff;font-weight:600}
+  .snake-cell.mine.done{background:var(--good)}
+  .snake-cell.mine.current{outline:1.5px solid var(--good);outline-offset:1px}
+  .plan-summary{margin-top:14px;padding:10px;background:var(--panel2);border:1px solid var(--border);border-radius:4px;font-size:12px}
+  .plan-summary h4{margin:0 0 6px;font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.05em}
+  .plan-pill{display:inline-block;padding:2px 6px;border-radius:3px;background:var(--panel);font-size:10px;margin:2px 4px 2px 0}
+  .plan-buttons{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+  .plan-buttons button{background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:3px;padding:3px 6px;font:inherit;font-size:10px;cursor:pointer}
+  .plan-buttons button:hover{border-color:var(--accent)}
+  .pickmode-toggle{display:flex;gap:4px;margin-bottom:10px}
+  .pickmode-toggle button{flex:1;background:var(--panel2);color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:6px;font:inherit;font-size:11px;cursor:pointer}
+  .pickmode-toggle button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  /* ===== WATCH-FLAG IMPLICATIONS ===== */
+  .implications{margin-top:14px}
+  .implications h4{font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;margin:0 0 8px}
+  .impl-card{padding:8px 10px;margin-bottom:6px;background:var(--panel2);border:1px solid var(--border);border-left:3px solid var(--muted);border-radius:4px;font-size:12px}
+  .impl-card.sev-info{border-left-color:var(--accent)}
+  .impl-card.sev-warn{border-left-color:var(--warn)}
+  .impl-card.sev-critical{border-left-color:var(--bad)}
+  .impl-title{font-weight:600;margin-bottom:4px;font-size:12px}
+  .impl-pro{color:var(--good);font-size:11px;margin-top:3px}
+  .impl-con{color:var(--warn);font-size:11px;margin-top:2px}
+  .impl-affected{color:var(--muted);font-size:10px;margin-top:4px;font-style:italic}
+  .impl-empty{color:var(--muted);font-size:11px;font-style:italic;padding:8px 0}
+  .impl-card.impl-demo{background:repeating-linear-gradient(45deg,var(--panel2),var(--panel2) 8px,#1f262e 8px,#1f262e 16px);opacity:.9}
+  .demo-toggle:hover{border-color:var(--accent);color:var(--text)}
+  /* ===== POOL TAB ===== */
+  .pool-section{margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+  .pool-section:last-child{border-bottom:none}
+  .pool-section h4{margin:0 0 8px;font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.05em}
+  .pool-run{display:flex;flex-wrap:wrap;gap:6px}
+  .run-badge{padding:3px 8px;border-radius:3px;background:var(--panel2);border:1px solid var(--border);font-size:11px;font-weight:600}
+  .run-flag{margin-top:6px;font-size:11px;color:var(--warn);background:rgba(210,153,34,.08);border-left:2px solid var(--warn);padding:5px 8px;border-radius:3px}
+  .pool-table{width:100%;border-collapse:collapse;font-size:11px}
+  .pool-table th,.pool-table td{padding:5px 6px;text-align:left;border-bottom:1px solid var(--border)}
+  .pool-table th{color:var(--muted);text-transform:uppercase;font-size:9px;letter-spacing:.05em;font-weight:600}
+  .pool-table tr.urgent{background:rgba(248,81,73,.06)}
+  .pool-table .tier-cell{font-weight:600}
+  .pool-table .tier-cell.depleted{color:var(--bad)}
+  .pool-table .tier-cell.thin{color:var(--warn)}
+  .pool-table .tier-cell.healthy{color:var(--good)}
+  .pool-table .best-avail{cursor:pointer;color:var(--accent)}
+  .pool-table .best-avail:hover{text-decoration:underline}
+  .cliff-card{padding:6px 10px;margin-bottom:6px;background:var(--panel2);border-left:3px solid var(--warn);border-radius:3px;font-size:11px}
+  .cliff-card.severe{border-left-color:var(--bad)}
+  .cliff-card strong{color:var(--text)}
+  .direction-card{padding:8px 10px;margin-bottom:6px;background:var(--panel2);border-left:3px solid var(--accent);border-radius:3px;font-size:11px}
+  .direction-card.urgent{border-left-color:var(--bad);background:rgba(248,81,73,.06)}
+  .direction-card.high{border-left-color:var(--warn);background:rgba(210,153,34,.06)}
+  .direction-card .dir-title{font-weight:600;margin-bottom:3px;color:var(--text)}
+  .direction-card .dir-rationale{color:var(--muted)}
+  /* ===== POOL TAB — phase banners ===== */
+  .phase-banner{padding:10px 12px;margin-bottom:14px;border-radius:4px;background:var(--panel2);border-left:4px solid var(--accent)}
+  .phase-banner.phase-early{border-left-color:var(--accent);background:rgba(88,166,255,.07)}
+  .phase-banner.phase-mid{border-left-color:var(--good);background:rgba(63,185,80,.07)}
+  .phase-banner.phase-late{border-left-color:var(--sleeper);background:rgba(240,180,41,.08)}
+  .phase-banner.phase-endgame{border-left-color:var(--target);background:rgba(188,140,255,.08)}
+  .phase-banner.phase-early-mid{border-left:4px solid;border-image:linear-gradient(180deg,var(--accent),var(--good)) 1;background:linear-gradient(90deg,rgba(88,166,255,.05),rgba(63,185,80,.05))}
+  .phase-banner.phase-mid-late{border-left:4px solid;border-image:linear-gradient(180deg,var(--good),var(--sleeper)) 1;background:linear-gradient(90deg,rgba(63,185,80,.05),rgba(240,180,41,.05))}
+  .dir-options{margin-top:8px;padding-left:8px;border-left:2px solid var(--border)}
+  .dir-option{padding:5px 6px;border-bottom:1px solid var(--border);cursor:pointer;font-size:11px}
+  .dir-option:last-child{border-bottom:none}
+  .dir-option:hover{background:var(--panel)}
+  .dir-option strong{color:var(--text)}
+  .dir-option-context{color:var(--muted);font-size:10px;margin-top:2px;font-style:italic}
+  .phase-label{font-size:13px;font-weight:700;letter-spacing:.03em;margin-bottom:4px;color:var(--text)}
+  .phase-focus{font-size:11px;color:var(--muted);margin-bottom:8px;line-height:1.4}
+  .phase-override{display:flex;gap:3px;flex-wrap:wrap;align-items:center}
+  .phase-override label{font-size:10px;color:var(--muted);padding:3px 4px;text-transform:uppercase;letter-spacing:.05em}
+  .phase-override button{background:var(--panel);color:var(--muted);border:1px solid var(--border);border-radius:3px;padding:3px 8px;font:inherit;font-size:10px;cursor:pointer}
+  .phase-override button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .hype-row{display:flex;justify-content:space-between;padding:5px 6px;border-bottom:1px solid var(--border);font-size:11px;cursor:pointer;gap:8px}
+  .hype-row:last-child{border-bottom:none}
+  .hype-row:hover{background:var(--panel2)}
+  .hype-row .hype-why{color:var(--muted);font-size:10px;white-space:nowrap}
+  .handcuff-row{padding:6px 8px;background:var(--panel2);border:1px solid var(--border);border-radius:3px;margin-bottom:4px;font-size:11px}
+  .handcuff-opt{cursor:pointer;color:var(--accent)}
+  .handcuff-opt:hover{text-decoration:underline}
+  .kdst-pill{display:inline-block;padding:3px 8px;border-radius:3px;background:var(--panel2);border:1px solid var(--border);font-size:11px;font-weight:600;cursor:pointer;margin-right:4px;margin-bottom:4px}
+  .kdst-pill:hover{border-color:var(--accent)}
+  .bench-row{padding:6px 8px;background:var(--panel2);border:1px solid var(--border);border-radius:3px;margin-bottom:4px;font-size:11px}
+  .bye-pill{padding:3px 7px;border-radius:3px;font-size:10px;font-weight:600}
+  .bye-pill-ok{background:var(--panel2);color:var(--muted)}
+  .bye-pill-warn{background:rgba(210,153,34,.18);color:var(--warn)}
+  .bye-pill-critical{background:rgba(248,81,73,.2);color:var(--bad)}
+  /* ===== PLAYER CARD ===== */
+  .player-card{padding:16px}
+  .player-card h2{margin:0 0 4px;font-size:18px}
+  .player-card .sub{color:var(--muted);margin-bottom:12px;font-size:12px}
+  .player-card .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+  .player-card .stat{background:var(--panel2);padding:8px;border-radius:4px;border:1px solid var(--border)}
+  .player-card .stat-label{font-size:10px;color:var(--muted);text-transform:uppercase}
+  .player-card .stat-value{font-size:14px;font-weight:600;margin-top:2px}
+  .player-card textarea{width:100%;min-height:80px;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:4px;padding:8px;font:inherit;resize:vertical}
+  .bridge-box{padding:10px;background:rgba(88,166,255,.08);border:1px solid var(--accent);border-radius:4px;margin-bottom:12px;font-size:12px}
+  .bridge-box strong{color:var(--accent)}
+  .tag-buttons{display:flex;gap:4px;margin:8px 0;flex-wrap:wrap}
+  .tag-buttons button{flex:1;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:4px;padding:6px;font:inherit;cursor:pointer;font-size:11px;min-width:60px}
+  .tag-buttons button.active.target{background:var(--target);color:#000;border-color:var(--target)}
+  .tag-buttons button.active.value{background:var(--value);color:#000;border-color:var(--value)}
+  .tag-buttons button.active.sleeper{background:var(--sleeper);color:#000;border-color:var(--sleeper)}
+  .tag-buttons button.active.dnd{background:var(--dnd);color:#fff;border-color:var(--dnd)}
+  .tag-buttons button.active.watch{background:var(--watch);color:#000;border-color:var(--watch)}
+  .draft-buttons{display:flex;gap:6px;margin:8px 0}
+  .draft-buttons button{flex:1;padding:8px;border-radius:4px;border:1px solid var(--border);background:var(--panel2);color:var(--text);cursor:pointer;font:inherit}
+  .draft-buttons button.me{background:var(--me);color:#fff;border-color:var(--me)}
+  .draft-buttons button.other{background:var(--other);color:#fff;border-color:var(--other)}
+  .draft-buttons button.undo{background:transparent}
+  .soft{margin-top:12px;padding:10px;background:var(--panel2);border:1px solid var(--border);border-radius:4px;font-size:12px;color:var(--muted)}
+  .soft em{color:var(--text);font-style:normal;font-weight:600}
+  /* ===== TEAMS TAB ===== */
+  .team-card{padding:12px;margin-bottom:8px;background:var(--panel2);border:1px solid var(--border);border-radius:4px}
+  .team-card h3{margin:0 0 4px;font-size:14px}
+  .team-card .roster-list{font-size:11px;color:var(--muted)}
+  .ideal-row{display:flex;justify-content:space-between;padding:4px 6px;border-bottom:1px solid var(--border);font-size:12px;cursor:pointer}
+  .ideal-row:hover{background:var(--panel)}
+  .ideal-row.gone{opacity:.4;text-decoration:line-through}
+  .ideal-row .delta{font-size:11px;color:var(--muted)}
+  /* ===== FOOTER ===== */
+  footer{padding:8px 14px;border-top:1px solid var(--border);background:var(--panel);font-size:11px;color:var(--muted);display:flex;justify-content:space-between}
+  .upload-zone{padding:8px 12px;background:rgba(63,185,80,.05);border-bottom:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center}
+  /* ===== SETTINGS MODAL (Phase 2B) ===== */
+  header button.gear{font-weight:600}
+  .settings-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:24px;overflow:auto}
+  .settings-modal{background:var(--panel);border:1px solid var(--border);border-radius:10px;width:100%;max-width:560px;margin:auto;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  .settings-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);font-weight:600;font-size:15px;color:var(--accent)}
+  .settings-close{background:transparent;border:none;color:var(--muted);font-size:24px;line-height:1;cursor:pointer;padding:0 4px}
+  .settings-close:hover{color:var(--text)}
+  .settings-body{padding:16px 18px}
+  .settings-cols{display:flex;gap:24px;flex-wrap:wrap}
+  .settings-col{flex:1;min-width:200px}
+  .settings-col h4{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  .stp-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;min-height:34px}
+  .stp-label{font-size:13px}
+  .stp-ctrl{display:flex;align-items:center;gap:8px}
+  .stp{width:34px;height:34px;border-radius:6px;border:1px solid var(--border);background:var(--panel2);color:var(--text);font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;-webkit-tap-highlight-color:transparent}
+  .stp:hover{background:var(--border)}
+  .stp:active{background:var(--accent);color:#fff}
+  .stp-val{min-width:24px;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+  .seg-group{display:flex;gap:4px;flex-wrap:wrap}
+  .seg{padding:7px 10px;border-radius:6px;border:1px solid var(--border);background:var(--panel2);color:var(--text);font-size:12px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .seg:hover{background:var(--border)}
+  .seg.active{background:var(--me);border-color:var(--me);color:#fff}
+  .settings-note{font-size:11px;color:var(--muted);margin:10px 0 0;line-height:1.4}
+  .settings-totals{margin-top:16px;padding:10px 12px;background:var(--panel2);border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--muted)}
+  .settings-totals strong{color:var(--text)}
+  .settings-actions{margin-top:14px;text-align:right}
+  .settings-reset{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:8px 12px;cursor:pointer;font:inherit}
+  .settings-reset:hover{border-color:var(--bad);color:var(--bad)}
+  @media(max-width:520px){.settings-cols{flex-direction:column;gap:14px}}
+  .scoring-warn{background:rgba(210,153,34,.14);border:1px solid var(--warn);color:var(--warn);border-radius:6px;padding:9px 12px;margin-bottom:14px;font-size:12px;line-height:1.4}
+  .scoring-warn strong{color:var(--text)}
+  .scoring-warn-x{background:transparent;border:none;color:var(--warn);font-size:18px;line-height:1;cursor:pointer;padding:0 2px;float:right;margin-left:8px}
+  .cut-head{margin-top:10px;padding:6px 8px;font-size:11px;font-weight:600;color:var(--bad);border-top:1px dashed var(--bad)}
+  .roster-slot.cut{opacity:.75}
+  .roster-slot.cut .slot-label{color:var(--bad)}
+  .settings-presets{margin-top:16px;border-top:1px solid var(--border);padding-top:14px}
+  .settings-presets h4{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  .preset-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+  .preset-row select,.preset-row input{flex:1;min-width:0;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:7px 8px;font:inherit}
+  .badge.profile{background:var(--accent);color:#fff}
+  .soft.scouting .scouting-head{color:var(--text);font-weight:600;font-size:11px;letter-spacing:.04em;margin-bottom:6px}
+  .soft.scouting .scouting-date{color:var(--muted);font-weight:400;margin-left:6px;letter-spacing:0}
+  .soft.scouting > div{margin-bottom:3px}
+  .soft.scouting .scouting-link a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Fantasy Draft 2026</h1>
+  <span class="pill" id="versionPill">v1.1 · sample data</span>
+  <button id="settingsBtn" class="gear" title="League settings (teams, scoring, roster)">⚙ League</button>
+  <label>Slot:</label>
+  <select id="slotPicker"></select>
+  <label>Pick:</label>
+  <input id="pickNumber" type="number" min="1" max="200" value="1" style="width:60px"/>
+  <span class="pill" id="myNextPick">Next: —</span>
+  <button id="simToMyPick" title="Mock-draft helper — auto-marks 'Drafted by Other' in ADP order (with realistic jitter) until you're on the clock">Sim → my pick</button>
+  <span class="pill" id="warningPill" style="display:none;cursor:pointer;background:rgba(210,153,34,0.18);border-color:var(--warn);color:var(--warn)" title="Active roster implications — click to view in Roster tab">⚠ 0</span>
+  <button id="resetDraft">Reset Draft</button>
+  <button id="fullReset" title="Factory reset — picks, tags, notes, watchlist, overrides, archetypes, settings. League presets survive.">Full Reset</button>
+  <button id="exportState">Export State</button>
+  <input id="importState" type="file" accept=".json" style="display:none"/>
+  <button id="importStateBtn">Import State</button>
+  <input id="importCsv" type="file" accept=".csv" style="display:none"/>
+  <button id="importCsvBtn">Load CSV</button>
+</header>
+
+<div class="upload-zone" id="dataSourceNote">Data: FantasyPros 2026 ECR + ADP (PPR), 455 players — imported 2026-06-06. ESPN ranks not yet loaded.</div>
+
+<div class="layout">
+
+  <!-- LEFT: Big Board -->
+  <div class="left">
+    <div class="toolbar">
+      <button class="posFilter active" data-pos="ALL">ALL</button>
+      <button class="posFilter" data-pos="QB">QB</button>
+      <button class="posFilter" data-pos="RB">RB</button>
+      <button class="posFilter" data-pos="WR">WR</button>
+      <button class="posFilter" data-pos="TE">TE</button>
+      <button class="posFilter" data-pos="K">K</button>
+      <button class="posFilter" data-pos="DST">DST</button>
+      <select id="tierFilter" title="Filter by tier (effective tier — uses your override if set)">
+        <option value="ALL">All tiers</option>
+        <option value="1">Tier 1 only</option>
+        <option value="2">Tier 2 only</option>
+        <option value="3">Tier 3 only</option>
+        <option value="1-2">Tiers 1–2</option>
+        <option value="1-3">Tiers 1–3</option>
+        <option value="4+">Tier 4+</option>
+      </select>
+      <select id="lensFilter" title="Strategic lens — filter by category">
+        <option value="all">Lens: all</option>
+        <option value="hype">Lens: hype trains</option>
+        <option value="edge">Lens: ⚡ edge</option>
+        <option value="handcuffs">Lens: handcuffs</option>
+        <option value="stacks">Lens: stacks</option>
+        <option value="lottery">Lens: lottery</option>
+        <option value="overrides">Lens: overrides</option>
+        <option value="archetyped">Lens: archetypes</option>
+        <option value="researched">Lens: researched</option>
+      </select>
+      <input type="search" id="searchBox" placeholder="Search player..." />
+      <button id="toggleTaken">Hide Taken</button>
+      <button id="toggleWatch">Watchlist Only</button>
+      <button id="toggleGroupTier" title="Reorganize the board so all tier-1 players (across positions) appear together, then tier-2, etc.">Group by Tier</button>
+    </div>
+    <div id="clockStrip" title="On the clock — best available overall + per position, with tier-scarcity warnings. Ignores all board filters. Click a name to open the card."></div>
+    <table id="bigBoard">
+      <thead>
+        <tr>
+          <th data-sort="Consensus_Rank" title="FantasyPros ECR — who's actually best">CNS</th>
+          <th data-sort="Name">Player</th>
+          <th data-sort="Position">Pos</th>
+          <th data-sort="Tier" title="Tier within position. Lower = better. Tier breaks mark natural value falls.">Tier</th>
+          <th data-sort="NFL_Team">Team</th>
+          <th data-sort="Bye_Week">Bye</th>
+          <th data-sort="ESPN_Rank" title="ESPN draft-room rank">ESPN</th>
+          <th data-sort="ADP" title="FantasyPros ESPN-specific ADP">ADP</th>
+          <th title="ESPN - Consensus. Negative = ESPN overrates, leaguemates reach. Positive = ESPN underrates, you can wait.">Bridge</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="boardBody"></tbody>
+    </table>
+  </div>
+
+  <!-- RIGHT: Tabs -->
+  <div class="right">
+    <div class="right-tabs">
+      <button class="tab active" data-tab="card">Player</button>
+      <button class="tab" data-tab="roster">Roster</button>
+      <button class="tab" data-tab="ideal">Ideal</button>
+      <button class="tab" data-tab="slot">My Picks</button>
+      <button class="tab" data-tab="pool">Pool</button>
+      <button class="tab" data-tab="teams">Teams</button>
+    </div>
+    <div class="panel" id="tab-card"><div class="player-card"><p style="color:var(--muted)">Click a player on the Big Board to open their card.</p></div></div>
+    <div class="panel" id="tab-roster" style="display:none"></div>
+    <div class="panel" id="tab-ideal" style="display:none"></div>
+    <div class="panel" id="tab-slot" style="display:none"></div>
+    <div class="panel" id="tab-pool" style="display:none"></div>
+    <div class="panel" id="tab-teams" style="display:none"></div>
+  </div>
+
+</div>
+
+<footer>
+  <span id="footerLeft">Last refresh: 2026-06-06 · FantasyPros ECR+ADP (PPR) · 455 players · ESPN bridge pending</span>
+  <span id="footerSidecar">Research sidecar: not loaded</span>
+  <span id="footerRight">12-team PPR · QB/RB/RB/WR/WR/TE/FLEX/DST/K + bench</span>
+</footer>
+
+<!-- League settings modal (Phase 2B) -->
+<div id="settingsOverlay" class="settings-overlay" style="display:none">
+  <div class="settings-modal" role="dialog" aria-modal="true" aria-label="League settings">
+    <div class="settings-head"><span>League Settings</span><button id="settingsClose" class="settings-close" title="Close (Esc)">×</button></div>
+    <div id="settingsBody" class="settings-body"></div>
+  </div>
+</div>
+
+<script>
+/* ========= EMBEDDED SAMPLE CSV ========= */
+const SAMPLE_CSV = `Name,Position,NFL_Team,Consensus_Rank,Consensus_Pos_Rank,ESPN_Rank,ESPN_Pos_Rank,ADP,Bye_Week,Depth_Level,Injury_Status,Projection,Tier
+Ja'Marr Chase,WR,CIN,1,1,,,3.0,6,Starter,Healthy,,1
+Bijan Robinson,RB,ATL,2,1,,,1.5,11,Starter,Healthy,,1
+Puka Nacua,WR,LAR,3,2,,,4.0,11,Starter,Healthy,,1
+Jaxon Smith-Njigba,WR,SEA,4,3,,,5.0,11,Starter,Healthy,,1
+Jahmyr Gibbs,RB,DET,5,2,,,1.5,6,Starter,Healthy,,1
+Amon-Ra St. Brown,WR,DET,6,4,,,7.5,6,Starter,Healthy,,2
+Christian McCaffrey,RB,SF,7,3,,,6.0,8,Starter,Healthy,,2
+CeeDee Lamb,WR,DAL,8,5,,,10.5,14,Starter,Healthy,,2
+Justin Jefferson,WR,MIN,9,6,,,11.0,6,Starter,Healthy,,2
+Jonathan Taylor,RB,IND,10,4,,,7.5,13,Starter,Healthy,,2
+Drake London,WR,ATL,11,7,,,17.5,11,Starter,Healthy,,2
+Nico Collins,WR,HOU,12,8,,,22.5,8,Starter,Healthy,,3
+De'Von Achane,RB,MIA,13,5,,,13.0,6,Starter,Questionable,,3
+Trey McBride,TE,ARI,14,1,,,20.5,14,Starter,Healthy,,1
+Ashton Jeanty,RB,LV,15,6,,,10.5,13,Starter,Healthy,,3
+George Pickens,WR,DAL,16,9,,,25.5,14,Backup,Healthy,,3
+Chris Olave,WR,NO,17,10,,,28.0,8,Starter,Healthy,,3
+Malik Nabers,WR,NYG,18,11,,,29.5,8,Starter,Questionable,,3
+Chase Brown,RB,CIN,19,7,,,15.0,6,Starter,Healthy,,3
+A.J. Brown,WR,NE,20,12,,,26.5,11,Starter,Healthy,,3
+Brock Bowers,TE,LV,21,2,,,20.5,13,Starter,Healthy,,1
+James Cook III,RB,BUF,22,8,,,10.5,7,Starter,Healthy,,3
+Rashee Rice,WR,KC,23,13,,,26.0,5,Starter,Questionable,,3
+Josh Allen,QB,BUF,24,1,,,30.0,7,Starter,Healthy,,1
+Omarion Hampton,RB,LAC,25,9,,,16.0,7,Starter,Healthy,,4
+Tetairoa McMillan,WR,CAR,26,14,,,38.0,5,Starter,Questionable,,4
+Saquon Barkley,RB,PHI,27,10,,,14.5,10,Starter,Healthy,,4
+Garrett Wilson,WR,NYJ,28,15,,,37.0,13,Starter,Healthy,,4
+Lamar Jackson,QB,BAL,29,2,,,51.5,13,Starter,Healthy,,1
+DeVonta Smith,WR,PHI,30,16,,,34.0,10,Starter,Healthy,,4
+Kenneth Walker III,RB,KC,31,11,,,16.5,5,Starter,Healthy,,4
+Drake Maye,QB,NE,32,3,,,62.5,11,Starter,Healthy,,1
+Tee Higgins,WR,CIN,33,17,,,36.5,6,Backup,Healthy,,4
+Jeremiyah Love,RB,ARI,34,12,,,21.5,14,Starter,Healthy,,5
+Ladd McConkey,WR,LAC,35,18,,,38.5,7,Starter,Healthy,,5
+Colston Loveland,TE,CHI,36,3,,,44.0,10,Starter,Healthy,,2
+Zay Flowers,WR,BAL,37,19,,,34.5,13,Starter,Healthy,,5
+Jaylen Waddle,WR,DEN,38,20,,,51.0,10,Starter,Healthy,,5
+Derrick Henry,RB,BAL,39,13,,,20.5,13,Starter,Healthy,,5
+Breece Hall,RB,NYJ,40,14,,,29.5,13,Starter,Healthy,,5
+Luther Burden III,WR,CHI,41,21,,,44.5,10,Backup,Healthy,,5
+Terry McLaurin,WR,WAS,42,22,,,50.0,7,Starter,Healthy,,5
+Joe Burrow,QB,CIN,43,4,,,58.5,6,Starter,Healthy,,2
+Josh Jacobs,RB,GB,44,15,,,33.5,11,Starter,Healthy,,5
+Emeka Egbuka,WR,TB,45,23,,,41.0,10,Starter,Healthy,,5
+Travis Etienne Jr.,RB,NO,46,16,,,31.0,8,Starter,Healthy,,5
+Davante Adams,WR,LAR,47,24,,,48.5,11,Backup,Healthy,,5
+Kyren Williams,RB,LAR,48,17,,,31.0,11,Starter,Healthy,,5
+Javonte Williams,RB,DAL,49,18,,,35.5,14,Starter,Healthy,,5
+Mike Evans,WR,SF,50,25,,,55.0,8,Starter,Healthy,,6
+Jameson Williams,WR,DET,51,26,,,50.5,6,Backup,Healthy,,6
+Jayden Daniels,QB,WAS,52,5,,,64.5,7,Starter,Healthy,,3
+Jalen Hurts,QB,PHI,53,6,,,71.5,10,Starter,Healthy,,3
+Bucky Irving,RB,TB,54,19,,,49.5,10,Starter,Questionable,,6
+DJ Moore,WR,BUF,55,27,,,52.0,7,Starter,Healthy,,6
+Tyler Warren,TE,IND,56,4,,,63.5,13,Starter,Healthy,,3
+Cam Skattebo,RB,NYG,57,20,,,43.0,8,Starter,Healthy,,6
+Christian Watson,WR,GB,58,28,,,55.0,11,Starter,Healthy,,6
+Rome Odunze,WR,CHI,59,29,,,56.5,10,Starter,Healthy,,6
+TreVeyon Henderson,RB,NE,60,21,,,50.5,11,Starter,Healthy,,6
+Quinshon Judkins,RB,CLE,61,22,,,53.5,11,Starter,Questionable,,6
+D'Andre Swift,RB,CHI,62,23,,,52.0,10,Starter,Healthy,,6
+David Montgomery,RB,HOU,63,24,,,49.0,8,Starter,Healthy,,7
+Marvin Harrison Jr.,WR,ARI,64,30,,,67.0,14,Starter,Healthy,,7
+Carnell Tate,WR,TEN,65,31,,,63.0,9,Starter,Healthy,,7
+Courtland Sutton,WR,DEN,66,32,,,79.5,10,Backup,Healthy,,7
+Jaylen Warren,RB,PIT,67,25,,,72.5,9,Backup,Healthy,,7
+Tucker Kraft,TE,GB,68,5,,,86.5,11,Starter,Questionable,,4
+Harold Fannin Jr.,TE,CLE,69,6,,,85.0,11,Starter,Questionable,,4
+Justin Herbert,QB,LAC,70,7,,,76.0,7,Starter,Healthy,,4
+Caleb Williams,QB,CHI,71,8,,,68.5,10,Starter,Healthy,,4
+Bhayshul Tuten,RB,JAC,72,26,,,61.5,7,Starter,Healthy,,7
+DK Metcalf,WR,PIT,73,33,,,73.0,9,Starter,Healthy,,7
+RJ Harvey,RB,DEN,74,27,,,78.5,10,Backup,Healthy,,7
+Chuba Hubbard,RB,CAR,75,28,,,67.0,5,Starter,Healthy,,7
+Jaxson Dart,QB,NYG,76,9,,,85.0,8,Starter,Healthy,,4
+Michael Wilson,WR,ARI,77,34,,,89.5,14,Backup,Healthy,,7
+Chris Godwin Jr.,WR,TB,78,35,,,91.0,10,Backup,Healthy,,7
+Alec Pierce,WR,IND,79,36,,,75.5,13,Starter,Questionable,,7
+Trevor Lawrence,QB,JAC,80,10,,,80.5,7,Starter,Healthy,,4
+Jadarian Price,RB,SEA,81,29,,,61.5,11,Starter,Healthy,,7
+Kyle Pitts Sr.,TE,ATL,82,7,,,95.5,11,Starter,Healthy,,4
+Jakobi Meyers,WR,JAC,83,37,,,97.0,7,Rotational,Healthy,,7
+Dak Prescott,QB,DAL,84,11,,,79.0,14,Starter,Healthy,,4
+Michael Pittman Jr.,WR,PIT,85,38,,,99.0,9,Backup,Healthy,,7
+Rico Dowdle,RB,PIT,86,30,,,87.5,9,Starter,Healthy,,7
+Sam LaPorta,TE,DET,87,8,,,95.5,6,Starter,Questionable,,4
+Rhamondre Stevenson,RB,NE,88,31,,,77.0,11,Backup,Healthy,,7
+Tony Pollard,RB,TEN,89,32,,,79.5,9,Starter,Healthy,,7
+Jordyn Tyson,WR,NO,90,39,,,71.5,8,Backup,Questionable,,7
+Wan'Dale Robinson,WR,TEN,91,40,,,110.5,9,Backup,Healthy,,7
+Brian Thomas Jr.,WR,JAC,92,41,,,74.5,7,Backup,Healthy,,8
+Brock Purdy,QB,SF,93,12,,,94.5,8,Starter,Healthy,,5
+Kyle Monangai,RB,CHI,94,33,,,92.5,10,Backup,Healthy,,8
+Makai Lemon,WR,PHI,95,42,,,84.5,10,Backup,Questionable,,8
+Parker Washington,WR,JAC,96,43,,,73.0,7,Starter,Healthy,,8
+Ricky Pearsall,WR,SF,97,44,,,98.0,8,Backup,Healthy,,8
+Patrick Mahomes II,QB,KC,98,13,,,93.5,5,Starter,Questionable,,5
+Matthew Stafford,QB,LAR,99,14,,,94.5,11,Starter,Healthy,,5
+Aaron Jones Sr.,RB,MIN,100,34,,,125.5,6,Starter,Healthy,,8
+Jordan Addison,WR,MIN,101,45,,,99.5,6,Backup,Healthy,,8
+Bo Nix,QB,DEN,102,15,,,102.0,10,Starter,Questionable,,5
+Josh Downs,WR,IND,103,46,,,103.0,13,Backup,Healthy,,8
+Jake Ferguson,TE,DAL,104,9,,,123.0,14,Starter,Healthy,,5
+Kenneth Gainwell,RB,TB,105,35,,,96.0,10,Backup,Healthy,,8
+J.K. Dobbins,RB,DEN,106,36,,,106.5,10,Starter,Healthy,,8
+Travis Kelce,TE,KC,107,10,,,120.0,5,Starter,Healthy,,5
+Dalton Kincaid,TE,BUF,108,11,,,123.0,7,Starter,Healthy,,5
+Jared Goff,QB,DET,109,16,,,102.0,6,Starter,Healthy,,5
+Jayden Reed,WR,GB,110,47,,,96.5,11,Backup,Healthy,,8
+Blake Corum,RB,LAR,111,37,,,101.0,11,Backup,Healthy,,8
+Kyler Murray,QB,MIN,112,17,,,108.0,6,Starter,Healthy,,5
+Khalil Shakir,WR,BUF,113,48,,,122.0,7,Backup,Healthy,,8
+Quentin Johnston,WR,LAC,114,49,,,95.5,7,Backup,Healthy,,8
+Jordan Love,QB,GB,115,18,,,109.0,11,Starter,Healthy,,6
+Rachaad White,RB,WAS,116,38,,,119.0,7,Backup,Healthy,,9
+Jayden Higgins,WR,HOU,117,50,,,123.0,8,Backup,Healthy,,9
+Baker Mayfield,QB,TB,118,19,,,111.5,10,Starter,Healthy,,6
+George Kittle,TE,SF,119,12,,,120.5,8,Starter,Questionable,,6
+Tyler Shough,QB,NO,120,20,,,110.5,8,Starter,Healthy,,6
+Jacory Croskey-Merritt,RB,WAS,121,39,,,122.5,7,Starter,Questionable,,9
+Isaiah Likely,TE,NYG,122,13,,,130.5,8,Starter,Healthy,,6
+Malik Willis,QB,MIA,123,21,,,125.5,6,Starter,Healthy,,6
+Dallas Goedert,TE,PHI,124,14,,,131.5,10,Starter,Healthy,,6
+Xavier Worthy,WR,KC,125,51,,,112.5,5,Backup,Questionable,,9
+Romeo Doubs,WR,NE,126,52,,,115.0,11,Backup,Healthy,,9
+Tyler Allgeier,RB,ARI,127,40,,,147.5,14,Backup,Healthy,,9
+Jordan Mason,RB,MIN,128,41,,,123.5,6,Backup,Healthy,,9
+Woody Marks,RB,HOU,129,42,,,143.0,8,Backup,Healthy,,9
+Jalen Coker,WR,CAR,130,53,,,131.5,5,Backup,Healthy,,9
+Tyrone Tracy Jr.,RB,NYG,131,43,,,132.0,8,Backup,Healthy,,9
+C.J. Stroud,QB,HOU,132,22,,,135.0,8,Starter,Healthy,,6
+KC Concepcion,WR,CLE,133,54,,,124.5,11,Starter,Healthy,,9
+Zach Charbonnet,RB,SEA,134,44,,,170.5,11,Backup,Questionable,,9
+Juwan Johnson,TE,NO,135,15,,,147.0,8,Starter,Healthy,,6
+Oronde Gadsden II,TE,LAC,136,16,,,138.5,7,Starter,Healthy,,6
+Matthew Golden,WR,GB,137,55,,,118.0,11,Rotational,Healthy,,9
+Sam Darnold,QB,SEA,138,23,,,134.0,11,Starter,Healthy,,6
+Tyjae Spears,RB,TEN,139,45,,,153.0,9,Backup,Healthy,,9
+Brenton Strange,TE,JAC,140,17,,,153.0,7,Starter,Healthy,,6
+Mark Andrews,TE,BAL,141,18,,,137.5,13,Starter,Healthy,,6
+Dylan Sampson,RB,CLE,142,46,,,153.0,11,Backup,Healthy,,9
+Chris Rodriguez Jr.,RB,JAC,143,47,,,122.0,7,Backup,Questionable,,9
+Alvin Kamara,RB,NO,144,48,,,180.0,8,Backup,Healthy,,9
+Jonathon Brooks,RB,CAR,145,49,,,119.5,5,Backup,Healthy,,9
+Cam Ward,QB,TEN,146,24,,,135.5,9,Starter,Healthy,,6
+Isiah Pacheco,RB,DET,147,50,,,150.5,6,Backup,Healthy,,10
+Bryce Young,QB,CAR,148,25,,,145.5,5,Starter,Healthy,,7
+Rashid Shaheed,WR,SEA,149,56,,,148.5,11,Backup,Healthy,,10
+Jerry Jeudy,WR,CLE,150,57,,,179.5,11,Rotational,Healthy,,10
+James Conner,RB,ARI,151,51,,,200.0,14,Rotational,Questionable,,10
+Deebo Samuel Sr.,WR,FA,152,58,,,162.5,,Unknown,Healthy,,10
+Denzel Boston,WR,CLE,153,59,,,167.0,11,Backup,Healthy,,10
+Jauan Jennings,WR,MIN,154,60,,,147.5,6,Rotational,Healthy,,10
+Hunter Henry,TE,NE,155,19,,,155.5,11,Starter,Healthy,,7
+Daniel Jones,QB,IND,156,26,,,140.5,13,Starter,Questionable,,7
+Travis Hunter,WR,JAC,157,61,,,169.0,7,Rotational,Questionable,,10
+Braelon Allen,RB,NYJ,158,52,,,200.0,13,Backup,Healthy,,10
+Omar Cooper Jr.,WR,NYJ,159,62,,,159.0,13,Backup,Healthy,,10
+Keaton Mitchell,RB,LAC,160,53,,,151.0,7,Backup,Healthy,,10
+Stefon Diggs,WR,FA,161,63,,,139.0,,Unknown,Healthy,,10
+Jonah Coleman,RB,DEN,162,54,,,157.0,10,Rotational,Healthy,,10
+Houston Texans,DST,HOU,163,1,,,141.0,8,Unknown,Healthy,,1
+Adonai Mitchell,WR,NYJ,164,64,,,213.0,13,Rotational,Healthy,,10
+Dalton Schultz,TE,HOU,165,20,,,172.0,8,Starter,Healthy,,7
+Brian Robinson Jr.,RB,ATL,166,55,,,171.5,11,Backup,Healthy,,10
+Chig Okonkwo,TE,WAS,167,21,,,152.5,7,Starter,Healthy,,7
+Kayshon Boutte,WR,NE,168,65,,,206.0,11,Rotational,Healthy,,10
+Emanuel Wilson,RB,SEA,169,56,,,168.0,11,Rotational,Healthy,,10
+Brandon Aiyuk,WR,SF,170,66,,,180.5,8,Rotational,Out,,10
+Jalen McMillan,WR,TB,171,67,,,150.0,10,Rotational,Healthy,,10
+Tre' Harris,WR,LAC,172,68,,,181.5,7,Rotational,Healthy,,10
+Denver Broncos,DST,DEN,173,2,,,156.0,10,Unknown,Healthy,,1
+Tank Bigsby,RB,PHI,174,57,,,183.0,10,Backup,Healthy,,10
+Jacoby Brissett,QB,ARI,175,27,,,169.0,14,Starter,Healthy,,7
+Troy Franklin,WR,DEN,176,69,,,215.0,10,Rotational,Questionable,,10
+Seattle Seahawks,DST,SEA,177,3,,,154.0,11,Unknown,Healthy,,1
+T.J. Hockenson,TE,MIN,178,22,,,165.0,6,Starter,Healthy,,7
+Los Angeles Rams,DST,LAR,179,4,,,169.0,11,Unknown,Healthy,,2
+Philadelphia Eagles,DST,PHI,180,5,,,187.0,10,Unknown,Healthy,,2
+Tre Tucker,WR,LV,181,70,,,157.0,13,Backup,Healthy,,11
+Jaylin Noel,WR,HOU,182,71,,,287.0,8,Rotational,Healthy,,11
+Kenyon Sadiq,TE,NYJ,183,23,,,151.5,13,Starter,Questionable,,8
+Emmett Johnson,RB,KC,184,58,,,170.0,5,Backup,Healthy,,11
+Kimani Vidal,RB,LAC,185,59,,,198.0,7,Rotational,Healthy,,11
+Mike Washington Jr.,RB,LV,186,60,,,191.5,13,Backup,Healthy,,11
+Calvin Ridley,WR,TEN,187,72,,,203.0,9,Rotational,Healthy,,11
+Pat Bryant,WR,DEN,188,73,,,283.5,10,Rotational,Healthy,,11
+New England Patriots,DST,NE,189,6,,,186.0,11,Unknown,Healthy,,2
+Brandon Aubrey,K,DAL,190,1,,,,14,Starter,Healthy,,1
+Ryan Flournoy,WR,DAL,191,74,,,180.5,14,Rotational,Healthy,,11
+Jacksonville Jaguars,DST,JAC,192,7,,,191.0,7,Unknown,Healthy,,2
+Minnesota Vikings,DST,MIN,193,8,,,182.0,6,Unknown,Healthy,,2
+Pittsburgh Steelers,DST,PIT,194,9,,,190.0,9,Unknown,Healthy,,2
+AJ Barner,TE,SEA,195,24,,,180.0,11,Starter,Questionable,,8
+Tyreek Hill,WR,FA,196,75,,,211.0,,Unknown,Questionable,,11
+Los Angeles Chargers,DST,LAC,197,10,,,196.0,7,Unknown,Healthy,,2
+Chimere Dike,WR,TEN,198,76,,,256.5,9,Rotational,Healthy,,11
+Sean Tucker,RB,TB,199,61,,,191.5,10,Rotational,Healthy,,11
+Darnell Mooney,WR,NYG,200,77,,,209.0,8,Rotational,Healthy,,11
+Ray Davis,RB,BUF,201,62,,,204.0,7,Rotational,Healthy,,11
+Isaac TeSlaa,WR,DET,202,78,,,181.0,6,Rotational,Healthy,,11
+Cameron Dicker,K,LAC,203,2,,,,7,Starter,Healthy,,1
+Ka'imi Fairbairn,K,HOU,204,3,,,,8,Starter,Healthy,,1
+Green Bay Packers,DST,GB,205,11,,,209.0,11,Unknown,Healthy,,2
+Cleveland Browns,DST,CLE,206,12,,,180.0,11,Unknown,Healthy,,2
+Jason Myers,K,SEA,207,4,,,,11,Starter,Healthy,,1
+Kaytron Allen,RB,WAS,208,63,,,182.5,7,Rotational,Healthy,,11
+Cam Little,K,JAC,209,5,,,,7,Starter,Healthy,,1
+Nicholas Singleton,RB,TEN,210,64,,,191.5,9,Rotational,Healthy,,11
+Jaylen Wright,RB,MIA,211,65,,,241.0,6,Backup,Healthy,,11
+Gunnar Helm,TE,TEN,212,25,,,189.0,9,Starter,Healthy,,8
+Kansas City Chiefs,DST,KC,213,13,,,219.0,5,Unknown,Healthy,,2
+Eddy Pineiro,K,SF,214,6,,,,8,Starter,Healthy,,1
+Dontayvion Wicks,WR,PHI,215,79,,,260.0,10,Rotational,Healthy,,11
+Tyler Loop,K,BAL,216,7,,,,13,Starter,Healthy,,1
+Fernando Mendoza,QB,LV,217,28,,,171.5,13,Starter,Healthy,,8
+Evan McPherson,K,CIN,218,8,,,,6,Starter,Healthy,,1
+Elic Ayomanor,WR,TEN,219,80,,,328.0,9,Rotational,Healthy,,11
+Antonio Williams,WR,WAS,220,81,,,179.0,7,Backup,Healthy,,11
+Andy Borregales,K,NE,221,9,,,,11,Starter,Healthy,,1
+Baltimore Ravens,DST,BAL,222,14,,,199.0,13,Unknown,Healthy,,3
+Cairo Santos,K,CHI,223,10,,,,10,Starter,Healthy,,2
+Chase McLaughlin,K,TB,224,11,,,,10,Starter,Healthy,,2
+David Njoku,TE,LAC,225,26,,,201.5,7,Backup,Healthy,,9
+Detroit Lions,DST,DET,226,15,,,217.0,6,Unknown,Healthy,,3
+Geno Smith,QB,NYJ,227,29,,,171.5,13,Starter,Healthy,,9
+Terrance Ferguson,TE,LAR,228,27,,,222.0,11,Starter,Healthy,,9
+Jake Bates,K,DET,229,12,,,,6,Starter,Healthy,,2
+Mason Taylor,TE,NYJ,230,28,,,301.0,13,Backup,Healthy,,9
+De'Zhaun Stribling,WR,SF,231,82,,,209.5,8,Rotational,Healthy,,12
+Ollie Gordon II,RB,MIA,232,66,,,311.5,6,Rotational,Healthy,,12
+Kaleb Johnson,RB,PIT,233,67,,,379.0,9,Rotational,Healthy,,12
+Malik Washington,WR,MIA,234,83,,,198.0,6,Rotational,Healthy,,12
+Buffalo Bills,DST,BUF,235,16,,,213.0,7,Unknown,Healthy,,3
+Harrison Butker,K,KC,236,13,,,,5,Starter,Healthy,,2
+Devin Neal,RB,NO,237,68,,,371.0,8,Rotational,Healthy,,12
+Tank Dell,WR,HOU,238,84,,,222.5,8,Rotational,Questionable,,12
+Jalen Nailor,WR,LV,239,85,,,162.5,13,Starter,Healthy,,12
+Cade Otton,TE,TB,240,29,,,198.0,10,Starter,Healthy,,9
+Rashod Bateman,WR,BAL,241,86,,,297.0,13,Backup,Questionable,,12
+Trey Benson,RB,ARI,242,69,,,299.0,14,Rotational,Questionable,,12
+Cooper Kupp,WR,SEA,243,87,,,220.0,11,Rotational,Healthy,,12
+Germie Bernard,WR,PIT,244,88,,,231.5,9,Rotational,Healthy,,12
+Malachi Fields,WR,NYG,245,89,,,216.0,8,Rotational,Healthy,,12
+Aaron Rodgers,QB,PIT,246,30,,,165.5,9,Starter,Healthy,,9
+Pat Freiermuth,TE,PIT,247,30,,,199.0,9,Starter,Healthy,,9
+Chris Bell,WR,MIA,248,90,,,219.5,6,Starter,Questionable,,12
+Zachariah Branch,WR,ATL,249,91,,,216.5,11,Backup,Healthy,,12
+Jack Bech,WR,LV,250,92,,,316.0,13,Rotational,Healthy,,12
+Chris Boswell,K,PIT,251,14,,,,9,Starter,Healthy,,2
+Michael Penix Jr.,QB,ATL,252,31,,,227.0,11,Backup,Questionable,,9
+Harrison Mevis,K,LAR,253,15,,,,11,Starter,Healthy,,2
+Colby Parkinson,TE,LAR,254,31,,,216.0,11,Backup,Healthy,,9
+Theo Johnson,TE,NYG,255,32,,,288.0,8,Backup,Healthy,,9
+Keon Coleman,WR,BUF,256,93,,,290.5,7,Rotational,Healthy,,12
+Marvin Mims Jr.,WR,DEN,257,94,,,388.0,10,Rotational,Healthy,,12
+Evan Engram,TE,DEN,258,33,,,280.5,10,Starter,Healthy,,9
+Eli Stowers,TE,PHI,259,34,,,226.5,10,Backup,Questionable,,9
+Christian Kirk,WR,SF,260,95,,,221.0,8,Rotational,Healthy,,12
+Ted Hurst III,WR,TB,261,96,,,267.0,10,Rotational,Healthy,,12
+Kyle Williams,WR,NE,262,97,,,380.0,11,Rotational,Healthy,,12
+Adam Randall,RB,BAL,263,70,,,297.5,13,Rotational,Healthy,,12
+Tory Horton,WR,SEA,264,98,,,292.0,11,Rotational,Questionable,,12
+Isaiah Davis,RB,NYJ,265,71,,,356.0,13,Rotational,Healthy,,12
+Kendre Miller,RB,NO,266,72,,,,8,Rotational,Questionable,,12
+Mack Hollins,WR,NE,267,99,,,381.0,11,Rotational,Healthy,,12
+Elijah Sarratt,WR,BAL,268,100,,,320.5,13,Rotational,Healthy,,12
+Demond Claiborne,RB,MIN,269,73,,,244.5,6,Rotational,Healthy,,12
+Justice Hill,RB,BAL,270,74,,,250.0,13,Backup,Healthy,,12
+Brashard Smith,RB,KC,271,75,,,390.0,5,Rotational,Healthy,,12
+Shedeur Sanders,QB,CLE,272,32,,,231.0,11,Backup,Healthy,,9
+Xavier Legette,WR,CAR,273,101,,,378.0,5,Rotational,Healthy,,13
+Keenan Allen,WR,LAC,274,102,,,301.5,7,Unknown,Healthy,,13
+Najee Harris,RB,LAC,275,76,,,313.0,7,Unknown,Questionable,,13
+Darius Slayton,WR,NYG,276,103,,,313.0,8,Backup,Questionable,,13
+Ty Johnson,RB,BUF,277,77,,,296.5,7,Backup,Healthy,,13
+Wil Lutz,K,DEN,278,16,,,,10,Starter,Healthy,,3
+LeQuint Allen Jr.,RB,JAC,279,78,,,300.0,7,Rotational,Healthy,,13
+Atlanta Falcons,DST,ATL,280,17,,,214.0,11,Unknown,Healthy,,4
+Devaughn Vele,WR,NO,281,104,,,324.0,8,Rotational,Healthy,,13
+Tua Tagovailoa,QB,ATL,282,33,,,200.0,11,Starter,Healthy,,10
+Chris Brazzell II,WR,CAR,283,105,,,292.0,5,Rotational,Healthy,,13
+Jaydon Blue,RB,DAL,284,79,,,279.5,14,Rotational,Healthy,,13
+DJ Giddens,RB,IND,285,80,,,290.5,13,Backup,Healthy,,13
+Chris Brooks,RB,GB,286,81,,,263.0,11,Backup,Healthy,,13
+MarShawn Lloyd,RB,GB,287,82,,,277.0,11,Rotational,Healthy,,13
+San Francisco 49ers,DST,SF,288,18,,,225.0,8,Unknown,Healthy,,4
+Max Klare,TE,LAR,289,35,,,384.0,11,Rotational,Healthy,,10
+Jerome Ford,RB,WAS,290,83,,,315.0,7,Rotational,Questionable,,13
+Samaje Perine,RB,CIN,291,84,,,286.0,6,Backup,Healthy,,13
+George Holani,RB,SEA,292,85,,,377.0,11,Rotational,Healthy,,13
+Tyquan Thornton,WR,KC,293,106,,,287.5,5,Rotational,Healthy,,13
+Jaleel McLaughlin,RB,DEN,294,86,,,,10,Rotational,Healthy,,13
+Jake Tonges,TE,SF,295,36,,,222.5,8,Backup,Questionable,,10
+Devin Singletary,RB,NYG,296,87,,,386.0,8,Rotational,Healthy,,13
+Will Reichard,K,MIN,297,17,,,,6,Starter,Healthy,,3
+Seth McGowan,RB,IND,298,88,,,329.0,13,Rotational,Healthy,,13
+Jordan James,RB,SF,299,89,,,216.5,8,Backup,Healthy,,13
+Malik Davis,RB,DAL,300,90,,,275.0,14,Backup,Healthy,,13
+Isaac Guerendo,RB,SF,301,91,,,286.0,8,Rotational,Questionable,,13
+Indianapolis Colts,DST,IND,302,19,,,228.0,13,Unknown,Healthy,,4
+Hollywood Brown,WR,PHI,303,107,,,324.0,10,Unknown,Healthy,,13
+Charlie Smyth,K,NO,304,18,,,,8,Starter,Healthy,,3
+Mike Gesicki,TE,CIN,305,37,,,263.5,6,Starter,Healthy,,10
+Joe Mixon,RB,FA,306,92,,,305.0,,Unknown,Questionable,,13
+Emari Demercado,RB,KC,307,93,,,361.0,5,Rotational,Healthy,,13
+Kirk Cousins,QB,LV,308,34,,,228.5,13,Backup,Healthy,,10
+Oscar Delp,TE,NO,309,38,,,311.0,8,Rotational,Healthy,,10
+Skyler Bell,WR,BUF,310,108,,,309.5,7,Rotational,Healthy,,13
+Deshaun Watson,QB,CLE,311,35,,,218.5,11,Starter,Healthy,,10
+Isaiah Bond,WR,CLE,312,109,,,326.0,11,Rotational,Healthy,,13
+Trevor Etienne,RB,CAR,313,94,,,312.0,5,Rotational,Healthy,,13
+Tahj Brooks,RB,CIN,314,95,,,309.0,6,Rotational,Healthy,,13
+Jarquez Hunter,RB,LAR,315,96,,,308.0,11,Rotational,Healthy,,13
+Greg Dulcich,TE,MIA,316,39,,,225.5,6,Starter,Healthy,,10
+Andrei Iosivas,WR,CIN,317,110,,,318.5,6,Rotational,Healthy,,13
+J'Mari Taylor,RB,JAC,318,97,,,,7,Rotational,Healthy,,13
+Ja'Kobi Lane,WR,BAL,319,111,,,313.0,13,Rotational,Healthy,,13
+Audric Estime,RB,NO,320,98,,,276.0,8,Rotational,Healthy,,13
+J.J. McCarthy,QB,MIN,321,36,,,359.0,6,Backup,Healthy,,10
+Kaelon Black,RB,SF,322,99,,,234.5,8,Rotational,Healthy,,13
+Konata Mumpfield,WR,LAR,323,112,,,264.0,11,Rotational,Healthy,,14
+Bam Knight,RB,ARI,324,100,,,,14,Unknown,Healthy,,14
+Cedric Tillman,WR,CLE,325,113,,,,11,Rotational,Healthy,,14
+Chicago Bears,DST,CHI,326,20,,,202.0,10,Unknown,Healthy,,5
+Tez Johnson,WR,TB,327,114,,,394.0,10,Rotational,Healthy,,14
+Calvin Austin III,WR,NYG,328,115,,,295.0,8,Rotational,Healthy,,14
+Kareem Hunt,RB,FA,329,101,,,255.0,,Unknown,Healthy,,14
+Jalen Royals,WR,KC,330,116,,,306.0,5,Rotational,Healthy,,14
+Luke McCaffrey,WR,WAS,331,117,,,289.0,7,Rotational,Healthy,,14
+New Orleans Saints,DST,NO,332,21,,,221.0,8,Unknown,Healthy,,5
+Ty Simpson,QB,LAR,333,37,,,355.0,11,Backup,Healthy,,11
+Will Shipley,RB,PHI,334,102,,,259.0,10,Rotational,Healthy,,14
+Mac Jones,QB,SF,335,38,,,291.0,8,Backup,Questionable,,11
+Carolina Panthers,DST,CAR,336,22,,,231.0,5,Unknown,Healthy,,5
+Jahan Dotson,WR,ATL,337,118,,,324.5,11,Rotational,Healthy,,14
+Darnell Washington,TE,PIT,338,40,,,327.0,9,Backup,Healthy,,11
+Bryce Lance,WR,NO,339,119,,,294.5,8,Rotational,Healthy,,14
+Michael Carter,RB,TEN,340,103,,,263.0,9,Rotational,Healthy,,14
+Dont'e Thornton Jr.,WR,LV,341,120,,,267.0,13,Rotational,Healthy,,14
+Olamide Zaccheaus,WR,ATL,342,121,,,376.0,11,Rotational,Healthy,,14
+Noah Gray,TE,KC,343,41,,,372.0,5,Backup,Healthy,,11
+Joshua Palmer,WR,BUF,344,122,,,290.0,7,Rotational,Questionable,,14
+Tyler Higbee,TE,LAR,345,42,,,337.0,11,Rotational,Healthy,,11
+Nick Chubb,RB,FA,346,104,,,249.0,,Unknown,Healthy,,14
+Dallas Cowboys,DST,DAL,347,23,,,238.0,14,Unknown,Healthy,,5
+Jalen Tolbert,WR,MIA,348,123,,,300.0,6,Rotational,Healthy,,14
+Xavier Hutchinson,WR,HOU,349,124,,,,8,Rotational,Healthy,,14
+Eli Heidenreich,RB,PIT,350,105,,,287.0,9,Rotational,Healthy,,14
+Justin Fields,QB,KC,351,39,,,348.0,5,Backup,Healthy,,11
+John Metchie III,WR,CAR,352,125,,,280.0,5,Rotational,Healthy,,14
+Carson Beck,QB,ARI,353,40,,,298.0,14,Backup,Healthy,,11
+Anthony Richardson Sr.,QB,IND,354,41,,,331.0,13,Backup,Healthy,,11
+DeMario Douglas,WR,NE,355,126,,,268.0,11,Rotational,Healthy,,14
+Elijah Arroyo,TE,SEA,356,43,,,333.5,11,Backup,Healthy,,11
+Blake Grupe,K,IND,357,19,,,,13,Starter,Healthy,,4
+Caleb Douglas,WR,MIA,358,127,,,294.0,6,Rotational,Questionable,,14
+Brenen Thompson,WR,LAC,359,128,,,303.5,7,Rotational,Healthy,,14
+Ja'Tavion Sanders,TE,CAR,360,44,,,291.0,5,Starter,Healthy,,11
+Jaylin Lane,WR,WAS,361,129,,,,7,Rotational,Healthy,,14
+Washington Commanders,DST,WAS,362,24,,,287.0,7,Unknown,Healthy,,5
+Nick Folk,K,ATL,363,20,,,,11,Starter,Healthy,,4
+Jake Elliott,K,PHI,364,21,,,,10,Starter,Healthy,,4
+Michael Mayer,TE,LV,365,45,,,312.0,13,Backup,Healthy,,11
+Austin Ekeler,RB,FA,366,106,,,296.0,,Unknown,Healthy,,14
+Tennessee Titans,DST,TEN,367,25,,,241.0,9,Unknown,Healthy,,5
+New York Giants,DST,NYG,368,26,,,220.0,8,Unknown,Healthy,,5
+Ben Sauls,K,NYG,369,22,,,,8,Starter,Healthy,,4
+Zane Gonzalez,K,MIA,370,23,,,,6,Starter,Healthy,,4
+Justin Joly,TE,DEN,371,46,,,363.0,10,Rotational,Healthy,,11
+Treylon Burks,WR,WAS,372,130,,,296.5,7,Rotational,Healthy,,14
+Tyler Bass,K,BUF,373,24,,,,7,Starter,Questionable,,4
+Raheim Sanders,RB,CLE,374,107,,,,11,Rotational,Healthy,,15
+Jawhar Jordan,RB,HOU,375,108,,,,8,Rotational,Healthy,,15
+Tampa Bay Buccaneers,DST,TB,376,27,,,239.0,10,Unknown,Healthy,,6
+Ryan Fitzgerald,K,CAR,377,25,,,,5,Starter,Healthy,,5
+Cole Kmet,TE,CHI,378,47,,,364.0,10,Backup,Healthy,,12
+Savion Williams,WR,GB,379,131,,,293.0,11,Rotational,Healthy,,15
+Tommy Myers,TE,FA,380,48,,,,,Unknown,Healthy,,12
+John Bates,TE,WAS,381,49,,,,7,Rotational,Healthy,,12
+Tutu Atwell,WR,MIA,382,132,,,336.0,6,Rotational,Healthy,,15
+Brandon McManus,K,FA,383,26,,,,,Unknown,Healthy,,5
+KaVontae Turpin,WR,DAL,384,133,,,262.0,14,Rotational,Healthy,,15
+Kendrick Bourne,WR,ARI,385,134,,,330.5,14,Rotational,Healthy,,15
+Nick Westbrook-Ikhine,WR,IND,386,135,,,277.0,13,Rotational,Healthy,,15
+Ben Sinnott,TE,WAS,387,50,,,313.0,7,Backup,Healthy,,12
+Dawson Knox,TE,BUF,388,51,,,318.0,7,Backup,Healthy,,12
+Dameon Pierce,RB,PHI,389,109,,,,10,Rotational,Healthy,,15
+Chad Ryland,K,ARI,390,27,,,,14,Starter,Healthy,,5
+Miami Dolphins,DST,MIA,391,28,,,284.0,6,Unknown,Healthy,,6
+Kevin Coleman Jr.,WR,MIA,392,136,,,270.0,6,Rotational,Healthy,,15
+Kalif Raymond,WR,CHI,393,137,,,261.0,10,Rotational,Healthy,,15
+Darren Waller,TE,FA,394,52,,,254.0,,Unknown,Questionable,,12
+Joey Slye,K,TEN,395,28,,,,9,Starter,Healthy,,5
+Daniel Carlson,K,LV,396,29,,,,13,Unknown,Healthy,,5
+Jameis Winston,QB,NYG,397,42,,,342.0,8,Backup,Healthy,,12
+Marcus Mariota,QB,WAS,398,43,,,323.0,7,Backup,Healthy,,12
+Cyrus Allen,WR,KC,399,138,,,,5,Rotational,Healthy,,15
+Malik Benson,WR,LV,400,139,,,259.5,13,Rotational,Healthy,,15
+Terrell Jennings,RB,NE,401,110,,,,11,Rotational,Healthy,,15
+Cincinnati Bengals,DST,CIN,402,29,,,251.0,6,Unknown,Healthy,,6
+Trey Smack,K,GB,403,30,,,,11,Starter,Healthy,,5
+Joe Milton III,QB,DAL,404,44,,,281.0,14,Backup,Healthy,,12
+Noah Fant,TE,NO,405,53,,,,8,Backup,Healthy,,12
+Joe Flacco,QB,CIN,406,45,,,369.0,6,Backup,Healthy,,12
+CJ Daniels,WR,LAR,407,140,,,,11,Rotational,Healthy,,15
+Tai Felton,WR,MIN,408,141,,,,6,Rotational,Healthy,,15
+Antonio Gibson,RB,FA,409,111,,,,,Unknown,Questionable,,15
+Greg Dortch,WR,DET,410,142,,,304.0,6,Rotational,Healthy,,15
+Zavion Thomas,WR,CHI,411,143,,,281.5,10,Rotational,Healthy,,15
+Raheem Mostert,RB,LV,412,112,,,,13,Unknown,Questionable,,15
+Gardner Minshew II,QB,ARI,413,46,,,,14,Rotational,Healthy,,12
+Luke Musgrave,TE,GB,414,54,,,252.0,11,Backup,Questionable,,12
+Kyle Juszczyk,RB,SF,415,113,,,,8,Unknown,Healthy,,15
+Damien Martinez,RB,GB,416,114,,,269.0,11,Rotational,Healthy,,15
+Zach Ertz,TE,FA,417,55,,,310.0,,Unknown,Questionable,,12
+Dyami Brown,WR,WAS,418,144,,,,7,Rotational,Healthy,,15
+Jordan Whittington,WR,LAR,419,145,,,247.0,11,Rotational,Healthy,,15
+Daniel Bellinger,TE,TEN,420,56,,,,9,Backup,Healthy,,12
+Riley Leonard,QB,IND,421,47,,,,13,Rotational,Healthy,,12
+Eli Raridon,TE,NE,422,57,,,298.0,11,Backup,Healthy,,12
+Rasheen Ali,RB,BAL,423,115,,,,13,Rotational,Healthy,,15
+Zavier Scott,RB,MIN,424,116,,,,6,Rotational,Healthy,,15
+Devontez Walker,WR,BAL,425,146,,,268.0,13,Rotational,Healthy,,15
+Brandin Cooks,WR,FA,426,147,,,,,Unknown,Healthy,,15
+Jam Miller,RB,NE,427,117,,,,11,Rotational,Healthy,,15
+Roschon Johnson,RB,CHI,428,118,,,,10,Rotational,Questionable,,15
+Tyler Badie,RB,DEN,429,119,,,,10,Rotational,Healthy,,15
+Ty Chandler,RB,NO,430,120,,,,8,Rotational,Healthy,,15
+Deion Burks,WR,IND,431,148,,,,13,Rotational,Healthy,,15
+Dylan Laube,RB,LV,432,121,,,,13,Rotational,Healthy,,15
+Marlin Klein,TE,HOU,433,58,,,,8,Backup,Questionable,,12
+Elijah Higgins,TE,ARI,434,59,,,275.0,14,Backup,Healthy,,12
+Austin Hooper,TE,ATL,435,60,,,,11,Backup,Healthy,,12
+Jonnu Smith,TE,FA,436,61,,,350.0,,Unknown,Healthy,,12
+Xavier Restrepo,WR,TEN,437,149,,,,9,Rotational,Healthy,,15
+Tyler Goodson,RB,ATL,438,122,,,,11,Rotational,Healthy,,15
+Will Howard,QB,PIT,439,48,,,292.0,9,Rotational,Healthy,,13
+Sam Roush,TE,CHI,440,62,,,,10,Rotational,Healthy,,13
+Tommy Tremble,TE,CAR,441,63,,,314.0,5,Backup,Healthy,,13
+Jeremy McNichols,RB,WAS,442,123,,,,7,Rotational,Healthy,,16
+Erick All Jr.,TE,CIN,443,64,,,,6,Backup,Questionable,,13
+Durham Smythe,TE,BAL,444,65,,,,13,Rotational,Healthy,,13
+Robert Henry Jr.,RB,WAS,445,124,,,250.0,7,Unknown,Healthy,,16
+Demarcus Robinson,WR,SF,446,150,,,,8,Rotational,Healthy,,16
+Phil Mafah,RB,DAL,447,125,,,,14,Rotational,Healthy,,16
+Theo Wease Jr.,WR,MIA,448,151,,,274.0,6,Backup,Healthy,,16
+Mitchell Evans,TE,CAR,449,66,,,,5,Rotational,Healthy,,13
+Quinn Ewers,QB,MIA,450,49,,,,6,Backup,Healthy,,13
+Antwane Wells Jr.,WR,FA,451,152,,,,,Unknown,Healthy,,16
+Michael Trigg,TE,DAL,452,67,,,,14,Backup,Healthy,,13
+Cade Klubnik,QB,NYJ,453,50,,,,13,Backup,Questionable,,13
+Thomas Fidone II,TE,NYG,454,68,,,,8,Rotational,Questionable,,13
+Luke Schoonmaker,TE,DAL,455,69,,,,14,Rotational,Healthy,,13`;
+
+/* ========= STATE ========= */
+const STORAGE_KEY = "fantasyDraft2026_state_v1_1";
+const DEBUG = typeof location !== "undefined" && /[?&]debug\b/.test(location.search);
+/* League presets live in their OWN localStorage key so they survive draft-state
+   Reset / Import (you can experiment with throwaway state without losing them). */
+const PRESETS_KEY = "fantasyDraft2026_presets_v1";
+function loadPresets(){ try { return JSON.parse(localStorage.getItem(PRESETS_KEY)) || []; } catch(e){ return []; } }
+function savePresets(arr){ localStorage.setItem(PRESETS_KEY, JSON.stringify(arr)); }
+let state;   // initialized in BOOT — after CONFIG/SCHEMA_VERSION/defaultState exist (avoids load-order TDZ)
+let players = [];
+let researchSidecar = { generated:null, players:{}, teams:{} };   // Phase 3: filled from Data/research-sidecar.json at boot (empty until then)
+let sortKey = "Consensus_Rank";
+let sortDir = 1;
+let posFilter = "ALL";
+let tierFilter = "ALL";
+let search = "";
+let hideTaken = false;
+let watchOnly = false;
+let groupByTier = false;
+let activeTab = "card";
+let selectedPlayer = null;
+
+/* ========= CONFIG — league format + tuning constants =========
+   ONE place for every magic number. The league-format block (top) is what
+   Phase 2 will make user-editable via state.leagueSettings; the bare aliases
+   recomputeDerived() below turns state.leagueSettings into the live LEAGUE_SIZE /
+   SLOTS / BENCH_SIZE / TOTAL_ROUNDS / NEEDS bindings. */
+const CONFIG = {
+  /* --- League format factory default. Phase 2 makes this user-editable via
+     state.leagueSettings; recomputeDerived() turns it into the live bindings. --- */
+  DEFAULT_LEAGUE: { teams:12, scoring:"ppr", qb:1, rb:2, wr:2, te:1, flex:1, superflex:0, dst:1, k:1, bench:7, ir:0 },
+
+  /* --- Bridge / market signal --- */
+  BRIDGE_SIGNAL: 5,        // ESPN-Consensus delta that flags "leaguemates wait -> you can too"
+  ELITE_QB_CNS: 18,        // QB at/under this consensus rank = elite (early-phase QB gate)
+
+  /* --- Lottery lens (late-round upside) --- */
+  /* Fixed 2026-06-04: old thresholds (MIN_CNS 30 + proj/ADP efficiency) were tuned
+     for the 42-player sample and surfaced mid-rounders. Lottery now = late-ADP only,
+     ranked by absolute projection (upside among the leftovers). */
+  LOTTERY_MIN_ADP: 120,    // ADP at/after this = "final rounds" (12-team: round 10+)
+
+  /* --- Positional run detection ("4 of the last 6") --- */
+  RUN_LOOKBACK: 6,         // how many recent picks to scan
+  RUN_COUNT: 4,            // >= this many at one pos within the lookback = a run
+
+  /* --- Tier cliffs / scarcity --- */
+  CLIFF_GAP: 5,            // consensus-rank gap between adjacent tiers that flags a cliff
+  CLIFF_SEVERE_GAP: 12,    // gap >= this is a "severe" cliff
+  TIER_SCARCITY_LEFT: 2,   // <= this many left in a position's top tier = scarcity flag
+
+  /* --- Direction-recommendation urgency (tier-1+2 remaining at a needed pos) --- */
+  URGENCY_URGENT_MULTI: 3, // need>=2 and <= this t1/t2 left -> urgent
+  URGENCY_URGENT_SINGLE: 2,// need>=1 and <= this t1/t2 left -> urgent
+  URGENCY_HIGH: 5,         // need>=1 and <= this t1/t2 left -> high
+  POOL_URGENT_LEFT: 3,     // pool-health row: unfilled need & t1+t2 <= this -> urgent highlight
+
+  /* --- My-Picks candidate window (vs the pick's overall #, in chosen order source) --- */
+  CAND_WINDOW_BEHIND: 12,  // include candidates up to this many spots before the pick
+  CAND_WINDOW_AHEAD: 18,   // ...and up to this many after
+  CAND_LIMIT: 10,          // max candidates listed per pick
+  SCARCITY_BUFFER: 3,      // ignore picks within this buffer when computing the at-risk window
+  CAND_GONE_DIFF: 5,       // ranked > this many before pick -> "likely gone"; > this after -> "likely available"
+
+  /* --- Hype-train scoring --- */
+  HYPE_PTS_SLEEPER: 6, HYPE_PTS_WATCH: 3, HYPE_PTS_TARGET: 2,
+  HYPE_MIN_SCORE: 3,       // minimum score to appear in the hype list
+
+  /* --- Phase round thresholds: base cutoffs calibrated at 16 rounds, scaled by
+     actual rounds (reproduce-current-then-scale; a 16-round league is unchanged). --- */
+  PHASE_BASE_ROUNDS: 16,
+  PHASE_BASE_THRESHOLDS: [3,5,8,10,13]   // early / early-mid / mid / mid-late / late upper round bounds
+};
+/* Derived league quantities — live `let` bindings recomputed from
+   state.leagueSettings by recomputeDerived() (called at boot and whenever
+   settings change in Phase 2B). Were const snapshots of CONFIG in Phase 1. */
+let LEAGUE_SIZE, BENCH_SIZE, TOTAL_ROUNDS, SLOTS, NEEDS, PHASE_THRESHOLDS;
+
+/* Build the roster slot list from league settings, in draft/display order:
+   QB, RB1..n, WR1..n, TE1..n, FLEX1..n, SF1..n, DST, K, BN1..n, IR1..n.
+   count 1 -> bare label ("QB","TE","FLEX","DST","K"); >1 -> numbered; 0 -> none. */
+function buildSlots(ls){
+  const out = [];
+  const add = (base, n) => { if(n === 1) out.push(base); else for(let i=1;i<=n;i++) out.push(base+i); };
+  add("QB", ls.qb); add("RB", ls.rb); add("WR", ls.wr); add("TE", ls.te);
+  add("FLEX", ls.flex); add("SF", ls.superflex); add("DST", ls.dst); add("K", ls.k);
+  add("BN", ls.bench); add("IR", ls.ir);
+  return out;
+}
+/* Strip a slot's trailing index: "RB1"->"RB", "QB"->"QB", "BN3"->"BN". */
+function slotPrefix(s){ return s.replace(/\d+$/, ""); }
+const SLOT_ELIG = { QB:["QB"], RB:["RB"], WR:["WR"], TE:["TE"], FLEX:["RB","WR","TE"], SF:["QB","RB","WR","TE"], DST:["DST"], K:["K"] };
+/* Can `player` occupy slot `s`? BN takes anyone; IR takes only IR/PUP-flagged. */
+function slotAccepts(s, player){
+  const pre = slotPrefix(s);
+  if(pre === "BN") return true;
+  if(pre === "IR") return player.Injury_Status === "IR" || player.Injury_Status === "PUP";
+  const elig = SLOT_ELIG[pre];
+  return elig ? elig.includes(player.Position) : false;
+}
+/* Recompute every derived league quantity from state.leagueSettings.
+   NEEDS folds FLEX into RB+WR and SF into QB. Phase thresholds scale the
+   16-round base cutoffs by (rounds/16). */
+function recomputeDerived(){
+  const ls = (state && state.leagueSettings) || CONFIG.DEFAULT_LEAGUE;
+  LEAGUE_SIZE  = ls.teams;
+  BENCH_SIZE   = ls.bench;
+  TOTAL_ROUNDS = ls.qb + ls.rb + ls.wr + ls.te + ls.flex + ls.superflex + ls.dst + ls.k + ls.bench;
+  NEEDS = { QB: ls.qb + ls.superflex, RB: ls.rb + ls.flex, WR: ls.wr + ls.flex, TE: ls.te, K: ls.k, DST: ls.dst };
+  SLOTS = buildSlots(ls);
+  const scale = TOTAL_ROUNDS / CONFIG.PHASE_BASE_ROUNDS;
+  PHASE_THRESHOLDS = CONFIG.PHASE_BASE_THRESHOLDS.map(b => Math.max(1, Math.round(b * scale)));
+}
+
+/* ========= INIT ========= */
+const SCHEMA_VERSION = 2;
+
+/* Load persisted state, migrate it forward, and backfill any new defaults.
+   Object.assign(defaultState(), migrated) means fields added in later versions
+   appear automatically without clobbering the user's saved values. */
+function loadState(){
+  try {
+    const loaded = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    return Object.assign(defaultState(), migrateState(loaded));
+  } catch(e){ return defaultState(); }
+}
+
+/* Forward-migrate a persisted blob to SCHEMA_VERSION. No migrations needed at v1.
+   Add steps as `if(v < N){ ...reshape...; v = N; }` as the state shape evolves. */
+function migrateState(s){
+  let v = s.__schemaVersion || 1;
+  if(v < 2){ if(!s.leagueSettings) s.leagueSettings = Object.assign({}, CONFIG.DEFAULT_LEAGUE); v = 2; }
+  s.__schemaVersion = SCHEMA_VERSION;
+  return s;
+}
+
+/* Canonical shape of persisted state (saved to localStorage under STORAGE_KEY).
+   Ephemeral UI state (sortKey, sortDir, posFilter, tierFilter, search, hideTaken,
+   watchOnly, groupByTier, activeTab, selectedPlayer) is intentionally NOT here —
+   it lives in top-level `let`s and resets on reload by design.
+
+   @property {number}  __schemaVersion  state-shape version (for migrateState)
+   @property {Object}  leagueSettings  {teams,scoring,qb,rb,wr,te,flex,superflex,dst,k,bench,ir} league format (Phase 2)
+   @property {number}  slot          my draft slot, 1..LEAGUE_SIZE
+   @property {number}  currentPick   overall pick number on the clock (1-based)
+   @property {Object}  picks         key("Name|Pos") -> { taken:"me"|"other", pickNumber:int }
+   @property {Object}  tags          key -> "target"|"value"|"sleeper"|"dnd" (or absent)
+   @property {Object}  notes         key -> free-text scouting note
+   @property {Object}  soft          key -> { strengths, weaknesses, teamPhil } (reserved; player card reads it)
+   @property {Object}  watchlist     key -> truthy when watch-listed
+   @property {Object}  plan          overallPick(int) -> key of the planned player
+   @property {string}  pickViewMode  My-Picks filter: "all"|"future"|"planning"
+   @property {Object}  expandedPicks overallPick(int) -> bool (per-row expand override)
+   @property {string}  orderSource   draft-order predictor: "ADP"|"Consensus"|"ESPN"
+   @property {boolean} showDemoFlags inject example watch-flags for previewing the UI
+   @property {string}  phaseOverride "auto" or a forced phase name
+   @property {Object}  tierOverrides key -> personal tier int (overrides CSV Tier)
+   @property {Object}  archetypes    key -> archetype id (see ARCHETYPES)
+   @property {string}  bigBoardLens  active Big-Board lens (see LENSES) */
+function defaultState(){
+  return { __schemaVersion:SCHEMA_VERSION, leagueSettings:Object.assign({},CONFIG.DEFAULT_LEAGUE), slot:6, currentPick:1, picks:{}, tags:{}, notes:{}, soft:{}, watchlist:{}, plan:{}, pickViewMode:"all", expandedPicks:{}, orderSource:"ADP", showDemoFlags:false, phaseOverride:"auto", tierOverrides:{}, archetypes:{}, bigBoardLens:"all" };
+}
+
+const ARCHETYPES = {
+  anchor:    { label:"Anchor",    color:"#3fb950", desc:"Foundation player you build around (RB1/WR1/TE1)" },
+  pivot:     { label:"Pivot",     color:"#bc8cff", desc:"Strategic alternative — Zero-RB WR, late-QB stack, elite-TE swing" },
+  workhorse: { label:"Workhorse", color:"#22c55e", desc:"Bell-cow RB with goal-line work" },
+  volume:    { label:"Volume",    color:"#3b82f6", desc:"High-target WR with PPR floor" },
+  upside:    { label:"Upside",    color:"#f0b429", desc:"Boom-bust ceiling play" },
+  handcuff:  { label:"Handcuff",  color:"#a855f7", desc:"Backup to your RB starter" },
+  stack:     { label:"Stack",     color:"#39d0d8", desc:"Pairs with your QB — correlated ceiling" },
+  streamer:  { label:"Streamer",  color:"#8b949e", desc:"Late-round K/DST stream candidate" }
+};
+
+const LENSES = {
+  all:       "All players",
+  hype:      "Hype trains (ESPN underrate / sleeper / target)",
+  handcuffs: "Handcuff candidates (my RB teams)",
+  stacks:    "Stack candidates (my QB team)",
+  lottery:   "Lottery tickets (late-round efficiency)",
+  overrides: "Personal tier overrides only",
+  archetyped:"Archetype-tagged only",
+  researched:"Researched — has a sidecar profile"
+};
+
+function getEffectiveTier(p){
+  const k = key(p);
+  if(state.tierOverrides && state.tierOverrides[k] !== undefined && state.tierOverrides[k] !== null && state.tierOverrides[k] !== "") return parseInt(state.tierOverrides[k]);
+  return p.Tier;
+}
+function hasTierOverride(p){
+  const k = key(p);
+  return state.tierOverrides && state.tierOverrides[k] !== undefined && state.tierOverrides[k] !== null && state.tierOverrides[k] !== "";
+}
+
+function isHypeMember(p){
+  const k = key(p);
+  const bridge = bridgeDelta(p);
+  if(state.tags[k] === "sleeper" || state.tags[k] === "target") return true;
+  if(state.watchlist[k]) return true;
+  if(bridge >= CONFIG.BRIDGE_SIGNAL) return true;
+  return scIsHype(researchSidecar.players[k]);    // Phase 3: research-flagged hype (shared reader)
+}
+/* Phase 3 (Decision 3): a verified, still-unpriced edge from the edge board.
+   /edge-board-update sets research_flags.edge on Verify, clears it on demote.
+   Surfaced ONLY as a draft-time cue (badge + candidate marker + card) — not a lens. */
+function isEdgeMember(p){
+  return scIsEdge(researchSidecar.players[key(p)]);
+}
+function isHandcuffMember(p){
+  if(p.Position !== "RB") return false;
+  const myRBs = Object.entries(state.picks)
+    .filter(([_,v]) => v.taken === "me")
+    .map(([k]) => players.find(pp => key(pp) === k))
+    .filter(Boolean)
+    .filter(pp => pp.Position === "RB");
+  if(myRBs.some(myRB => myRB.NFL_Team === p.NFL_Team && myRB.Name !== p.Name)) return true;
+  // Phase 3: p named in a drafted RB's sidecar handcuff_candidates
+  return myRBs.some(myRB => {
+    const sc = researchSidecar.players[key(myRB)];
+    return sc && Array.isArray(sc.handcuff_candidates) && sc.handcuff_candidates.includes(p.Name);
+  });
+}
+function isStackMember(p){
+  const myQB = Object.entries(state.picks)
+    .filter(([_,v]) => v.taken === "me")
+    .map(([k]) => players.find(pp => key(pp) === k))
+    .filter(Boolean)
+    .find(pp => pp.Position === "QB");
+  if(!myQB) return false;
+  // Phase 3: p named in the drafted QB's sidecar stack_partners (any position)
+  const sc = researchSidecar.players[key(myQB)];
+  if(sc && Array.isArray(sc.stack_partners) && sc.stack_partners.includes(p.Name)) return true;
+  if(!["WR","TE"].includes(p.Position)) return false;
+  return p.NFL_Team === myQB.NFL_Team;
+}
+function isLotteryMember(p){
+  if(p.Position === "K" || p.Position === "DST") return false;
+  // Late-ADP gate; if ADP is missing, fall back to consensus rank in the same range.
+  // NOTE: no Projection requirement — the current export's Projection column is empty.
+  const lateness = p.ADP || p.Consensus_Rank;
+  return !!lateness && lateness >= CONFIG.LOTTERY_MIN_ADP;
+}
+
+const PHASE_INFO = {
+  early: {
+    label:"Early", icon:"🎯", rounds:"1–3",
+    focus:"Optimize the next pick. Tier cliffs and value falls matter most. Best-player-available drives this phase."
+  },
+  "early-mid": {
+    label:"Early-Mid", icon:"🎯→🧭", rounds:"4–5", transition:true,
+    focus:"Transition zone. Roster shape is forming — this is where you commit to a build (Hero RB, Robust RB, or Zero-RB). The next 2 picks lock you in."
+  },
+  mid: {
+    label:"Mid", icon:"🧭", rounds:"6–8",
+    focus:"Think 2-3 picks ahead. Lock tier-2 starters, plan your FLEX, balance positions before the runs hit."
+  },
+  "mid-late": {
+    label:"Mid-Late", icon:"🧭→🚀", rounds:"9–10", transition:true,
+    focus:"Transition zone. Starters mostly set. Begin layering upside — ESPN-underrated names, sleepers, handcuff windows opening for elite RBs."
+  },
+  late: {
+    label:"Late", icon:"🚀", rounds:"11–13",
+    focus:"Landscape mode. Hype trains with upside, handcuff your starters, find buyer's-market sleepers, watch K/DST positional runs."
+  },
+  endgame: {
+    label:"Endgame", icon:"🏁", rounds:"14–16",
+    focus:"Last picks. Lock high-end K and DST before scarcity, fix bye-week holes, swing for lottery tickets, fill bench gaps."
+  }
+};
+
+/* Resolve the current draft phase from the next pick's round (or manual override).
+   @returns {{name:string, round:?number, override:boolean}} phase name drives Pool-tab section ordering + K/DST gating */
+function getPhase(){
+  const override = state.phaseOverride || "auto";
+  if(override !== "auto") return { name: override, round: null, override: true };
+  const next = nextMyPick(state.currentPick, state.slot);
+  if(!next) return { name: "endgame", round: TOTAL_ROUNDS };
+  const round = Math.ceil(next / LEAGUE_SIZE);
+  const T = PHASE_THRESHOLDS;
+  let name;
+  if(round <= T[0]) name = "early";
+  else if(round <= T[1]) name = "early-mid";
+  else if(round <= T[2]) name = "mid";
+  else if(round <= T[3]) name = "mid-late";
+  else if(round <= T[4]) name = "late";
+  else name = "endgame";
+  return { name, round, override: false };
+}
+
+function getOptionContext(player, phase){
+  const bridge = bridgeDelta(player);
+  const k = key(player);
+  const tag = state.tags[k];
+  const isWatch = !!state.watchlist[k];
+  const parts = [];
+  if(player.Position === "QB" && (state.leagueSettings.superflex || 0) >= 1) parts.push("Superflex — elite QBs go a round earlier");
+  if(phase === "early"){
+    parts.push(`tier ${player.Tier}`);
+    if(tag === "target") parts.push("your target");
+    if(bridge >= CONFIG.BRIDGE_SIGNAL) parts.push(`ESPN underrates +${bridge}`);
+    if(parts.length < 2) parts.push("clean consensus pick");
+  } else if(phase === "early-mid"){
+    parts.push(`tier ${player.Tier}`);
+    if(tag === "target") parts.push("your target");
+    parts.push(player.Position==="RB"?"locks RB-anchored build":player.Position==="WR"?"opens Zero-RB lane":"shape-defining pick");
+  } else if(phase === "mid"){
+    parts.push(`tier ${player.Tier}`);
+    if(bridge >= CONFIG.BRIDGE_SIGNAL) parts.push(`ESPN underrates +${bridge}`);
+    if(tag === "target") parts.push("your target");
+    if(parts.length < 2) parts.push("solid roster anchor");
+  } else if(phase === "mid-late"){
+    if(bridge >= CONFIG.BRIDGE_SIGNAL) parts.push(`ESPN underrates +${bridge}`);
+    if(tag === "sleeper") parts.push("sleeper tag");
+    if(isWatch) parts.push("on watchlist");
+    if(tag === "target") parts.push("your target");
+    if(parts.length === 0) parts.push(`tier ${player.Tier} value`);
+  } else if(phase === "late"){
+    if(bridge >= CONFIG.BRIDGE_SIGNAL) parts.push(`buyer's market (+${bridge} vs ESPN)`);
+    if(tag === "sleeper") parts.push("sleeper");
+    if(isWatch) parts.push("watchlist");
+    if(player.Position === "K" || player.Position === "DST") parts.push("position run risk — lock early");
+    if(parts.length === 0) parts.push(`upside swing`);
+  } else { // endgame
+    const eff = player.Projection ? (player.Projection / Math.max(player.ADP,1)).toFixed(2) : "—";
+    parts.push(`proj ${player.Projection || "—"}`);
+    parts.push(`eff ${eff}`);
+    if(player.Position === "K" || player.Position === "DST") parts.push("scarcity lock");
+    if(tag === "sleeper") parts.push("late sleeper");
+  }
+  return parts.join(" · ");
+}
+
+function isPositionEligibleForPhase(pos, phaseName, ls){
+  // K/DST: only relevant in late and endgame
+  if(pos === "K" || pos === "DST") return ["late","endgame"].includes(phaseName);
+  // QB: gated to mid+ unless an elite QB is on the board
+  if(pos === "QB"){
+    // Superflex: QBs are draftable from Early (you can start two).
+    if((state.leagueSettings.superflex || 0) >= 1) return true;
+    if(["early","early-mid"].includes(phaseName)){
+      const bestQB = ls?.byPosition?.QB?.[0];
+      return !!(bestQB && bestQB.Consensus_Rank <= CONFIG.ELITE_QB_CNS);
+    }
+    return true;
+  }
+  // TE: relevant whenever you don't have one. Always eligible.
+  if(pos === "TE") return true;
+  // RB/WR: always eligible (you can always need depth)
+  return true;
+}
+
+function buildDirectionOptions(pos, phase, max){
+  max = max || 3;
+  const available = players
+    .filter(p => p.Position === pos && !state.picks[key(p)])
+    .filter(p => p.Consensus_Rank);
+  if(available.length === 0) return [];
+  const scoreFn = (p) => {
+    const bridge = bridgeDelta(p);
+    const tag = state.tags[key(p)];
+    const watch = state.watchlist[key(p)] ? 1 : 0;
+    if(phase === "early" || phase === "early-mid"){
+      return -p.Consensus_Rank + (tag === "target" ? 3 : 0);
+    } else if(phase === "mid"){
+      return -p.Consensus_Rank + bridge * 0.6 + (tag === "target" ? 3 : 0);
+    } else if(phase === "mid-late" || phase === "late"){
+      let s = -p.Consensus_Rank * 0.5;
+      s += bridge * 1.5;
+      if(tag === "sleeper") s += 8;
+      if(tag === "target") s += 5;
+      if(watch) s += 4;
+      return s;
+    } else { // endgame
+      const eff = (p.Projection || 0) / Math.max(p.ADP || 200, 1);
+      return eff + bridge * 0.3 + (tag === "sleeper" ? 0.5 : 0);
+    }
+  };
+  return available
+    .map(p => ({ player: p, score: scoreFn(p) }))
+    .sort((a,b) => b.score - a.score)
+    .slice(0, max);
+}
+
+function findHypeTrains(){
+  return players
+    .filter(p => !state.picks[key(p)])
+    .map(p => {
+      const bridge = bridgeDelta(p);
+      const isSleeper = state.tags[key(p)] === "sleeper";
+      const isWatch = !!state.watchlist[key(p)];
+      const isTarget = state.tags[key(p)] === "target";
+      let score = 0;
+      if(bridge >= CONFIG.BRIDGE_SIGNAL) score += bridge;
+      if(isSleeper) score += CONFIG.HYPE_PTS_SLEEPER;
+      if(isWatch) score += CONFIG.HYPE_PTS_WATCH;
+      if(isTarget) score += CONFIG.HYPE_PTS_TARGET;
+      return { player: p, score, bridge, isSleeper, isWatch, isTarget };
+    })
+    .filter(x => x.score >= CONFIG.HYPE_MIN_SCORE)
+    .sort((a,b) => b.score - a.score)
+    .slice(0, 10);
+}
+
+function findHandcuffs(){
+  const myDrafted = Object.entries(state.picks)
+    .filter(([_,v]) => v.taken === "me")
+    .map(([k]) => players.find(p => key(p) === k))
+    .filter(Boolean);
+  const myRBs = myDrafted.filter(p => p.Position === "RB");
+  const handcuffs = [];
+  myRBs.forEach(myRB => {
+    const teamRBs = players
+      .filter(p => p.Position === "RB" && p.NFL_Team === myRB.NFL_Team)
+      .filter(p => !state.picks[key(p)])
+      .filter(p => p.Name !== myRB.Name)
+      .sort(byConsensus);
+    handcuffs.push({ starter: myRB, options: teamRBs });
+  });
+  return handcuffs;
+}
+
+function topRemainingByPos(pos, limit){
+  return players
+    .filter(p => p.Position === pos && !state.picks[key(p)])
+    .sort(byConsensus)
+    .slice(0, limit || 5);
+}
+
+function findWeakPositions(){
+  const myCounts = { QB:0, RB:0, WR:0, TE:0, K:0, DST:0 };
+  const myDrafted = Object.entries(state.picks)
+    .filter(([_,v]) => v.taken === "me")
+    .map(([k]) => players.find(p => key(p) === k))
+    .filter(Boolean);
+  myDrafted.forEach(p => { if(myCounts[p.Position] !== undefined) myCounts[p.Position]++; });
+  const weak = [];
+  if(myCounts.RB > 0 && myCounts.RB <= 2) weak.push({ pos:"RB", count: myCounts.RB, note:"No RB depth. One injury collapses your floor." });
+  if(myCounts.WR > 0 && myCounts.WR <= 2) weak.push({ pos:"WR", count: myCounts.WR, note:"No WR depth. PPR floor and FLEX both at risk." });
+  if(myCounts.QB === 1) weak.push({ pos:"QB", count: 1, note:"Single QB. Backup justified only if upside or bye relief." });
+  if(myCounts.TE === 1) weak.push({ pos:"TE", count: 1, note:"Single TE. Streamer-tier insurance is fine; skip if you have Bowers/Kelce." });
+  return weak;
+}
+
+function byeBalance(){
+  const myDrafted = Object.entries(state.picks)
+    .filter(([_,v]) => v.taken === "me")
+    .map(([k]) => players.find(p => key(p) === k))
+    .filter(Boolean);
+  const byes = {};
+  myDrafted.forEach(p => { if(p.Bye_Week){ byes[p.Bye_Week] = (byes[p.Bye_Week] || 0) + 1; } });
+  return Object.entries(byes).sort((a,b) => b[1]-a[1]).map(([week,c]) => ({ week: parseInt(week), count: c }));
+}
+
+function findLotteryTickets(){
+  // Late-round upside plays — undrafted, late-ADP only. Upside signal layers what
+  // the data actually has: projection when present (export currently lacks it),
+  // market discount (going later than consensus rank = ADP-CNS gap), research
+  // flags (⚡ edge / hype from the sidecar), and bridge delta.
+  return players
+    .filter(p => !state.picks[key(p)])
+    .filter(p => isLotteryMember(p))
+    .map(p => {
+      const sc = researchSidecar.players ? researchSidecar.players[key(p)] : null;
+      const flags = (sc && sc.research_flags) || {};
+      const discount = (p.ADP && p.Consensus_Rank) ? (p.ADP - p.Consensus_Rank) : 0;
+      const score = (p.Projection || 0)
+        + discount
+        + (flags.edge ? 40 : 0) + (flags.hype ? 15 : 0) + (sc ? 10 : 0)
+        + (bridgeDelta(p) * 0.5);
+      return { player: p, score };
+    })
+    .sort((a,b) => b.score - a.score)
+    .slice(0, 6);
+}
+
+const DEMO_FLAGS = [
+  {
+    severity:"critical",
+    title:"Heavy bye stack: 4 players on Week 9",
+    pro:"Cleaner roster every other week — fewer streaming decisions across the season.",
+    con:"Week 9 will be brutal. You'll need 1+ waiver/bench replacements ready. Plan ahead, or this single week torpedoes your playoff push.",
+    affected:"Saquon Barkley (RB), Christian McCaffrey (RB), A.J. Brown (WR), 49ers DST"
+  },
+  {
+    severity:"warn",
+    title:"RB heavy (5 RBs)",
+    pro:"Insurance against injuries + trade leverage + protects against zero-RB opponents.",
+    con:"Your WR2/FLEX value is leaking. You'll be reaching for WR depth later when better names are gone."
+  },
+  {
+    severity:"warn",
+    title:"Stack: 3 from PHI",
+    pro:"Correlated ceiling weeks — when this offense pops, you double-dip.",
+    con:"Correlated bust weeks. Game-script risk (blowouts, weather, OL injury) hits multiple starters at once. One bad team week = bad fantasy week.",
+    affected:"Saquon Barkley (RB), A.J. Brown (WR), Eagles D/ST"
+  },
+  {
+    severity:"info",
+    title:"No tier-1 anchor through 3+ picks",
+    pro:"Spread your bets — depth over stars. Works if your tier-2/3 picks hit ceilings.",
+    con:"Ceiling capped. Without a top-12 player as your foundation, you need to hit on multiple breakouts to compete for the title."
+  }
+];
+function saveState(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+/* SHARED:JS:START — generated from Board/_shared.js by Skills/build-digest.py; do not edit between markers */
+/* ============================================================
+   _shared.js — canonical cross-surface helpers for the FF 2026 boards.
+
+   This is the SINGLE SOURCE OF TRUTH for the key / lifecycle-flag / CSV-parse
+   logic used by BOTH surfaces. Skills/build-digest.py injects this file verbatim
+   between the SHARED:JS markers in draft-board.html AND research-digest.html.
+
+   DO NOT edit the injected copies (between markers) in those files — edit THIS
+   file, then run:  python3 Skills/build-digest.py sync
+   Documented in Skills/_conventions.md (§ Surfaces — shared logic).
+
+   NOTE: CSS is intentionally NOT shared — the two surfaces use different visual
+   languages (draft tool vs. reading view) and divergent token palettes. Only the
+   data/logic layer is de-duped. See _conventions.md for the rationale.
+   ============================================================ */
+
+/* Canonical player key, shared by both surfaces. Produces an identical string
+   for a board player (p.Name/p.Position) and a digest player (CSV Name/Position),
+   so sidecar joins line up across surfaces. */
+function keyOf(name, pos){ return `${name}|${pos}`; }
+
+/* Canonical HTML-escaper. null/undefined → ""; everything else (incl. 0) is
+   stringified then escaped. Surfaces alias this (`const esc = escapeHtml;`)
+   rather than re-declaring their own copies — three drifted variants existed
+   before the 2026-06-11 cleanup. */
+function escapeHtml(s){ return String(s==null?"":s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+/* Lifecycle-flag readers. Take a sidecar ENTRY (researchSidecar.players[key]),
+   NOT a player object. edge = verified + still-unpriced (set/cleared by
+   /edge-board-update on Verify/demote); hype = a verified hype-train claim. */
+function scIsEdge(sc){ return !!(sc && sc.research_flags && sc.research_flags.edge); }
+function scIsHype(sc){ return !!(sc && sc.research_flags && sc.research_flags.hype); }
+
+/* Parse the canonical players CSV (Data/players.csv schema) into row objects,
+   coercing numeric columns. Validation is non-fatal: missing required columns
+   and unparseable numbers are logged via console.warn so the surface still
+   renders with partial data. */
+function parseCSV(text){
+  const lines = text.trim().split(/\r?\n/);
+  const headers = parseCSVLine(lines[0]);
+  const REQUIRED = ["Name","Position","NFL_Team","Consensus_Rank","ADP","Bye_Week","Tier"];
+  const missing = REQUIRED.filter(h => !headers.includes(h));
+  if(missing.length) console.warn("parseCSV: missing required column(s): " + missing.join(", ") + ". Surface will render with partial data.");
+  const INT_COLS = ["Consensus_Rank","Consensus_Pos_Rank","ESPN_Rank","ESPN_Pos_Rank","Bye_Week","Tier"];
+  const FLOAT_COLS = ["ADP","Projection"];
+  return lines.slice(1).map((line,idx) => {
+    const vals = parseCSVLine(line);
+    const row = {};
+    headers.forEach((h,i) => row[h] = vals[i] || "");
+    INT_COLS.forEach(k => { if(row[k]!==""){ const n = parseInt(row[k],10); if(isNaN(n)) console.warn(`parseCSV: row ${idx+2} (${row.Name||"?"}) — non-numeric ${k}: "${row[k]}"`); else row[k] = n; } });
+    FLOAT_COLS.forEach(k => { if(row[k]!==""){ const n = parseFloat(row[k]); if(isNaN(n)) console.warn(`parseCSV: row ${idx+2} (${row.Name||"?"}) — non-numeric ${k}: "${row[k]}"`); else row[k] = n; } });
+    return row;
+  });
+}
+function parseCSVLine(line){
+  const result = []; let cur = ""; let inQ = false;
+  for(let i=0;i<line.length;i++){
+    const c = line[i];
+    if(c === '"'){ inQ = !inQ; continue; }
+    if(c === ',' && !inQ){ result.push(cur); cur=""; continue; }
+    cur += c;
+  }
+  result.push(cur);
+  return result;
+}
+
+/* Unified data-loading pattern for the live views (2026-06-11 cleanup).
+   Non-OK responses count as failures. A failure resolves to null and is
+   ALWAYS console.warn'd — never silent — then each surface applies its own
+   visible fallback: draft board renders sidecar-less, digest shows its error
+   panel / Reads empty-state, in-season hub falls back to the embedded sample
+   (mode label says so). Call sites keep their `typeof fetch` guards. */
+function warnFetchFail(label, err){
+  console.warn(label + " not loaded (" + (err && err.message ? err.message : err) + ") — surface falls back per its data-loading pattern (expected over file://).");
+}
+function fetchJSON(path, label){
+  return fetch(path)
+    .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .catch(err => { warnFetchFail(label || path, err); return null; });
+}
+function fetchText(path, label){
+  return fetch(path)
+    .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+    .catch(err => { warnFetchFail(label || path, err); return null; });
+}
+/* SHARED:JS:END */
+
+/* Board player key — thin wrapper over the shared keyOf(). */
+function key(p){ return keyOf(p.Name, p.Position); }
+
+/* ---- Shared helpers (extracted from repeated inline patterns) ---- */
+/* ESPN-Consensus bridge delta; 0 when the player has no usable ESPN rank.
+   Positive = ESPN underrates (you can wait); negative = ESPN overrates (fade). */
+function bridgeDelta(p){
+  return (p.ESPN_Rank && !isNaN(p.ESPN_Rank)) ? (p.ESPN_Rank - p.Consensus_Rank) : 0;
+}
+/* Overall pick number for (round, slot) in a snake draft. */
+function getOverallPick(round, slot){
+  return round % 2 === 1 ? (round-1)*LEAGUE_SIZE + slot : round*LEAGUE_SIZE - slot + 1;
+}
+/* Comparator: ascending Consensus_Rank (missing ranks sink to the bottom). */
+function byConsensus(a,b){ return (a.Consensus_Rank||999) - (b.Consensus_Rank||999); }
+
+/* parseCSV / parseCSVLine now live in the SHARED:JS block above (Board/_shared.js,
+   injected by Skills/build-digest.py) — de-duped with the research digest. */
+
+/* ========= RENDERING ========= */
+function renderAll(){
+  renderBoard();
+  renderTabs();
+  renderHeader();
+}
+
+/* ========= SETTINGS (Phase 2B) ========= */
+const SCORING_LABELS = { standard:"Standard", half:"Half-PPR", ppr:"Full PPR" };
+/* Allowed [min,max] per editable league field (steppers clamp to these). */
+const LS_RANGES = { teams:[6,20], qb:[0,4], rb:[0,8], wr:[0,8], te:[0,4], flex:[0,5], superflex:[0,2], dst:[0,2], k:[0,2], bench:[0,20], ir:[0,6] };
+let scoringChanged = false;   // transient (not persisted): show the re-export banner after a scoring change
+function draftInProgress(){ return Object.keys(state.picks).length > 0; }
+
+function stepperRow(label, field){
+  const v = state.leagueSettings[field];
+  return `<div class="stp-row"><span class="stp-label">${label}</span>
+    <span class="stp-ctrl">
+      <button class="stp" data-field="${field}" data-delta="-1" aria-label="decrease ${label}">−</button>
+      <span class="stp-val">${v}</span>
+      <button class="stp" data-field="${field}" data-delta="1" aria-label="increase ${label}">+</button>
+    </span></div>`;
+}
+/* Render the modal body from state.leagueSettings (re-run after every change). */
+function renderSettings(){
+  const ls = state.leagueSettings;
+  const starters = ls.qb+ls.rb+ls.wr+ls.te+ls.flex+ls.superflex+ls.dst+ls.k;
+  const rounds = starters + ls.bench;
+  const totalRoster = rounds + ls.ir;
+  const scoringBtns = Object.keys(SCORING_LABELS).map(sc =>
+    `<button class="seg ${ls.scoring===sc?"active":""}" data-scoring="${sc}">${SCORING_LABELS[sc]}</button>`).join("");
+  document.getElementById("settingsBody").innerHTML = `
+    ${scoringChanged ? `<div class="scoring-warn">⚠ Scoring set to <strong>${SCORING_LABELS[ls.scoring]||ls.scoring}</strong>. Your loaded CSV projections still reflect the previous format — re-export PPR-configured and run /refresh-draft-board. <button id="scoringWarnDismiss" class="scoring-warn-x" title="Dismiss">×</button></div>` : ""}
+    <div class="settings-cols">
+      <div class="settings-col">
+        <h4>League</h4>
+        ${stepperRow("Teams","teams")}
+        <div class="stp-row"><span class="stp-label">Scoring</span><span class="seg-group">${scoringBtns}</span></div>
+        <p class="settings-note">Scoring is stored for reference. Projections come from your CSV export — re-export PPR-configured and run /refresh-draft-board after changing this.</p>
+      </div>
+      <div class="settings-col">
+        <h4>Roster</h4>
+        ${stepperRow("QB","qb")}${stepperRow("RB","rb")}${stepperRow("WR","wr")}${stepperRow("TE","te")}
+        ${stepperRow("FLEX","flex")}${stepperRow("Superflex","superflex")}${stepperRow("D/ST","dst")}${stepperRow("K","k")}
+        ${stepperRow("Bench","bench")}${stepperRow("IR","ir")}
+      </div>
+    </div>
+    <div class="settings-totals">Starters: <strong>${starters}</strong> · Bench: <strong>${ls.bench}</strong> · IR: <strong>${ls.ir}</strong> · Total roster: <strong>${totalRoster}</strong> · Rounds drafted: <strong>${rounds}</strong></div>
+    <div class="settings-actions"><button id="settingsReset" class="settings-reset">Reset to default (12-team PPR)</button></div>
+    ${(() => {
+      const presets = loadPresets();
+      const opts = presets.length ? presets.map((pr,i) => `<option value="${i}">${escapeHtml(pr.name)}</option>`).join("") : `<option value="">(none saved)</option>`;
+      const dis = presets.length ? "" : "disabled";
+      return `<div class="settings-presets">
+        <h4>Presets</h4>
+        <div class="preset-row">
+          <select id="presetSelect" ${dis}>${opts}</select>
+          <button class="seg" id="presetLoad" ${dis}>Load</button>
+          <button class="seg" id="presetDelete" ${dis}>Delete</button>
+        </div>
+        <div class="preset-row">
+          <input type="text" id="presetName" placeholder="Name this setup" maxlength="40"/>
+          <button class="seg" id="presetSave">Save current</button>
+        </div>
+      </div>`;
+    })()}`;
+}
+/* Apply a settings change: re-derive bindings, clamp slot to team count, persist, repaint. */
+function applyLeagueChange(){
+  recomputeDerived();
+  if(state.slot > LEAGUE_SIZE) state.slot = LEAGUE_SIZE;
+  saveState();
+  renderAll();
+  renderSettings();
+}
+function openSettings(){ renderSettings(); document.getElementById("settingsOverlay").style.display = "flex"; }
+function closeSettings(){ document.getElementById("settingsOverlay").style.display = "none"; }
+
+function renderHeader(){
+  const sel = document.getElementById("slotPicker");
+  if(sel.options.length !== LEAGUE_SIZE){   // rebuild when team count changes
+    sel.innerHTML = "";
+    for(let i=1;i<=LEAGUE_SIZE;i++){
+      const o = document.createElement("option"); o.value=i; o.textContent=i; sel.appendChild(o);
+    }
+  }
+  if(state.slot > LEAGUE_SIZE) state.slot = LEAGUE_SIZE;   // team count shrank below current slot
+  sel.value = state.slot;
+  document.getElementById("pickNumber").value = state.currentPick;
+  const next = nextMyPick(state.currentPick, state.slot);
+  document.getElementById("myNextPick").textContent = next ? `My next: #${next}` : "Draft over";
+  // Footer summary mirrors current league settings
+  const ls = state.leagueSettings, fr = document.getElementById("footerRight");
+  if(fr){
+    const starters = SLOTS.filter(sl => { const p = slotPrefix(sl); return p !== "BN" && p !== "IR"; }).map(slotPrefix).join("/");
+    fr.textContent = `${ls.teams}-team ${SCORING_LABELS[ls.scoring] || ls.scoring} · ${starters} + ${ls.bench} bench${ls.ir ? ` + ${ls.ir} IR` : ""}`;
+  }
+  const scEl = document.getElementById("footerSidecar");
+  if(scEl){
+    const np = Object.keys(researchSidecar.players||{}).length, nt = Object.keys(researchSidecar.teams||{}).length;
+    scEl.textContent = researchSidecar.generated
+      ? `Research sidecar: ${researchSidecar.generated} (${np} player${np===1?"":"s"}, ${nt} team${nt===1?"":"s"})`
+      : "Research sidecar: not loaded — start a server / run /research-sweep";
+  }
+  // Warning pill: count of active implications across drafted + planned
+  const wp = document.getElementById("warningPill");
+  if(wp){
+    const impls = computeImplications({ includePlan: true });
+    if(impls.length === 0){ wp.style.display = "none"; }
+    else {
+      wp.style.display = "";
+      wp.textContent = `⚠ ${impls.length} watch flag${impls.length===1?"":"s"}`;
+    }
+  }
+}
+
+function snakePicksFor(slot){
+  const picks = [];
+  for(let round=1; round<=LEAGUE_SIZE+BENCH_SIZE+1; round++){
+    const pick = getOverallPick(round, slot);
+    picks.push({round, pick});
+  }
+  return picks;
+}
+function nextMyPick(currentPick, slot){
+  return snakePicksFor(slot).find(p => p.pick >= currentPick)?.pick || null;
+}
+
+function bridgeRead(p){
+  if(p.ESPN_Rank === "" || isNaN(p.ESPN_Rank)) return null;
+  const delta = p.ESPN_Rank - p.Consensus_Rank;
+  if(Math.abs(delta) <= 2) return { delta, cls:"delta-flat", txt:"ESPN ≈ consensus" };
+  if(delta < 0) return { delta, cls:"delta-bad", txt:`ESPN overrates by ${-delta} — leaguemates reach early, fade` };
+  return { delta, cls:"delta-good", txt:`ESPN underrates by ${delta} — leaguemates ignore, you can wait` };
+}
+
+function adpRead(p){
+  if(p.ADP === "" || isNaN(p.ADP)) return null;
+  const delta = p.ADP - p.Consensus_Rank;
+  if(Math.abs(delta) <= 3) return { delta, cls:"delta-flat", txt:"market pricing matches consensus" };
+  if(delta < 0) return { delta, cls:"delta-bad", txt:`market overpays — taken ${-delta.toFixed(1)} ahead of consensus` };
+  return { delta, cls:"delta-good", txt:`market value — falls ${delta.toFixed(1)} past consensus` };
+}
+
+/* Render the Big Board <tbody>: apply position/tier/lens/search/watch filters, sort
+   (grouped-by-tier or by sortKey), inject tier-section headers when grouping, and
+   wire a row click -> selectPlayer. Side effect: rewrites #boardBody innerHTML. */
+function renderBoard(){
+  const tbody = document.getElementById("boardBody");
+  tbody.innerHTML = "";
+  let list = players.slice();
+  if(posFilter !== "ALL") list = list.filter(p => p.Position === posFilter);
+  if(tierFilter !== "ALL"){
+    const t = tierFilter;
+    list = list.filter(p => {
+      const tier = getEffectiveTier(p);
+      if(!tier) return false;
+      if(t === "1-2") return tier <= 2;
+      if(t === "1-3") return tier <= 3;
+      if(t === "4+") return tier >= 4;
+      return tier === parseInt(t);
+    });
+  }
+  const lens = state.bigBoardLens || "all";
+  if(lens === "hype") list = list.filter(p => isHypeMember(p));
+  else if(lens === "edge") list = list.filter(p => isEdgeMember(p));
+  else if(lens === "handcuffs") list = list.filter(p => isHandcuffMember(p));
+  else if(lens === "stacks") list = list.filter(p => isStackMember(p));
+  else if(lens === "lottery") list = list.filter(p => isLotteryMember(p));
+  else if(lens === "overrides") list = list.filter(p => hasTierOverride(p));
+  else if(lens === "archetyped") list = list.filter(p => state.archetypes[key(p)]);
+  else if(lens === "researched") list = list.filter(p => researchSidecar.players[key(p)]?.has_profile);
+  if(search) list = list.filter(p => p.Name.toLowerCase().includes(search.toLowerCase()));
+  if(watchOnly) list = list.filter(p => state.watchlist[key(p)]);
+  if(groupByTier){
+    // Tier-first sort: effective tier ascending, then by Consensus_Rank within tier
+    list.sort((a,b) => {
+      const tA = getEffectiveTier(a) || 99;
+      const tB = getEffectiveTier(b) || 99;
+      if(tA !== tB) return tA - tB;
+      return (a.Consensus_Rank || 999) - (b.Consensus_Rank || 999);
+    });
+  } else {
+    list.sort((a,b)=>{
+      const av = a[sortKey], bv = b[sortKey];
+      if(typeof av === "number" && typeof bv === "number") return (av - bv) * sortDir;
+      return String(av).localeCompare(String(bv)) * sortDir;
+    });
+  }
+  if(hideTaken) list = list.filter(p => !state.picks[key(p)]);
+
+  const bestAvail = list.find(p => !state.picks[key(p)]);
+  // Build the whole tbody as one HTML string (template literals), then attach a
+  // single delegated click handler — no per-row listeners. Rows carry data-name/
+  // data-pos so the handler can resolve the clicked player.
+  let html = "";
+  let prevTier = null;
+  list.forEach(p => {
+    const k = key(p);
+    const effT = getEffectiveTier(p);
+    // Insert tier section header when grouping
+    if(groupByTier && effT !== prevTier){
+      const inTier = list.filter(pp => getEffectiveTier(pp) === effT);
+      const posBreakdown = {};
+      inTier.forEach(pp => { posBreakdown[pp.Position] = (posBreakdown[pp.Position]||0)+1; });
+      const breakdown = Object.entries(posBreakdown).sort().map(([pos,c]) => `<span class="pos-${pos}">${pos}:${c}</span>`).join(" · ");
+      html += `<tr class="tier-section-header"><td colspan="10"><span class="tier-pill t${effT||0}">TIER ${effT||"—"}</span> <span style="color:var(--muted);font-size:11px;margin-left:8px">${inTier.length} player${inTier.length===1?"":"s"} · ${breakdown}</span></td></tr>`;
+    }
+    const taken = state.picks[k];
+    const tag = state.tags[k];
+    const onWatch = state.watchlist[k];
+    const br = bridgeRead(p);
+    const rowClasses = ["player"];
+    if(taken?.taken === "me") rowClasses.push("taken-me");
+    if(taken?.taken === "other") rowClasses.push("taken-other");
+    if(bestAvail && k === key(bestAvail) && !hideTaken && posFilter==="ALL" && !watchOnly && !groupByTier) rowClasses.push("best-available");
+    if(onWatch) rowClasses.push("watchlist");
+    if(!groupByTier && posFilter !== "ALL" && prevTier !== null && p.Tier !== prevTier) rowClasses.push("tier-break");
+    prevTier = effT;
+
+    const tagBadge = tag ? `<span class="badge ${tag}">${tag.toUpperCase()}</span>` : "";
+    const watchBadge = onWatch ? `<span class="badge watch">W</span>` : "";
+    const arch = state.archetypes[k];
+    const archBadge = arch && ARCHETYPES[arch] ? `<span class="badge archetype" style="background:${ARCHETYPES[arch].color};color:#000">${ARCHETYPES[arch].label}</span>` : "";
+    const injBadge = p.Injury_Status && p.Injury_Status !== "Healthy"
+      ? `<span class="badge ${p.Injury_Status==='Out'||p.Injury_Status==='IR'?'out':'injury'}">${p.Injury_Status}</span>` : "";
+    const scp = sidecarFor(p);
+    const profileBadge = scp && scp.has_profile ? `<span class="badge profile" title="Has research profile — click for scouting">📄</span>` : "";
+    const edgeBadge = isEdgeMember(p) ? `<span class="badge edge" title="Active edge — verified & still-unpriced on the edge board (click for scouting)">⚡</span>` : "";
+    const effTier = getEffectiveTier(p);
+    const isOver = hasTierOverride(p);
+    const tierTip = isOver ? `Personal: T${effTier} · Consensus: T${p.Tier}` : `Consensus tier T${effTier}`;
+    const bridgeCell = br ? `<span class="${br.cls}">${br.delta > 0 ? '+' : ''}${br.delta}</span>` : "<span class='delta-flat'>—</span>";
+    html += `<tr class="${rowClasses.join(' ')}" data-name="${escapeHtml(p.Name)}" data-pos="${p.Position}">
+      <td><strong>${p.Consensus_Rank}</strong></td>
+      <td><strong>${p.Name}</strong>${watchBadge}${tagBadge}${archBadge}${edgeBadge}${profileBadge}</td>
+      <td class="pos-${p.Position}">${p.Position}${p.Consensus_Pos_Rank}</td>
+      <td title="${tierTip}"><span class="tier-pill t${effTier || 0}">T${effTier || "—"}${isOver ? '<span style="margin-left:3px;font-size:9px">✎</span>' : ''}</span></td>
+      <td>${p.NFL_Team}</td>
+      <td>${p.Bye_Week}</td>
+      <td>${p.ESPN_Rank || "—"}</td>
+      <td>${p.ADP}</td>
+      <td>${bridgeCell}</td>
+      <td>${injBadge}${taken ? `<span class="badge ${taken.taken==='me'?'value':'dnd'}">${taken.taken==='me'?'YOU':'#'+taken.pickNumber}</span>` : ""}</td>
+    </tr>`;
+  });
+  tbody.innerHTML = html;
+  renderClockStrip();
+  tbody.querySelectorAll("tr.player").forEach(tr => tr.addEventListener("click", (ev) => {
+    const p = players.find(pp => pp.Name === tr.dataset.name && pp.Position === tr.dataset.pos);
+    if(!p) return;
+    selectPlayer(p);
+    if(ev.target.closest(".badge.profile")){ const el = document.getElementById("scoutingPanel"); if(el) el.scrollIntoView({ block:"nearest" }); }
+  }));
+}
+
+/* On-the-clock strip: best available overall + per position with tier-scarcity
+   warnings. Deliberately IGNORES every board filter (pos/tier/lens/search/watch)
+   so it can never be hidden by UI state — unlike the green best-available row
+   stripe, which only renders on the unfiltered board. Click a chip → player card. */
+function renderClockStrip(){
+  const el = document.getElementById("clockStrip"); if(!el) return;
+  const avail = players.filter(p => !state.picks[key(p)])
+    .sort((a,b) => (a.Consensus_Rank || 999) - (b.Consensus_Rank || 999));
+  if(!avail.length){ el.innerHTML = ""; return; }
+  const chip = (p, label, extra) => `<span class="cs-chip${label==="BEST"?" cs-best":""}" data-name="${escapeHtml(p.Name)}" data-pos="${p.Position}">` +
+    (label==="BEST" ? `<b>BEST</b> ` : `<b class="pos-${p.Position}">${p.Position}</b> `) +
+    `${escapeHtml(p.Name)}${isEdgeMember(p) ? " ⚡" : ""}${extra || ""}</span>`;
+  let html = `<span class="cs-lab">ON THE CLOCK</span>` +
+    chip(avail[0], "BEST", ` <span class="cs-tier">#${avail[0].Consensus_Rank}</span>`);
+  ["QB","RB","WR","TE"].forEach(pos => {
+    const pa = avail.filter(p => p.Position === pos);
+    if(!pa.length) return;
+    const best = pa[0], t = getEffectiveTier(best);
+    const leftInTier = t ? pa.filter(p => getEffectiveTier(p) === t).length : 0;
+    const scarcity = !t ? "" :
+      leftInTier === 1 ? ` <span class="cs-warn">LAST T${t}!</span>` :
+      leftInTier === 2 ? ` <span class="cs-warn2">2 left in T${t}</span>` :
+      ` <span class="cs-tier">T${t}×${leftInTier}</span>`;
+    html += chip(best, pos, scarcity);
+  });
+  el.innerHTML = html;
+  el.querySelectorAll(".cs-chip").forEach(c => c.addEventListener("click", () => {
+    const p = players.find(pp => pp.Name === c.dataset.name && pp.Position === c.dataset.pos);
+    if(p) selectPlayer(p);
+  }));
+}
+
+function selectPlayer(p){
+  selectedPlayer = p;
+  setTab("card");   // setTab renders the card tab
+}
+
+function setTab(t){
+  activeTab = t;
+  document.querySelectorAll(".right-tabs .tab").forEach(b => b.classList.toggle("active", b.dataset.tab === t));
+  document.querySelectorAll(".right .panel").forEach(p => p.style.display = "none");
+  document.getElementById("tab-"+t).style.display = "";
+  (TAB_RENDERERS[t] || renderCard)();   // render on show — off-screen tabs never go stale
+}
+
+/* Tab id -> its renderer. */
+const TAB_RENDERERS = { card: renderCard, roster: renderRoster, ideal: renderIdeal, slot: renderSlot, pool: renderLandscape, teams: renderTeams };
+/* Render ONLY the visible tab; the header is rendered separately by renderAll().
+   setTab() re-renders a tab when it becomes visible, so off-screen tabs stay current. */
+function renderTabs(){
+  (TAB_RENDERERS[activeTab] || renderCard)();
+}
+
+function renderCard(){
+  const root = document.getElementById("tab-card");
+  if(!selectedPlayer){
+    root.innerHTML = `<div class="player-card"><p style="color:var(--muted)">Click a player on the Big Board to open their card.</p></div>`;
+    return;
+  }
+  const p = selectedPlayer;
+  const k = key(p);
+  const taken = state.picks[k];
+  const tag = state.tags[k] || "";
+  const onWatch = !!state.watchlist[k];
+  const note = state.notes[k] || "";
+  const soft = state.soft[k] || {};
+  const br = bridgeRead(p);
+  const adp = adpRead(p);
+  root.innerHTML = `
+    <div class="player-card">
+      <h2>${p.Name}</h2>
+      <div class="sub"><span class="pos-${p.Position}">${p.Position}${p.Consensus_Pos_Rank}</span> · ${p.NFL_Team} · Bye ${p.Bye_Week} · ${p.Depth_Level} · ${p.Injury_Status}</div>
+
+      <div class="grid">
+        <div class="stat"><div class="stat-label">Consensus</div><div class="stat-value">#${p.Consensus_Rank} · ${p.Position}${p.Consensus_Pos_Rank}</div></div>
+        <div class="stat"><div class="stat-label">ESPN</div><div class="stat-value">${p.ESPN_Rank ? `#${p.ESPN_Rank} · ${p.Position}${p.ESPN_Pos_Rank}` : "—"}</div></div>
+        <div class="stat"><div class="stat-label">ADP (ESPN)</div><div class="stat-value">${p.ADP}</div></div>
+        <div class="stat"><div class="stat-label">Tier ${hasTierOverride(p) ? '<span style="font-size:9px;color:var(--target)">✎ personal</span>' : ''}</div><div class="stat-value">
+          <input type="number" id="tierOverrideInput" min="1" max="9" value="${getEffectiveTier(p) || ""}" style="width:48px;background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:3px;padding:1px 4px;font-weight:600" title="Personal tier override. Clear to revert to consensus T${p.Tier}." />
+          ${hasTierOverride(p) ? `<button id="tierResetBtn" style="background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:10px;margin-left:4px" title="Reset to consensus tier">↺</button>` : ""}
+        </div></div>
+        <div class="stat"><div class="stat-label">Projection</div><div class="stat-value">${p.Projection || "—"}</div></div>
+        <div class="stat"><div class="stat-label">Bye</div><div class="stat-value">${p.Bye_Week}</div></div>
+      </div>
+
+      <div class="bridge-box">
+        <div><strong>Bridge:</strong> ${br ? br.txt : "no ESPN rank loaded"}</div>
+        <div style="margin-top:4px"><strong>Market:</strong> ${adp ? adp.txt : "no ADP"}</div>
+      </div>
+
+      <div class="draft-buttons">
+        <button class="me" data-act="me">Drafted by ME</button>
+        <button class="other" data-act="other">Drafted by Other</button>
+        <button class="undo" data-act="undo">Undo</button>
+      </div>
+
+      <div style="font-size:11px;color:var(--muted);margin-bottom:4px">TAGS</div>
+      <div class="tag-buttons">
+        <button data-tag="target" class="${tag==='target'?'active target':''}">Target</button>
+        <button data-tag="value" class="${tag==='value'?'active value':''}">Value</button>
+        <button data-tag="sleeper" class="${tag==='sleeper'?'active sleeper':''}">Sleeper</button>
+        <button data-tag="dnd" class="${tag==='dnd'?'active dnd':''}">Do Not Draft</button>
+        <button data-watch="1" class="${onWatch?'active watch':''}">Watchlist</button>
+      </div>
+
+      <div style="font-size:11px;color:var(--muted);margin:8px 0 4px">ARCHETYPE</div>
+      <select id="archetypeSelect" style="width:100%;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:4px;padding:6px;font:inherit">
+        <option value="">(none — tag this player's strategic role)</option>
+        ${Object.entries(ARCHETYPES).map(([key,a]) => `<option value="${key}" ${state.archetypes[k]===key?"selected":""}>${a.label} — ${a.desc}</option>`).join("")}
+      </select>
+      ${state.archetypes[k] && ARCHETYPES[state.archetypes[k]] ? `<div style="font-size:10px;color:var(--muted);margin-top:4px;font-style:italic">${ARCHETYPES[state.archetypes[k]].desc}</div>` : ""}
+
+      <div style="font-size:11px;color:var(--muted);margin:8px 0 4px">NOTES</div>
+      <textarea id="noteBox" placeholder="Personal scouting notes...">${escapeHtml(note)}</textarea>
+
+      ${(() => {
+        const sc = researchSidecar.players[k];
+        if(!sc) return `<div class="soft">
+        <em>Strengths:</em> ${soft.strengths || "<span style='color:var(--muted)'>add note to Research/profiles/players/"+p.Position+"/"+slugify(p.Name)+".md</span>"}<br/>
+        <em>Weaknesses:</em> ${soft.weaknesses || "<span style='color:var(--muted)'>—</span>"}<br/>
+        <em>Team philosophy:</em> ${soft.teamPhil || "<span style='color:var(--muted)'>see Research/profiles/teams/"+p.NFL_Team+".md</span>"}
+      </div>`;
+        const team = researchSidecar.teams[p.NFL_Team];
+        const row = (lab,val) => val ? `<div><em>${lab}:</em> ${escapeHtml(val)}</div>` : "";
+        /* Scouting-head chips. Risk chip = range_model tier; the risk-* class
+           normalization matches THIS surface's .risk-* CSS — the in-season hub
+           keeps its own riskChip/palette (divergent-CSS decision, _conventions §7). */
+        const edgeBadgeHtml = s => s.research_flags && s.research_flags.edge ? ` <span class="badge edge" title="Active edge — verified & still-unpriced on the edge board">⚡ EDGE</span>` : "";
+        const riskChipHtml = s => s.risk ? ` <span class="risk-chip risk-${s.risk.tier.replace(/[^a-z]/gi,'').toLowerCase()}" title="Risk tier (range_model): volatility ${s.risk.volatility}, ${s.risk.basis} basis. Steadier = safer floor; Boom/Bust = upside + bust. Shared with the in-season hub.">${escapeHtml(s.risk.tier)}</span>` : "";
+        const dateHtml = s => s.last_updated ? `<span class="scouting-date">${escapeHtml(s.last_updated)}${s.source_count ? " · "+s.source_count+" src" : ""}</span>` : "";
+        return `<div class="soft scouting" id="scoutingPanel">
+        <div class="scouting-head">SCOUTING${edgeBadgeHtml(sc)}${riskChipHtml(sc)}${dateHtml(sc)}</div>
+        ${row("Role", sc.role)}${row("Strength", sc.strength)}${row("Weakness", sc.weakness)}${row("Key capture", sc.key_capture)}
+        ${team && team.identity ? `<div><em>Team:</em> ${escapeHtml(team.identity)}</div>` : ""}
+        ${team && (team.ol || team.run_lean || team.backfield_class) ? `<div><em>Team ctx:</em> ${team.ol ? "OL #"+escapeHtml(team.ol.rank_2026)+"/32" : ""}${team.backfield_class ? " · "+escapeHtml(team.backfield_class) : ""}${team.run_lean ? " · "+escapeHtml(team.run_lean.profile)+" ("+(team.run_lean.proe_2025>0?"+":"")+escapeHtml(team.run_lean.proe_2025)+" PROE)" : ""}${team.rb_pass_role ? " · RB-recv: "+escapeHtml(team.rb_pass_role.role) : ""}${team.defense && team.defense.strength ? " · D: "+escapeHtml(team.defense.strength) : ""}</div>` : ""}
+        <div class="scouting-link">${sc.profile ? `<a href="../${escapeHtml(sc.profile)}" target="_blank">📄 open profile</a> · ` : ""}<a href="research-digest.html?q=${encodeURIComponent(p.Name)}" target="_blank">🔎 open in digest</a></div>
+      </div>`;
+      })()}
+    </div>
+  `;
+  root.querySelectorAll("[data-act]").forEach(b => b.addEventListener("click", () => {
+    const act = b.dataset.act;
+    // Turn guardrail: warn when the action doesn't match whose pick #currentPick is.
+    const myTurn = nextMyPick(state.currentPick, state.slot) === state.currentPick;
+    if(act === "me" && !myTurn && !confirm(`Pick #${state.currentPick} isn't yours (your next is #${nextMyPick(state.currentPick, state.slot) ?? "—"}). Mark as YOUR pick anyway?`)) return;
+    if(act === "other" && myTurn && !confirm(`Pick #${state.currentPick} IS yours — you're on the clock. Mark as drafted by OTHER anyway?`)) return;
+    if(act === "me"){ state.picks[k] = { taken:"me", pickNumber: state.currentPick }; advancePick(); }
+    else if(act === "other"){ state.picks[k] = { taken:"other", pickNumber: state.currentPick }; advancePick(); }
+    else if(act === "undo"){ delete state.picks[k]; }
+    saveState(); renderAll();
+  }));
+  root.querySelectorAll("[data-tag]").forEach(b => b.addEventListener("click", () => {
+    const t = b.dataset.tag;
+    state.tags[k] = state.tags[k] === t ? null : t;
+    saveState(); renderAll();
+  }));
+  root.querySelector("[data-watch]").addEventListener("click", () => {
+    state.watchlist[k] = !state.watchlist[k];
+    saveState(); renderAll();
+  });
+  root.querySelector("#noteBox").addEventListener("input", e => {
+    state.notes[k] = e.target.value; saveState();
+  });
+  root.querySelector("#tierOverrideInput").addEventListener("change", e => {
+    const v = e.target.value;
+    if(v === "" || v === null){ delete state.tierOverrides[k]; }
+    else {
+      const n = parseInt(v);
+      if(!isNaN(n) && n >= 1 && n <= 9){
+        if(n === p.Tier) delete state.tierOverrides[k];
+        else state.tierOverrides[k] = n;
+      }
+    }
+    saveState(); renderAll();
+  });
+  const resetBtn = root.querySelector("#tierResetBtn");
+  if(resetBtn) resetBtn.addEventListener("click", () => {
+    delete state.tierOverrides[k]; saveState(); renderAll();
+  });
+  root.querySelector("#archetypeSelect").addEventListener("change", e => {
+    const v = e.target.value;
+    if(v === "") delete state.archetypes[k];
+    else state.archetypes[k] = v;
+    saveState(); renderAll();
+  });
+}
+
+function advancePick(){ state.currentPick += 1; }
+
+/* Mock-draft sim: auto-mark "Drafted by Other" until the clock reaches one of my
+   snake picks. Order = ADP with realistic jitter (random of the top 3 available),
+   players without an ADP are skipped (deep-pool names the room wouldn't draft). */
+function simToMyPick(){
+  const myPicks = new Set(snakePicksFor(state.slot).map(x => x.pick));
+  if(myPicks.has(state.currentPick)){ alert(`You're already on the clock — pick #${state.currentPick}.`); return; }
+  const maxPick = LEAGUE_SIZE * TOTAL_ROUNDS;
+  let guard = 0;
+  while(!myPicks.has(state.currentPick) && state.currentPick <= maxPick && guard++ < 500){
+    const avail = players
+      .filter(p => !state.picks[key(p)] && p.ADP !== "" && !isNaN(p.ADP))
+      .sort((a,b) => a.ADP - b.ADP);
+    if(!avail.length) break;
+    const pool = avail.slice(0, Math.min(3, avail.length));
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    state.picks[key(pick)] = { taken:"other", pickNumber: state.currentPick };
+    advancePick();
+  }
+  saveState(); renderAll();
+}
+function slugify(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
+/* escapeHtml now lives in the SHARED:JS block above (Board/_shared.js). */
+
+/* Pure analysis of my drafted (+optionally planned) roster -> array of pro/con
+   "watch flags": bye stacks, position concentration, team stacks, tier-1 absence,
+   injury clustering. Demo flags prepended when state.showDemoFlags.
+   @param {{includePlan?:boolean}} opts  include planned picks (default true)
+   @returns {Object[]} {severity,title,pro,con,affected?} */
+function computeImplications(opts){
+  opts = opts || {};
+  const includePlan = opts.includePlan !== false;
+  const myDrafted = Object.entries(state.picks)
+    .filter(([_,v]) => v.taken === "me")
+    .map(([k]) => players.find(p => key(p) === k))
+    .filter(Boolean);
+  const planned = includePlan ? Object.values(state.plan).map(pk => players.find(p => key(p) === pk)).filter(Boolean) : [];
+  const combined = [...myDrafted, ...planned];
+  if(combined.length === 0) return [];
+  const issues = [];
+
+  // Bye-week clustering
+  const byeMap = {};
+  combined.forEach(p => { if(p.Bye_Week){ (byeMap[p.Bye_Week] = byeMap[p.Bye_Week] || []).push(p); } });
+  Object.entries(byeMap).forEach(([week, ps]) => {
+    if(ps.length >= 4){
+      issues.push({
+        severity:"critical",
+        title:`Heavy bye stack: ${ps.length} players on Week ${week}`,
+        pro:"Cleaner roster every other week — fewer streaming decisions across the season.",
+        con:`Week ${week} will be brutal. You'll need ${ps.length - 3}+ waiver/bench replacements ready. Plan ahead, or this single week torpedoes your playoff push.`,
+        affected: ps.map(p => `${p.Name} (${p.Position})`).join(", ")
+      });
+    } else if(ps.length === 3){
+      issues.push({
+        severity:"warn",
+        title:`Bye cluster: 3 players on Week ${week}`,
+        pro:"Cleaner other weeks; one defined hole instead of constant gaps.",
+        con:"Manageable but watch bench depth at those positions. If 2 of the 3 are starters, you need a real bench plan for Week " + week + ".",
+        affected: ps.map(p => `${p.Name} (${p.Position})`).join(", ")
+      });
+    }
+  });
+
+  // Position concentration
+  const posCounts = { QB:0, RB:0, WR:0, TE:0, K:0, DST:0 };
+  combined.forEach(p => { if(posCounts[p.Position] !== undefined) posCounts[p.Position]++; });
+
+  if(posCounts.RB >= 5){
+    issues.push({
+      severity:"warn",
+      title:`RB heavy (${posCounts.RB} RBs)`,
+      pro:"Insurance against injuries + trade leverage + protects against zero-RB opponents.",
+      con:"Your WR2/FLEX value is leaking. You'll be reaching for WR depth later when better names are gone."
+    });
+  } else if(posCounts.RB === 0 && combined.length >= 4){
+    issues.push({
+      severity:"warn",
+      title:`Zero RBs through ${combined.length} picks (Zero-RB build)`,
+      pro:"Modern strategy — WR ceiling stacked early, late-round RB market is genuinely deep in PPR.",
+      con:"Requires hitting on TWO mid/late RBs. No margin if your waiver hits miss. One injury without RB1 is rough."
+    });
+  } else if(posCounts.RB >= 3 && combined.length <= 5){
+    issues.push({
+      severity:"info",
+      title:`RB-anchored start (${posCounts.RB} RBs early)`,
+      pro:"Position scarcity locked. RBs hold value vs. WRs after rounds 3-4.",
+      con:"WR1 candidates are evaporating. Tier-break discipline at WR for your next 2 picks."
+    });
+  }
+
+  if(posCounts.WR >= 6){
+    issues.push({
+      severity:"info",
+      title:`WR heavy (${posCounts.WR} WRs)`,
+      pro:"High PPR floor, bye-week flexibility (deep WR pool), FLEX optionality every week.",
+      con:"Thin at RB — one injury and you're start/sitting backup RBs. RB market gets shallow fast."
+    });
+  } else if(posCounts.WR === 0 && combined.length >= 4){
+    issues.push({
+      severity:"warn",
+      title:`Zero WRs through ${combined.length} picks`,
+      pro:"All-in on RB scarcity. Tier-1 RBs in PPR are worth this.",
+      con:"You need WR1+WR2 from picks 4-7. That window is thin if you waited. WR run risk is real."
+    });
+  }
+
+  if(posCounts.QB >= 2){
+    const qbs = combined.filter(p => p.Position === "QB");
+    const elite = qbs.filter(p => p.Consensus_Rank <= 50).length;
+    issues.push({
+      severity:"info",
+      title:`${posCounts.QB} QBs drafted`,
+      pro: elite >= 2 ? "Elite stash + matchup play. Justifiable in superflex or if you trade the backup." : "Trade depth or pivot insurance.",
+      con:"1-QB league: a bench QB is a wasted slot most weeks. Justify only if both are top-12 OR you have a trade target lined up."
+    });
+  }
+
+  if(posCounts.TE >= 2){
+    const tes = combined.filter(p => p.Position === "TE");
+    const elite = tes.filter(t => t.Consensus_Rank <= 80).length;
+    issues.push({
+      severity:"info",
+      title:`${posCounts.TE} TEs drafted`,
+      pro: elite >= 2 ? "Top-12 TE depth — rare commodity, trade leverage in a thin position." : "Streaming insurance.",
+      con:"TE is one starting slot. Second TE only pays off if your first gets injured or you trade them. Otherwise dead weight."
+    });
+  }
+
+  // NFL team concentration
+  const teamMap = {};
+  combined.forEach(p => { (teamMap[p.NFL_Team] = teamMap[p.NFL_Team] || []).push(p); });
+  Object.entries(teamMap).forEach(([team, ps]) => {
+    if(ps.length >= 3){
+      const positions = ps.map(p=>p.Position);
+      const hasQBStack = positions.includes("QB") && (positions.includes("WR") || positions.includes("TE"));
+      issues.push({
+        severity:"warn",
+        title:`Stack: ${ps.length} from ${team}`,
+        pro: hasQBStack ? "Correlated ceiling weeks — when this offense pops, you double-dip." : "Correlated ceiling when the team has a big game.",
+        con:"Correlated bust weeks. Game-script risk (blowouts, weather, OL injury) hits multiple starters at once. One bad team week = bad fantasy week.",
+        affected: ps.map(p => `${p.Name} (${p.Position})`).join(", ")
+      });
+    }
+  });
+
+  // Tier-1 anchor absence
+  if(combined.length >= 3){
+    const hasTier1 = combined.some(p => p.Consensus_Rank <= 12);
+    if(!hasTier1){
+      issues.push({
+        severity:"warn",
+        title:"No tier-1 anchor through 3+ picks",
+        pro:"Spread your bets — depth over stars. Works if your tier-2/3 picks hit ceilings.",
+        con:"Ceiling capped. Without a top-12 player as your foundation, you need to hit on multiple breakouts to compete for the title."
+      });
+    }
+  }
+
+  // Injury concentration
+  const injured = combined.filter(p => p.Injury_Status && !["Healthy","Unknown",""].includes(p.Injury_Status));
+  if(injured.length >= 3){
+    issues.push({
+      severity:"warn",
+      title:`${injured.length} non-healthy players`,
+      pro:"Discount pricing on talent — if they ramp, you got value.",
+      con:"Compound risk. Multiple early-season availability questions means your Week 1-4 lineups are unstable.",
+      affected: injured.map(p => `${p.Name} (${p.Injury_Status})`).join(", ")
+    });
+  }
+
+  // Demo flags injected at the top so user can preview the UI without drafting
+  if(state.showDemoFlags){
+    return [...DEMO_FLAGS.map(f => ({...f, _demo: true})), ...issues];
+  }
+  return issues;
+}
+
+function renderImplications(scope){
+  // scope: "roster" or "plan"
+  const includePlan = scope === "plan";
+  const issues = computeImplications({ includePlan });
+  const demoBtn = `<button class="demo-toggle" style="background:var(--panel);color:var(--muted);border:1px solid var(--border);border-radius:3px;padding:3px 8px;font:inherit;font-size:10px;cursor:pointer;white-space:nowrap">${state.showDemoFlags ? "Hide example flags" : "Show example flags"}</button>`;
+  const intro = `<div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px">
+    <div style="font-size:11px;color:var(--muted);flex:1">
+      <strong style="color:var(--accent)">Watch flags</strong> — auto-detected pro/con readouts on your ${scope==="plan" ? "drafted + planned roster" : "drafted roster"}. Bye stacks, position concentration, team stacks, tier-1 absence, injury concentration.
+    </div>
+    ${demoBtn}
+  </div>`;
+  if(issues.length === 0){
+    return `<div class="implications">${intro}<div class="impl-empty">No flags yet. Will appear here as you draft or plan picks: when 3+ players share a bye week, when you go RB/WR heavy, when you stack 3+ from one NFL team, etc.<br/><br/>Click <strong>Show example flags</strong> above to preview what real flags look like.</div></div>`;
+  }
+  return `<div class="implications">${intro}
+    ${issues.map(i => `<div class="impl-card sev-${i.severity}${i._demo?' impl-demo':''}">
+      <div class="impl-title">${i._demo?'<span style="background:var(--muted);color:#000;padding:1px 5px;border-radius:2px;font-size:9px;margin-right:6px;text-transform:uppercase;letter-spacing:.05em">example</span>':''}${i.title}</div>
+      <div class="impl-pro"><strong>Pro:</strong> ${i.pro}</div>
+      <div class="impl-con"><strong>Con:</strong> ${i.con}</div>
+      ${i.affected ? `<div class="impl-affected">Affected: ${i.affected}</div>` : ""}
+    </div>`).join("")}
+  </div>`;
+}
+
+function renderRoster(){
+  const root = document.getElementById("tab-roster");
+  const mine = Object.entries(state.picks)
+    .filter(([_,v]) => v.taken === "me")
+    .map(([k,v]) => ({ player: players.find(p => key(p) === k), pickNumber: v.pickNumber }))
+    .filter(x => x.player)
+    .sort((a,b) => a.pickNumber - b.pickNumber);
+
+  // Config-driven slot allocation. Pass 1 parks IR/PUP-eligible players in IR
+  // slots so injured stashes don't consume starters/bench (no-op when ir:0).
+  // Pass 2 is the legacy greedy QB>RB>WR>TE>FLEX>DST>K priority for everyone else.
+  const filled = Object.fromEntries(SLOTS.map(s => [s, null]));
+  const overflow = [];
+  const irSlots = SLOTS.filter(s => slotPrefix(s) === "IR");
+  const consumed = new Set();
+  if(irSlots.length){
+    let ai = 0;
+    mine.forEach((entry, idx) => {
+      const pl = entry.player;
+      if(ai < irSlots.length && (pl.Injury_Status === "IR" || pl.Injury_Status === "PUP")){
+        filled[irSlots[ai++]] = pl; consumed.add(idx);
+      }
+    });
+  }
+  mine.forEach((entry, idx) => {
+    if(consumed.has(idx)) return;
+    const player = entry.player;
+    const slot = SLOTS.find(s => slotPrefix(s) !== "IR" && !filled[s] && slotAccepts(s, player));
+    if(slot) filled[slot] = player; else overflow.push(player);
+  });
+
+  const starterSlots = SLOTS.filter(s => { const pre = slotPrefix(s); return pre !== "BN" && pre !== "IR"; });
+  const needs = starterSlots.filter(s => !filled[s]);
+
+  const byeCount = {};
+  starterSlots.map(s => filled[s]).filter(Boolean).forEach(p => { byeCount[p.Bye_Week] = (byeCount[p.Bye_Week]||0)+1; });
+  const byeStack = Object.entries(byeCount).filter(([_,c]) => c >= 3);
+
+  let html = "";
+  SLOTS.forEach(s => {
+    const p = filled[s];
+    html += `<div class="roster-slot ${p?'':'empty'}">
+      <span class="slot-label">${s}</span>
+      <span class="slot-player">${p?p.Name:"empty"}</span>
+      <span class="slot-bye">${p?'Bye '+p.Bye_Week:""}</span>
+    </div>`;
+  });
+  if(overflow.length){
+    html += `<div class="cut-head" title="Drafted but no roster slot — cut one, or raise Bench in ⚙ League">⚠ Over bench limit (${overflow.length}) — no slot</div>`;
+    overflow.forEach(p => {
+      html += `<div class="roster-slot cut">
+      <span class="slot-label">CUT</span>
+      <span class="slot-player">${p.Name}</span>
+      <span class="slot-bye">Bye ${p.Bye_Week}</span>
+    </div>`;
+    });
+  }
+  html += `<div class="needs">
+    <div><strong>${mine.length}</strong> picks · ${needs.length} starter slots open</div>
+    ${needs.length ? `<div class="need">Need: ${needs.join(", ")}</div>` : `<div style="color:var(--good)">All starters filled</div>`}
+    ${byeStack.map(([w,c]) => `<div class="stack-warn">⚠ ${c} starters on bye Week ${w}</div>`).join("")}
+  </div>`;
+  // Implications at top, roster slots below — warnings visible immediately
+  root.innerHTML = renderImplications("roster") + html;
+}
+
+function renderIdeal(){
+  const root = document.getElementById("tab-ideal");
+
+  // Group tagged + watchlisted players by the round their ADP places them in
+  const tagged = {};
+  Object.entries(state.tags).forEach(([k,t]) => { if(t) tagged[k] = t; });
+  const onWatch = {};
+  Object.entries(state.watchlist).forEach(([k,v]) => { if(v) onWatch[k] = true; });
+
+  // Build per-round buckets
+  const roundBuckets = {};
+  for(let r=1; r<=TOTAL_ROUNDS; r++) roundBuckets[r] = [];
+  players.forEach(p => {
+    const adp = parseFloat(p.ADP);
+    if(isNaN(adp)) return;
+    const k = key(p);
+    if(!tagged[k] && !onWatch[k]) return;
+    const r = Math.min(TOTAL_ROUNDS, Math.max(1, Math.ceil(adp / LEAGUE_SIZE)));
+    roundBuckets[r].push(p);
+  });
+
+  // Counts
+  const totals = { target:0, value:0, sleeper:0, dnd:0, watch:0 };
+  Object.values(tagged).forEach(t => totals[t]++);
+  totals.watch = Object.keys(onWatch).length;
+  const aliveTargets = Object.entries(tagged).filter(([k,t]) => t==="target" && !state.picks[k]).length;
+
+  let html = `<div style="margin-bottom:8px;font-size:12px;color:var(--muted)">
+    Tagged + watchlisted players, bucketed by the round their ADP places them in.
+    Your slot ${state.slot} pick is shown for each round.
+  </div>
+  <div class="round-counts">
+    ${totals.target?`<span class="rc" style="color:var(--target)">${aliveTargets}/${totals.target} targets alive</span>`:""}
+    ${totals.value?`<span class="rc" style="color:var(--value)">${totals.value} values</span>`:""}
+    ${totals.sleeper?`<span class="rc" style="color:var(--sleeper)">${totals.sleeper} sleepers</span>`:""}
+    ${totals.dnd?`<span class="rc" style="color:var(--dnd)">${totals.dnd} DND</span>`:""}
+    ${totals.watch?`<span class="rc" style="color:var(--watch)">${totals.watch} watchlist</span>`:""}
+  </div>`;
+
+  if(Object.values(totals).every(n => n === 0)){
+    html += `<div class="round-empty" style="padding:14px 0;text-align:center">
+      No tags or watchlist entries yet.<br/>
+      Open a player card and tap Target / Value / Sleeper / DND / Watchlist to start populating this view.
+    </div>`;
+    root.innerHTML = html;
+    return;
+  }
+
+  // Render each round
+  for(let r=1; r<=TOTAL_ROUNDS; r++){
+    const lo = (r-1)*LEAGUE_SIZE + 1;
+    const hi = r*LEAGUE_SIZE;
+    const myPick = getOverallPick(r, state.slot);
+    const isDone = myPick < state.currentPick;
+    const isCurrent = myPick === state.currentPick;
+    const ps = roundBuckets[r].sort((a,b) => a.ADP - b.ADP);
+    const cls = isCurrent ? "current" : isDone ? "done" : "";
+
+    html += `<div class="round-section">
+      <div class="round-header">
+        <strong>Round ${r}</strong>
+        <span style="color:var(--muted);font-size:11px">picks ${lo}–${hi}</span>
+        <span class="round-mypick ${cls}">Your pick: #${myPick}</span>
+      </div>`;
+
+    if(ps.length === 0){
+      html += `<div class="round-empty">no tagged players in this ADP range — consider what you'd draft here</div>`;
+    } else {
+      ps.forEach(p => {
+        const k = key(p);
+        const tag = tagged[k];
+        const watch = onWatch[k];
+        const taken = state.picks[k];
+        const tagBadge = tag ? `<span class="badge ${tag}" style="font-size:9px;padding:0 4px">${tag.toUpperCase()}</span>` : "";
+        const watchBadge = watch ? `<span class="badge watch" style="font-size:9px;padding:0 4px">★ WATCH</span>` : "";
+        const takenLabel = taken ? (taken.taken === "me" ? "YOU" : `#${taken.pickNumber}`) : "";
+        html += `<div class="ideal-row ${taken?'gone':''}" data-name="${escapeHtml(p.Name)}" data-pos="${p.Position}">
+          <span>${watchBadge} ${tagBadge} ${p.Name} <span class="pos-${p.Position}">${p.Position}${p.Consensus_Pos_Rank}</span> <span style="color:var(--muted);font-size:10px">${p.NFL_Team}</span></span>
+          <span class="delta">ADP ${p.ADP} · CNS ${p.Consensus_Rank}${takenLabel ? ` · <strong>${takenLabel}</strong>` : ""}</span>
+        </div>`;
+      });
+    }
+    html += `</div>`;
+  }
+
+  root.innerHTML = html;
+  root.querySelectorAll(".ideal-row").forEach(r => r.addEventListener("click", () => {
+    const p = players.find(pp => pp.Name === r.dataset.name && pp.Position === r.dataset.pos);
+    if(p) selectPlayer(p);
+  }));
+}
+
+/* Render the My-Picks tab: snake grid, per-pick candidate rows (windowed by the
+   chosen order source), scarcity readouts, draft-plan summary, and turn-pick note.
+   Side effects: rewrites #tab-slot innerHTML and re-wires its controls. */
+function renderSlot(){
+  const root = document.getElementById("tab-slot");
+  const myPicks = snakePicksFor(state.slot).slice(0, TOTAL_ROUNDS);
+  const mode = state.pickViewMode || "all";
+
+  // Snake-grid: live draft view. Reverse-lookup pickNumber → drafted player.
+  const pickToPlayer = {};
+  Object.entries(state.picks).forEach(([k,v]) => {
+    const p = players.find(pp => key(pp) === k);
+    if(p) pickToPlayer[v.pickNumber] = { player: p, taken: v.taken };
+  });
+  const draftStarted = state.currentPick > 1 || Object.keys(state.picks).length > 0;
+  let gridHtml = `<details class="snake-wrap" ${draftStarted ? "open" : ""}><summary>Snake grid · live draft view ${Object.keys(state.picks).length ? `(${Object.keys(state.picks).length} drafted)` : "(empty — draft a player to see it fill in)"}</summary><div class="snake-grid">`;
+  for(let r=1; r<=TOTAL_ROUNDS; r++){
+    for(let s=1; s<=LEAGUE_SIZE; s++){
+      const pn = getOverallPick(r, s);
+      const isMine = s === state.slot;
+      const isCurrent = pn === state.currentPick;
+      const draftedHere = pickToPlayer[pn];
+      let cls = "snake-cell";
+      let content = "";
+      let tip = `R${r}.${pn}`;
+      if(draftedHere){
+        cls += ` taken-${draftedHere.taken} pos-${draftedHere.player.Position}`;
+        content = draftedHere.player.Position;
+        tip += ` — ${draftedHere.player.Name}`;
+      } else if(isMine){
+        cls += " mine";
+        content = pn;
+      }
+      if(isCurrent) cls += " current";
+      gridHtml += `<div class="${cls}" title="${tip}">${content}</div>`;
+    }
+  }
+  gridHtml += `</div>
+    <div class="snake-legend">
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--accent)"></span> Your upcoming pick</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--good)"></span> Your drafted pick</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#23292f"></span> Other-drafted (position color)</span>
+      <span class="legend-item"><span class="legend-swatch" style="border:1.5px solid var(--warn)"></span> On the clock</span>
+    </div>
+  </details>`;
+
+  // Order source + mode toggles
+  const orderSource = state.orderSource || "ADP";
+  const orderField = orderSource === "Consensus" ? "Consensus_Rank" : orderSource === "ESPN" ? "ESPN_Rank" : "ADP";
+  let header = `<div style="font-size:12px;color:var(--muted);margin-bottom:6px">
+    Slot <strong style="color:var(--text)">${state.slot}</strong> · current pick #${state.currentPick} · your next pick: #${nextMyPick(state.currentPick, state.slot) || "—"}
+  </div>${gridHtml}
+  <div style="font-size:11px;color:var(--muted);margin:4px 0 6px">
+    Each row = one of your picks. Expand to see candidates · click <em>plan</em> to lock targets · mark drafted via Player card.
+  </div>
+  <div class="pickmode-toggle">
+    <button data-mode="all" class="${mode==="all"?"active":""}">All my picks</button>
+    <button data-mode="future" class="${mode==="future"?"active":""}">Future only</button>
+    <button data-mode="planning" class="${mode==="planning"?"active":""}">Planning view</button>
+  </div>
+  <div class="pickmode-toggle" style="margin-top:-4px">
+    <span style="flex:0 0 auto;font-size:10px;color:var(--muted);padding:6px 4px;text-transform:uppercase;letter-spacing:.04em">Predict order via:</span>
+    <button data-order="ADP" class="${orderSource==="ADP"?"active":""}" title="Empirical — where players are actually drafted">ADP</button>
+    <button data-order="Consensus" class="${orderSource==="Consensus"?"active":""}" title="What would happen if everyone followed FantasyPros ECR">Consensus</button>
+    <button data-order="ESPN" class="${orderSource==="ESPN"?"active":""}" title="What would happen if everyone followed ESPN defaults">ESPN</button>
+  </div>
+  <div class="pickmode-toggle" style="margin-top:-4px">
+    <span style="flex:0 0 auto;font-size:10px;color:var(--muted);padding:6px 4px;text-transform:uppercase;letter-spacing:.04em">Expand:</span>
+    <button data-expand="all" title="Open all pick rows for planning">All rows</button>
+    <button data-expand="collapse" title="Collapse all to scan headers only">Collapse all</button>
+    <button data-expand="reset" title="Reset to default — only the next pick expanded">Default</button>
+  </div>`;
+
+  // Filter picks
+  let visible = myPicks;
+  if(mode === "future") visible = myPicks.filter(p => p.pick >= state.currentPick);
+  if(mode === "planning") visible = myPicks; // show all for planning
+
+  // Build pick rows
+  let body = "";
+  visible.forEach((up,idx) => {
+    const isCurrent = up.pick === state.currentPick;
+    const isDone = up.pick < state.currentPick;
+    const isNext = up.pick >= state.currentPick && (idx === 0 || visible[idx-1].pick < state.currentPick);
+    const planned = state.plan[up.pick];
+    const plannedPlayer = planned ? players.find(p => key(p) === planned) : null;
+    // For done picks, find what was actually taken at this pick number
+    const tookEntry = isDone ? Object.entries(state.picks).find(([k,v]) => v.taken === "me" && v.pickNumber === up.pick) : null;
+    const tookPlayer = tookEntry ? players.find(p => key(p) === tookEntry[0]) : null;
+
+    // Candidates: not-taken players with rank near this pick (per orderSource)
+    const candidates = players
+      .filter(p => !state.picks[key(p)])
+      .filter(p => {
+        const v = p[orderField];
+        if(v === "" || v === null || v === undefined || isNaN(v)) return false;
+        return v >= up.pick - CONFIG.CAND_WINDOW_BEHIND && v <= up.pick + CONFIG.CAND_WINDOW_AHEAD;
+      })
+      .sort((a,b) => a[orderField] - b[orderField])
+      .slice(0, CONFIG.CAND_LIMIT);
+    // Default: only the very next pick is auto-expanded so all 16 rows fit above fold
+    const expanded = state.expandedPicks[up.pick] !== undefined ? state.expandedPicks[up.pick] : (isCurrent || isNext);
+    // Position counts
+    const posCounts = {};
+    candidates.forEach(c => { posCounts[c.Position] = (posCounts[c.Position]||0)+1; });
+    const posBadges = Object.entries(posCounts).map(([p,c]) => `<span class="pc pos-${p}">${p} ${c}</span>`).join("");
+
+    // Scarcity readout: between this pick and my next, how many of these candidates likely go?
+    const nextMine = visible[idx+1]?.pick;
+    let scarcity = "";
+    if(nextMine && !isDone){
+      const picksUntilNext = nextMine - up.pick - 1;
+      const atRisk = candidates.filter(c => c[orderField] < nextMine - CONFIG.SCARCITY_BUFFER && c[orderField] > up.pick + CONFIG.SCARCITY_BUFFER);
+      const atRiskByPos = {};
+      atRisk.forEach(c => { atRiskByPos[c.Position] = (atRiskByPos[c.Position]||0)+1; });
+      if(atRisk.length > 0){
+        const riskTxt = Object.entries(atRiskByPos).map(([p,c]) => `${c} ${p}`).join(", ");
+        scarcity = `<div class="scarcity">⚠ ${picksUntilNext} picks until your next (R${visible[idx+1].round}.${nextMine}). At-risk in window: ${riskTxt}</div>`;
+      }
+    }
+
+    let stateLabel = "";
+    if(tookPlayer) stateLabel = `<span class="took">${tookPlayer.Name} (${tookPlayer.Position})</span>`;
+    else if(plannedPlayer) stateLabel = `<span class="planned">${plannedPlayer.Name} (${plannedPlayer.Position}${plannedPlayer.Consensus_Pos_Rank})</span>`;
+
+    body += `<div class="pick-row ${isCurrent?'current':''} ${isDone?'done':''} ${expanded?'':'collapsed'}" data-pick="${up.pick}">
+      <div class="pick-header" data-toggle="${up.pick}">
+        <span class="caret">▶</span>
+        <span class="pick-no">R${up.round}.${String(up.pick).padStart(3,"0")}</span>
+        <div class="pick-status">
+          ${isCurrent?'<strong>ON THE CLOCK</strong> · ':isNext?'<strong>Next</strong> · ':''}${candidates.length} candidates
+          ${stateLabel}
+        </div>
+      </div>
+      <div class="pick-meta">
+        <div class="pos-counts">${posBadges}</div>
+        ${scarcity}
+        <div class="candidate-list">
+          ${candidates.map(p => {
+            const diff = p[orderField] - up.pick;
+            const cls = diff < -CONFIG.CAND_GONE_DIFF ? "likely-gone" : diff > CONFIG.CAND_GONE_DIFF ? "likely-avail" : "bubble";
+            const isPlanned = state.plan[up.pick] === key(p);
+            const tag = state.tags[key(p)];
+            const watch = state.watchlist[key(p)];
+            const badgePrefix = (watch?"★ ":"") + (tag?tag[0].toUpperCase()+" ":"");
+            const edgeMark = isEdgeMember(p) ? `<span style="color:#a371f7" title="Active edge — verified & still-unpriced">⚡ </span>` : "";
+            return `<div class="candidate ${cls}" data-name="${escapeHtml(p.Name)}" data-pos="${p.Position}" data-pick="${up.pick}" title="CNS ${p.Consensus_Rank} · ESPN ${p.ESPN_Rank||'—'} · ADP ${p.ADP}">
+              <span class="cand-name">${edgeMark}${badgePrefix?`<span style="color:var(--watch)">${badgePrefix}</span>`:""}${p.Name} <span class="pos-${p.Position}">${p.Position}${p.Consensus_Pos_Rank}</span></span>
+              <span class="cand-meta">ADP ${p.ADP}<button class="plan-btn" data-plan="${up.pick}" data-key="${escapeHtml(key(p))}" style="margin-left:6px;background:${isPlanned?'var(--target)':'var(--panel)'};color:${isPlanned?'#000':'var(--muted)'};border:1px solid var(--border);border-radius:3px;padding:1px 5px;font-size:10px;cursor:pointer">${isPlanned?'✓':'plan'}</button></span>
+            </div>`;
+          }).join("")}
+        </div>
+      </div>
+    </div>`;
+  });
+
+  // Plan summary (if planning mode or any planned picks exist)
+  const plannedEntries = Object.entries(state.plan).filter(([_,v]) => v).map(([pickNo,playerKey]) => {
+    const p = players.find(pp => key(pp) === playerKey);
+    return p ? { pickNo: parseInt(pickNo), player: p } : null;
+  }).filter(Boolean).sort((a,b) => a.pickNo - b.pickNo);
+  let summary = "";
+  if(plannedEntries.length){
+    const posFill = { QB:0, RB:0, WR:0, TE:0, K:0, DST:0 };
+    const byes = {};
+    plannedEntries.forEach(({player}) => {
+      posFill[player.Position]++;
+      byes[player.Bye_Week] = (byes[player.Bye_Week]||0)+1;
+    });
+    const byeStack = Object.entries(byes).filter(([_,c])=>c>=3);
+    summary = `<div class="plan-summary">
+      <h4>Draft plan (${plannedEntries.length} picks)</h4>
+      <div style="margin-bottom:6px">${plannedEntries.map(({pickNo,player}) => `<span class="plan-pill">P${pickNo}: ${player.Name} <span class="pos-${player.Position}">${player.Position}</span></span>`).join("")}</div>
+      <div style="font-size:11px;color:var(--muted)">
+        Positional fill: ${Object.entries(posFill).filter(([_,c])=>c>0).map(([p,c])=>`${p}:${c}`).join(" · ") || "none"}
+      </div>
+      ${byeStack.length ? byeStack.map(([w,c])=>`<div class="stack-warn" style="margin-top:4px;color:var(--bad)">⚠ ${c} planned picks on bye Week ${w}</div>`).join("") : ""}
+      <div class="plan-buttons">
+        <button data-clear-plan="1">Clear plan</button>
+        <button data-export-plan="1">Copy plan</button>
+      </div>
+    </div>`;
+  }
+
+  // Turn-pick note
+  let turnNote = "";
+  if([1,2,11,12].includes(state.slot)){
+    turnNote = `<div class="needs" style="margin-top:12px">
+      <strong>Turn-pick reminder:</strong> at slot ${state.slot} you draft back-to-back. Plan picks as a pair (position-balance or stack a tier).
+    </div>`;
+  }
+
+  const implHtml = renderImplications("plan");
+  // Implications go above the pick rows so warnings are visible without scrolling
+  root.innerHTML = header + implHtml + body + summary + turnNote;
+
+  // Wire interactions
+  root.querySelectorAll(".pickmode-toggle button[data-mode]").forEach(b => b.addEventListener("click", () => {
+    state.pickViewMode = b.dataset.mode;
+    saveState(); renderSlot();
+  }));
+  root.querySelectorAll(".pickmode-toggle button[data-order]").forEach(b => b.addEventListener("click", () => {
+    state.orderSource = b.dataset.order;
+    saveState(); renderSlot();
+  }));
+  root.querySelectorAll(".pickmode-toggle button[data-expand]").forEach(b => b.addEventListener("click", () => {
+    const action = b.dataset.expand;
+    if(action === "all"){
+      myPicks.forEach(up => { state.expandedPicks[up.pick] = true; });
+    } else if(action === "collapse"){
+      myPicks.forEach(up => { state.expandedPicks[up.pick] = false; });
+    } else { // reset
+      state.expandedPicks = {};
+    }
+    saveState(); renderSlot();
+  }));
+  root.querySelectorAll("[data-toggle]").forEach(h => h.addEventListener("click", e => {
+    if(e.target.closest(".plan-btn")) return;
+    const pn = parseInt(h.dataset.toggle);
+    const row = h.closest(".pick-row");
+    const isCollapsed = row.classList.toggle("collapsed");
+    state.expandedPicks[pn] = !isCollapsed;
+    saveState();
+  }));
+  root.querySelectorAll(".candidate").forEach(c => c.addEventListener("click", e => {
+    if(e.target.closest(".plan-btn")) return;
+    const p = players.find(pp => pp.Name === c.dataset.name && pp.Position === c.dataset.pos);
+    if(p) selectPlayer(p);
+  }));
+  root.querySelectorAll(".plan-btn").forEach(b => b.addEventListener("click", e => {
+    e.stopPropagation();
+    const pn = parseInt(b.dataset.plan);
+    const playerKey = b.dataset.key;
+    if(state.plan[pn] === playerKey) delete state.plan[pn];
+    else state.plan[pn] = playerKey;
+    saveState(); renderSlot();
+  }));
+  root.querySelector("[data-clear-plan]")?.addEventListener("click", () => {
+    if(confirm("Clear all planned picks?")){ state.plan = {}; saveState(); renderSlot(); }
+  });
+  root.querySelector("[data-export-plan]")?.addEventListener("click", () => {
+    const txt = plannedEntries.map(({pickNo,player}) => `Pick ${pickNo} (R${Math.ceil(pickNo/LEAGUE_SIZE)}): ${player.Name} (${player.Position}, ${player.NFL_Team})`).join("\n");
+    navigator.clipboard.writeText(txt).then(()=>alert("Plan copied to clipboard"));
+  });
+}
+
+/* Pure snapshot of the draft pool: per-position available lists, tier counts
+   (alive vs original), recent picks + run detection, tier cliffs, my roster counts,
+   and need-x-scarcity direction recommendations. Consumed by renderLandscape.
+   @returns {Object} { byPosition, drafted, totals, tierCounts, originalTierCounts,
+                       recentPicks, recentByPos, runPos, cliffs, directions, myCounts } */
+function computeLandscape(){
+  const POSITIONS = ["QB","RB","WR","TE","K","DST"];
+  const byPosition = {}; const drafted = {}; const totals = {};
+  POSITIONS.forEach(p => { byPosition[p] = []; drafted[p] = 0; totals[p] = 0; });
+  players.forEach(p => {
+    if(totals[p.Position] === undefined) return;
+    totals[p.Position]++;
+    if(state.picks[key(p)]) drafted[p.Position]++;
+    else byPosition[p.Position].push(p);
+  });
+  POSITIONS.forEach(pos => byPosition[pos].sort(byConsensus));
+
+  // Original tier counts (all players ever) vs current tier counts (alive)
+  const originalTierCounts = {}; const tierCounts = {};
+  POSITIONS.forEach(p => { originalTierCounts[p] = {}; tierCounts[p] = {}; });
+  players.forEach(p => {
+    if(originalTierCounts[p.Position] === undefined) return;
+    const t = p.Tier || 0;
+    originalTierCounts[p.Position][t] = (originalTierCounts[p.Position][t] || 0) + 1;
+  });
+  POSITIONS.forEach(pos => {
+    byPosition[pos].forEach(p => {
+      const t = p.Tier || 0;
+      tierCounts[pos][t] = (tierCounts[pos][t] || 0) + 1;
+    });
+  });
+
+  // Recent picks (last 6, ordered most-recent first)
+  const recentPicks = Object.entries(state.picks)
+    .map(([k,v]) => ({ player: players.find(p => key(p) === k), pickNumber: v.pickNumber, taken: v.taken }))
+    .filter(x => x.player)
+    .sort((a,b) => b.pickNumber - a.pickNumber)
+    .slice(0, CONFIG.RUN_LOOKBACK);
+  const recentByPos = {};
+  recentPicks.forEach(({player}) => { recentByPos[player.Position] = (recentByPos[player.Position] || 0) + 1; });
+  // Run flag: 4+ same position in last 6
+  const runPos = Object.entries(recentByPos).find(([_,c]) => c >= CONFIG.RUN_COUNT);
+
+  // Tier cliffs: per position, identify if next tier transition has a big rank gap
+  const cliffs = [];
+  POSITIONS.forEach(pos => {
+    const ps = byPosition[pos];
+    if(ps.length < 2) return;
+    for(let i=0; i<ps.length-1; i++){
+      if(ps[i].Tier !== ps[i+1].Tier){
+        const gap = ps[i+1].Consensus_Rank - ps[i].Consensus_Rank;
+        if(gap >= CONFIG.CLIFF_GAP){
+          cliffs.push({
+            position: pos,
+            lastInTier: ps[i],
+            firstNextTier: ps[i+1],
+            gap,
+            severity: gap >= CONFIG.CLIFF_SEVERE_GAP ? "severe" : "moderate"
+          });
+        }
+        break; // only first cliff per position
+      }
+    }
+    // Also flag if only 1-2 left in current top tier
+    const topTier = ps[0]?.Tier;
+    if(topTier){
+      const topTierCount = ps.filter(p => p.Tier === topTier).length;
+      if(topTierCount <= CONFIG.TIER_SCARCITY_LEFT && originalTierCounts[pos][topTier] > 2){
+        cliffs.push({
+          position: pos,
+          severity: "scarcity",
+          topTier,
+          remaining: topTierCount,
+          original: originalTierCounts[pos][topTier],
+          lastInTier: ps[0]
+        });
+      }
+    }
+  });
+
+  // My roster needs
+  const myDrafted = Object.entries(state.picks)
+    .filter(([_,v]) => v.taken === "me")
+    .map(([k]) => players.find(p => key(p) === k))
+    .filter(Boolean);
+  const myCounts = { QB:0, RB:0, WR:0, TE:0, K:0, DST:0 };
+  myDrafted.forEach(p => { if(myCounts[p.Position] !== undefined) myCounts[p.Position]++; });
+
+  // Direction recommendations: score each position by need × scarcity
+  const directions = [];
+  POSITIONS.forEach(pos => {
+    const need = Math.max(0, NEEDS[pos] - myCounts[pos]);
+    if(need === 0) return;
+    const top1Left = (tierCounts[pos][1] || 0) + (tierCounts[pos][2] || 0);
+    const ps = byPosition[pos];
+    const best = ps[0];
+    if(!best) return;
+    // Urgency tiers
+    let urgency = "low";
+    let rationale = "";
+    if(need >= 2 && top1Left <= CONFIG.URGENCY_URGENT_MULTI){
+      urgency = "urgent";
+      rationale = `You need ${need} more ${pos}s and only ${top1Left} tier-1/2 left. Take one now.`;
+    } else if(need >= 1 && top1Left <= CONFIG.URGENCY_URGENT_SINGLE){
+      urgency = "urgent";
+      rationale = `Only ${top1Left} tier-1/2 ${pos} left and you haven't filled the slot. Last clear shot.`;
+    } else if(need >= 1 && top1Left <= CONFIG.URGENCY_HIGH){
+      urgency = "high";
+      rationale = `${top1Left} tier-1/2 ${pos}s remain. Pool will thin in the next few rounds.`;
+    } else if(need >= 1){
+      urgency = "low";
+      rationale = `Position has depth (${top1Left} tier-1/2 available). Can wait.`;
+    }
+    // Run amplifier
+    if(runPos && runPos[0] === pos && urgency !== "urgent"){
+      urgency = "high";
+      rationale += ` Run in progress (${runPos[1]} of last 6 picks).`;
+    }
+    directions.push({ position: pos, need, top1Left, best, urgency, rationale });
+  });
+  directions.sort((a,b) => {
+    const order = { urgent:0, high:1, low:2 };
+    return order[a.urgency] - order[b.urgency];
+  });
+
+  return { byPosition, drafted, totals, tierCounts, originalTierCounts, recentPicks, recentByPos, runPos, cliffs, directions, myCounts };
+}
+
+/* Render the Pool tab from computeLandscape() + getPhase(): phase banner/override,
+   then phase-specific section ordering (direction recs, pool health, cliffs, hype,
+   handcuffs, K/DST, bench, bye, lottery). Side effect: rewrites #tab-pool innerHTML. */
+function renderLandscape(){
+  const root = document.getElementById("tab-pool");
+  const ls = computeLandscape();
+  const phase = getPhase();
+  const info = PHASE_INFO[phase.name];
+  const POSITIONS = ["QB","RB","WR","TE","K","DST"];
+
+  // ===== PHASE BANNER (always at top) =====
+  let html = `<div class="phase-banner phase-${phase.name}">
+    <div class="phase-label">${info.icon} ${info.label} phase${phase.round ? ` · round ${phase.round}` : ""}${phase.override ? " (manual override)" : ""}</div>
+    <div class="phase-focus">${info.focus}</div>
+    <div class="phase-override">
+      <label>Phase:</label>
+      <button data-phase="auto" class="${state.phaseOverride==="auto"?"active":""}">Auto</button>
+      <button data-phase="early" class="${state.phaseOverride==="early"?"active":""}">Early</button>
+      <button data-phase="early-mid" class="${state.phaseOverride==="early-mid"?"active":""}">Early-Mid</button>
+      <button data-phase="mid" class="${state.phaseOverride==="mid"?"active":""}">Mid</button>
+      <button data-phase="mid-late" class="${state.phaseOverride==="mid-late"?"active":""}">Mid-Late</button>
+      <button data-phase="late" class="${state.phaseOverride==="late"?"active":""}">Late</button>
+      <button data-phase="endgame" class="${state.phaseOverride==="endgame"?"active":""}">Endgame</button>
+    </div>
+  </div>`;
+
+  // ===== SECTION BUILDERS =====
+  const section = (title, body) => `<div class="pool-section"><h4>${title}</h4>${body}</div>`;
+
+  const recentSection = () => {
+    if(ls.recentPicks.length === 0){
+      return `<div style="color:var(--muted);font-size:11px;font-style:italic">No picks yet. Mark some drafted to see the room's tendencies.</div>`;
+    }
+    let body = `<div class="pool-run">
+      ${Object.entries(ls.recentByPos).sort((a,b)=>b[1]-a[1]).map(([pos,c]) => `<span class="run-badge pos-${pos}">${pos} ×${c}</span>`).join("")}
+    </div>`;
+    if(ls.runPos) body += `<div class="run-flag">⚠ <strong>${ls.runPos[0]} run:</strong> ${ls.runPos[1]} of the last 6 picks. Either join the run or pivot to where value is sliding.</div>`;
+    return body;
+  };
+
+  const poolHealthSection = () => {
+    let body = `<table class="pool-table">
+      <thead><tr><th>Pos</th><th>Drafted</th><th>T1 left</th><th>T2 left</th><th>T3+</th><th>Best available</th></tr></thead><tbody>`;
+    POSITIONS.forEach(pos => {
+      const tot = ls.totals[pos] || 0;
+      if(tot === 0) return;
+      const taken = ls.drafted[pos] || 0;
+      const pct = tot ? Math.round(taken / tot * 100) : 0;
+      const t1Left = ls.tierCounts[pos][1] || 0;
+      const t1Tot = ls.originalTierCounts[pos][1] || 0;
+      const t2Left = ls.tierCounts[pos][2] || 0;
+      const t2Tot = ls.originalTierCounts[pos][2] || 0;
+      const t3plus = Object.entries(ls.tierCounts[pos]).filter(([t]) => parseInt(t) >= 3).reduce((s,[_,c]) => s+c, 0);
+      const best = ls.byPosition[pos][0];
+      const tierClass = (left, orig) => orig === 0 ? "" : left === 0 ? "depleted" : (left / orig < 0.4 ? "thin" : "healthy");
+      const myCount = ls.myCounts[pos] || 0;
+      const need = NEEDS[pos];
+      const isUrgent = myCount < need && (t1Left + t2Left) <= CONFIG.POOL_URGENT_LEFT;
+      body += `<tr class="${isUrgent ? 'urgent' : ''}">
+        <td class="pos-${pos}"><strong>${pos}</strong></td>
+        <td>${taken}/${tot} <span style="color:var(--muted)">(${pct}%)</span></td>
+        <td class="tier-cell ${tierClass(t1Left, t1Tot)}">${t1Left}/${t1Tot}</td>
+        <td class="tier-cell ${tierClass(t2Left, t2Tot)}">${t2Left}/${t2Tot}</td>
+        <td>${t3plus}</td>
+        <td class="best-avail" data-name="${best ? escapeHtml(best.Name) : ""}" data-pos="${pos}">${best ? `${best.Name} (CNS ${best.Consensus_Rank})` : "—"}</td>
+      </tr>`;
+    });
+    body += `</tbody></table>`;
+    return body;
+  };
+
+  const cliffsSection = () => {
+    if(!ls.cliffs.length) return `<div style="color:var(--muted);font-size:11px;font-style:italic">No cliff alerts. Position tiers are stable.</div>`;
+    return ls.cliffs.map(c => {
+      if(c.severity === "scarcity"){
+        return `<div class="cliff-card"><strong>${c.position} scarcity:</strong> only ${c.remaining} of ${c.original} tier-${c.topTier} ${c.position}s left (next: <strong>${c.lastInTier.Name}</strong> at CNS ${c.lastInTier.Consensus_Rank}).</div>`;
+      }
+      return `<div class="cliff-card ${c.severity === "severe" ? "severe" : ""}"><strong>${c.position} tier cliff${c.severity === "severe" ? " (severe)" : ""}:</strong> last tier-${c.lastInTier.Tier} is <strong>${c.lastInTier.Name}</strong> (CNS ${c.lastInTier.Consensus_Rank}). Next tier: <strong>${c.firstNextTier.Name}</strong> at CNS ${c.firstNextTier.Consensus_Rank} (${c.gap}-rank gap).</div>`;
+    }).join("");
+  };
+
+  const directionsSection = () => {
+    const eligible = ls.directions.filter(d => isPositionEligibleForPhase(d.position, phase.name, ls));
+    const filteredOut = ls.directions.filter(d => !isPositionEligibleForPhase(d.position, phase.name, ls));
+    if(eligible.length === 0){
+      const skipped = filteredOut.length ? `<div style="color:var(--muted);font-size:10px;margin-top:6px;font-style:italic">Suppressed for this phase: ${filteredOut.map(d => d.position).join(", ")}. They'll surface in later phases.</div>` : "";
+      return `<div style="color:var(--muted);font-size:11px;font-style:italic">No phase-appropriate positional gaps right now.${skipped}</div>`;
+    }
+    const cards = eligible.slice(0, 4).map(d => {
+      const options = buildDirectionOptions(d.position, phase.name, 3);
+      const optionsHtml = options.map(({player: p}) => `<div class="dir-option" data-name="${escapeHtml(p.Name)}" data-pos="${p.Position}">
+        <strong>${p.Name}</strong> <span class="pos-${p.Position}">${p.Position}${p.Consensus_Pos_Rank}</span> <span style="color:var(--muted);font-size:10px">${p.NFL_Team} · CNS ${p.Consensus_Rank} · ADP ${p.ADP}</span>
+        <div class="dir-option-context">${getOptionContext(p, phase.name)}</div>
+      </div>`).join("");
+      return `<div class="direction-card ${d.urgency === "urgent" ? "urgent" : d.urgency === "high" ? "high" : ""}">
+        <div class="dir-title">${d.urgency === "urgent" ? "🔴 " : d.urgency === "high" ? "🟡 " : "⚪ "}Lean toward <span class="pos-${d.position}">${d.position}</span></div>
+        <div class="dir-rationale">${d.rationale}</div>
+        ${options.length ? `<div class="dir-options">${optionsHtml}</div>` : ""}
+      </div>`;
+    }).join("");
+    const skipNote = filteredOut.length ? `<div style="color:var(--muted);font-size:10px;margin-top:8px;font-style:italic;padding:6px 8px;background:var(--panel2);border-radius:3px">Phase-suppressed: <strong>${filteredOut.map(d => d.position).join(", ")}</strong> not surfaced — they're not relevant in ${phase.name} phase. Override the phase manually to preview.</div>` : "";
+    return cards + skipNote;
+  };
+
+  const hypeSection = () => {
+    const hype = findHypeTrains();
+    if(!hype.length) return `<div style="color:var(--muted);font-size:11px;font-style:italic">No clear hype trains in the remaining pool. Watch for ESPN-underrated names (positive bridge), sleeper tags, or watchlist additions.</div>`;
+    return hype.map(h => {
+      const p = h.player;
+      const why = [];
+      if(h.bridge >= CONFIG.BRIDGE_SIGNAL) why.push(`ESPN underrates by ${h.bridge}`);
+      if(h.isSleeper) why.push("tagged sleeper");
+      if(h.isWatch) why.push("on watchlist");
+      if(h.isTarget) why.push("tagged target");
+      return `<div class="hype-row" data-name="${escapeHtml(p.Name)}" data-pos="${p.Position}">
+        <span><strong>${p.Name}</strong> <span class="pos-${p.Position}">${p.Position}${p.Consensus_Pos_Rank}</span> ${p.NFL_Team}</span>
+        <span class="hype-why">CNS ${p.Consensus_Rank} · ADP ${p.ADP} · ${why.join(" · ")}</span>
+      </div>`;
+    }).join("");
+  };
+
+  const handcuffSection = () => {
+    const hc = findHandcuffs();
+    if(hc.length === 0) return `<div style="color:var(--muted);font-size:11px;font-style:italic">Draft an RB first, then handcuff candidates from the same NFL team will surface here.</div>`;
+    return hc.map(h => {
+      if(h.options.length === 0){
+        return `<div class="handcuff-row"><strong>${h.starter.Name}</strong> (${h.starter.NFL_Team}): no handcuff candidates in the current ranked pool. Watch the wire.</div>`;
+      }
+      return `<div class="handcuff-row"><strong>${h.starter.Name}</strong> (${h.starter.NFL_Team}) backups: ${h.options.slice(0,3).map(p => `<span class="handcuff-opt" data-name="${escapeHtml(p.Name)}" data-pos="RB">${p.Name} (CNS ${p.Consensus_Rank}${p.Depth_Level && p.Depth_Level !== "Unknown" ? `, ${p.Depth_Level}` : ""})</span>`).join(" · ")}</div>`;
+    }).join("");
+  };
+
+  const kdstSection = () => {
+    const kicks = topRemainingByPos("K", 4);
+    const dsts = topRemainingByPos("DST", 4);
+    let body = `<div style="font-size:11px;color:var(--muted);margin-bottom:6px">High-end K and DST start coming off the board late rounds 10–13. Take the top 1–2 a round early if you must lock them.</div>`;
+    body += `<div style="margin-bottom:6px"><strong>K remaining:</strong> ${kicks.length ? kicks.map(p => `<span class="kdst-pill pos-K" data-name="${escapeHtml(p.Name)}" data-pos="K">${p.Name} (CNS ${p.Consensus_Rank})</span>`).join(" ") : "none in pool"}</div>`;
+    body += `<div><strong>DST remaining:</strong> ${dsts.length ? dsts.map(p => `<span class="kdst-pill pos-DST" data-name="${escapeHtml(p.Name)}" data-pos="DST">${p.Name} (CNS ${p.Consensus_Rank})</span>`).join(" ") : "none in pool"}</div>`;
+    return body;
+  };
+
+  const benchSection = () => {
+    const weak = findWeakPositions();
+    if(weak.length === 0) return `<div style="color:var(--muted);font-size:11px;font-style:italic">Roster depth looks balanced. Use late picks for upside swings.</div>`;
+    return weak.map(w => {
+      const best = ls.byPosition[w.pos]?.[0];
+      return `<div class="bench-row"><strong class="pos-${w.pos}">${w.pos}</strong> (you have ${w.count}): ${w.note}${best ? ` Top available: <span class="best-avail" data-name="${escapeHtml(best.Name)}" data-pos="${w.pos}">${best.Name}</span>` : ""}</div>`;
+    }).join("");
+  };
+
+  const byeSection = () => {
+    const bb = byeBalance();
+    if(bb.length === 0) return `<div style="color:var(--muted);font-size:11px;font-style:italic">No drafted players yet.</div>`;
+    let body = `<div style="font-size:11px;color:var(--muted);margin-bottom:6px">Your drafted roster's bye distribution:</div><div style="display:flex;flex-wrap:wrap;gap:4px">`;
+    bb.forEach(({week, count}) => {
+      const cls = count >= 4 ? "bye-pill-critical" : count >= 3 ? "bye-pill-warn" : "bye-pill-ok";
+      body += `<span class="bye-pill ${cls}">Week ${week}: ${count}</span>`;
+    });
+    body += `</div>`;
+    const hotWeeks = bb.filter(b => b.count >= 3);
+    if(hotWeeks.length) body += `<div style="font-size:11px;color:var(--warn);margin-top:6px">⚠ Hot bye week${hotWeeks.length>1?"s":""}: ${hotWeeks.map(w => `Week ${w.week} (${w.count})`).join(", ")}. Look for late-round players on opposing byes to plug holes.</div>`;
+    return body;
+  };
+
+  const lotterySection = () => {
+    const lt = findLotteryTickets();
+    if(!lt.length) return `<div style="color:var(--muted);font-size:11px;font-style:italic">No lottery candidates surfaced. Sample data is thin at late ranks — your real export will show more.</div>`;
+    return lt.map(({player: p}) => `<div class="hype-row" data-name="${escapeHtml(p.Name)}" data-pos="${p.Position}">
+      <span><strong>${p.Name}</strong> <span class="pos-${p.Position}">${p.Position}${p.Consensus_Pos_Rank}</span> ${p.NFL_Team}</span>
+      <span class="hype-why">CNS ${p.Consensus_Rank} · ADP ${p.ADP} · proj ${p.Projection || "—"}</span>
+    </div>`).join("");
+  };
+
+  // ===== PHASE-SPECIFIC SECTION ORDERING =====
+  if(phase.name === "early"){
+    html += section("Direction recommendations · 2-3 options each", directionsSection());
+    if(ls.cliffs.length) html += section(`Cliff alerts (${ls.cliffs.length})`, cliffsSection());
+    html += section(`Recent picks (last ${ls.recentPicks.length})`, recentSection());
+    html += section("Pool health by position", poolHealthSection());
+  } else if(phase.name === "early-mid"){
+    // Transition: still per-pick optimization but starting to think roster shape
+    html += section("Direction recommendations · 2-3 options each (build-defining)", directionsSection());
+    if(ls.cliffs.length) html += section(`Cliff alerts (${ls.cliffs.length})`, cliffsSection());
+    html += section("Pool health by position", poolHealthSection());
+    html += section("Bench composition (preview)", benchSection());
+    html += section(`Recent picks (last ${ls.recentPicks.length})`, recentSection());
+  } else if(phase.name === "mid"){
+    html += section("Direction recommendations · 2-3 options each", directionsSection());
+    html += section("Pool health by position", poolHealthSection());
+    if(ls.cliffs.length) html += section(`Cliff alerts (${ls.cliffs.length})`, cliffsSection());
+    html += section(`Recent picks (last ${ls.recentPicks.length})`, recentSection());
+    html += section("Bench composition (forward-looking)", benchSection());
+  } else if(phase.name === "mid-late"){
+    // Transition: upside layering begins, handcuffs preview
+    html += section("Direction recommendations · upside-weighted options", directionsSection());
+    html += section("Hype trains (preview · upside on the board)", hypeSection());
+    html += section("Handcuffs for your RBs (window opening)", handcuffSection());
+    html += section("Bench composition", benchSection());
+    html += section("Pool health (compact)", poolHealthSection());
+    if(ls.cliffs.length) html += section(`Cliff alerts (${ls.cliffs.length})`, cliffsSection());
+  } else if(phase.name === "late"){
+    html += section("Hype trains · upside still on the board", hypeSection());
+    html += section("Handcuffs for your RBs", handcuffSection());
+    html += section("High-end K and DST emerging", kdstSection());
+    html += section("Bench composition", benchSection());
+    html += section("Direction recommendations · upside-weighted options", directionsSection());
+    html += section("Pool health (compact)", poolHealthSection());
+  } else { // endgame
+    html += section("K + DST scarcity (lock these now)", kdstSection());
+    html += section("Bye balance check", byeSection());
+    html += section("Lottery tickets · final-round upside", lotterySection());
+    html += section("Direction recommendations · efficiency-weighted options", directionsSection());
+    html += section("Bench composition", benchSection());
+    html += section("Pool health (compact)", poolHealthSection());
+  }
+
+  root.innerHTML = html;
+
+  // Wire interactions
+  root.querySelectorAll("[data-phase]").forEach(b => b.addEventListener("click", () => {
+    state.phaseOverride = b.dataset.phase;
+    saveState(); renderLandscape();
+  }));
+  root.querySelectorAll(".best-avail, .hype-row, .handcuff-opt, .kdst-pill, .dir-option").forEach(el => el.addEventListener("click", () => {
+    const p = players.find(pp => pp.Name === el.dataset.name && pp.Position === el.dataset.pos);
+    if(p) selectPlayer(p);
+  }));
+}
+
+function renderTeams(){
+  const root = document.getElementById("tab-teams");
+  const teams = {};
+  players.forEach(p => { (teams[p.NFL_Team] = teams[p.NFL_Team] || []).push(p); });
+  const sortedTeams = Object.entries(teams).sort();
+  let html = `<div style="font-size:12px;color:var(--muted);margin-bottom:10px">
+    Add team philosophy notes to <code>Research/profiles/teams/{TEAM}.md</code>.
+  </div>`;
+  sortedTeams.forEach(([t,ps]) => {
+    ps.sort(byConsensus);
+    const bye = ps[0].Bye_Week;
+    html += `<div class="team-card">
+      <h3>${t} <span style="color:var(--muted);font-weight:normal;font-size:11px">· Bye ${bye} · ${ps.length} ranked</span></h3>
+      <div class="roster-list">${ps.map(p=>`<span class="pos-${p.Position}">${p.Name} ${p.Position}${p.Consensus_Pos_Rank}</span>`).join(" · ")}</div>
+    </div>`;
+  });
+  root.innerHTML = html;
+}
+
+/* ========= EVENTS ========= */
+function wireEvents(){
+  document.querySelectorAll(".posFilter").forEach(b => b.addEventListener("click", () => {
+    posFilter = b.dataset.pos;
+    document.querySelectorAll(".posFilter").forEach(x => x.classList.toggle("active", x.dataset.pos === posFilter));
+    renderBoard();
+  }));
+  document.getElementById("tierFilter").addEventListener("change", e => { tierFilter = e.target.value; renderBoard(); });
+  document.getElementById("lensFilter").addEventListener("change", e => { state.bigBoardLens = e.target.value; saveState(); renderBoard(); });
+  document.getElementById("searchBox").addEventListener("input", e => { search = e.target.value; renderBoard(); });
+  document.getElementById("toggleTaken").addEventListener("click", () => {
+    hideTaken = !hideTaken;
+    document.getElementById("toggleTaken").textContent = hideTaken ? "Show Taken" : "Hide Taken";
+    renderBoard();
+  });
+  document.getElementById("toggleWatch").addEventListener("click", () => {
+    watchOnly = !watchOnly;
+    document.getElementById("toggleWatch").classList.toggle("active", watchOnly);
+    renderBoard();
+  });
+  document.getElementById("toggleGroupTier").addEventListener("click", () => {
+    groupByTier = !groupByTier;
+    document.getElementById("toggleGroupTier").classList.toggle("active", groupByTier);
+    renderBoard();
+  });
+  document.querySelectorAll("#bigBoard th[data-sort]").forEach(th => th.addEventListener("click", () => {
+    const k = th.dataset.sort;
+    if(sortKey === k) sortDir *= -1; else { sortKey = k; sortDir = 1; }
+    renderBoard();
+  }));
+  document.querySelectorAll(".right-tabs .tab").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
+  document.getElementById("slotPicker").addEventListener("change", e => { state.slot = parseInt(e.target.value); saveState(); renderAll(); });
+  document.getElementById("pickNumber").addEventListener("change", e => { state.currentPick = parseInt(e.target.value)||1; saveState(); renderAll(); });
+  document.getElementById("warningPill").addEventListener("click", () => setTab("roster"));
+  // League-settings modal (Phase 2B)
+  document.getElementById("settingsBtn").addEventListener("click", openSettings);
+  document.getElementById("settingsClose").addEventListener("click", closeSettings);
+  document.getElementById("settingsOverlay").addEventListener("click", e => { if(e.target.id === "settingsOverlay") closeSettings(); });
+  document.addEventListener("keydown", e => { if(e.key === "Escape" && document.getElementById("settingsOverlay").style.display !== "none") closeSettings(); });
+  document.getElementById("settingsBody").addEventListener("click", e => {
+    const stp = e.target.closest(".stp");
+    if(stp){
+      const f = stp.dataset.field, d = parseInt(stp.dataset.delta, 10);
+      const [mn,mx] = LS_RANGES[f];
+      const nv = Math.max(mn, Math.min(mx, (state.leagueSettings[f]||0) + d));
+      if(nv === state.leagueSettings[f]) return;   // clamped — no change
+      if(f === "teams" && draftInProgress() && !confirm("Change team count mid-draft? Your picks are kept, but snake order and pick numbers shift.")) return;
+      state.leagueSettings[f] = nv;
+      applyLeagueChange();
+      return;
+    }
+    const seg = e.target.closest("[data-scoring]");
+    if(seg){
+      if(state.leagueSettings.scoring !== seg.dataset.scoring){
+        state.leagueSettings.scoring = seg.dataset.scoring;
+        scoringChanged = true;       // surface the re-export banner
+        saveState(); renderAll(); renderSettings();
+      }
+      return;
+    }
+    if(e.target.id === "scoringWarnDismiss"){ scoringChanged = false; renderSettings(); return; }
+    if(e.target.id === "settingsReset"){
+      if(draftInProgress() && !confirm("Reset league settings to 12-team PPR? Your picks are kept.")) return;
+      state.leagueSettings = Object.assign({}, CONFIG.DEFAULT_LEAGUE);
+      applyLeagueChange();
+      return;
+    }
+    if(e.target.id === "presetSave"){
+      const name = (document.getElementById("presetName").value || "").trim();
+      if(!name) return;
+      const presets = loadPresets();
+      const i = presets.findIndex(p => p.name === name);
+      const entry = { name, settings: Object.assign({}, state.leagueSettings) };
+      if(i >= 0) presets[i] = entry; else presets.push(entry);
+      savePresets(presets);
+      renderSettings();
+      return;
+    }
+    if(e.target.id === "presetLoad"){
+      const presets = loadPresets();
+      const pr = presets[parseInt(document.getElementById("presetSelect").value, 10)];
+      if(!pr) return;
+      if(draftInProgress() && pr.settings.teams !== state.leagueSettings.teams && !confirm("Load preset and change team count mid-draft? Picks are kept; snake order shifts.")) return;
+      state.leagueSettings = Object.assign({}, CONFIG.DEFAULT_LEAGUE, pr.settings);   // merge tolerates older/partial presets
+      applyLeagueChange();
+      return;
+    }
+    if(e.target.id === "presetDelete"){
+      const presets = loadPresets();
+      const i = parseInt(document.getElementById("presetSelect").value, 10);
+      if(isNaN(i) || !presets[i]) return;
+      presets.splice(i, 1);
+      savePresets(presets);
+      renderSettings();
+      return;
+    }
+  });
+  // Global click handler for the demo-flags toggle (appears in multiple tabs)
+  document.addEventListener("click", (e) => {
+    if(e.target.classList && e.target.classList.contains("demo-toggle")){
+      state.showDemoFlags = !state.showDemoFlags;
+      saveState();
+      renderAll();
+    }
+  });
+  document.getElementById("simToMyPick").addEventListener("click", simToMyPick);
+  document.getElementById("resetDraft").addEventListener("click", () => {
+    if(confirm("Reset draft picks (keeps tags, notes, watchlist)?")){
+      state.picks = {}; state.currentPick = 1; saveState(); renderAll();
+    }
+  });
+  document.getElementById("fullReset").addEventListener("click", () => {
+    if(confirm("FULL RESET — wipes picks, tags, notes, watchlist, tier overrides, archetypes, and league settings (saved presets survive). Export State first if unsure. Continue?")){
+      state = defaultState(); saveState();
+      location.reload();   // clean boot: ephemeral filters (search/pos/lens/sort) reset too
+    }
+  });
+  document.getElementById("exportState").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+    a.download = `draft-state-${new Date().toISOString().slice(0,10)}.json`; a.click();
+  });
+  document.getElementById("importStateBtn").addEventListener("click", () => document.getElementById("importState").click());
+  document.getElementById("importState").addEventListener("change", e => {
+    const f = e.target.files[0]; if(!f) return;
+    const r = new FileReader();
+    r.onload = () => { try { state = Object.assign(defaultState(), JSON.parse(r.result)); saveState(); renderAll(); } catch(e){ alert("Bad JSON"); } };
+    r.readAsText(f);
+  });
+  document.getElementById("importCsvBtn").addEventListener("click", () => document.getElementById("importCsv").click());
+  document.getElementById("importCsv").addEventListener("change", e => {
+    const f = e.target.files[0]; if(!f) return;
+    const r = new FileReader();
+    r.onload = () => {
+      players = parseCSV(r.result);
+      document.getElementById("dataSourceNote").innerHTML = `Data: <strong>${f.name}</strong> · ${players.length} players loaded.`;
+      document.getElementById("versionPill").textContent = `v1.1 · ${f.name}`;
+      renderAll();
+    };
+    r.readAsText(f);
+  });
+}
+
+/* DEBUG self-tests: assert core math + derived settings on load. Silent unless
+   the URL contains ?debug. Per-unit smoke test for Phase 2 (open console). */
+function runSelfTests(){
+  if(!DEBUG) return;
+  const log = [];
+  const ok = (name, cond) => { log.push((cond ? "\u2713" : "\u2717") + " " + name); if(!cond) console.error("SELF-TEST FAIL:", name); };
+  ok("getOverallPick(1,1)===1", getOverallPick(1,1) === 1);
+  ok("getOverallPick(1,12)===12", getOverallPick(1,12) === 12);
+  ok("getOverallPick(2,1)===24", getOverallPick(2,1) === 24);
+  ok("getOverallPick(2,12)===13", getOverallPick(2,12) === 13);
+  ok("snakePicksFor(6)[0].pick===6", snakePicksFor(6)[0].pick === 6);
+  ok("nextMyPick(1,6)===6", nextMyPick(1, 6) === 6);
+  ok("LEAGUE_SIZE===12", LEAGUE_SIZE === 12);
+  ok("TOTAL_ROUNDS===16", TOTAL_ROUNDS === 16);
+  ok("BENCH_SIZE===7", BENCH_SIZE === 7);
+  ok("SLOTS.length===16", SLOTS.length === 16);
+  ok("SLOTS starters match legacy", JSON.stringify(SLOTS.slice(0,9)) === JSON.stringify(["QB","RB1","RB2","WR1","WR2","TE","FLEX","DST","K"]));
+  ok("NEEDS QB/RB/WR===1/3/3", NEEDS.QB === 1 && NEEDS.RB === 3 && NEEDS.WR === 3);
+  ok("PHASE_THRESHOLDS===[3,5,8,10,13]", JSON.stringify(PHASE_THRESHOLDS) === JSON.stringify([3,5,8,10,13]));
+  const pass = log.filter(l => l[0] === "\u2713").length;
+  console.log("%cDraft-board self-tests (" + pass + "/" + log.length + " pass)", "font-weight:bold", "\n" + log.join("\n"));
+}
+
+/* ========= RESEARCH SIDECAR (Phase 3) ========= */
+/* A player's sidecar entry, or null. Keyed by key() = "Name|Position". */
+function sidecarFor(p){ return (researchSidecar.players && researchSidecar.players[key(p)]) || null; }
+/* Fetch Data/research-sidecar.json after first paint; re-render on success.
+   Shared data-loading pattern (_shared.js fetchJSON): failure resolves null
+   + console.warn (expected over file://) — board renders sidecar-less. */
+function loadResearchSidecar(){
+  if(typeof fetch !== "function") return;
+  fetchJSON("../Data/research-sidecar.json")
+    .then(data => {
+      if(data && typeof data === "object"){
+        researchSidecar = { generated: data.generated || null, players: data.players || {}, teams: data.teams || {} };
+        renderBoard(); renderTabs(); renderHeader();
+      }
+    });
+}
+
+/* ========= BOOT ========= */
+state = loadState();   // initialize here — CONFIG/SCHEMA_VERSION/defaultState now exist (no load-order TDZ)
+recomputeDerived();    // turn state.leagueSettings into LEAGUE_SIZE/SLOTS/NEEDS/TOTAL_ROUNDS/PHASE_THRESHOLDS
+players = parseCSV(SAMPLE_CSV);
+wireEvents();
+// Restore persisted lens-filter selection
+const lensEl = document.getElementById("lensFilter");
+if(lensEl && state.bigBoardLens) lensEl.value = state.bigBoardLens;
+runSelfTests();        // no-op unless URL has ?debug
+renderAll();
+// Cross-link focus: ?q=<name> (from the research digest) prefills the search box.
+// Deep-link intent is "show me this player" — clear the persisted lens first so it
+// can't filter the player out (e.g. arriving with Lens: edge still active).
+(function(){ try{ const q=new URLSearchParams(location.search).get("q"); if(q){
+  const lensEl = document.getElementById("lensFilter");
+  if(lensEl && lensEl.value !== "all"){ lensEl.value = "all"; state.bigBoardLens = "all"; saveState(); }
+  const el=document.getElementById("searchBox"); if(el){ el.value=q; el.dispatchEvent(new Event("input")); }
+} }catch(e){} })();
+loadResearchSidecar();   // Phase 3: fetch research-sidecar.json, then re-render
+</script>
+
+</body>
+</html>
