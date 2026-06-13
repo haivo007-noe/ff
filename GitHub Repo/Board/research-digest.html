@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FF 2026 — Research Digest</title>
+<style>
+:root{
+ --bg:#0e1116;--panel:#171b22;--panel2:#1d222b;--line:#2a3140;--txt:#e7ecf3;--mut:#93a0b4;--mut2:#6c7888;
+ --qb:#f5a623;--rb:#34c759;--wr:#3b9dff;--te:#b46bff;--k:#9aa6b5;--dst:#7d8aa0;
+ --t1:#ffd24a;--t2:#c7ced8;--t3:#cd9b6a;--hype:#ff7a3d;--edge:#ff4d6d;--good:#34c759;--fa:#ff4d6d;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{padding:18px 20px 10px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#11151c,#0e1116)}
+h1{margin:0 0 4px;font-size:20px;letter-spacing:.2px}
+.sub{color:var(--mut);font-size:12px}
+.summary{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+.pill{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:12px;color:var(--mut)}
+.pill b{color:var(--txt)}
+/* primary section tabs — promoted out of the filter row into their own bar (2026-06-12 UX) */
+.viewbar{position:sticky;top:0;z-index:21;display:flex;gap:4px;align-items:flex-end;background:rgba(14,17,22,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:9px 20px 0}
+.viewbar button{background:transparent;border:0;border-bottom:2px solid transparent;color:var(--mut);padding:8px 15px;cursor:pointer;font-size:14px;font-weight:600;border-radius:7px 7px 0 0}
+.viewbar button:hover{color:var(--txt);background:var(--panel)}
+.viewbar button.on{color:var(--txt);border-bottom-color:var(--good)}
+.controls{position:sticky;top:44px;z-index:20;background:rgba(14,17,22,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.controls input[type=text]{background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--txt);padding:7px 11px;min-width:180px;flex:1 1 180px;font-size:13px}
+.seg{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:3px}
+.seg button{background:transparent;border:0;color:var(--mut);padding:5px 9px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
+.seg button.on{background:var(--panel2);color:var(--txt);box-shadow:inset 0 0 0 1px var(--line)}
+.tog{background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--mut);padding:6px 10px;cursor:pointer;font-size:12px;font-weight:600}
+.tog.on{color:#fff}
+.tog.hype.on{background:rgba(255,122,61,.18);border-color:var(--hype);color:var(--hype)}
+.tog.edge.on{background:rgba(255,77,109,.16);border-color:var(--edge);color:var(--edge)}
+.tog.hc.on{background:rgba(52,199,89,.16);border-color:var(--good);color:var(--good)}
+.tog.fa.on{background:rgba(255,77,109,.14);border-color:var(--fa);color:var(--fa)}
+select{background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--txt);padding:6px 9px;font-size:12px}
+main{padding:16px 20px 60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:11px;padding:12px 13px;cursor:pointer;transition:.12s}
+.card:hover{border-color:#3a4150;background:var(--panel2);transform:translateY(-1px)}
+.card.qb{border-left-color:var(--qb)} .card.rb{border-left-color:var(--rb)} .card.wr{border-left-color:var(--wr)}
+.card.te{border-left-color:var(--te)} .card.k{border-left-color:var(--k)} .card.dst{border-left-color:var(--dst)}
+.row1{display:flex;align-items:baseline;gap:8px}
+.rank{font-size:12px;color:var(--mut2);font-variant-numeric:tabular-nums;min-width:34px}
+.nm{font-size:15px;font-weight:700;letter-spacing:.2px}
+.meta{margin-left:auto;font-size:11px;color:var(--mut);text-align:right;white-space:nowrap}
+.tagrow{display:flex;gap:5px;flex-wrap:wrap;margin:7px 0 2px}
+.tag{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px;letter-spacing:.3px}
+.tag.pos{color:#0e1116}
+.tag.qb{background:var(--qb)} .tag.rb{background:var(--rb)} .tag.wr{background:var(--wr)}
+.tag.te{background:var(--te)} .tag.k{background:var(--k)} .tag.dst{background:var(--dst)}
+.tag.tier{background:transparent;border:1px solid var(--line);color:var(--mut)}
+.tag.t1{border-color:var(--t1);color:var(--t1)} .tag.t2{border-color:var(--t2);color:var(--t2)} .tag.t3{border-color:var(--t3);color:var(--t3)}
+.tag.hype{background:rgba(255,122,61,.16);color:var(--hype)}
+.tag.edge{background:rgba(255,77,109,.18);color:var(--edge)}
+.tag.hc{background:rgba(52,199,89,.14);color:var(--good)}
+.tag.stk{background:rgba(59,157,255,.14);color:var(--wr)}
+.tag.fa{background:rgba(255,77,109,.16);color:var(--fa)}
+/* draft-value chips (2026-06-12) — mechanical bucket from ADP-vs-rank + risk + edge */
+.tag.val.value{background:rgba(52,199,89,.16);color:var(--good)}
+.tag.val.sleeper{background:rgba(255,122,61,.16);color:var(--hype)}
+.tag.val.fill{background:rgba(199,206,216,.12);color:var(--t2)}
+.tag.val.reach{background:rgba(255,77,109,.16);color:var(--edge)}
+.role{color:var(--txt);font-size:12.5px;margin-top:6px}
+.det{display:none;margin-top:9px;border-top:1px dashed var(--line);padding-top:9px}
+.card.open .det{display:block}
+.det .lab{font-size:10.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--mut2)}
+.det p{margin:2px 0 9px;font-size:12.5px;color:var(--txt)}
+.det .kc{background:rgba(59,157,255,.08);border-left:2px solid var(--wr);padding:6px 9px;border-radius:6px;color:#cfe0f5}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:3px}
+.chip{font-size:11px;background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--mut)}
+.src{font-size:10.5px;color:var(--mut2);margin-top:8px}
+.path{font-size:10.5px;color:var(--mut2);font-family:ui-monospace,Menlo,monospace;word-break:break-all;margin-top:4px}
+.xlink{margin-top:7px;font-size:11.5px}
+.xlink a{color:var(--wr);text-decoration:none}
+.xlink a:hover{text-decoration:underline}
+.empty{color:var(--mut);text-align:center;padding:50px}
+.err{color:var(--mut);text-align:center;padding:46px 24px;line-height:1.7}
+.err code{background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:#cfe0f5;font-size:12px}
+.hint{color:var(--mut2);font-size:11px;margin-left:auto}
+/* teams */
+.tcard{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 13px}
+.tcode{font-size:17px;font-weight:800;letter-spacing:.5px}
+.tbye{font-size:11px;color:var(--mut);margin-left:8px}
+.tident{color:var(--mut);font-size:12px;margin:5px 0 8px}
+.tline{font-size:12px;margin:3px 0}.tline .l{color:var(--good);font-weight:700}.tline .w{color:var(--edge);font-weight:700}
+.tstaff{font-size:11.5px;color:var(--mut);margin:6px 0 2px}.tstaff b{color:var(--txt);font-weight:600}
+.temph{font-size:11.5px;color:var(--txt);background:var(--panel2);border-radius:6px;padding:5px 8px;margin:6px 0}
+.usage{margin-top:8px}
+.usage .ulab{font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--mut2);margin:6px 0 3px}
+.usage table{width:100%;border-collapse:collapse;font-size:11.5px}
+.usage td{padding:2px 4px;border-top:1px solid var(--line);vertical-align:top}
+.usage td.sh{color:var(--wr);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.usage tr.hl td{background:rgba(245,166,35,.10)}
+.foot{color:var(--mut2);font-size:11px;text-align:center;padding:24px}
+/* ===== READS (editorial) ===== */
+.rbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.rbar select{min-width:120px}
+.rchips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.rchip{background:var(--panel);border:1px solid var(--line);border-radius:999px;color:var(--mut);padding:4px 11px;font-size:12px;font-weight:600;cursor:pointer}
+.rchip.on{border-color:var(--wr);color:var(--wr);background:rgba(59,157,255,.12)}
+.read{background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:11px;padding:12px 14px;margin-bottom:10px}
+.read.t-buy{border-left-color:var(--good)} .read.t-fade{border-left-color:var(--edge)} .read.t-value{border-left-color:var(--wr)} .read.t-watch{border-left-color:var(--mut)}
+.rtop{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.rkind{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px;letter-spacing:.3px}
+.rkind.t-buy{background:rgba(52,199,89,.16);color:var(--good)} .rkind.t-fade{background:rgba(255,77,109,.16);color:var(--edge)} .rkind.t-value{background:rgba(59,157,255,.14);color:var(--wr)} .rkind.t-watch{background:var(--panel2);color:var(--mut)}
+.rpos{font-size:11px;color:var(--mut);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:1px 7px}
+.rconv{font-size:11px;color:var(--mut)} .rconv.v{color:var(--good)}
+.rfresh{margin-left:auto;font-size:11px;color:var(--mut2)}
+.rtitle{font-size:15px;font-weight:700;margin-bottom:5px}
+.rline{font-size:12.5px;line-height:1.55;color:var(--txt);margin:1px 0}
+.rline .l{color:var(--mut2);font-weight:700;margin-right:6px;font-size:10px;text-transform:uppercase;letter-spacing:.3px}
+.rsrc{margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--mut2);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.rsrc .stog{margin-left:auto;color:var(--wr);cursor:pointer;background:none;border:0;font-size:11px;font-weight:600}
+.rsd{display:none;margin-top:8px} .rsd.open{display:block}
+.srow{display:flex;gap:8px;align-items:baseline;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.srow .sd{color:var(--mut2);min-width:62px;font-variant-numeric:tabular-nums}
+.srow .sn{color:var(--mut)} .srow a{margin-left:auto;color:var(--wr);text-decoration:none;white-space:nowrap}
+.rxlink{margin-top:8px;font-size:11.5px}.rxlink a{color:var(--wr);text-decoration:none}
+.rempty{color:var(--mut);text-align:center;padding:34px 20px;border:1px dashed var(--line);border-radius:11px;line-height:1.7}
+.rwatch{font-size:10.5px;background:rgba(245,166,35,.16);color:var(--qb);border-radius:6px;padding:1px 7px}
+/* convergence — how many independent topic layers back this call (Skills/convergence.py) */
+.rconverge{font-size:10.5px;font-weight:700;border-radius:6px;padding:1px 7px;background:rgba(52,199,89,.16);color:var(--good);cursor:help}
+.rconverge.contested{background:rgba(255,77,109,.15);color:var(--edge)}
+.rlayers{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin:8px 0 2px}
+.rlayer{font-size:10px;font-weight:600;letter-spacing:.2px;border:1px solid rgba(52,199,89,.4);border-radius:999px;padding:1px 8px;color:var(--good);background:rgba(52,199,89,.08)}
+.rlayers.contested .rlayer{border-color:rgba(255,77,109,.4);color:var(--edge);background:rgba(255,77,109,.07)}
+.rlayers .rlcap{border:none;background:none;padding:0;color:var(--mut2);font-weight:600}
+.rchip.conv.on{border-color:var(--good);color:var(--good);background:rgba(52,199,89,.12)}
+.rspark{display:inline-flex;align-items:center;margin-left:2px}
+.rbanner{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--qb);border-radius:8px;padding:10px 13px;margin-bottom:12px;font-size:12.5px;color:var(--mut)}
+.rbanner b{color:var(--txt)}
+/* SoS heat strip (2026-06-10) — schedule reads carry `sched:[{w,opp,d}]`; d 1=soft → 4=brutal */
+.sosstrip{display:flex;gap:5px;align-items:center;margin:7px 0 2px;flex-wrap:wrap}
+.soscell{display:flex;flex-direction:column;align-items:center;gap:1px;border:1px solid var(--line);border-radius:7px;padding:4px 9px;min-width:52px}
+.soscell .sw{font-size:9.5px;color:var(--mut2);letter-spacing:.3px}
+.soscell .so{font-size:12px;font-weight:700}
+.soscell.d1{background:rgba(52,199,89,.16)} .soscell.d1 .so{color:var(--good)}
+.soscell.d2{background:rgba(199,206,216,.08)} .soscell.d2 .so{color:var(--t2)}
+.soscell.d3{background:rgba(255,122,61,.13)} .soscell.d3 .so{color:var(--hype)}
+.soscell.d4{background:rgba(255,77,109,.15)} .soscell.d4 .so{color:var(--edge)}
+.sosavg{font-size:10.5px;color:var(--mut2);margin-left:3px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.meta{font-size:10px}}
+/* Topics — the topic-FIRST reading view (Data/topic-digest.json, Skills/build-topic-digest.py) */
+#topicsWrap{display:grid;grid-template-columns:212px minmax(0,1fr);gap:0;align-items:start}
+@media(max-width:720px){#topicsWrap{grid-template-columns:1fr}}
+.tdnav{border-right:1px solid var(--line);padding:4px 0 12px;align-self:stretch}
+@media(max-width:720px){.tdnav{border-right:none;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px;padding:6px 2px 12px}}
+.tdnav .tnitem{display:flex;align-items:center;gap:8px;padding:9px 14px;cursor:pointer;border-left:3px solid transparent;font-size:13.5px;color:var(--txt)}
+.tdnav .tnitem:hover{background:var(--panel)}
+.tdnav .tnitem.on{background:var(--panel);border-left-color:var(--good);font-weight:600}
+@media(max-width:720px){.tdnav .tnitem{border:1px solid var(--line);border-radius:16px;padding:5px 11px}.tdnav .tnitem.on{border-color:var(--good)}}
+.tdnav .tnitem .tnct{margin-left:auto;font-size:11px;color:var(--mut2);font-variant-numeric:tabular-nums}
+.tdcontent{padding:6px 4px 30px 20px;min-width:0}
+@media(max-width:720px){.tdcontent{padding-left:4px}}
+.tdhead{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.tdhead h2{font-size:19px;margin:0}
+.tdfresh{font-size:11.5px;color:var(--mut2);margin:6px 0 0;line-height:1.5}
+.tdfresh .stale{color:var(--qb)}
+.tdlead{font-size:14px;line-height:1.55;margin:13px 0 6px;padding:11px 13px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--good);border-radius:8px;color:var(--txt)}
+.tdlead.pending{border-left-color:var(--mut2);color:var(--mut)}
+.tdlead .tag{display:inline-block;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--good);font-weight:700;margin-bottom:4px}
+.tdlead.pending .tag{color:var(--mut2)}
+.tdlead .ld{font-size:10.5px;color:var(--mut2);margin-top:6px}
+/* provenance (2026-06-12) — Sources always visible; method behind a disclosure */
+.tdsrc{font-size:11.5px;color:var(--mut);line-height:1.5;margin:9px 0 2px;padding:7px 11px;border:1px solid var(--line);border-left:3px solid var(--wr);border-radius:8px;background:var(--panel)}
+.tdsrc b{color:var(--txt)}
+.tdprov{margin:6px 0 2px;border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:2px 11px}
+.tdprov summary{cursor:pointer;font-size:11.5px;color:var(--mut2);font-weight:600;padding:6px 0;list-style:none}
+.tdprov summary::-webkit-details-marker{display:none}
+.tdprov summary::before{content:"▸ ";color:var(--mut2)}
+.tdprov[open] summary::before{content:"▾ "}
+.tdprov .m{font-size:12px;color:var(--txt);line-height:1.5;margin:2px 0 6px}
+.tdprov .s,.tdprov .d{font-size:11px;color:var(--mut);line-height:1.5;margin-bottom:6px}
+.tdprov .s b,.tdprov .d b{color:var(--txt)}
+.tdprov a{color:var(--wr);text-decoration:none}
+.tdcaseshead{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--mut2);margin:18px 0 8px}
+.tdcase{border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-bottom:8px;background:var(--panel)}
+.tdcase .ctop{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.tdcase .crk{font-size:12px;font-weight:800;color:var(--mut2);min-width:16px}
+.tdcase .cnm{font-weight:700}
+.tdcase .cmeta{font-size:11px;color:var(--mut2)}
+.tdcase .cstat{font-size:9.5px;font-weight:700;border-radius:5px;padding:1px 7px;letter-spacing:.3px}
+.tdcase .cstat.active{background:rgba(255,77,109,.16);color:var(--edge)}
+.tdcase .cstat.staging{background:rgba(245,166,35,.16);color:var(--qb)}
+.tdcase .cconv{font-size:9.5px;font-weight:700;border-radius:5px;padding:1px 7px;margin-left:auto;background:rgba(52,199,89,.16);color:var(--good);cursor:help}
+.tdcase .cconv.contested{background:rgba(255,77,109,.15);color:var(--edge)}
+.tdcase .cfind{font-size:12.5px;margin:6px 0 0 24px;color:var(--txt)}
+.tdcase .cact{font-size:12px;color:var(--mut);margin:5px 0 0 24px}
+.tdcase .csrc{font-size:11px;color:var(--mut2);margin:6px 0 0 24px;line-height:1.45}
+.tdcase .csrc .csrcl{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--wr);margin-right:6px}
+.tdcase .clayers{display:flex;gap:5px;flex-wrap:wrap;margin:7px 0 0 24px}
+.tdcase .clayer{font-size:9.5px;font-weight:600;border:1px solid rgba(52,199,89,.4);border-radius:999px;padding:1px 7px;color:var(--good);background:rgba(52,199,89,.07)}
+.tdcase.contested .clayer{border-color:rgba(255,77,109,.4);color:var(--edge);background:rgba(255,77,109,.07)}
+.tdcase .cxl{margin:8px 0 0 24px;font-size:11px;display:flex;gap:12px;flex-wrap:wrap}
+.tdcase .cxl a{color:var(--wr);text-decoration:none}
+.tdsub{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--edge);margin:16px 0 8px;font-weight:700}
+.tdempty{color:var(--mut);padding:22px 16px;border:1px dashed var(--line);border-radius:9px}
+/* All-32 subject-read depth (R14.1) — a collapsible second section under the edge cases:
+   the layer's one-line read for every team, grouped by the layer's natural buckets. */
+.t32wrap{margin:20px 0 4px}
+.t32tog{background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--txt);
+  font-size:12px;font-weight:600;padding:8px 12px;cursor:pointer;width:100%;text-align:left;letter-spacing:.2px}
+.t32tog:hover{border-color:var(--mut2)}
+.t32tog .t32hint{color:var(--mut2);font-weight:400;margin-left:6px}
+.t32body{margin-top:8px}
+.t32grp{font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--mut2);font-weight:700;
+  margin:12px 0 5px;padding-bottom:3px;border-bottom:1px solid var(--line)}
+.t32grp:first-child{margin-top:4px}
+.t32row{display:flex;align-items:baseline;gap:8px;padding:4px 4px;border-radius:6px;font-size:12px;line-height:1.4}
+.t32row.edge{background:rgba(52,199,89,.06)}
+.t32row .t32rk{font-size:10.5px;color:var(--mut2);min-width:24px;font-variant-numeric:tabular-nums}
+.t32row a.t32team{font-weight:800;color:var(--wr);text-decoration:none;min-width:34px}
+.t32row a.t32team:hover{text-decoration:underline}
+.t32row .t32edge{font-size:10px;cursor:pointer;border:1px solid rgba(52,199,89,.4);border-radius:999px;
+  padding:0 5px;color:var(--good);background:rgba(52,199,89,.08)}
+.t32row .t32edge:hover{background:rgba(52,199,89,.18)}
+.t32row .t32line{color:var(--txt);min-width:0}
+.t32row .t32line .lo{color:var(--mut)}
+/* WR-archetypes player-keyed view (R14.2) — football role leads, stats are evidence underneath */
+.wrgrp{margin:18px 0 4px}
+.wrgh{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin:0 0 8px;padding-bottom:5px;border-bottom:1px solid var(--line)}
+.wrgh b{font-size:14px}
+.wrgh .wrgd{font-size:11px;color:var(--mut2);font-weight:400}
+.wrgh .wrgn{margin-left:auto;font-size:11px;color:var(--mut2);font-variant-numeric:tabular-nums}
+.wrrow{border:1px solid var(--line);border-radius:9px;padding:9px 12px;margin-bottom:8px;background:var(--panel)}
+.wrtop{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.wrtop .wrnm{font-weight:700}
+.wrtop .wrmeta{font-size:11px;color:var(--mut2)}
+.wrtop .wredge{font-size:10px;cursor:help}
+.wrchip{font-size:9.5px;font-weight:700;border-radius:5px;padding:1px 7px;letter-spacing:.2px}
+.wrchip.arch{background:rgba(94,160,255,.14);color:var(--wr)}
+.wrchip.sec{background:rgba(199,206,216,.08);color:var(--mut)}
+.wrtag{font-size:9px;font-weight:600;border-radius:999px;padding:1px 7px;border:1px solid var(--line);color:var(--mut)}
+.wrtag.read{border-color:rgba(52,199,89,.4);color:var(--good)}
+.wrtag.olhigh{border-color:rgba(255,122,61,.4);color:var(--hype)}
+.wrtier{margin-left:auto;font-size:9.5px;font-weight:800;border-radius:5px;padding:1px 8px;letter-spacing:.3px}
+.wrtier.tSafe{background:rgba(52,199,89,.18);color:var(--good)}
+.wrtier.tSteady{background:rgba(94,160,255,.16);color:var(--wr)}
+.wrtier.tBalanced{background:rgba(199,206,216,.12);color:var(--t2)}
+.wrtier.tBoom{background:rgba(255,122,61,.16);color:var(--hype)}
+.wrtier.tWild{background:rgba(255,77,109,.18);color:var(--edge)}
+.wrsplitbadge{font-size:9px;font-weight:700;cursor:help}
+.wrwhy{font-size:12.5px;margin:6px 0 0;color:var(--txt)}
+.wrsplit{font-size:11px;margin:6px 0 0;padding:6px 9px;border-radius:7px;line-height:1.5;border-left:3px solid var(--mut2);background:rgba(199,206,216,.05);color:var(--mut)}
+.wrsplit.loud{border-left-color:var(--edge);background:rgba(255,77,109,.06)}
+.wrsplit b{color:var(--txt)}
+.wrev{margin:7px 0 0;background:none;border:none;color:var(--mut2);font-size:10.5px;cursor:pointer;padding:0;letter-spacing:.3px}
+.wrev:hover{color:var(--txt)}
+.wranch{display:none;flex-wrap:wrap;gap:5px;margin:6px 0 0}
+.wranch.open{display:flex}
+.wranchor{font-size:10px;border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--txt)}
+.wranchor i{color:var(--mut2);font-style:normal}
+.wrxl{margin:7px 0 0;font-size:11px;display:flex;gap:12px;flex-wrap:wrap}
+.wrxl a{color:var(--wr);text-decoration:none}
+</style></head>
+<body>
+<header>
+ <h1>🏈 Fantasy 2026 — Research Digest</h1>
+ <div class="sub">ESPN 12-team PPR · scouting overlay on consensus ranks · soft data as of <span id="gen"></span> <span id="mode"></span></div>
+ <div class="summary" id="summary"></div>
+</header>
+<nav class="viewbar" id="viewseg"><button data-v="players" class="on">Players</button><button data-v="teams">Teams</button><button data-v="reads">📰 Reads</button><button data-v="topics">🧭 Topics</button></nav>
+<div class="controls" id="controls">
+ <input type="text" id="q" placeholder="Search player, team, note…">
+ <div class="seg" id="posseg"></div>
+ <div class="seg" id="tierseg"></div>
+ <button class="tog hype" data-f="hype">🔥 Hype</button>
+ <button class="tog edge" data-f="edge">⚡ Edge</button>
+ <button class="tog hc" data-f="hc">🩹 Handcuff</button>
+ <button class="tog fa" data-f="fa">🚩 FA</button>
+ <select id="sort"><option value="rank">Sort: Overall rank</option><option value="adp">Sort: ADP</option><option value="posrank">Sort: Pos rank</option><option value="name">Sort: Name</option><option value="value">Sort: Value (ADP vs rank)</option></select>
+ <select id="valsel"><option value="">💲 Value: all</option><option value="value">Value (falls past rank)</option><option value="sleeper">💎 Sleepers</option><option value="fill">Solid fill-ins</option><option value="reach">Reaches (overvalued)</option></select>
+ <span class="hint" id="count"></span>
+</div>
+<main>
+ <div class="grid" id="grid"></div>
+ <div id="readsWrap" style="display:none">
+  <div class="rbar">
+   <div class="seg" id="rPhase"><button data-p="draft" class="on">Draft</button><button data-p="inseason">In-season</button></div>
+   <select id="rPos" aria-label="Filter reads by position"></select>
+   <select id="rTeam" aria-label="Filter reads by team"></select>
+   <button class="tog" id="rClear">Clear</button>
+   <span class="hint" id="rCount"></span>
+  </div>
+  <div class="rchips" id="rChips"></div>
+  <div id="rFeed"></div>
+ </div>
+ <div id="topicsWrap" style="display:none">
+  <div class="tdnav" id="tdNav"></div>
+  <div class="tdcontent" id="tdContent"></div>
+ </div>
+ <div class="empty" id="empty" style="display:none">No matches.</div><div class="err" id="err" style="display:none"></div></main>
+<div class="foot">Profiles are the source of truth · click any card to expand · live view reads <code>Data/players.csv</code> + <code>Data/research-sidecar.json</code></div>
+<script>
+/* SHARED:JS:START — generated from Board/_shared.js by Skills/build-digest.py; do not edit between markers */
+/* ============================================================
+   _shared.js — canonical cross-surface helpers for the FF 2026 boards.
+
+   This is the SINGLE SOURCE OF TRUTH for the key / lifecycle-flag / CSV-parse
+   logic used by BOTH surfaces. Skills/build-digest.py injects this file verbatim
+   between the SHARED:JS markers in draft-board.html AND research-digest.html.
+
+   DO NOT edit the injected copies (between markers) in those files — edit THIS
+   file, then run:  python3 Skills/build-digest.py sync
+   Documented in Skills/_conventions.md (§ Surfaces — shared logic).
+
+   NOTE: CSS is intentionally NOT shared — the two surfaces use different visual
+   languages (draft tool vs. reading view) and divergent token palettes. Only the
+   data/logic layer is de-duped. See _conventions.md for the rationale.
+   ============================================================ */
+
+/* Canonical player key, shared by both surfaces. Produces an identical string
+   for a board player (p.Name/p.Position) and a digest player (CSV Name/Position),
+   so sidecar joins line up across surfaces. */
+function keyOf(name, pos){ return `${name}|${pos}`; }
+
+/* Canonical HTML-escaper. null/undefined → ""; everything else (incl. 0) is
+   stringified then escaped. Surfaces alias this (`const esc = escapeHtml;`)
+   rather than re-declaring their own copies — three drifted variants existed
+   before the 2026-06-11 cleanup. */
+function escapeHtml(s){ return String(s==null?"":s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+/* Lifecycle-flag readers. Take a sidecar ENTRY (researchSidecar.players[key]),
+   NOT a player object. edge = verified + still-unpriced (set/cleared by
+   /edge-board-update on Verify/demote); hype = a verified hype-train claim. */
+function scIsEdge(sc){ return !!(sc && sc.research_flags && sc.research_flags.edge); }
+function scIsHype(sc){ return !!(sc && sc.research_flags && sc.research_flags.hype); }
+
+/* Parse the canonical players CSV (Data/players.csv schema) into row objects,
+   coercing numeric columns. Validation is non-fatal: missing required columns
+   and unparseable numbers are logged via console.warn so the surface still
+   renders with partial data. */
+function parseCSV(text){
+  const lines = text.trim().split(/\r?\n/);
+  const headers = parseCSVLine(lines[0]);
+  const REQUIRED = ["Name","Position","NFL_Team","Consensus_Rank","ADP","Bye_Week","Tier"];
+  const missing = REQUIRED.filter(h => !headers.includes(h));
+  if(missing.length) console.warn("parseCSV: missing required column(s): " + missing.join(", ") + ". Surface will render with partial data.");
+  const INT_COLS = ["Consensus_Rank","Consensus_Pos_Rank","ESPN_Rank","ESPN_Pos_Rank","Bye_Week","Tier"];
+  const FLOAT_COLS = ["ADP","Projection"];
+  return lines.slice(1).map((line,idx) => {
+    const vals = parseCSVLine(line);
+    const row = {};
+    headers.forEach((h,i) => row[h] = vals[i] || "");
+    INT_COLS.forEach(k => { if(row[k]!==""){ const n = parseInt(row[k],10); if(isNaN(n)) console.warn(`parseCSV: row ${idx+2} (${row.Name||"?"}) — non-numeric ${k}: "${row[k]}"`); else row[k] = n; } });
+    FLOAT_COLS.forEach(k => { if(row[k]!==""){ const n = parseFloat(row[k]); if(isNaN(n)) console.warn(`parseCSV: row ${idx+2} (${row.Name||"?"}) — non-numeric ${k}: "${row[k]}"`); else row[k] = n; } });
+    return row;
+  });
+}
+function parseCSVLine(line){
+  const result = []; let cur = ""; let inQ = false;
+  for(let i=0;i<line.length;i++){
+    const c = line[i];
+    if(c === '"'){ inQ = !inQ; continue; }
+    if(c === ',' && !inQ){ result.push(cur); cur=""; continue; }
+    cur += c;
+  }
+  result.push(cur);
+  return result;
+}
+
+/* Unified data-loading pattern for the live views (2026-06-11 cleanup).
+   Non-OK responses count as failures. A failure resolves to null and is
+   ALWAYS console.warn'd — never silent — then each surface applies its own
+   visible fallback: draft board renders sidecar-less, digest shows its error
+   panel / Reads empty-state, in-season hub falls back to the embedded sample
+   (mode label says so). Call sites keep their `typeof fetch` guards. */
+function warnFetchFail(label, err){
+  console.warn(label + " not loaded (" + (err && err.message ? err.message : err) + ") — surface falls back per its data-loading pattern (expected over file://).");
+}
+function fetchJSON(path, label){
+  return fetch(path)
+    .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .catch(err => { warnFetchFail(label || path, err); return null; });
+}
+function fetchText(path, label){
+  return fetch(path)
+    .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+    .catch(err => { warnFetchFail(label || path, err); return null; });
+}
+
+/* ============================================================
+   Draft-value lens (2026-06-12) — a MECHANICAL bucket per player, computed live
+   on both surfaces from data they already load. The football/roster ROLE is the
+   label; the inputs (ADP-vs-rank gap, risk tier, edge flag) are the evidence.
+   Hai layers Target / Do-Not-Draft tags on top later — this is the auto floor.
+
+   Buckets (priority order):
+     💎 Sleeper  — cheap (deep ADP/rank) AND upside (an ⚡edge or a Boom/Bust|Wild
+                   risk tier): a diamond-in-the-rough dart.
+     Value +N    — ADP falls N+ picks PAST consensus rank → profit if you wait.
+     Reach −N    — ADP runs N+ picks AHEAD of rank → you'd be overpaying.
+     Solid fill-in — a Safe/Steady tier past the early rounds → reliable roster glue.
+     (none)      — no strong signal.
+   Thresholds live in VALUE_CFG (tune here, both surfaces follow). Inputs are
+   passed as primitives so each surface feeds what it has. */
+var VALUE_CFG = { gap: 12, sleeperADP: 100, deepRank: 100, fillMinRank: 24 };
+function vNum(x){ const n = parseFloat(x); return isNaN(n) ? null : n; }
+function valueTag(o){
+  o = o || {};
+  const rank = vNum(o.rank), adp = vNum(o.adp), risk = o.risk || "", edge = !!o.edge;
+  const boom = risk === "Boom/Bust" || risk === "Wild";
+  const safe = risk === "Safe" || risk === "Steady";
+  const gap = (rank != null && adp != null) ? Math.round(adp - rank) : null;
+  if (((adp != null && adp >= VALUE_CFG.sleeperADP) || (rank != null && rank >= VALUE_CFG.deepRank)) && (edge || boom))
+    return { bucket: "sleeper", label: "💎 Sleeper", gap };
+  if (gap != null && gap >= VALUE_CFG.gap)  return { bucket: "value", label: "Value +" + gap, gap };
+  if (gap != null && gap <= -VALUE_CFG.gap) return { bucket: "reach", label: "Reach " + gap, gap };
+  if (safe && rank != null && rank > VALUE_CFG.fillMinRank) return { bucket: "fill", label: "Solid fill-in", gap };
+  return { bucket: "", label: "", gap };
+}
+/* SHARED:JS:END */
+
+/* BAKED is null in the live view (fetches the spine). The `snapshot` build of
+   build-digest.py replaces this line with the joined data for an offline file. */
+const BAKED = null;
+/* BAKED_READS is null in the live view (fetches Data/reads.json). The snapshot build
+   replaces it with the reads array so the Reads tab works offline / double-click. */
+const BAKED_READS = null;
+/* BAKED_TOPICS is null in the live view (fetches Data/topic-digest.json). The snapshot
+   build replaces it with the topics array so the Topics tab works offline. */
+const BAKED_TOPICS = null;
+/* Profiles (Research/*.md) are only served when the whole vault is served locally
+   (launch-boards.command → localhost). GitHub Pages publishes Board/ + Data/ only, so
+   ../Research links 404 there — hide the 📄 profile link unless we're on a local host. */
+const PROFILES_OK = ["localhost","127.0.0.1"].includes(location.hostname);
+
+/* Join the hard spine (players.csv) to the soft spine (research-sidecar.json).
+   Digest shows the PROFILED set (sidecar.players keys); hard fields come from the
+   CSV row matched by keyOf(), soft fields + lifecycle flags from the sidecar. */
+function buildData(csvText, sidecar){
+  if(sidecar && sidecar.topic_layers){window.SIDECAR_TOPIC_LAYERS=Object.keys(sidecar.topic_layers).filter(k=>k[0]!=="_").join(" · ");}
+  const byKey = {};
+  parseCSV(csvText).forEach(r => { byKey[keyOf(r.Name, r.Position)] = r; });
+  const sp = (sidecar && sidecar.players) || {};
+  const players = Object.keys(sp).map(k => {
+    const sc = sp[k] || {};
+    const r = byKey[k] || {};
+    const pos = r.Position || (k.split("|")[1] || "");
+    const team = r.NFL_Team || "";
+    const posnum = (r.Consensus_Pos_Rank!==undefined && r.Consensus_Pos_Rank!=="") ? r.Consensus_Pos_Rank : "";
+    return {
+      name: r.Name || k.split("|")[0],
+      pos, team,
+      rank: (r.Consensus_Rank!==undefined && r.Consensus_Rank!=="") ? r.Consensus_Rank : null,
+      posrank: posnum!=="" ? (pos + posnum) : (sc.posrank || ""),
+      adp: (r.ADP!==undefined && r.ADP!=="") ? String(r.ADP) : "",
+      bye: (r.Bye_Week!==undefined && r.Bye_Week!=="") ? String(r.Bye_Week) : "",
+      tier: (r.Tier!==undefined && r.Tier!=="") ? String(r.Tier) : "",
+      role: sc.role || "", strength: sc.strength || "", weakness: sc.weakness || "",
+      key_capture: sc.key_capture || "",
+      src: sc.source_count || 0,
+      hype: scIsHype(sc), edge: scIsEdge(sc),
+      handcuffs: sc.handcuff_candidates || [],
+      stacks: sc.stacks || [],
+      fa: team === "FA",
+      profile: sc.profile || "",
+      archetype: (sc.wr_archetype && sc.wr_archetype.archetype) || "",
+      riskTier: (sc.risk && sc.risk.tier) || "",
+      _nocsv: !byKey[k]
+    };
+  });
+  const st = (sidecar && sidecar.teams) || {};
+  const teams = Object.keys(st).map(code => Object.assign({ code }, st[code]));
+  const counts = {
+    players: players.length, teams: teams.length,
+    hype: players.filter(p => p.hype).length,
+    edge: players.filter(p => p.edge).length,
+    fa: players.filter(p => p.fa).length
+  };
+  return { generated: (sidecar && sidecar.generated) || "", players, teams, counts };
+}
+
+let DATA = { generated:"", players:[], teams:[], counts:{players:0,teams:0,hype:0,edge:0,fa:0} };
+const POS=["ALL","QB","RB","WR","TE","K","DST"], TIERS=["ALL","1","2","3"];
+let state={pos:"ALL",tier:"ALL",view:"players",sort:"rank",q:"",hype:0,edge:0,hc:0,fa:0,val:"",team:"",hl:""};
+
+/* esc = the canonical escaper from the SHARED:JS block (Board/_shared.js). */
+const esc = escapeHtml;
+
+/* ---- boot: BAKED (snapshot) or fetch the spine live ----
+   Data loading follows the shared pattern (_shared.js fetchJSON/fetchText):
+   failures resolve null + console.warn; the visible fallback here is the
+   error panel (spine) or the Reads empty-state (reads.json, non-fatal). */
+function boot(){
+  if(BAKED){ DATA = BAKED; READS = BAKED_READS || []; TOPICS = BAKED_TOPICS || []; document.getElementById("mode").textContent="· baked snapshot"; init(); return; }
+  if(typeof fetch !== "function"){ showError("This browser can't fetch local files."); return; }
+  fetchReads();
+  fetchTopics();
+  Promise.all([
+    fetchText("../Data/players.csv"),
+    fetchJSON("../Data/research-sidecar.json")
+  ]).then(([csv, sc]) => {
+    if(csv == null || sc == null){ showError(); return; }
+    DATA = buildData(csv, sc);
+    document.getElementById("mode").textContent="· live";
+    init();
+  });
+}
+function showError(msg){
+  document.getElementById("err").style.display="block";
+  document.getElementById("err").innerHTML =
+    (msg ? esc(msg)+"<br><br>" : "Couldn't load the data spine.<br><br>") +
+    "The live digest fetches <code>Data/players.csv</code> + <code>Data/research-sidecar.json</code>, "+
+    "which browsers block over <code>file://</code>. Serve the vault folder locally, e.g.:<br><br>"+
+    "<code>cd \"Fantasy Draft 2026\" &amp;&amp; python3 -m http.server</code><br>"+
+    "then open <code>http://localhost:8000/Board/research-digest.html</code>.<br><br>"+
+    "For a double-click-able offline file, run <code>python3 Skills/build-digest.py snapshot</code> and open the file in <code>Board/exports/</code>.";
+}
+
+function init(){
+  document.getElementById("gen").textContent=(DATA.generated||"")+(window.SIDECAR_TOPIC_LAYERS?" · layers: "+window.SIDECAR_TOPIC_LAYERS:"");
+  const c=DATA.counts;
+  document.getElementById("summary").innerHTML=
+   `<span class="pill"><b>${c.players}</b> players</span><span class="pill"><b>${c.teams}</b> teams</span>`+
+   `<span class="pill" style="color:var(--hype)"><b>${c.hype}</b> 🔥 hype</span>`+
+   `<span class="pill" style="color:var(--edge)"><b>${c.edge}</b> ⚡ edge</span>`+
+   `<span class="pill" style="color:var(--fa)"><b>${c.fa}</b> 🚩 free agents</span>`;
+  seg("posseg",POS,"pos");
+  seg("tierseg",TIERS.map(t=>t==="ALL"?"ALL":"T"+t),"tier");
+  document.querySelectorAll("#tierseg button").forEach(b=>b.onclick=()=>{state.tier=b.textContent==="ALL"?"ALL":b.textContent.slice(1);render();document.querySelectorAll("#tierseg button").forEach(x=>x.classList.toggle("on",x===b));});
+  document.querySelectorAll(".tog").forEach(b=>b.onclick=()=>{state[b.dataset.f]^=1;b.classList.toggle("on");render();});
+  document.getElementById("q").oninput=e=>{state.q=e.target.value.toLowerCase();state.team="";state.hl="";render();};
+  document.getElementById("sort").onchange=e=>{state.sort=e.target.value;render();};
+  {const vs=document.getElementById("valsel");if(vs)vs.onchange=e=>{state.val=e.target.value;render();};}
+  document.querySelectorAll("#viewseg button").forEach(b=>b.onclick=()=>{state.view=b.dataset.v;state.team="";state.hl="";document.querySelectorAll("#viewseg button").forEach(x=>x.classList.toggle("on",x===b));render();});
+ wireReadsControls(); // Reads-tab phase/clear wiring lives in the READS block below
+  // Cross-link focus: ?q=<name> (from the draft board) prefills the search.
+  // ?team=<code>&hl=<name> (from a player card) jumps to that team's usage table
+  // with the player's row highlighted.
+  try{
+    const sp=new URLSearchParams(location.search);
+    const q=sp.get("q"); if(q){ const el=document.getElementById("q"); el.value=q; state.q=q.toLowerCase(); }
+    const team=sp.get("team"); if(team){
+      state.view="teams"; state.team=team.toUpperCase();
+      const hl=sp.get("hl"); if(hl) state.hl=hl.toLowerCase();
+      document.querySelectorAll("#viewseg button").forEach(x=>x.classList.toggle("on",x.dataset.v==="teams"));
+    }
+  }catch(e){}
+  render();
+}
+
+function seg(id,vals,key){const e=document.getElementById(id);e.innerHTML="";vals.forEach(v=>{const b=document.createElement("button");b.textContent=v;b.className=(state[key]===v?"on":"");b.onclick=()=>{state[key]=v;render();[...e.children].forEach(x=>x.classList.toggle("on",x.textContent===v));};e.appendChild(b);});}
+
+function pcard(p){
+ const pl=p.pos.toLowerCase();
+ let tags=`<span class="tag pos ${pl}">${p.posrank||p.pos}</span>`;
+ if(p.tier)tags+=`<span class="tag tier t${p.tier}">TIER ${p.tier}</span>`;
+ if(p.hype)tags+=`<span class="tag hype">🔥 HYPE</span>`;
+ if(p.edge)tags+=`<span class="tag edge">⚡ EDGE</span>`;
+ if(p.handcuffs&&p.handcuffs.length)tags+=`<span class="tag hc">🩹 HC</span>`;
+ if(p.stacks&&p.stacks.length)tags+=`<span class="tag stk">🔗 STACK</span>`;
+ if(p.fa)tags+=`<span class="tag fa">🚩 FA</span>`;
+ const _vt=valueTag({rank:p.rank,adp:p.adp,tier:p.tier,edge:p.edge,risk:p.riskTier});
+ if(_vt.bucket)tags+=`<span class="tag val ${_vt.bucket}" title="draft value — ADP vs consensus rank${_vt.gap!=null?" gap "+_vt.gap:""}">${esc(_vt.label)}</span>`;
+ const meta=[p.team,p.bye?("BYE "+p.bye):"",p.adp?("ADP "+p.adp):""].filter(Boolean).join(" · ");
+ let det=`<div class="det">`;
+ if(p.strength){det+=`<div class="lab">Thrives</div><p>${esc(p.strength)}</p>`;}
+ if(p.weakness){det+=`<div class="lab">Struggles</div><p>${esc(p.weakness)}</p>`;}
+ if(p.key_capture){det+=`<div class="lab">Key read</div><p class="kc">${esc(p.key_capture)}</p>`;}
+ if(p.handcuffs&&p.handcuffs.length){det+=`<div class="lab">Handcuffs</div><div class="chips">${p.handcuffs.map(h=>`<span class="chip">${esc(h)}</span>`).join("")}</div>`;}
+ if(p.stacks&&p.stacks.length){det+=`<div class="lab" style="margin-top:8px">Stack partners</div><div class="chips">${p.stacks.map(h=>`<span class="chip">${esc(h)}</span>`).join("")}</div>`;}
+ det+=`<div class="src">${p.src||0} source${p.src==1?"":"s"}</div>`;
+ if(p.profile){det+=`<div class="path">${esc(p.profile)}</div>`;}
+ if(p.pos==="WR"&&p.archetype){det+=`<div class="xlink"><a href="#" class="archlink" data-wr="${esc(p.name)}" onclick="event.preventDefault();event.stopPropagation();gotoArchetype(this.dataset.wr)">🃏 archetype: ${esc(p.archetype)} →</a></div>`;}
+ if(p.team){det+=`<div class="xlink"><a href="?team=${encodeURIComponent(p.team)}&hl=${encodeURIComponent(p.name)}" onclick="event.stopPropagation()">→ team usage (${esc(p.team)})</a></div>`;}
+ det+=`<div class="xlink"><a href="draft-board.html?q=${encodeURIComponent(p.name)}" target="_blank" onclick="event.stopPropagation()">↗ open in draft board</a></div>`;
+ det+=`</div>`;
+ const d=document.createElement("div");d.className="card "+pl;
+ d.innerHTML=`<div class="row1"><span class="rank">${p.rank?("#"+p.rank):"—"}</span><span class="nm">${esc(p.name)}</span><span class="meta">${esc(meta)}</span></div>`+
+  `<div class="tagrow">${tags}</div>`+(p.role?`<div class="role">${esc(p.role)}</div>`:"")+det;
+ d.onclick=()=>d.classList.toggle("open");
+ return d;
+}
+function usageTable(label,rows,shareKey){
+ if(!rows||!rows.length)return "";
+ let h=`<div class="ulab">${label}</div><table>`;
+ rows.forEach(r=>{
+  const sh=r[shareKey]||r.share||"";
+  const note=[r.gl?("GL "+r.gl):"",r.note||""].filter(Boolean).join(" — ");
+  h+=`<tr${state.hl&&(r.name||"").toLowerCase()===state.hl?' class="hl"':''}><td>${esc(r.name||"")}</td><td class="sh">${esc(sh)}</td><td>${esc(note)}</td></tr>`;
+ });
+ return h+"</table>";
+}
+function tcard(t){
+ const d=document.createElement("div");d.className="tcard";
+ let h=`<div><span class="tcode">${esc(t.code)}</span><span class="tbye">bye ${esc(t.bye)}</span></div>`+
+  `<div class="tident">${esc(t.identity||"")}</div>`;
+ if(t.coaches){const co=t.coaches;h+=`<div class="tstaff"><b>HC</b> ${esc(co.hc||"—")} · <b>OC</b> ${esc(co.oc||"—")} · <b>DC</b> ${esc(co.dc||"—")}</div>`;}
+ if(t.emphasis){h+=`<div class="temph">${esc(t.emphasis)}</div>`;}
+ if(t.ol){h+=`<div class="tstaff"><b>OL</b> #${esc(t.ol.rank_2026)}/32 ('25: #${esc(t.ol.rank_2025_oli)})${t.backfield_class?` · <b>backfield</b> ${esc(t.backfield_class)}`:""}</div>`;}
+ if(t.run_lean){const rl=t.run_lean;h+=`<div class="tstaff"><b>run-lean</b> ${esc(rl.profile)} ('25: ${esc(rl.run_pct_2025)}% run, ${rl.proe_2025>0?"+":""}${esc(rl.proe_2025)} PROE)${rl.trend_2026?` — ${esc(rl.trend_2026)}`:""}</div>`;}
+ if(t.rb_pass_role){const rr=t.rb_pass_role;h+=`<div class="tstaff"><b>RB-recv</b> ${esc(rr.role)} — ${esc(rr.lead)}${rr.note?` · ${esc(rr.note)}`:""}</div>`;}
+ if(t.defense){const df=t.defense;h+=`<div class="tstaff"><b>D</b> ${esc(df.strength||"—")} · ${esc(df.posture||"")} · DL ${esc(df.dl_tier||"—")}/Sec ${esc(df.sec_tier||"—")}${df.dst_outlook?` · <b>DST</b> ${esc(df.dst_outlook)}`:""}</div>`;}
+ if(t.strength)h+=`<div class="tline"><span class="l">▲</span> ${esc(t.strength)}</div>`;
+ if(t.weakness)h+=`<div class="tline"><span class="w">▼</span> ${esc(t.weakness)}</div>`;
+ if(t.usage&&(t.usage.pass||t.usage.run)){
+  h+=`<div class="usage">`+usageTable("Target share",t.usage.pass,"tgt_share")+usageTable("Carry share",t.usage.run,"carry_share")+`</div>`;
+ }
+ d.innerHTML=h;
+ return d;
+}
+/* ============================================================
+   READS — the editorial section, in one coherent block.
+   Data: Data/reads.json (Skills/build-reads.py), fetched in boot()
+   (or BAKED_READS in the snapshot). Layout: state → wiring →
+   filters → card pieces (sparkline/readCard) → renderReads.
+   Separate from the players/teams views above; only render()
+   and init() call into it (renderReads / wireReadsControls /
+   setControls).
+   ============================================================ */
+let READS=[];
+let rstate={phase:"draft",kind:"All",pos:"All",team:"All"};
+/* Fetch the reads feed (live view only; the snapshot bakes BAKED_READS).
+   Failure is non-fatal — the Reads tab shows its empty-state — and is
+   console.warn'd by the shared fetchJSON helper. */
+function fetchReads(){
+ fetchJSON("../Data/reads.json").then(j=>{if(j&&j.reads){READS=j.reads;if(state.view==="reads")renderReads();}});
+}
+/* One-time wiring for the static Reads controls (phase seg + Clear). The
+   per-render controls (kind chips, pos/team selects) are wired in renderReads. */
+function wireReadsControls(){
+ document.querySelectorAll("#rPhase button").forEach(b=>b.onclick=()=>{rstate.phase=b.dataset.p;rstate.kind="All";rstate.pos="All";rstate.team="All";document.querySelectorAll("#rPhase button").forEach(x=>x.classList.toggle("on",x===b));renderReads();});
+ document.getElementById("rClear").onclick=()=>{rstate.kind="All";rstate.pos="All";rstate.team="All";renderReads();};
+}
+/* Show/hide the players-vs-reads-vs-topics control sets when the view changes. */
+function setControls(){
+ const reads=state.view==="reads", topics=state.view==="topics", grid=state.view==="players"||state.view==="teams";
+ ["posseg","tierseg","sort"].forEach(id=>{const e=document.getElementById(id);if(e)e.style.display=grid?"":"none";});
+ document.querySelectorAll(".tog").forEach(b=>b.style.display=grid?"":"none");
+ document.getElementById("grid").style.display=grid?"":"none";
+ document.getElementById("readsWrap").style.display=reads?"":"none";
+ document.getElementById("topicsWrap").style.display=topics?"":"none";
+ if(!grid)document.getElementById("empty").style.display="none";
+}
+function readsInPhase(){return READS.filter(r=>r.phase===rstate.phase);}
+function readsFiltered(){
+ return READS.filter(r=> r.phase===rstate.phase
+  && (rstate.kind==="All"||(rstate.kind==="__converge__"?(r.converge&&!r.converge.contested):r.kind===rstate.kind))
+  && (rstate.pos==="All"||r.pos===rstate.pos)
+  && (rstate.team==="All"||r.team===rstate.team)
+  && (!state.q||(r.name+" "+r.team+" "+(r.consensus||"")+" "+(r.edge||"")+" "+(r.read||"")+" "+(r.theme||"")).toLowerCase().includes(state.q)));
+}
+function buildRSelect(id,label,vals,cur,cb){
+ const el=document.getElementById(id);
+ el.innerHTML=`<option value="All">${label}</option>`+vals.map(v=>`<option ${v===cur?"selected":""}>${esc(v)}</option>`).join("");
+ el.onchange=e=>cb(e.target.value);
+}
+function sparkline(a){
+ if(!a||a.length<2)return"";
+ const w=58,h=15,mn=Math.min(...a),mx=Math.max(...a),rg=(mx-mn)||1;
+ const pts=a.map((v,i)=>`${(i/(a.length-1)*w).toFixed(1)},${(h-2-(v-mn)/rg*(h-4)).toFixed(1)}`).join(" ");
+ const up=a[a.length-1]>=a[0];
+ return `<span class="rspark" title="trend: ${a.join(" → ")}"><svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline points="${pts}" fill="none" stroke="${up?'var(--good)':'var(--edge)'}" stroke-width="1.5"/></svg></span>`;
+}
+function readCard(r,i){
+ const t="t-"+(r.tone||"watch");
+ // conviction chip renders the read's REAL lifecycle/provenance label (2026-06-10 fix —
+ // Schedule / "Week N" reads previously mislabeled "◔ Noted")
+ const conv=r.conviction==="Verified"?`<span class="rconv v">✓ Verified</span>`
+   :r.conviction==="Noted"?`<span class="rconv">◔ Noted</span>`
+   :`<span class="rconv">▣ ${esc(r.conviction||"—")}</span>`;
+ const meta=[r.pos,r.team].filter(Boolean).join(" · ");
+ // convergence badge + layer-chip strip (2026-06-12): N independent topic layers backing
+ // this call. 🎯 = they agree (the most-supported, least-arguable edges); ⚠ = they're
+ // cited on both sides (contested — judge it, don't trust the count).
+ const cv=r.converge;
+ const cvBadge=cv?`<span class="rconverge${cv.contested?" contested":""}" title="${esc(cv.line)}">${cv.contested?"⚠":"🎯"} ${cv.n} layer${cv.n!==1?"s":""}</span>`:"";
+ const cvChips=cv?`<div class="rlayers${cv.contested?" contested":""}">${cv.layers.map(l=>`<span class="rlayer">${esc(l)}</span>`).join("")}<span class="rlayer rlcap">${cv.contested?"layers disagree — judge it":"independent layers agree"}</span></div>`:"";
+ let lines="";
+ if(r.consensus)lines+=`<div class="rline"><span class="l">Consensus</span>${esc(r.consensus)}</div>`;
+ if(r.edge)lines+=`<div class="rline"><span class="l">Edge</span>${esc(r.edge)}</div>`;
+ if(r.read)lines+=`<div class="rline"><span class="l">Read</span>${esc(r.read)}</div>`;
+ // SoS heat strip (2026-06-10): the schedule read's per-week difficulty, soft→brutal
+ if(r.sched&&r.sched.length){
+  lines+=`<div class="sosstrip">`+r.sched.map(c=>`<span class="soscell d${c.d}" title="Week ${c.w} vs ${esc(c.opp)} — pass-coverage difficulty ${c.d}/4"><span class="sw">W${c.w}</span><span class="so">${esc(c.opp)}</span></span>`).join("")+
+   `<span class="sosavg">avg ${r.sched_avg!=null?r.sched_avg:"—"}/4 ${r.tone==="buy"?"· soft — bump pass-catchers":"· brutal — discount for the title run"}</span></div>`;
+ }
+ const srcs=r.sources||[];
+ const srcRows=srcs.map(s=>`<div class="srow"><span class="sd">${esc(s.date||"—")}</span><span class="sn">${esc(s.name||"")}</span>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">open ↗</a>`:`<span style="margin-left:auto;color:var(--mut2)">vault</span>`}</div>`).join("");
+ const prof=(r.profile&&PROFILES_OK)?`<div class="rxlink"><a href="../${esc(r.profile)}" target="_blank">📄 full profile + all sources</a></div>`:"";
+ const xl=`<div class="rxlink"><a href="draft-board.html?q=${encodeURIComponent(r.name)}" target="_blank">↗ open in draft board</a></div>`;
+ return `<div class="read ${t}">
+  <div class="rtop"><span class="rkind ${t}">${esc(r.kind)}</span>${meta?`<span class="rpos">${esc(meta)}</span>`:""}${cvBadge}${r.preseason?`<span class="rwatch">⏱ ${esc(r.trigger||"watch")}</span>`:""}${conv}${r.trend?sparkline(r.trend):""}<span class="rfresh">updated ${esc(r.updated||"—")}</span></div>
+  <div class="rtitle">${esc(r.title||r.name)}</div>
+  ${lines}
+  ${cvChips}
+  <div class="rsrc"><span>Source: ${srcs.length?esc((srcs[0].name||"").slice(0,40)):"—"}</span>${srcs.length?`<button class="stog" data-i="${i}" data-n="${srcs.length}">sources (${srcs.length})</button>`:""}</div>
+  <div class="rsd" id="rsd${i}">${srcRows}${prof}${xl}</div>
+ </div>`;
+}
+function renderReads(){
+ const inph=readsInPhase();
+ const kinds=["All",...[...new Set(inph.map(r=>r.kind))].sort()];
+ const chips=document.getElementById("rChips");
+ // 🎯 Converging chip leads the kind chips when any layer-backed calls exist in this phase
+ const convN=inph.filter(r=>r.converge&&!r.converge.contested).length;
+ const convChip=convN?`<button class="rchip conv ${rstate.kind==="__converge__"?"on":""}" data-k="__converge__" title="Calls backed by 2+ independent topic layers agreeing">🎯 Converging (${convN})</button>`:"";
+ chips.innerHTML=convChip+kinds.map(k=>`<button class="rchip ${k===rstate.kind?"on":""}" data-k="${esc(k)}">${esc(k)}</button>`).join("");
+ chips.querySelectorAll("button").forEach(b=>b.onclick=()=>{rstate.kind=b.dataset.k;renderReads();});
+ buildRSelect("rPos","All positions",[...new Set(inph.map(r=>r.pos).filter(Boolean))].sort(),rstate.pos,v=>{rstate.pos=v;renderReads();});
+ buildRSelect("rTeam","All teams",[...new Set(inph.map(r=>r.team).filter(Boolean))].sort(),rstate.team,v=>{rstate.team=v;renderReads();});
+ // In the Converging view, rank by how many layers agree (most-supported first);
+ // otherwise verified-first by recency as before.
+ const rows=readsFiltered().sort((a,b)=> rstate.kind==="__converge__"
+   ? (((b.converge&&b.converge.n)||0)-((a.converge&&a.converge.n)||0))||String(b.updated||"").localeCompare(String(a.updated||""))
+   : ((a.conviction==="Verified"?0:1)-(b.conviction==="Verified"?0:1))||String(b.updated||"").localeCompare(String(a.updated||"")));
+ document.getElementById("rCount").textContent=rows.length+" read"+(rows.length===1?"":"s");
+ const feed=document.getElementById("rFeed");
+ const banner=rstate.phase==="inseason"?`<div class="rbanner">📅 <b>Preseason watch.</b> Live in-season reads — waivers, injuries, start/sit, buy-low / sell-high, matchup, usage spikes (with trend ▟) — begin NFL Week 1 from the weekly + usage refreshes. Schedule reads (playoff-week SoS strips) are live now. Until then the watch items below are the situations to track, each with what resolves it (⏱).</div>`:"";
+ if(!READS.length){feed.innerHTML=`<div class="rempty">No reads file loaded yet.<br>Generate it with <code>python3 Skills/build-reads.py</code> → <code>Data/reads.json</code>, then reload.</div>`;return;}
+ if(!rows.length){feed.innerHTML=banner+`<div class="rempty">No ${rstate.phase==="inseason"?"in-season":"draft"} reads match these filters.</div>`;return;}
+ feed.innerHTML=banner+rows.map((r,i)=>readCard(r,i)).join("");
+ feed.querySelectorAll(".stog").forEach(b=>b.onclick=()=>{const d=document.getElementById("rsd"+b.dataset.i);const o=d.classList.toggle("open");b.textContent=o?"hide sources":("sources ("+b.dataset.n+")");});
+}
+/* ============================================================
+   TOPICS — the topic-FIRST reading view. Pick a subject, read the
+   cross-cutting edge cases ranked; the 🎯 Converging meta-topic
+   (most independent layers agreeing) leads. Data: Data/topic-digest.json
+   (Skills/build-topic-digest.py) or BAKED_TOPICS in the snapshot.
+   Inversion of /topic-layer: a topic is the OUTPUT you read, not just
+   an input distilled onto cards. Authored leads live in topic-leads.json.
+   ============================================================ */
+let TOPICS=[];
+let tdState={cur:"converge",t32:{}};  // t32[topicId]=true once the all-32 section is expanded (default collapsed)
+function fetchTopics(){
+ fetchJSON("../Data/topic-digest.json").then(j=>{if(j&&j.topics){TOPICS=j.topics;if(state.view==="topics")renderTopics();}});
+}
+/* All-32 subject-read depth: the layer's one-line read for every team that carries the
+   sidecar field, grouped by the layer's natural buckets. Collapsible, default collapsed —
+   the ranked edge cases stay the headline; this is the depth below them. has_edge rows are
+   tinted + carry a ⚡ that jumps to the edge case above; the team code deep-links to its
+   Team card (?team=<code>, the same nav player cards use). */
+function tdTeams(t){
+ const teams=t.teams||[];
+ if(!teams.length)return "";
+ const open=!!(tdState.t32&&tdState.t32[t.id]);
+ let body="",curg=null;
+ teams.forEach(r=>{
+  if(r.group!==curg){curg=r.group;body+=`<div class="t32grp">${esc(curg)}</div>`;}
+  const rk=(r.rank!=null)?`<span class="t32rk">#${esc(r.rank)}</span>`:`<span class="t32rk"></span>`;
+  const team=`<a class="t32team" href="?team=${encodeURIComponent(r.code)}" title="open ${esc(r.code)} team card">${esc(r.code)}</a>`;
+  const badge=r.has_edge?`<span class="t32edge" data-team="${esc(r.code)}" title="has an edge case above — jump to it">⚡</span>`:"";
+  body+=`<div class="t32row${r.has_edge?" edge":""}">${rk}${team}${badge}<span class="t32line">${esc(r.line)}</span></div>`;
+ });
+ const edgeN=teams.filter(r=>r.has_edge).length;
+ return `<div class="t32wrap">
+   <button class="t32tog" data-id="${esc(t.id)}">${open?"▾":"▸"} All 32 teams<span class="t32hint">· ${teams.length} with a classified line${edgeN?` · ${edgeN} ⚡ edge`:""}</span></button>
+   <div class="t32body" style="display:${open?"block":"none"}">${body}</div>
+ </div>`;
+}
+function tdCase(c,rk){
+ const meta=[c.pos,c.team].filter(Boolean).join(" · ");
+ const cv=c.converge;
+ const conv=cv?`<span class="cconv${cv.contested?" contested":""}" title="${esc(cv.line)}">${cv.contested?"⚠":"🎯"} ${cv.n}</span>`:"";
+ const stat=c.status==="Active"?`<span class="cstat active">⚡ ACTIVE</span>`:`<span class="cstat staging">◷ STAGING</span>`;
+ const chips=(c.layers&&c.layers.length)?`<div class="clayers">${c.layers.map(l=>`<span class="clayer">${esc(l)}</span>`).join("")}</div>`:"";
+ const prof=(c.profile&&PROFILES_OK)?`<a href="../${esc(c.profile)}" target="_blank">📄 profile</a>`:"";
+ const xl=`<a href="draft-board.html?q=${encodeURIComponent(c.name)}" target="_blank">↗ draft board</a>`;
+ return `<div class="tdcase${cv&&cv.contested?" contested":""}"${c.team?` data-team="${esc(c.team)}"`:""}>
+   <div class="ctop"><span class="crk">${rk}</span><span class="cnm">${esc(c.name)}</span>${meta?`<span class="cmeta">${esc(meta)}</span>`:""}${stat}${conv}</div>
+   ${c.find?`<div class="cfind">${esc(c.find)}</div>`:""}
+   ${c.act?`<div class="cact">↳ ${esc(c.act)}</div>`:""}
+   ${c.source?`<div class="csrc"><span class="csrcl">Source</span> ${esc(c.source)}</div>`:""}
+   ${chips}
+   <div class="cxl">${prof}${xl}</div>
+ </div>`;
+}
+/* WR-archetypes player-keyed view (R14.2): WRs grouped by football ROLE, the why-line as the
+   spine, the tier as the consequence (with a split read when the archetype and the model's CV
+   tier disagree — loud ⚠⚠ at >=2 tiers apart, a quiet refines-note at 1), and the cited stats
+   collapsed underneath as evidence. The inversion Hai asked for: read the role, the stat backs it. */
+function wrTierClass(t){return t==="Safe"?"tSafe":t==="Steady"?"tSteady":t==="Balanced"?"tBalanced":t==="Boom/Bust"?"tBoom":t==="Wild"?"tWild":"tBalanced";}
+function wrRow(w){
+ const sec=w.secondary?`<span class="wrchip sec">+ ${esc(w.secondary)}</span>`:"";
+ const edge=w.has_edge?`<span class="wredge" title="has an edge-board case">⚡</span>`:"";
+ const olcls=w.ol_dependence==="high"?"olhigh":"";
+ const split=w.tier_split?`<span class="wrsplitbadge" title="archetype tier vs model prior disagree">${w.tier_gap>=2?"⚠⚠":"⚠"}</span>`:"";
+ const meta=[w.team,w.rank&&w.rank<9999?("#"+w.rank):"" ,w.adp?("ADP "+w.adp):""].filter(Boolean).join(" · ");
+ const splitline=w.tier_split?`<div class="wrsplit ${w.tier_gap>=2?"loud":"soft"}"><b>${esc(w.tier_read)}</b> (archetype): ${esc((w.tier_args||{}).read||"")} ·· model prior <b>${esc(w.tier_model||"—")}</b>: ${esc((w.tier_args||{}).model||"")}</div>`:"";
+ const anch=(w.anchors&&w.anchors.length)?`<button class="wrev">evidence ▸</button><div class="wranch">${w.anchors.map(a=>`<span class="wranchor">${esc(a.stat)} <b>${esc(a.value)}</b> <i>${esc(a.src||"")}${a.date?" '"+esc(String(a.date)).slice(-2):""}</i></span>`).join("")}</div>`:"";
+ const prof=(w.profile&&PROFILES_OK)?`<a href="../${esc(w.profile)}" target="_blank">📄 profile</a>`:"";
+ const card=`<a href="#" class="cardlink" data-wr="${esc(w.name)}" onclick="event.preventDefault();gotoCard(this.dataset.wr)">→ player card</a>`;
+ const xl=`<a href="draft-board.html?q=${encodeURIComponent(w.name)}" target="_blank">↗ draft board</a>`;
+ const note=w.note?`<span class="wrtag" title="${esc(w.note)}">rookie/proj</span>`:"";
+ return `<div class="wrrow${w.has_edge?" edge":""}" data-wr="${esc(w.name)}">
+   <div class="wrtop"><span class="wrnm">${esc(w.name)}</span>${meta?`<span class="wrmeta">${esc(meta)}</span>`:""}${edge}<span class="wrchip arch">${esc(w.archetype)}</span>${sec}<span class="wrtag read">${esc(w.target_dependence)}</span><span class="wrtag ${olcls}">OL-${esc(w.ol_dependence)}</span>${note}<span class="wrtier ${wrTierClass(w.tier_read)}">${esc(w.tier_read)}</span>${split}</div>
+   <div class="wrwhy">${esc(w.why)}</div>
+   ${splitline}
+   ${anch}
+   <div class="wrxl">${card}${prof}${xl}</div>
+ </div>`;
+}
+function tdWrGroups(t){
+ return (t.groups||[]).map(g=>`<div class="wrgrp">
+   <div class="wrgh"><b>${esc(g.label)}</b><span class="wrgd">${esc(g.desc)}</span><span class="wrgn">${g.wrs.length}</span></div>
+   ${g.wrs.map(wrRow).join("")}
+ </div>`).join("");
+}
+function renderTopics(){
+ const nav=document.getElementById("tdNav"), content=document.getElementById("tdContent");
+ if(!TOPICS.length){nav.innerHTML="";content.innerHTML=`<div class="tdempty">No topic digest loaded yet.<br>Generate it with <code>python3 Skills/build-topic-digest.py</code> → <code>Data/topic-digest.json</code>, then reload.</div>`;return;}
+ if(!TOPICS.some(t=>t.id===tdState.cur))tdState.cur=TOPICS[0].id;
+ nav.innerHTML=TOPICS.map(t=>`<div class="tnitem${t.id===tdState.cur?" on":""}" data-id="${esc(t.id)}"><span>${t.icon||"•"}</span><span>${esc(t.name)}</span><span class="tnct">${t.navcount!=null?t.navcount:t.cases.length}</span></div>`).join("");
+ nav.querySelectorAll(".tnitem").forEach(n=>n.onclick=()=>{tdState.cur=n.dataset.id;renderTopics();});
+ const t=TOPICS.find(x=>x.id===tdState.cur);
+ const stale=/known gap|caveat|stale|weakened|no true/i.test(t.freshness||"");
+ const fresh=[t.freshness?`<span class="${stale?"stale":""}">${stale?"⚠":"●"} ${esc(t.freshness)}</span>`:"",
+   t.refresh?`refresh: ${esc(t.refresh)}`:""].filter(Boolean).join(" · ");
+ const lead=t.lead
+   ?`<div class="tdlead"><span class="tag">Editorial lead</span><div>${t.lead}</div>${t.lead_dated?`<div class="ld">authored ${esc(t.lead_dated)} · edit in Data/topic-leads.json</div>`:""}</div>`
+   :`<div class="tdlead pending"><span class="tag">Lead pending</span><div>No editorial lead authored yet — add one for <code>${esc(t.id)}</code> in <code>Data/topic-leads.json</code> (or via the /topic-digest skill).</div></div>`;
+ // provenance. Sources are ALWAYS VISIBLE (tdsrc line); the longer "how it's built"
+ // method + doc link sit behind a collapsed disclosure so the headline stays clean.
+ const docLink=t.doc?(PROFILES_OK?`<a href="../${esc(t.doc)}" target="_blank">${esc(t.doc)}</a>`:`<code>${esc(t.doc)}</code>`):"";
+ const srcLine=t.sources?`<div class="tdsrc"><b>Sources:</b> ${esc(t.sources)}</div>`:"";
+ const prov=srcLine+((t.method||docLink)?`<details class="tdprov">
+   <summary>ℹ How this is built</summary>
+   ${t.method?`<div class="m">${esc(t.method)}</div>`:""}
+   ${docLink?`<div class="d"><b>Full write-up + citations:</b> ${docLink}</div>`:""}
+ </details>`:"");
+ // player-grouped layer (WR archetypes, R14.2): role-first cards, not edge cases
+ if(t.kind==="player-grouped"){
+   const cc=t.counts||{};
+   content.innerHTML=`<div class="tdhead"><span style="font-size:19px">${t.icon||""}</span><h2>${esc(t.name)}</h2></div>
+     ${fresh?`<div class="tdfresh">${fresh}</div>`:""}
+     ${prov}
+     ${lead}
+     <div class="tdcaseshead">${cc.wrs||0} WRs · grouped by football role · ${cc.splits||0} split reads (${cc.loud_splits||0} ⚠⚠ ≥2 tiers) — tier = the consequence, stats are the proof</div>
+     ${tdWrGroups(t)}`;
+   content.querySelectorAll(".wrev").forEach(b=>b.onclick=()=>{const d=b.nextElementSibling;const o=d.classList.toggle("open");b.textContent=o?"evidence ▾":"evidence ▸";});
+   return;
+ }
+ let cases="";
+ if(!t.cases.length){cases=`<div class="tdempty">No edge-board cases cite this layer yet.</div>`;}
+ else if(t.id==="converge"){
+   const agree=t.cases.filter(c=>!(c.converge&&c.converge.contested)), cont=t.cases.filter(c=>c.converge&&c.converge.contested);
+   cases=agree.map((c,i)=>tdCase(c,i+1)).join("");
+   if(cont.length)cases+=`<div class="tdsub">⚠ Contested — layers cited on both sides (judge it)</div>`+cont.map((c,i)=>tdCase(c,i+1)).join("");
+ } else {
+   cases=t.cases.map((c,i)=>tdCase(c,i+1)).join("");
+ }
+ content.innerHTML=`<div class="tdhead"><span style="font-size:19px">${t.icon||""}</span><h2>${esc(t.name)}</h2></div>
+   ${fresh?`<div class="tdfresh">${fresh}</div>`:""}
+   ${prov}
+   ${lead}
+   <div class="tdcaseshead">Cross-cutting edge cases · ranked</div>
+   ${cases}
+   ${tdTeams(t)}`;
+ // all-32 collapsible toggle (default collapsed) + ⚡ badge jump-to-case
+ const tog=content.querySelector(".t32tog");
+ if(tog)tog.onclick=()=>{tdState.t32[t.id]=!tdState.t32[t.id];renderTopics();};
+ content.querySelectorAll(".t32edge").forEach(b=>b.onclick=()=>{
+   const tgt=content.querySelector(`.tdcase[data-team="${b.dataset.team}"]`);
+   if(tgt){tgt.scrollIntoView({behavior:"smooth",block:"center"});tgt.style.outline="2px solid var(--good)";setTimeout(()=>tgt.style.outline="",1400);}
+ });
+}
+/* cross-link the Players grid and the Topics WR view (2026-06-12 UX) */
+function setView(v){state.view=v;state.q="";state.team="";state.hl="";document.querySelectorAll("#viewseg button").forEach(x=>x.classList.toggle("on",x.dataset.v===v));}
+function gotoArchetype(name){
+ setView("topics");tdState.cur="wr_archetypes";render();
+ setTimeout(()=>{const el=[...document.querySelectorAll("#tdContent .wrrow")].find(r=>r.dataset.wr===name);
+   if(el){el.scrollIntoView({behavior:"smooth",block:"center"});el.style.outline="2px solid var(--good)";setTimeout(()=>el.style.outline="",1400);}},60);
+}
+function gotoCard(name){
+ setView("players");const qel=document.getElementById("q");if(qel)qel.value=name;state.q=name.toLowerCase();render();
+ setTimeout(()=>{const n=[...document.querySelectorAll("#grid .card .nm")].find(x=>x.textContent===name);
+   if(n){const c=n.closest(".card");c.classList.add("open");c.scrollIntoView({behavior:"smooth",block:"center"});}},60);
+}
+function render(){
+ setControls();
+ // contextual filters: the search/pos/tier/toggle/sort row only applies to Players & Teams
+ const ctrls=document.getElementById("controls");
+ if(ctrls)ctrls.style.display=(state.view==="players"||state.view==="teams")?"":"none";
+ if(state.view==="reads"){renderReads();return;}
+ if(state.view==="topics"){renderTopics();return;}
+ const g=document.getElementById("grid");g.innerHTML="";
+ let items;
+ if(state.view==="teams"){
+  items=DATA.teams.filter(t=>(!state.team||t.code===state.team)&&(!state.q||(t.code+" "+(t.identity||"")+" "+(t.strength||"")+" "+(t.weakness||"")).toLowerCase().includes(state.q)));
+  items.forEach(t=>g.appendChild(tcard(t)));
+  document.getElementById("count").textContent=items.length+" teams";
+ }else{
+  items=DATA.players.filter(p=>{
+   if(state.pos!=="ALL"&&p.pos!==state.pos)return false;
+   if(state.tier!=="ALL"&&String(p.tier)!==state.tier)return false;
+   if(state.hype&&!p.hype)return false;
+   if(state.edge&&!p.edge)return false;
+   if(state.hc&&!(p.handcuffs&&p.handcuffs.length))return false;
+   if(state.fa&&!p.fa)return false;
+   if(state.val&&valueTag({rank:p.rank,adp:p.adp,tier:p.tier,edge:p.edge,risk:p.riskTier}).bucket!==state.val)return false;
+   if(state.q){const blob=(p.name+" "+p.team+" "+p.role+" "+p.strength+" "+p.weakness+" "+p.key_capture).toLowerCase();if(!blob.includes(state.q))return false;}
+   return true;
+  });
+  const s=state.sort;
+  const vgap=p=>{const g=valueTag({rank:p.rank,adp:p.adp,tier:p.tier,edge:p.edge,risk:p.riskTier}).gap;return g==null?-9999:g;};
+  items.sort((a,b)=>{
+   if(s==="name")return a.name.localeCompare(b.name);
+   if(s==="adp"){return (parseFloat(a.adp)||9999)-(parseFloat(b.adp)||9999);}
+   if(s==="posrank"){return (a.pos+String(a.tier)).localeCompare(b.pos+String(b.tier))|| ((a.rank||9999)-(b.rank||9999));}
+   if(s==="value"){return vgap(b)-vgap(a);}
+   return (a.rank||9999)-(b.rank||9999);
+  });
+  items.forEach(p=>g.appendChild(pcard(p)));
+  document.getElementById("count").textContent=items.length+" players";
+ }
+ document.getElementById("empty").style.display=items.length?"none":"block";
+}
+boot();
+</script>
+</body></html>
