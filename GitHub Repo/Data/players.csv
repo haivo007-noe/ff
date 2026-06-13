@@ -1,0 +1,456 @@
+Name,Position,NFL_Team,Consensus_Rank,Consensus_Pos_Rank,ESPN_Rank,ESPN_Pos_Rank,ADP,Bye_Week,Depth_Level,Injury_Status,Projection,Tier
+Ja'Marr Chase,WR,CIN,1,1,,,3.0,6,Starter,Healthy,,1
+Bijan Robinson,RB,ATL,2,1,,,1.5,11,Starter,Healthy,,1
+Puka Nacua,WR,LAR,3,2,,,4.0,11,Starter,Healthy,,1
+Jaxon Smith-Njigba,WR,SEA,4,3,,,5.0,11,Starter,Healthy,,1
+Jahmyr Gibbs,RB,DET,5,2,,,1.5,6,Starter,Healthy,,1
+Amon-Ra St. Brown,WR,DET,6,4,,,7.5,6,Starter,Healthy,,2
+Christian McCaffrey,RB,SF,7,3,,,6.0,8,Starter,Healthy,,2
+CeeDee Lamb,WR,DAL,8,5,,,10.5,14,Starter,Healthy,,2
+Justin Jefferson,WR,MIN,9,6,,,11.0,6,Starter,Healthy,,2
+Jonathan Taylor,RB,IND,10,4,,,7.5,13,Starter,Healthy,,2
+Drake London,WR,ATL,11,7,,,17.5,11,Starter,Healthy,,2
+Nico Collins,WR,HOU,12,8,,,22.5,8,Starter,Healthy,,3
+De'Von Achane,RB,MIA,13,5,,,13.0,6,Starter,Questionable,,3
+Trey McBride,TE,ARI,14,1,,,20.5,14,Starter,Healthy,,1
+Ashton Jeanty,RB,LV,15,6,,,10.5,13,Starter,Healthy,,3
+George Pickens,WR,DAL,16,9,,,25.5,14,Backup,Healthy,,3
+Chris Olave,WR,NO,17,10,,,28.0,8,Starter,Healthy,,3
+Malik Nabers,WR,NYG,18,11,,,29.5,8,Starter,Questionable,,3
+Chase Brown,RB,CIN,19,7,,,15.0,6,Starter,Healthy,,3
+A.J. Brown,WR,NE,20,12,,,26.5,11,Starter,Healthy,,3
+Brock Bowers,TE,LV,21,2,,,20.5,13,Starter,Healthy,,1
+James Cook III,RB,BUF,22,8,,,10.5,7,Starter,Healthy,,3
+Rashee Rice,WR,KC,23,13,,,26.0,5,Starter,Questionable,,3
+Josh Allen,QB,BUF,24,1,,,30.0,7,Starter,Healthy,,1
+Omarion Hampton,RB,LAC,25,9,,,16.0,7,Starter,Healthy,,4
+Tetairoa McMillan,WR,CAR,26,14,,,38.0,5,Starter,Questionable,,4
+Saquon Barkley,RB,PHI,27,10,,,14.5,10,Starter,Healthy,,4
+Garrett Wilson,WR,NYJ,28,15,,,37.0,13,Starter,Healthy,,4
+Lamar Jackson,QB,BAL,29,2,,,51.5,13,Starter,Healthy,,1
+DeVonta Smith,WR,PHI,30,16,,,34.0,10,Starter,Healthy,,4
+Kenneth Walker III,RB,KC,31,11,,,16.5,5,Starter,Healthy,,4
+Drake Maye,QB,NE,32,3,,,62.5,11,Starter,Healthy,,1
+Tee Higgins,WR,CIN,33,17,,,36.5,6,Backup,Healthy,,4
+Jeremiyah Love,RB,ARI,34,12,,,21.5,14,Starter,Healthy,,5
+Ladd McConkey,WR,LAC,35,18,,,38.5,7,Starter,Healthy,,5
+Colston Loveland,TE,CHI,36,3,,,44.0,10,Starter,Healthy,,2
+Zay Flowers,WR,BAL,37,19,,,34.5,13,Starter,Healthy,,5
+Jaylen Waddle,WR,DEN,38,20,,,51.0,10,Starter,Healthy,,5
+Derrick Henry,RB,BAL,39,13,,,20.5,13,Starter,Healthy,,5
+Breece Hall,RB,NYJ,40,14,,,29.5,13,Starter,Healthy,,5
+Luther Burden III,WR,CHI,41,21,,,44.5,10,Backup,Healthy,,5
+Terry McLaurin,WR,WAS,42,22,,,50.0,7,Starter,Healthy,,5
+Joe Burrow,QB,CIN,43,4,,,58.5,6,Starter,Healthy,,2
+Josh Jacobs,RB,GB,44,15,,,33.5,11,Starter,Healthy,,5
+Emeka Egbuka,WR,TB,45,23,,,41.0,10,Starter,Healthy,,5
+Travis Etienne Jr.,RB,NO,46,16,,,31.0,8,Starter,Healthy,,5
+Davante Adams,WR,LAR,47,24,,,48.5,11,Backup,Healthy,,5
+Kyren Williams,RB,LAR,48,17,,,31.0,11,Starter,Healthy,,5
+Javonte Williams,RB,DAL,49,18,,,35.5,14,Starter,Healthy,,5
+Mike Evans,WR,SF,50,25,,,55.0,8,Starter,Healthy,,6
+Jameson Williams,WR,DET,51,26,,,50.5,6,Backup,Healthy,,6
+Jayden Daniels,QB,WAS,52,5,,,64.5,7,Starter,Healthy,,3
+Jalen Hurts,QB,PHI,53,6,,,71.5,10,Starter,Healthy,,3
+Bucky Irving,RB,TB,54,19,,,49.5,10,Starter,Questionable,,6
+DJ Moore,WR,BUF,55,27,,,52.0,7,Starter,Healthy,,6
+Tyler Warren,TE,IND,56,4,,,63.5,13,Starter,Healthy,,3
+Cam Skattebo,RB,NYG,57,20,,,43.0,8,Starter,Healthy,,6
+Christian Watson,WR,GB,58,28,,,55.0,11,Starter,Healthy,,6
+Rome Odunze,WR,CHI,59,29,,,56.5,10,Starter,Healthy,,6
+TreVeyon Henderson,RB,NE,60,21,,,50.5,11,Starter,Healthy,,6
+Quinshon Judkins,RB,CLE,61,22,,,53.5,11,Starter,Questionable,,6
+D'Andre Swift,RB,CHI,62,23,,,52.0,10,Starter,Healthy,,6
+David Montgomery,RB,HOU,63,24,,,49.0,8,Starter,Healthy,,7
+Marvin Harrison Jr.,WR,ARI,64,30,,,67.0,14,Starter,Healthy,,7
+Carnell Tate,WR,TEN,65,31,,,63.0,9,Starter,Healthy,,7
+Courtland Sutton,WR,DEN,66,32,,,79.5,10,Backup,Healthy,,7
+Jaylen Warren,RB,PIT,67,25,,,72.5,9,Backup,Healthy,,7
+Tucker Kraft,TE,GB,68,5,,,86.5,11,Starter,Questionable,,4
+Harold Fannin Jr.,TE,CLE,69,6,,,85.0,11,Starter,Questionable,,4
+Justin Herbert,QB,LAC,70,7,,,76.0,7,Starter,Healthy,,4
+Caleb Williams,QB,CHI,71,8,,,68.5,10,Starter,Healthy,,4
+Bhayshul Tuten,RB,JAC,72,26,,,61.5,7,Starter,Healthy,,7
+DK Metcalf,WR,PIT,73,33,,,73.0,9,Starter,Healthy,,7
+RJ Harvey,RB,DEN,74,27,,,78.5,10,Backup,Healthy,,7
+Chuba Hubbard,RB,CAR,75,28,,,67.0,5,Starter,Healthy,,7
+Jaxson Dart,QB,NYG,76,9,,,85.0,8,Starter,Healthy,,4
+Michael Wilson,WR,ARI,77,34,,,89.5,14,Backup,Healthy,,7
+Chris Godwin Jr.,WR,TB,78,35,,,91.0,10,Backup,Healthy,,7
+Alec Pierce,WR,IND,79,36,,,75.5,13,Starter,Questionable,,7
+Trevor Lawrence,QB,JAC,80,10,,,80.5,7,Starter,Healthy,,4
+Jadarian Price,RB,SEA,81,29,,,61.5,11,Starter,Healthy,,7
+Kyle Pitts Sr.,TE,ATL,82,7,,,95.5,11,Starter,Healthy,,4
+Jakobi Meyers,WR,JAC,83,37,,,97.0,7,Rotational,Healthy,,7
+Dak Prescott,QB,DAL,84,11,,,79.0,14,Starter,Healthy,,4
+Michael Pittman Jr.,WR,PIT,85,38,,,99.0,9,Backup,Healthy,,7
+Rico Dowdle,RB,PIT,86,30,,,87.5,9,Starter,Healthy,,7
+Sam LaPorta,TE,DET,87,8,,,95.5,6,Starter,Questionable,,4
+Rhamondre Stevenson,RB,NE,88,31,,,77.0,11,Backup,Healthy,,7
+Tony Pollard,RB,TEN,89,32,,,79.5,9,Starter,Healthy,,7
+Jordyn Tyson,WR,NO,90,39,,,71.5,8,Backup,Questionable,,7
+Wan'Dale Robinson,WR,TEN,91,40,,,110.5,9,Backup,Healthy,,7
+Brian Thomas Jr.,WR,JAC,92,41,,,74.5,7,Backup,Healthy,,8
+Brock Purdy,QB,SF,93,12,,,94.5,8,Starter,Healthy,,5
+Kyle Monangai,RB,CHI,94,33,,,92.5,10,Backup,Healthy,,8
+Makai Lemon,WR,PHI,95,42,,,84.5,10,Backup,Questionable,,8
+Parker Washington,WR,JAC,96,43,,,73.0,7,Starter,Healthy,,8
+Ricky Pearsall,WR,SF,97,44,,,98.0,8,Backup,Healthy,,8
+Patrick Mahomes II,QB,KC,98,13,,,93.5,5,Starter,Questionable,,5
+Matthew Stafford,QB,LAR,99,14,,,94.5,11,Starter,Healthy,,5
+Aaron Jones Sr.,RB,MIN,100,34,,,125.5,6,Starter,Healthy,,8
+Jordan Addison,WR,MIN,101,45,,,99.5,6,Backup,Healthy,,8
+Bo Nix,QB,DEN,102,15,,,102.0,10,Starter,Questionable,,5
+Josh Downs,WR,IND,103,46,,,103.0,13,Backup,Healthy,,8
+Jake Ferguson,TE,DAL,104,9,,,123.0,14,Starter,Healthy,,5
+Kenneth Gainwell,RB,TB,105,35,,,96.0,10,Backup,Healthy,,8
+J.K. Dobbins,RB,DEN,106,36,,,106.5,10,Starter,Healthy,,8
+Travis Kelce,TE,KC,107,10,,,120.0,5,Starter,Healthy,,5
+Dalton Kincaid,TE,BUF,108,11,,,123.0,7,Starter,Healthy,,5
+Jared Goff,QB,DET,109,16,,,102.0,6,Starter,Healthy,,5
+Jayden Reed,WR,GB,110,47,,,96.5,11,Backup,Healthy,,8
+Blake Corum,RB,LAR,111,37,,,101.0,11,Backup,Healthy,,8
+Kyler Murray,QB,MIN,112,17,,,108.0,6,Starter,Healthy,,5
+Khalil Shakir,WR,BUF,113,48,,,122.0,7,Backup,Healthy,,8
+Quentin Johnston,WR,LAC,114,49,,,95.5,7,Backup,Healthy,,8
+Jordan Love,QB,GB,115,18,,,109.0,11,Starter,Healthy,,6
+Rachaad White,RB,WAS,116,38,,,119.0,7,Backup,Healthy,,9
+Jayden Higgins,WR,HOU,117,50,,,123.0,8,Backup,Healthy,,9
+Baker Mayfield,QB,TB,118,19,,,111.5,10,Starter,Healthy,,6
+George Kittle,TE,SF,119,12,,,120.5,8,Starter,Questionable,,6
+Tyler Shough,QB,NO,120,20,,,110.5,8,Starter,Healthy,,6
+Jacory Croskey-Merritt,RB,WAS,121,39,,,122.5,7,Starter,Questionable,,9
+Isaiah Likely,TE,NYG,122,13,,,130.5,8,Starter,Healthy,,6
+Malik Willis,QB,MIA,123,21,,,125.5,6,Starter,Healthy,,6
+Dallas Goedert,TE,PHI,124,14,,,131.5,10,Starter,Healthy,,6
+Xavier Worthy,WR,KC,125,51,,,112.5,5,Backup,Questionable,,9
+Romeo Doubs,WR,NE,126,52,,,115.0,11,Backup,Healthy,,9
+Tyler Allgeier,RB,ARI,127,40,,,147.5,14,Backup,Healthy,,9
+Jordan Mason,RB,MIN,128,41,,,123.5,6,Backup,Healthy,,9
+Woody Marks,RB,HOU,129,42,,,143.0,8,Backup,Healthy,,9
+Jalen Coker,WR,CAR,130,53,,,131.5,5,Backup,Healthy,,9
+Tyrone Tracy Jr.,RB,NYG,131,43,,,132.0,8,Backup,Healthy,,9
+C.J. Stroud,QB,HOU,132,22,,,135.0,8,Starter,Healthy,,6
+KC Concepcion,WR,CLE,133,54,,,124.5,11,Starter,Healthy,,9
+Zach Charbonnet,RB,SEA,134,44,,,170.5,11,Backup,Questionable,,9
+Juwan Johnson,TE,NO,135,15,,,147.0,8,Starter,Healthy,,6
+Oronde Gadsden II,TE,LAC,136,16,,,138.5,7,Starter,Healthy,,6
+Matthew Golden,WR,GB,137,55,,,118.0,11,Rotational,Healthy,,9
+Sam Darnold,QB,SEA,138,23,,,134.0,11,Starter,Healthy,,6
+Tyjae Spears,RB,TEN,139,45,,,153.0,9,Backup,Healthy,,9
+Brenton Strange,TE,JAC,140,17,,,153.0,7,Starter,Healthy,,6
+Mark Andrews,TE,BAL,141,18,,,137.5,13,Starter,Healthy,,6
+Dylan Sampson,RB,CLE,142,46,,,153.0,11,Backup,Healthy,,9
+Chris Rodriguez Jr.,RB,JAC,143,47,,,122.0,7,Backup,Questionable,,9
+Alvin Kamara,RB,NO,144,48,,,180.0,8,Backup,Healthy,,9
+Jonathon Brooks,RB,CAR,145,49,,,119.5,5,Backup,Healthy,,9
+Cam Ward,QB,TEN,146,24,,,135.5,9,Starter,Healthy,,6
+Isiah Pacheco,RB,DET,147,50,,,150.5,6,Backup,Healthy,,10
+Bryce Young,QB,CAR,148,25,,,145.5,5,Starter,Healthy,,7
+Rashid Shaheed,WR,SEA,149,56,,,148.5,11,Backup,Healthy,,10
+Jerry Jeudy,WR,CLE,150,57,,,179.5,11,Rotational,Healthy,,10
+James Conner,RB,ARI,151,51,,,200.0,14,Rotational,Questionable,,10
+Deebo Samuel Sr.,WR,FA,152,58,,,162.5,,Unknown,Healthy,,10
+Denzel Boston,WR,CLE,153,59,,,167.0,11,Backup,Healthy,,10
+Jauan Jennings,WR,MIN,154,60,,,147.5,6,Rotational,Healthy,,10
+Hunter Henry,TE,NE,155,19,,,155.5,11,Starter,Healthy,,7
+Daniel Jones,QB,IND,156,26,,,140.5,13,Starter,Questionable,,7
+Travis Hunter,WR,JAC,157,61,,,169.0,7,Rotational,Questionable,,10
+Braelon Allen,RB,NYJ,158,52,,,200.0,13,Backup,Healthy,,10
+Omar Cooper Jr.,WR,NYJ,159,62,,,159.0,13,Backup,Healthy,,10
+Keaton Mitchell,RB,LAC,160,53,,,151.0,7,Backup,Healthy,,10
+Stefon Diggs,WR,FA,161,63,,,139.0,,Unknown,Healthy,,10
+Jonah Coleman,RB,DEN,162,54,,,157.0,10,Rotational,Healthy,,10
+Houston Texans,DST,HOU,163,1,,,141.0,8,Unknown,Healthy,,1
+Adonai Mitchell,WR,NYJ,164,64,,,213.0,13,Rotational,Healthy,,10
+Dalton Schultz,TE,HOU,165,20,,,172.0,8,Starter,Healthy,,7
+Brian Robinson Jr.,RB,ATL,166,55,,,171.5,11,Backup,Healthy,,10
+Chig Okonkwo,TE,WAS,167,21,,,152.5,7,Starter,Healthy,,7
+Kayshon Boutte,WR,NE,168,65,,,206.0,11,Rotational,Healthy,,10
+Emanuel Wilson,RB,SEA,169,56,,,168.0,11,Rotational,Healthy,,10
+Brandon Aiyuk,WR,SF,170,66,,,180.5,8,Rotational,Out,,10
+Jalen McMillan,WR,TB,171,67,,,150.0,10,Rotational,Healthy,,10
+Tre' Harris,WR,LAC,172,68,,,181.5,7,Rotational,Healthy,,10
+Denver Broncos,DST,DEN,173,2,,,156.0,10,Unknown,Healthy,,1
+Tank Bigsby,RB,PHI,174,57,,,183.0,10,Backup,Healthy,,10
+Jacoby Brissett,QB,ARI,175,27,,,169.0,14,Starter,Healthy,,7
+Troy Franklin,WR,DEN,176,69,,,215.0,10,Rotational,Questionable,,10
+Seattle Seahawks,DST,SEA,177,3,,,154.0,11,Unknown,Healthy,,1
+T.J. Hockenson,TE,MIN,178,22,,,165.0,6,Starter,Healthy,,7
+Los Angeles Rams,DST,LAR,179,4,,,169.0,11,Unknown,Healthy,,2
+Philadelphia Eagles,DST,PHI,180,5,,,187.0,10,Unknown,Healthy,,2
+Tre Tucker,WR,LV,181,70,,,157.0,13,Backup,Healthy,,11
+Jaylin Noel,WR,HOU,182,71,,,287.0,8,Rotational,Healthy,,11
+Kenyon Sadiq,TE,NYJ,183,23,,,151.5,13,Starter,Questionable,,8
+Emmett Johnson,RB,KC,184,58,,,170.0,5,Backup,Healthy,,11
+Kimani Vidal,RB,LAC,185,59,,,198.0,7,Rotational,Healthy,,11
+Mike Washington Jr.,RB,LV,186,60,,,191.5,13,Backup,Healthy,,11
+Calvin Ridley,WR,TEN,187,72,,,203.0,9,Rotational,Healthy,,11
+Pat Bryant,WR,DEN,188,73,,,283.5,10,Rotational,Healthy,,11
+New England Patriots,DST,NE,189,6,,,186.0,11,Unknown,Healthy,,2
+Brandon Aubrey,K,DAL,190,1,,,,14,Starter,Healthy,,1
+Ryan Flournoy,WR,DAL,191,74,,,180.5,14,Rotational,Healthy,,11
+Jacksonville Jaguars,DST,JAC,192,7,,,191.0,7,Unknown,Healthy,,2
+Minnesota Vikings,DST,MIN,193,8,,,182.0,6,Unknown,Healthy,,2
+Pittsburgh Steelers,DST,PIT,194,9,,,190.0,9,Unknown,Healthy,,2
+AJ Barner,TE,SEA,195,24,,,180.0,11,Starter,Questionable,,8
+Tyreek Hill,WR,FA,196,75,,,211.0,,Unknown,Questionable,,11
+Los Angeles Chargers,DST,LAC,197,10,,,196.0,7,Unknown,Healthy,,2
+Chimere Dike,WR,TEN,198,76,,,256.5,9,Rotational,Healthy,,11
+Sean Tucker,RB,TB,199,61,,,191.5,10,Rotational,Healthy,,11
+Darnell Mooney,WR,NYG,200,77,,,209.0,8,Rotational,Healthy,,11
+Ray Davis,RB,BUF,201,62,,,204.0,7,Rotational,Healthy,,11
+Isaac TeSlaa,WR,DET,202,78,,,181.0,6,Rotational,Healthy,,11
+Cameron Dicker,K,LAC,203,2,,,,7,Starter,Healthy,,1
+Ka'imi Fairbairn,K,HOU,204,3,,,,8,Starter,Healthy,,1
+Green Bay Packers,DST,GB,205,11,,,209.0,11,Unknown,Healthy,,2
+Cleveland Browns,DST,CLE,206,12,,,180.0,11,Unknown,Healthy,,2
+Jason Myers,K,SEA,207,4,,,,11,Starter,Healthy,,1
+Kaytron Allen,RB,WAS,208,63,,,182.5,7,Rotational,Healthy,,11
+Cam Little,K,JAC,209,5,,,,7,Starter,Healthy,,1
+Nicholas Singleton,RB,TEN,210,64,,,191.5,9,Rotational,Healthy,,11
+Jaylen Wright,RB,MIA,211,65,,,241.0,6,Backup,Healthy,,11
+Gunnar Helm,TE,TEN,212,25,,,189.0,9,Starter,Healthy,,8
+Kansas City Chiefs,DST,KC,213,13,,,219.0,5,Unknown,Healthy,,2
+Eddy Pineiro,K,SF,214,6,,,,8,Starter,Healthy,,1
+Dontayvion Wicks,WR,PHI,215,79,,,260.0,10,Rotational,Healthy,,11
+Tyler Loop,K,BAL,216,7,,,,13,Starter,Healthy,,1
+Fernando Mendoza,QB,LV,217,28,,,171.5,13,Starter,Healthy,,8
+Evan McPherson,K,CIN,218,8,,,,6,Starter,Healthy,,1
+Elic Ayomanor,WR,TEN,219,80,,,328.0,9,Rotational,Healthy,,11
+Antonio Williams,WR,WAS,220,81,,,179.0,7,Backup,Healthy,,11
+Andy Borregales,K,NE,221,9,,,,11,Starter,Healthy,,1
+Baltimore Ravens,DST,BAL,222,14,,,199.0,13,Unknown,Healthy,,3
+Cairo Santos,K,CHI,223,10,,,,10,Starter,Healthy,,2
+Chase McLaughlin,K,TB,224,11,,,,10,Starter,Healthy,,2
+David Njoku,TE,LAC,225,26,,,201.5,7,Backup,Healthy,,9
+Detroit Lions,DST,DET,226,15,,,217.0,6,Unknown,Healthy,,3
+Geno Smith,QB,NYJ,227,29,,,171.5,13,Starter,Healthy,,9
+Terrance Ferguson,TE,LAR,228,27,,,222.0,11,Starter,Healthy,,9
+Jake Bates,K,DET,229,12,,,,6,Starter,Healthy,,2
+Mason Taylor,TE,NYJ,230,28,,,301.0,13,Backup,Healthy,,9
+De'Zhaun Stribling,WR,SF,231,82,,,209.5,8,Rotational,Healthy,,12
+Ollie Gordon II,RB,MIA,232,66,,,311.5,6,Rotational,Healthy,,12
+Kaleb Johnson,RB,PIT,233,67,,,379.0,9,Rotational,Healthy,,12
+Malik Washington,WR,MIA,234,83,,,198.0,6,Rotational,Healthy,,12
+Buffalo Bills,DST,BUF,235,16,,,213.0,7,Unknown,Healthy,,3
+Harrison Butker,K,KC,236,13,,,,5,Starter,Healthy,,2
+Devin Neal,RB,NO,237,68,,,371.0,8,Rotational,Healthy,,12
+Tank Dell,WR,HOU,238,84,,,222.5,8,Rotational,Questionable,,12
+Jalen Nailor,WR,LV,239,85,,,162.5,13,Starter,Healthy,,12
+Cade Otton,TE,TB,240,29,,,198.0,10,Starter,Healthy,,9
+Rashod Bateman,WR,BAL,241,86,,,297.0,13,Backup,Questionable,,12
+Trey Benson,RB,ARI,242,69,,,299.0,14,Rotational,Questionable,,12
+Cooper Kupp,WR,SEA,243,87,,,220.0,11,Rotational,Healthy,,12
+Germie Bernard,WR,PIT,244,88,,,231.5,9,Rotational,Healthy,,12
+Malachi Fields,WR,NYG,245,89,,,216.0,8,Rotational,Healthy,,12
+Aaron Rodgers,QB,PIT,246,30,,,165.5,9,Starter,Healthy,,9
+Pat Freiermuth,TE,PIT,247,30,,,199.0,9,Starter,Healthy,,9
+Chris Bell,WR,MIA,248,90,,,219.5,6,Starter,Questionable,,12
+Zachariah Branch,WR,ATL,249,91,,,216.5,11,Backup,Healthy,,12
+Jack Bech,WR,LV,250,92,,,316.0,13,Rotational,Healthy,,12
+Chris Boswell,K,PIT,251,14,,,,9,Starter,Healthy,,2
+Michael Penix Jr.,QB,ATL,252,31,,,227.0,11,Backup,Questionable,,9
+Harrison Mevis,K,LAR,253,15,,,,11,Starter,Healthy,,2
+Colby Parkinson,TE,LAR,254,31,,,216.0,11,Backup,Healthy,,9
+Theo Johnson,TE,NYG,255,32,,,288.0,8,Backup,Healthy,,9
+Keon Coleman,WR,BUF,256,93,,,290.5,7,Rotational,Healthy,,12
+Marvin Mims Jr.,WR,DEN,257,94,,,388.0,10,Rotational,Healthy,,12
+Evan Engram,TE,DEN,258,33,,,280.5,10,Starter,Healthy,,9
+Eli Stowers,TE,PHI,259,34,,,226.5,10,Backup,Questionable,,9
+Christian Kirk,WR,SF,260,95,,,221.0,8,Rotational,Healthy,,12
+Ted Hurst III,WR,TB,261,96,,,267.0,10,Rotational,Healthy,,12
+Kyle Williams,WR,NE,262,97,,,380.0,11,Rotational,Healthy,,12
+Adam Randall,RB,BAL,263,70,,,297.5,13,Rotational,Healthy,,12
+Tory Horton,WR,SEA,264,98,,,292.0,11,Rotational,Questionable,,12
+Isaiah Davis,RB,NYJ,265,71,,,356.0,13,Rotational,Healthy,,12
+Kendre Miller,RB,NO,266,72,,,,8,Rotational,Questionable,,12
+Mack Hollins,WR,NE,267,99,,,381.0,11,Rotational,Healthy,,12
+Elijah Sarratt,WR,BAL,268,100,,,320.5,13,Rotational,Healthy,,12
+Demond Claiborne,RB,MIN,269,73,,,244.5,6,Rotational,Healthy,,12
+Justice Hill,RB,BAL,270,74,,,250.0,13,Backup,Healthy,,12
+Brashard Smith,RB,KC,271,75,,,390.0,5,Rotational,Healthy,,12
+Shedeur Sanders,QB,CLE,272,32,,,231.0,11,Backup,Healthy,,9
+Xavier Legette,WR,CAR,273,101,,,378.0,5,Rotational,Healthy,,13
+Keenan Allen,WR,LAC,274,102,,,301.5,7,Unknown,Healthy,,13
+Najee Harris,RB,LAC,275,76,,,313.0,7,Unknown,Questionable,,13
+Darius Slayton,WR,NYG,276,103,,,313.0,8,Backup,Questionable,,13
+Ty Johnson,RB,BUF,277,77,,,296.5,7,Backup,Healthy,,13
+Wil Lutz,K,DEN,278,16,,,,10,Starter,Healthy,,3
+LeQuint Allen Jr.,RB,JAC,279,78,,,300.0,7,Rotational,Healthy,,13
+Atlanta Falcons,DST,ATL,280,17,,,214.0,11,Unknown,Healthy,,4
+Devaughn Vele,WR,NO,281,104,,,324.0,8,Rotational,Healthy,,13
+Tua Tagovailoa,QB,ATL,282,33,,,200.0,11,Starter,Healthy,,10
+Chris Brazzell II,WR,CAR,283,105,,,292.0,5,Rotational,Healthy,,13
+Jaydon Blue,RB,DAL,284,79,,,279.5,14,Rotational,Healthy,,13
+DJ Giddens,RB,IND,285,80,,,290.5,13,Backup,Healthy,,13
+Chris Brooks,RB,GB,286,81,,,263.0,11,Backup,Healthy,,13
+MarShawn Lloyd,RB,GB,287,82,,,277.0,11,Rotational,Healthy,,13
+San Francisco 49ers,DST,SF,288,18,,,225.0,8,Unknown,Healthy,,4
+Max Klare,TE,LAR,289,35,,,384.0,11,Rotational,Healthy,,10
+Jerome Ford,RB,WAS,290,83,,,315.0,7,Rotational,Questionable,,13
+Samaje Perine,RB,CIN,291,84,,,286.0,6,Backup,Healthy,,13
+George Holani,RB,SEA,292,85,,,377.0,11,Rotational,Healthy,,13
+Tyquan Thornton,WR,KC,293,106,,,287.5,5,Rotational,Healthy,,13
+Jaleel McLaughlin,RB,DEN,294,86,,,,10,Rotational,Healthy,,13
+Jake Tonges,TE,SF,295,36,,,222.5,8,Backup,Questionable,,10
+Devin Singletary,RB,NYG,296,87,,,386.0,8,Rotational,Healthy,,13
+Will Reichard,K,MIN,297,17,,,,6,Starter,Healthy,,3
+Seth McGowan,RB,IND,298,88,,,329.0,13,Rotational,Healthy,,13
+Jordan James,RB,SF,299,89,,,216.5,8,Backup,Healthy,,13
+Malik Davis,RB,DAL,300,90,,,275.0,14,Backup,Healthy,,13
+Isaac Guerendo,RB,SF,301,91,,,286.0,8,Rotational,Questionable,,13
+Indianapolis Colts,DST,IND,302,19,,,228.0,13,Unknown,Healthy,,4
+Hollywood Brown,WR,PHI,303,107,,,324.0,10,Unknown,Healthy,,13
+Charlie Smyth,K,NO,304,18,,,,8,Starter,Healthy,,3
+Mike Gesicki,TE,CIN,305,37,,,263.5,6,Starter,Healthy,,10
+Joe Mixon,RB,FA,306,92,,,305.0,,Unknown,Questionable,,13
+Emari Demercado,RB,KC,307,93,,,361.0,5,Rotational,Healthy,,13
+Kirk Cousins,QB,LV,308,34,,,228.5,13,Backup,Healthy,,10
+Oscar Delp,TE,NO,309,38,,,311.0,8,Rotational,Healthy,,10
+Skyler Bell,WR,BUF,310,108,,,309.5,7,Rotational,Healthy,,13
+Deshaun Watson,QB,CLE,311,35,,,218.5,11,Starter,Healthy,,10
+Isaiah Bond,WR,CLE,312,109,,,326.0,11,Rotational,Healthy,,13
+Trevor Etienne,RB,CAR,313,94,,,312.0,5,Rotational,Healthy,,13
+Tahj Brooks,RB,CIN,314,95,,,309.0,6,Rotational,Healthy,,13
+Jarquez Hunter,RB,LAR,315,96,,,308.0,11,Rotational,Healthy,,13
+Greg Dulcich,TE,MIA,316,39,,,225.5,6,Starter,Healthy,,10
+Andrei Iosivas,WR,CIN,317,110,,,318.5,6,Rotational,Healthy,,13
+J'Mari Taylor,RB,JAC,318,97,,,,7,Rotational,Healthy,,13
+Ja'Kobi Lane,WR,BAL,319,111,,,313.0,13,Rotational,Healthy,,13
+Audric Estime,RB,NO,320,98,,,276.0,8,Rotational,Healthy,,13
+J.J. McCarthy,QB,MIN,321,36,,,359.0,6,Backup,Healthy,,10
+Kaelon Black,RB,SF,322,99,,,234.5,8,Rotational,Healthy,,13
+Konata Mumpfield,WR,LAR,323,112,,,264.0,11,Rotational,Healthy,,14
+Bam Knight,RB,ARI,324,100,,,,14,Unknown,Healthy,,14
+Cedric Tillman,WR,CLE,325,113,,,,11,Rotational,Healthy,,14
+Chicago Bears,DST,CHI,326,20,,,202.0,10,Unknown,Healthy,,5
+Tez Johnson,WR,TB,327,114,,,394.0,10,Rotational,Healthy,,14
+Calvin Austin III,WR,NYG,328,115,,,295.0,8,Rotational,Healthy,,14
+Kareem Hunt,RB,FA,329,101,,,255.0,,Unknown,Healthy,,14
+Jalen Royals,WR,KC,330,116,,,306.0,5,Rotational,Healthy,,14
+Luke McCaffrey,WR,WAS,331,117,,,289.0,7,Rotational,Healthy,,14
+New Orleans Saints,DST,NO,332,21,,,221.0,8,Unknown,Healthy,,5
+Ty Simpson,QB,LAR,333,37,,,355.0,11,Backup,Healthy,,11
+Will Shipley,RB,PHI,334,102,,,259.0,10,Rotational,Healthy,,14
+Mac Jones,QB,SF,335,38,,,291.0,8,Backup,Questionable,,11
+Carolina Panthers,DST,CAR,336,22,,,231.0,5,Unknown,Healthy,,5
+Jahan Dotson,WR,ATL,337,118,,,324.5,11,Rotational,Healthy,,14
+Darnell Washington,TE,PIT,338,40,,,327.0,9,Backup,Healthy,,11
+Bryce Lance,WR,NO,339,119,,,294.5,8,Rotational,Healthy,,14
+Michael Carter,RB,TEN,340,103,,,263.0,9,Rotational,Healthy,,14
+Dont'e Thornton Jr.,WR,LV,341,120,,,267.0,13,Rotational,Healthy,,14
+Olamide Zaccheaus,WR,ATL,342,121,,,376.0,11,Rotational,Healthy,,14
+Noah Gray,TE,KC,343,41,,,372.0,5,Backup,Healthy,,11
+Joshua Palmer,WR,BUF,344,122,,,290.0,7,Rotational,Questionable,,14
+Tyler Higbee,TE,LAR,345,42,,,337.0,11,Rotational,Healthy,,11
+Nick Chubb,RB,FA,346,104,,,249.0,,Unknown,Healthy,,14
+Dallas Cowboys,DST,DAL,347,23,,,238.0,14,Unknown,Healthy,,5
+Jalen Tolbert,WR,MIA,348,123,,,300.0,6,Rotational,Healthy,,14
+Xavier Hutchinson,WR,HOU,349,124,,,,8,Rotational,Healthy,,14
+Eli Heidenreich,RB,PIT,350,105,,,287.0,9,Rotational,Healthy,,14
+Justin Fields,QB,KC,351,39,,,348.0,5,Backup,Healthy,,11
+John Metchie III,WR,CAR,352,125,,,280.0,5,Rotational,Healthy,,14
+Carson Beck,QB,ARI,353,40,,,298.0,14,Backup,Healthy,,11
+Anthony Richardson Sr.,QB,IND,354,41,,,331.0,13,Backup,Healthy,,11
+DeMario Douglas,WR,NE,355,126,,,268.0,11,Rotational,Healthy,,14
+Elijah Arroyo,TE,SEA,356,43,,,333.5,11,Backup,Healthy,,11
+Blake Grupe,K,IND,357,19,,,,13,Starter,Healthy,,4
+Caleb Douglas,WR,MIA,358,127,,,294.0,6,Rotational,Questionable,,14
+Brenen Thompson,WR,LAC,359,128,,,303.5,7,Rotational,Healthy,,14
+Ja'Tavion Sanders,TE,CAR,360,44,,,291.0,5,Starter,Healthy,,11
+Jaylin Lane,WR,WAS,361,129,,,,7,Rotational,Healthy,,14
+Washington Commanders,DST,WAS,362,24,,,287.0,7,Unknown,Healthy,,5
+Nick Folk,K,ATL,363,20,,,,11,Starter,Healthy,,4
+Jake Elliott,K,PHI,364,21,,,,10,Starter,Healthy,,4
+Michael Mayer,TE,LV,365,45,,,312.0,13,Backup,Healthy,,11
+Austin Ekeler,RB,FA,366,106,,,296.0,,Unknown,Healthy,,14
+Tennessee Titans,DST,TEN,367,25,,,241.0,9,Unknown,Healthy,,5
+New York Giants,DST,NYG,368,26,,,220.0,8,Unknown,Healthy,,5
+Ben Sauls,K,NYG,369,22,,,,8,Starter,Healthy,,4
+Zane Gonzalez,K,MIA,370,23,,,,6,Starter,Healthy,,4
+Justin Joly,TE,DEN,371,46,,,363.0,10,Rotational,Healthy,,11
+Treylon Burks,WR,WAS,372,130,,,296.5,7,Rotational,Healthy,,14
+Tyler Bass,K,BUF,373,24,,,,7,Starter,Questionable,,4
+Raheim Sanders,RB,CLE,374,107,,,,11,Rotational,Healthy,,15
+Jawhar Jordan,RB,HOU,375,108,,,,8,Rotational,Healthy,,15
+Tampa Bay Buccaneers,DST,TB,376,27,,,239.0,10,Unknown,Healthy,,6
+Ryan Fitzgerald,K,CAR,377,25,,,,5,Starter,Healthy,,5
+Cole Kmet,TE,CHI,378,47,,,364.0,10,Backup,Healthy,,12
+Savion Williams,WR,GB,379,131,,,293.0,11,Rotational,Healthy,,15
+Tommy Myers,TE,FA,380,48,,,,,Unknown,Healthy,,12
+John Bates,TE,WAS,381,49,,,,7,Rotational,Healthy,,12
+Tutu Atwell,WR,MIA,382,132,,,336.0,6,Rotational,Healthy,,15
+Brandon McManus,K,FA,383,26,,,,,Unknown,Healthy,,5
+KaVontae Turpin,WR,DAL,384,133,,,262.0,14,Rotational,Healthy,,15
+Kendrick Bourne,WR,ARI,385,134,,,330.5,14,Rotational,Healthy,,15
+Nick Westbrook-Ikhine,WR,IND,386,135,,,277.0,13,Rotational,Healthy,,15
+Ben Sinnott,TE,WAS,387,50,,,313.0,7,Backup,Healthy,,12
+Dawson Knox,TE,BUF,388,51,,,318.0,7,Backup,Healthy,,12
+Dameon Pierce,RB,PHI,389,109,,,,10,Rotational,Healthy,,15
+Chad Ryland,K,ARI,390,27,,,,14,Starter,Healthy,,5
+Miami Dolphins,DST,MIA,391,28,,,284.0,6,Unknown,Healthy,,6
+Kevin Coleman Jr.,WR,MIA,392,136,,,270.0,6,Rotational,Healthy,,15
+Kalif Raymond,WR,CHI,393,137,,,261.0,10,Rotational,Healthy,,15
+Darren Waller,TE,FA,394,52,,,254.0,,Unknown,Questionable,,12
+Joey Slye,K,TEN,395,28,,,,9,Starter,Healthy,,5
+Daniel Carlson,K,LV,396,29,,,,13,Unknown,Healthy,,5
+Jameis Winston,QB,NYG,397,42,,,342.0,8,Backup,Healthy,,12
+Marcus Mariota,QB,WAS,398,43,,,323.0,7,Backup,Healthy,,12
+Cyrus Allen,WR,KC,399,138,,,,5,Rotational,Healthy,,15
+Malik Benson,WR,LV,400,139,,,259.5,13,Rotational,Healthy,,15
+Terrell Jennings,RB,NE,401,110,,,,11,Rotational,Healthy,,15
+Cincinnati Bengals,DST,CIN,402,29,,,251.0,6,Unknown,Healthy,,6
+Trey Smack,K,GB,403,30,,,,11,Starter,Healthy,,5
+Joe Milton III,QB,DAL,404,44,,,281.0,14,Backup,Healthy,,12
+Noah Fant,TE,NO,405,53,,,,8,Backup,Healthy,,12
+Joe Flacco,QB,CIN,406,45,,,369.0,6,Backup,Healthy,,12
+CJ Daniels,WR,LAR,407,140,,,,11,Rotational,Healthy,,15
+Tai Felton,WR,MIN,408,141,,,,6,Rotational,Healthy,,15
+Antonio Gibson,RB,FA,409,111,,,,,Unknown,Questionable,,15
+Greg Dortch,WR,DET,410,142,,,304.0,6,Rotational,Healthy,,15
+Zavion Thomas,WR,CHI,411,143,,,281.5,10,Rotational,Healthy,,15
+Raheem Mostert,RB,LV,412,112,,,,13,Unknown,Questionable,,15
+Gardner Minshew II,QB,ARI,413,46,,,,14,Rotational,Healthy,,12
+Luke Musgrave,TE,GB,414,54,,,252.0,11,Backup,Questionable,,12
+Kyle Juszczyk,RB,SF,415,113,,,,8,Unknown,Healthy,,15
+Damien Martinez,RB,GB,416,114,,,269.0,11,Rotational,Healthy,,15
+Zach Ertz,TE,FA,417,55,,,310.0,,Unknown,Questionable,,12
+Dyami Brown,WR,WAS,418,144,,,,7,Rotational,Healthy,,15
+Jordan Whittington,WR,LAR,419,145,,,247.0,11,Rotational,Healthy,,15
+Daniel Bellinger,TE,TEN,420,56,,,,9,Backup,Healthy,,12
+Riley Leonard,QB,IND,421,47,,,,13,Rotational,Healthy,,12
+Eli Raridon,TE,NE,422,57,,,298.0,11,Backup,Healthy,,12
+Rasheen Ali,RB,BAL,423,115,,,,13,Rotational,Healthy,,15
+Zavier Scott,RB,MIN,424,116,,,,6,Rotational,Healthy,,15
+Devontez Walker,WR,BAL,425,146,,,268.0,13,Rotational,Healthy,,15
+Brandin Cooks,WR,FA,426,147,,,,,Unknown,Healthy,,15
+Jam Miller,RB,NE,427,117,,,,11,Rotational,Healthy,,15
+Roschon Johnson,RB,CHI,428,118,,,,10,Rotational,Questionable,,15
+Tyler Badie,RB,DEN,429,119,,,,10,Rotational,Healthy,,15
+Ty Chandler,RB,NO,430,120,,,,8,Rotational,Healthy,,15
+Deion Burks,WR,IND,431,148,,,,13,Rotational,Healthy,,15
+Dylan Laube,RB,LV,432,121,,,,13,Rotational,Healthy,,15
+Marlin Klein,TE,HOU,433,58,,,,8,Backup,Questionable,,12
+Elijah Higgins,TE,ARI,434,59,,,275.0,14,Backup,Healthy,,12
+Austin Hooper,TE,ATL,435,60,,,,11,Backup,Healthy,,12
+Jonnu Smith,TE,FA,436,61,,,350.0,,Unknown,Healthy,,12
+Xavier Restrepo,WR,TEN,437,149,,,,9,Rotational,Healthy,,15
+Tyler Goodson,RB,ATL,438,122,,,,11,Rotational,Healthy,,15
+Will Howard,QB,PIT,439,48,,,292.0,9,Rotational,Healthy,,13
+Sam Roush,TE,CHI,440,62,,,,10,Rotational,Healthy,,13
+Tommy Tremble,TE,CAR,441,63,,,314.0,5,Backup,Healthy,,13
+Jeremy McNichols,RB,WAS,442,123,,,,7,Rotational,Healthy,,16
+Erick All Jr.,TE,CIN,443,64,,,,6,Backup,Questionable,,13
+Durham Smythe,TE,BAL,444,65,,,,13,Rotational,Healthy,,13
+Robert Henry Jr.,RB,WAS,445,124,,,250.0,7,Unknown,Healthy,,16
+Demarcus Robinson,WR,SF,446,150,,,,8,Rotational,Healthy,,16
+Phil Mafah,RB,DAL,447,125,,,,14,Rotational,Healthy,,16
+Theo Wease Jr.,WR,MIA,448,151,,,274.0,6,Backup,Healthy,,16
+Mitchell Evans,TE,CAR,449,66,,,,5,Rotational,Healthy,,13
+Quinn Ewers,QB,MIA,450,49,,,,6,Backup,Healthy,,13
+Antwane Wells Jr.,WR,FA,451,152,,,,,Unknown,Healthy,,16
+Michael Trigg,TE,DAL,452,67,,,,14,Backup,Healthy,,13
+Cade Klubnik,QB,NYJ,453,50,,,,13,Backup,Questionable,,13
+Thomas Fidone II,TE,NYG,454,68,,,,8,Rotational,Questionable,,13
+Luke Schoonmaker,TE,DAL,455,69,,,,14,Rotational,Healthy,,13
