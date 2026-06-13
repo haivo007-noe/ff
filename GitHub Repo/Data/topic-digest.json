@@ -1,0 +1,4201 @@
+{
+ "generated": "2026-06-13 03:52",
+ "counts": {
+  "topics": 8,
+  "converging": 8,
+  "contested": 2,
+  "cases": 44,
+  "leads": 7,
+  "teams_covered": 192,
+  "wr_archetypes": 44,
+  "wr_splits": 31
+ },
+ "topics": [
+  {
+   "id": "converge",
+   "name": "Converging edges",
+   "icon": "🎯",
+   "freshness": "auto-rolled from the layers below — recomputed every build from the edge board",
+   "refresh": "",
+   "doc": "Research/_edge-board.md",
+   "lead": "The sharpest draft edges aren't single facts — they're where <b>two or three independent layers point the same way</b>. These are the calls with the most support and the least to argue with. When the OL layer, the run-lean layer, and the RB-receiving layer all flag the same backfield, the price gap is real, not a one-source take. Below: 🎯 = the layers agree; ⚠ = they're cited on both sides, so judge it.",
+   "lead_dated": "2026-06-08",
+   "cases": [
+    {
+     "name": "Omarion Hampton",
+     "pos": "RB",
+     "team": "LAC",
+     "status": "Staging",
+     "find": "Top-3 RB — lead back, 69.7% opportunity share (11th) when healthy; rookie ankle injuries \"in the past\" *(orig. premise \"Harbaugh run-heavy\" stale — Roman fired, new OC McDaniel)*",
+     "act": "Needs: Re-anchor claim to the McDaniel scheme; camp carry-share confirmation; the 69.7% opp-share figure unconfirmable *(health half corroborated 2026-06-03; mixed signal — held in Staging at 2026-06-04 sweep; 6/07: health fully corroborated — chargers.com/SI…",
+     "layers": [
+      "OL",
+      "Run-lean",
+      "RB-receiving",
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 5,
+      "layers": [
+       "OL",
+       "Run-lean",
+       "RB-receiving",
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 5 layers agree: OL, Run-lean, RB-receiving, Backfield, Coaching"
+     },
+     "profile": "Research/profiles/players/RB/omarion-hampton.md"
+    },
+    {
+     "name": "Denver backfield consolidation",
+     "pos": "RB",
+     "team": "DEN",
+     "status": "Staging",
+     "find": "OL #1 + elite defense + only +1.6 PROE behind a 3-way committee (Harvey/Dobbins/Coleman) — whoever consolidates inherits fortress run volume at committee prices. FORK of the RJ Harvey fade row: fade Harvey at #74 while…",
+     "act": "Needs: Camp depth chart / preseason usage showing one back consolidating; Payton backfields are unguessable — same trigger as the Harvey fade row. 6/07 RB-recv: Nix 19% RB tgt rate + Badie league-best pass-pro (80.9) + Coleman 3-down rookie — the fork now has…",
+     "layers": [
+      "Run-lean",
+      "RB-receiving",
+      "Backfield",
+      "Defense"
+     ],
+     "converge": {
+      "n": 4,
+      "layers": [
+       "Run-lean",
+       "RB-receiving",
+       "Backfield",
+       "Defense"
+      ],
+      "contested": false,
+      "line": "🎯 4 layers agree: Run-lean, RB-receiving, Backfield, Defense"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Tony Pollard",
+     "pos": "RB",
+     "team": "TEN",
+     "status": "Active",
+     "find": "Daboll publicly declared a two-back committee; Spears out-snapped Pollard 59%–42.6% post-IR in 2025; TEN drafted Nick Singleton in April — analysts cap him <230 carries",
+     "act": "Don't pay #89 for a committee back; Spears (#139) is the cheap side of the same backfield. *Refresh 2026-06-07: STRENGTHENED — run-lean layer ranks TEN the league's worst structural run outlook (OL #32 + bad defense = trailing scripts on top of the committee)…",
+     "layers": [
+      "Run-lean",
+      "RB-receiving",
+      "Backfield"
+     ],
+     "converge": {
+      "n": 3,
+      "layers": [
+       "Run-lean",
+       "RB-receiving",
+       "Backfield"
+      ],
+      "contested": false,
+      "line": "🎯 3 layers agree: Run-lean, RB-receiving, Backfield"
+     },
+     "profile": "Research/profiles/players/RB/tony-pollard.md"
+    },
+    {
+     "name": "Ashton Jeanty — receiving bump",
+     "pos": "RB",
+     "team": "LV",
+     "status": "Staging",
+     "find": "Kubiak's designed-RB-target precedent (Kamara led ALL RBs w/ 89 tgt under him, 2024, 60 slot snaps) lands on a back who drew 73 rookie targets — receiving bump on top of the rushing-efficiency thesis; 3rd structural LV…",
+     "act": "Needs: Camp route/slot usage reports; FP 2026 QB/positional-tendencies edition (~late July)",
+     "layers": [
+      "OL",
+      "Run-lean",
+      "RB-receiving"
+     ],
+     "converge": {
+      "n": 3,
+      "layers": [
+       "OL",
+       "Run-lean",
+       "RB-receiving"
+      ],
+      "contested": false,
+      "line": "🎯 3 layers agree: OL, Run-lean, RB-receiving"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Jahmyr Gibbs — floor",
+     "pos": "RB",
+     "team": "DET",
+     "status": "Staging",
+     "find": "Floor buy, not ceiling — league-wide biggest coaching-usage winner: Petzing run-lean install + Montgomery gone + good-D lead scripts lock a bellcow workload; consensus #5 prices the ceiling but under-prices the FLOOR/wo…",
+     "act": "Needs: 2nd source / camp confirmation Montgomery's vacated touches route to Gibbs vs a committee add; low timing-edge (mostly floor). *Surfaced by the 6/06 coaching pass; Hai's call to log 6/08*",
+     "layers": [
+      "Run-lean",
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 3,
+      "layers": [
+       "Run-lean",
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 3 layers agree: Run-lean, Backfield, Coaching"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Bucky Irving",
+     "pos": "RB",
+     "team": "TB",
+     "status": "Active",
+     "find": "Risk at cost — offseason shoulder surgery (NOT expected at June minicamp; camp return likely) + 3-way backfield (Gainwell pass downs 2yr/$14M, Sean Tucker GL off 8 TDs)",
+     "act": "Don't pay #54 — demand ~a round of discount or pass. Re-check camp return + first-team split. *Refresh 2026-06-04: holds — out for 6/16-18 minicamp as predicted; Schefter says camp-ready, Bowles hedges \"summer or fall\"; Gainwell/Tucker still taking first-team…",
+     "layers": [
+      "RB-receiving",
+      "Backfield"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "RB-receiving",
+       "Backfield"
+      ],
+      "contested": false,
+      "line": "🎯 2 layers agree: RB-receiving, Backfield"
+     },
+     "profile": "Research/profiles/players/RB/bucky-irving.md"
+    },
+    {
+     "name": "Jadarian Price — buy",
+     "pos": "RB",
+     "team": "SEA",
+     "status": "Staging",
+     "find": "Buy at #81/RB28 — R1 capital + Shanahan-tree continuity (OC Fleury) + Elite-D / lead-friendly scripts + Charbonnet's ACL-PUP risk point to a lead role the rookie price doesn't reflect",
+     "act": "Needs: Resolve the 3-way camp battle (Holani/Wilson) the 6/07 diff flagged + Charbonnet return timeline; 2nd source on first-team carry share. *Surfaced by the 6/06 coaching pass; Hai's call to log 6/08*",
+     "layers": [
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 2 layers agree: Backfield, Coaching"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Ladd McConkey",
+     "pos": "WR",
+     "team": "LAC",
+     "status": "Staging",
+     "find": "Beats-ADP buy — priced off the injury-wrecked WR30 2025 while everything rebounds at once: new OC McDaniel scheme, OL health (Slater/Alt), proj 25% target share as the alpha",
+     "act": "Needs: 2nd analyst ranking him top-15 WR / camp usage; monitor the 2025 calf-biceps-foot-ankle cluster *(6/07: OL-health premise corroborated — Slater/Alt ahead of schedule, June reporting via OL layer; the ranking signal is the open half)*",
+     "layers": [
+      "OL",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "OL",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 2 layers agree: OL, Coaching"
+     },
+     "profile": "Research/profiles/players/WR/ladd-mcconkey.md"
+    },
+    {
+     "name": "Saquon Barkley",
+     "pos": "RB",
+     "team": "PHI",
+     "status": "Active",
+     "find": "Fade vs ADP — 2025 efficiency cratered (4.1 YPC from 5.8; career-low 1.6 YACo) AND A.J. Brown's box-lightening gravity left for NE → stacked boxes vs a brand-new under-center wide-zone (Mannion); market still RB6-8",
+     "act": "Don't pay the RB6-8 price; if I want PHI RB exposure it's at a discount or pass. Pairs with the CMC age/decline fade theme. *Refresh 2026-06-07: counter-evidence — OL topic layer ranks PHI #2/32 (all 5 starters back) and run-lean profiles PHI as a fortress wi…",
+     "layers": [
+      "OL",
+      "Run-lean"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "OL",
+       "Run-lean"
+      ],
+      "contested": true,
+      "line": "⚠ 2 layers contest this — OL, Run-lean disagree"
+     },
+     "profile": "Research/profiles/players/RB/saquon-barkley.md"
+    },
+    {
+     "name": "Breece Hall — receiving rebound",
+     "pos": "RB",
+     "team": "NYJ",
+     "status": "Staging",
+     "find": "Career-low 10.9% target share in 2025 = the outlier vs top-4 RB receiving in '23 AND '24; healthy, new deal, Clay flags the bounce. **CONFLICTED 2026-06-08:** the 6/06 coaching layer surfaces the OPPOSITE thesis — Reich…",
+     "act": "Needs: 2nd analyst rebound call / camp route participation — AND the camp carry split (does the rushing volume actually drop?) to settle which thesis wins",
+     "layers": [
+      "RB-receiving",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "RB-receiving",
+       "Coaching"
+      ],
+      "contested": true,
+      "line": "⚠ 2 layers contest this — RB-receiving, Coaching disagree"
+     },
+     "profile": ""
+    }
+   ],
+   "meta": {
+    "agree": 8,
+    "contested": 2
+   }
+  },
+  {
+   "id": "ol",
+   "name": "Offensive line",
+   "icon": "🧱",
+   "freshness": "anchors fetched 2026-06-07; FTN rankings are post-2026-draft (updates again \"before heavy fantasy draft season\"); PFSN OLi is final 2025-season grades (Apr 2026). Volatile fields (injury, position battles) need a refresh at camp open (~late July).",
+   "refresh": "camp open ~late July",
+   "doc": "Research/_ol-rankings-2026.md",
+   "built": "2026-06-07",
+   "lead": "The projected 1–32 board is a <b>continuity bet</b>: FTN's post-draft rank vs PFSN's 2025 grade, and the gap between them is the bet. <b>DEN #1</b> (all five back, 5 sacks on 717 pass-pro snaps). Biggest risers PHI and ATL; biggest fallers <b>BAL, CIN, MIA</b>. The fantasy use isn't the rank itself — it's where a line move quietly changes a back's or QB's floor.",
+   "lead_dated": "2026-06-08",
+   "cases": [
+    {
+     "name": "Saquon Barkley",
+     "pos": "RB",
+     "team": "PHI",
+     "status": "Active",
+     "find": "Fade vs ADP — 2025 efficiency cratered (4.1 YPC from 5.8; career-low 1.6 YACo) AND A.J. Brown's box-lightening gravity left for NE → stacked boxes vs a brand-new under-center wide-zone (Mannion); market still RB6-8",
+     "act": "Don't pay the RB6-8 price; if I want PHI RB exposure it's at a discount or pass. Pairs with the CMC age/decline fade theme. *Refresh 2026-06-07: counter-evidence — OL topic layer ranks PHI #2/32 (all 5 starters back) and run-lean profiles PHI as a fortress wi…",
+     "layers": [
+      "OL",
+      "Run-lean"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "OL",
+       "Run-lean"
+      ],
+      "contested": true,
+      "line": "⚠ 2 layers contest this — OL, Run-lean disagree"
+     },
+     "profile": "Research/profiles/players/RB/saquon-barkley.md"
+    },
+    {
+     "name": "Omarion Hampton",
+     "pos": "RB",
+     "team": "LAC",
+     "status": "Staging",
+     "find": "Top-3 RB — lead back, 69.7% opportunity share (11th) when healthy; rookie ankle injuries \"in the past\" *(orig. premise \"Harbaugh run-heavy\" stale — Roman fired, new OC McDaniel)*",
+     "act": "Needs: Re-anchor claim to the McDaniel scheme; camp carry-share confirmation; the 69.7% opp-share figure unconfirmable *(health half corroborated 2026-06-03; mixed signal — held in Staging at 2026-06-04 sweep; 6/07: health fully corroborated — chargers.com/SI…",
+     "layers": [
+      "OL",
+      "Run-lean",
+      "RB-receiving",
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 5,
+      "layers": [
+       "OL",
+       "Run-lean",
+       "RB-receiving",
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 5 layers agree: OL, Run-lean, RB-receiving, Backfield, Coaching"
+     },
+     "profile": "Research/profiles/players/RB/omarion-hampton.md"
+    },
+    {
+     "name": "Ashton Jeanty — receiving bump",
+     "pos": "RB",
+     "team": "LV",
+     "status": "Staging",
+     "find": "Kubiak's designed-RB-target precedent (Kamara led ALL RBs w/ 89 tgt under him, 2024, 60 slot snaps) lands on a back who drew 73 rookie targets — receiving bump on top of the rushing-efficiency thesis; 3rd structural LV…",
+     "act": "Needs: Camp route/slot usage reports; FP 2026 QB/positional-tendencies edition (~late July)",
+     "layers": [
+      "OL",
+      "Run-lean",
+      "RB-receiving"
+     ],
+     "converge": {
+      "n": 3,
+      "layers": [
+       "OL",
+       "Run-lean",
+       "RB-receiving"
+      ],
+      "contested": false,
+      "line": "🎯 3 layers agree: OL, Run-lean, RB-receiving"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Ladd McConkey",
+     "pos": "WR",
+     "team": "LAC",
+     "status": "Staging",
+     "find": "Beats-ADP buy — priced off the injury-wrecked WR30 2025 while everything rebounds at once: new OC McDaniel scheme, OL health (Slater/Alt), proj 25% target share as the alpha",
+     "act": "Needs: 2nd analyst ranking him top-15 WR / camp usage; monitor the 2025 calf-biceps-foot-ankle cluster *(6/07: OL-health premise corroborated — Slater/Alt ahead of schedule, June reporting via OL layer; the ranking signal is the open half)*",
+     "layers": [
+      "OL",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "OL",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 2 layers agree: OL, Coaching"
+     },
+     "profile": "Research/profiles/players/WR/ladd-mcconkey.md"
+    }
+   ],
+   "teams": [
+    {
+     "code": "DEN",
+     "line": "OL #1/32 ('25: #4)",
+     "group": "Elite (1–8)",
+     "has_edge": false,
+     "rank": 1
+    },
+    {
+     "code": "PHI",
+     "line": "OL #2/32 ('25: #14)",
+     "group": "Elite (1–8)",
+     "has_edge": true,
+     "rank": 2
+    },
+    {
+     "code": "LAR",
+     "line": "OL #3/32 ('25: #1)",
+     "group": "Elite (1–8)",
+     "has_edge": false,
+     "rank": 3
+    },
+    {
+     "code": "CHI",
+     "line": "OL #4/32 ('25: #2)",
+     "group": "Elite (1–8)",
+     "has_edge": false,
+     "rank": 4
+    },
+    {
+     "code": "IND",
+     "line": "OL #5/32 ('25: #9)",
+     "group": "Elite (1–8)",
+     "has_edge": false,
+     "rank": 5
+    },
+    {
+     "code": "SF",
+     "line": "OL #6/32 ('25: #13)",
+     "group": "Elite (1–8)",
+     "has_edge": false,
+     "rank": 6
+    },
+    {
+     "code": "ATL",
+     "line": "OL #7/32 ('25: #21)",
+     "group": "Elite (1–8)",
+     "has_edge": false,
+     "rank": 7
+    },
+    {
+     "code": "CAR",
+     "line": "OL #8/32 ('25: #8)",
+     "group": "Elite (1–8)",
+     "has_edge": false,
+     "rank": 8
+    },
+    {
+     "code": "TB",
+     "line": "OL #9/32 ('25: #26)",
+     "group": "Good (9–16)",
+     "has_edge": false,
+     "rank": 9
+    },
+    {
+     "code": "BUF",
+     "line": "OL #10/32 ('25: #5)",
+     "group": "Good (9–16)",
+     "has_edge": false,
+     "rank": 10
+    },
+    {
+     "code": "PIT",
+     "line": "OL #11/32 ('25: #3)",
+     "group": "Good (9–16)",
+     "has_edge": false,
+     "rank": 11
+    },
+    {
+     "code": "DET",
+     "line": "OL #12/32 ('25: #16)",
+     "group": "Good (9–16)",
+     "has_edge": false,
+     "rank": 12
+    },
+    {
+     "code": "NYG",
+     "line": "OL #13/32 ('25: #15)",
+     "group": "Good (9–16)",
+     "has_edge": false,
+     "rank": 13
+    },
+    {
+     "code": "NO",
+     "line": "OL #14/32 ('25: #28)",
+     "group": "Good (9–16)",
+     "has_edge": false,
+     "rank": 14
+    },
+    {
+     "code": "LAC",
+     "line": "OL #15/32 ('25: #30)",
+     "group": "Good (9–16)",
+     "has_edge": true,
+     "rank": 15
+    },
+    {
+     "code": "NYJ",
+     "line": "OL #16/32 ('25: #18)",
+     "group": "Good (9–16)",
+     "has_edge": false,
+     "rank": 16
+    },
+    {
+     "code": "SEA",
+     "line": "OL #17/32 ('25: #17)",
+     "group": "Average (17–24)",
+     "has_edge": false,
+     "rank": 17
+    },
+    {
+     "code": "NE",
+     "line": "OL #18/32 ('25: #12)",
+     "group": "Average (17–24)",
+     "has_edge": false,
+     "rank": 18
+    },
+    {
+     "code": "DAL",
+     "line": "OL #19/32 ('25: #6)",
+     "group": "Average (17–24)",
+     "has_edge": false,
+     "rank": 19
+    },
+    {
+     "code": "KC",
+     "line": "OL #20/32 ('25: #19)",
+     "group": "Average (17–24)",
+     "has_edge": false,
+     "rank": 20
+    },
+    {
+     "code": "ARI",
+     "line": "OL #21/32 ('25: #23)",
+     "group": "Average (17–24)",
+     "has_edge": false,
+     "rank": 21
+    },
+    {
+     "code": "LV",
+     "line": "OL #22/32 ('25: #31)",
+     "group": "Average (17–24)",
+     "has_edge": true,
+     "rank": 22
+    },
+    {
+     "code": "MIN",
+     "line": "OL #23/32 ('25: #29)",
+     "group": "Average (17–24)",
+     "has_edge": false,
+     "rank": 23
+    },
+    {
+     "code": "BAL",
+     "line": "OL #24/32 ('25: #11)",
+     "group": "Average (17–24)",
+     "has_edge": false,
+     "rank": 24
+    },
+    {
+     "code": "WAS",
+     "line": "OL #25/32 ('25: #20)",
+     "group": "Weak (25–32)",
+     "has_edge": false,
+     "rank": 25
+    },
+    {
+     "code": "CIN",
+     "line": "OL #26/32 ('25: #7)",
+     "group": "Weak (25–32)",
+     "has_edge": false,
+     "rank": 26
+    },
+    {
+     "code": "MIA",
+     "line": "OL #27/32 ('25: #10)",
+     "group": "Weak (25–32)",
+     "has_edge": false,
+     "rank": 27
+    },
+    {
+     "code": "GB",
+     "line": "OL #28/32 ('25: #27)",
+     "group": "Weak (25–32)",
+     "has_edge": false,
+     "rank": 28
+    },
+    {
+     "code": "JAC",
+     "line": "OL #29/32 ('25: #26)",
+     "group": "Weak (25–32)",
+     "has_edge": false,
+     "rank": 29
+    },
+    {
+     "code": "HOU",
+     "line": "OL #30/32 ('25: #24)",
+     "group": "Weak (25–32)",
+     "has_edge": false,
+     "rank": 30
+    },
+    {
+     "code": "CLE",
+     "line": "OL #31/32 ('25: #32)",
+     "group": "Weak (25–32)",
+     "has_edge": false,
+     "rank": 31
+    },
+    {
+     "code": "TEN",
+     "line": "OL #32/32 ('25: #22)",
+     "group": "Weak (25–32)",
+     "has_edge": false,
+     "rank": 32
+    }
+   ],
+   "teams_covered": 32
+  },
+  {
+   "id": "run_lean",
+   "name": "Run-lean / script",
+   "icon": "🏃",
+   "freshness": "2025 full-season splits fetched 2026-06-07; defense/OL/backfield inputs from same-day layers. MAJOR CAVEAT — 21 teams have new OCs for 2026 (ETR), so 2025 tendencies are weakened league-wide; trend arrows capture announced shifts. Refresh after preseason.",
+   "refresh": "preseason; real data Sept",
+   "doc": "Research/_run-lean-2026.md",
+   "built": "2026-06-07",
+   "lead": "\"Will they run?\" = three multiplied layers: <b>scheme intent</b> (PROE, what coaches choose), <b>script tailwind</b> (defense + OL — do they get the leads?), and <b>volume clarity</b> (who collects the carries). Read the intent-vs-result gap: BAL/SEA are run-heavy in <i>both</i> (real identity); ARI threw most but only because they trailed all year (forced). The fantasy edge is the <b>run fortress</b>: intent + tailwind + clarity all aligned.",
+   "lead_dated": "2026-06-08",
+   "cases": [
+    {
+     "name": "Tony Pollard",
+     "pos": "RB",
+     "team": "TEN",
+     "status": "Active",
+     "find": "Daboll publicly declared a two-back committee; Spears out-snapped Pollard 59%–42.6% post-IR in 2025; TEN drafted Nick Singleton in April — analysts cap him <230 carries",
+     "act": "Don't pay #89 for a committee back; Spears (#139) is the cheap side of the same backfield. *Refresh 2026-06-07: STRENGTHENED — run-lean layer ranks TEN the league's worst structural run outlook (OL #32 + bad defense = trailing scripts on top of the committee)…",
+     "layers": [
+      "Run-lean",
+      "RB-receiving",
+      "Backfield"
+     ],
+     "converge": {
+      "n": 3,
+      "layers": [
+       "Run-lean",
+       "RB-receiving",
+       "Backfield"
+      ],
+      "contested": false,
+      "line": "🎯 3 layers agree: Run-lean, RB-receiving, Backfield"
+     },
+     "profile": "Research/profiles/players/RB/tony-pollard.md"
+    },
+    {
+     "name": "Saquon Barkley",
+     "pos": "RB",
+     "team": "PHI",
+     "status": "Active",
+     "find": "Fade vs ADP — 2025 efficiency cratered (4.1 YPC from 5.8; career-low 1.6 YACo) AND A.J. Brown's box-lightening gravity left for NE → stacked boxes vs a brand-new under-center wide-zone (Mannion); market still RB6-8",
+     "act": "Don't pay the RB6-8 price; if I want PHI RB exposure it's at a discount or pass. Pairs with the CMC age/decline fade theme. *Refresh 2026-06-07: counter-evidence — OL topic layer ranks PHI #2/32 (all 5 starters back) and run-lean profiles PHI as a fortress wi…",
+     "layers": [
+      "OL",
+      "Run-lean"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "OL",
+       "Run-lean"
+      ],
+      "contested": true,
+      "line": "⚠ 2 layers contest this — OL, Run-lean disagree"
+     },
+     "profile": "Research/profiles/players/RB/saquon-barkley.md"
+    },
+    {
+     "name": "Omarion Hampton",
+     "pos": "RB",
+     "team": "LAC",
+     "status": "Staging",
+     "find": "Top-3 RB — lead back, 69.7% opportunity share (11th) when healthy; rookie ankle injuries \"in the past\" *(orig. premise \"Harbaugh run-heavy\" stale — Roman fired, new OC McDaniel)*",
+     "act": "Needs: Re-anchor claim to the McDaniel scheme; camp carry-share confirmation; the 69.7% opp-share figure unconfirmable *(health half corroborated 2026-06-03; mixed signal — held in Staging at 2026-06-04 sweep; 6/07: health fully corroborated — chargers.com/SI…",
+     "layers": [
+      "OL",
+      "Run-lean",
+      "RB-receiving",
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 5,
+      "layers": [
+       "OL",
+       "Run-lean",
+       "RB-receiving",
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 5 layers agree: OL, Run-lean, RB-receiving, Backfield, Coaching"
+     },
+     "profile": "Research/profiles/players/RB/omarion-hampton.md"
+    },
+    {
+     "name": "Denver backfield consolidation",
+     "pos": "RB",
+     "team": "DEN",
+     "status": "Staging",
+     "find": "OL #1 + elite defense + only +1.6 PROE behind a 3-way committee (Harvey/Dobbins/Coleman) — whoever consolidates inherits fortress run volume at committee prices. FORK of the RJ Harvey fade row: fade Harvey at #74 while…",
+     "act": "Needs: Camp depth chart / preseason usage showing one back consolidating; Payton backfields are unguessable — same trigger as the Harvey fade row. 6/07 RB-recv: Nix 19% RB tgt rate + Badie league-best pass-pro (80.9) + Coleman 3-down rookie — the fork now has…",
+     "layers": [
+      "Run-lean",
+      "RB-receiving",
+      "Backfield",
+      "Defense"
+     ],
+     "converge": {
+      "n": 4,
+      "layers": [
+       "Run-lean",
+       "RB-receiving",
+       "Backfield",
+       "Defense"
+      ],
+      "contested": false,
+      "line": "🎯 4 layers agree: Run-lean, RB-receiving, Backfield, Defense"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Ashton Jeanty — receiving bump",
+     "pos": "RB",
+     "team": "LV",
+     "status": "Staging",
+     "find": "Kubiak's designed-RB-target precedent (Kamara led ALL RBs w/ 89 tgt under him, 2024, 60 slot snaps) lands on a back who drew 73 rookie targets — receiving bump on top of the rushing-efficiency thesis; 3rd structural LV…",
+     "act": "Needs: Camp route/slot usage reports; FP 2026 QB/positional-tendencies edition (~late July)",
+     "layers": [
+      "OL",
+      "Run-lean",
+      "RB-receiving"
+     ],
+     "converge": {
+      "n": 3,
+      "layers": [
+       "OL",
+       "Run-lean",
+       "RB-receiving"
+      ],
+      "contested": false,
+      "line": "🎯 3 layers agree: OL, Run-lean, RB-receiving"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Jahmyr Gibbs — floor",
+     "pos": "RB",
+     "team": "DET",
+     "status": "Staging",
+     "find": "Floor buy, not ceiling — league-wide biggest coaching-usage winner: Petzing run-lean install + Montgomery gone + good-D lead scripts lock a bellcow workload; consensus #5 prices the ceiling but under-prices the FLOOR/wo…",
+     "act": "Needs: 2nd source / camp confirmation Montgomery's vacated touches route to Gibbs vs a committee add; low timing-edge (mostly floor). *Surfaced by the 6/06 coaching pass; Hai's call to log 6/08*",
+     "layers": [
+      "Run-lean",
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 3,
+      "layers": [
+       "Run-lean",
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 3 layers agree: Run-lean, Backfield, Coaching"
+     },
+     "profile": ""
+    }
+   ],
+   "teams": [
+    {
+     "code": "BAL",
+     "line": "Run fortress ('25: 54.6% run, -8.8 PROE) — holds — Henry volume bulletproof; C hole taxes efficiency not attempts",
+     "group": "Run fortress",
+     "has_edge": false
+    },
+    {
+     "code": "SEA",
+     "line": "Run fortress ('25: 51.3% run, -6.8 PROE) — holds — scripts locked, backfield owner TBD",
+     "group": "Run fortress",
+     "has_edge": false
+    },
+    {
+     "code": "ATL",
+     "line": "Run fortress ('25: 46.7% run, -6.2 PROE) — holds — Bijan = profile-perfect convergence",
+     "group": "Run fortress",
+     "has_edge": false
+    },
+    {
+     "code": "DET",
+     "line": "Run fortress ('25: 43.2% run, -4.6 PROE) — mild ↓ — new OC Petzing nudges toward balanced",
+     "group": "Run fortress",
+     "has_edge": true
+    },
+    {
+     "code": "CHI",
+     "line": "Run fortress ('25: 46.8% run, -3.9 PROE) — holds IF the C/LT holes hold (Dalman/Trapilo)",
+     "group": "Run fortress",
+     "has_edge": false
+    },
+    {
+     "code": "BUF",
+     "line": "Run fortress ('25: 52.5% run, -3.5 PROE) — holds — Cook volume, Allen GL leak",
+     "group": "Run fortress",
+     "has_edge": false
+    },
+    {
+     "code": "PHI",
+     "line": "Run fortress ('25: 49.0% run, -2.5 PROE) — → more run (outside-zone install, AJB share exported)",
+     "group": "Run fortress",
+     "has_edge": true
+    },
+    {
+     "code": "TB",
+     "line": "Balanced ('25: 45.8% run, -3.5 PROE) — run intent, committee murk (Irving health)",
+     "group": "Balanced",
+     "has_edge": false
+    },
+    {
+     "code": "MIN",
+     "line": "Balanced ('25: 45.9% run, -1.2 PROE) — Flores D keeps floor; committee murk",
+     "group": "Balanced",
+     "has_edge": false
+    },
+    {
+     "code": "DAL",
+     "line": "Balanced ('25: 42.7% run, -1.0 PROE) — play-volume monster, 62.8% raw pass",
+     "group": "Balanced",
+     "has_edge": false
+    },
+    {
+     "code": "HOU",
+     "line": "Balanced ('25: 44.9% run, -1.0 PROE) — lead machine: elite D = run-when-winning, OL #30 caps",
+     "group": "Balanced",
+     "has_edge": false
+    },
+    {
+     "code": "SF",
+     "line": "Balanced ('25: 45.6% run, -0.9 PROE) — Shanahan infra; CMC share trending down",
+     "group": "Balanced",
+     "has_edge": false
+    },
+    {
+     "code": "IND",
+     "line": "Balanced ('25: 44.7% run, -0.9 PROE) — OL #5 + JT locked 70% = run-heavy RESULT likely",
+     "group": "Balanced",
+     "has_edge": false
+    },
+    {
+     "code": "PIT",
+     "line": "Balanced ('25: 42.5% run, -0.7 PROE) — new McCarthy outside zone; Warren/Dowdle split",
+     "group": "Balanced",
+     "has_edge": false
+    },
+    {
+     "code": "DEN",
+     "line": "Balanced ('25: 42.7% run, +1.6 PROE) — PARADOX: OL #1 + elite D + nobody handed keys — cheapest structural upside if a back consolidates",
+     "group": "Balanced",
+     "has_edge": true
+    },
+    {
+     "code": "LV",
+     "line": "Pass-first ('25: 41.7% run, -1.8 PROE) — → RUN: Kubiak wide zone + Linderbaum + Jeanty — whole offseason says run",
+     "group": "Pass-first",
+     "has_edge": true
+    },
+    {
+     "code": "LAC",
+     "line": "Pass-first ('25: 45.0% run, +0.6 PROE) — → RUN: McDaniel OC + interior rebuilt for his scheme — clearest 2026 shift",
+     "group": "Pass-first",
+     "has_edge": true
+    },
+    {
+     "code": "JAC",
+     "line": "Pass-first ('25: 46.5% run, +1.6 PROE) — Coen pass-design; elite D could pull run-ward",
+     "group": "Pass-first",
+     "has_edge": false
+    },
+    {
+     "code": "CIN",
+     "line": "Pass-first ('25: 37.3% run, +1.7 PROE) — shootout factory; Brown 68% of a small pie",
+     "group": "Pass-first",
+     "has_edge": false
+    },
+    {
+     "code": "NE",
+     "line": "Pass-first ('25: 49.6% run, +2.4 PROE) — ran because 14-3; McDaniels + FB = run ↑ arrow",
+     "group": "Pass-first",
+     "has_edge": false
+    },
+    {
+     "code": "LAR",
+     "line": "Pass-first ('25: 43.7% run, +3.0 PROE) — pass intent on elite infra; Kyren/Corum split caps both",
+     "group": "Pass-first",
+     "has_edge": false
+    },
+    {
+     "code": "ARI",
+     "line": "Pass-first ('25: 36.1% run, +4.0 PROE) — 2025 polluted by trailing; Love pulls toward balance",
+     "group": "Pass-first",
+     "has_edge": false
+    },
+    {
+     "code": "KC",
+     "line": "Pass-first ('25: 42.4% run, +4.0 PROE) — mild run ↑ (Bieniemy + $43M Walker), Reid DNA holds",
+     "group": "Pass-first",
+     "has_edge": false
+    },
+    {
+     "code": "NYJ",
+     "line": "Run-fragile ('25: 48.0% run, -8.8 PROE) — wants to run (co-lowest PROE); weak DL = forced throwing in 2025",
+     "group": "Run-fragile",
+     "has_edge": false
+    },
+    {
+     "code": "CAR",
+     "line": "Run-fragile ('25: 47.2% run, -6.1 PROE) — intent real; weak secondary leaks shootouts",
+     "group": "Run-fragile",
+     "has_edge": false
+    },
+    {
+     "code": "MIA",
+     "line": "Run-fragile ('25: 47.4% run, -5.8 PROE) — → more run (Slowik) but weak D caps scripts",
+     "group": "Run-fragile",
+     "has_edge": false
+    },
+    {
+     "code": "NYG",
+     "line": "Run-fragile ('25: 49.3% run, -4.7 PROE) — Roman run DNA; weak secondary behind aggressive shell",
+     "group": "Run-fragile",
+     "has_edge": false
+    },
+    {
+     "code": "GB",
+     "line": "Run-fragile ('25: 50.2% run, -4.4 PROE) — Jacobs suspension risk + OL #28",
+     "group": "Run-fragile",
+     "has_edge": false
+    },
+    {
+     "code": "WAS",
+     "line": "Run-fragile ('25: 50.8% run, -4.3 PROE) — Daniels keepers eat RB share; weak D",
+     "group": "Run-fragile",
+     "has_edge": false
+    },
+    {
+     "code": "TEN",
+     "line": "Run-fragile ('25: 39.9% run, -3.9 PROE) — worst structural run outlook (OL #32 + bad D)",
+     "group": "Run-fragile",
+     "has_edge": true
+    },
+    {
+     "code": "CLE",
+     "line": "Run-fragile ('25: 43.0% run, -3.7 PROE) — intent there, OL #31 caps it",
+     "group": "Run-fragile",
+     "has_edge": false
+    },
+    {
+     "code": "NO",
+     "line": "Run-fragile ('25: 42.4% run, -3.0 PROE) — bottom-third roster = trailing scripts",
+     "group": "Run-fragile",
+     "has_edge": false
+    }
+   ],
+   "teams_covered": 32
+  },
+  {
+   "id": "rb_receiving",
+   "name": "RB receiving (PPR)",
+   "icon": "🎯",
+   "freshness": "fetched 2026-06-07. 2025-season stats are final; QB target-rate table is 2022–24 data (apply the rate to the QB, not his old team). Re-check triggers — Fantasy Points 2026 positional-tendencies edition (~late July), PFF \"Captain Checkdown\" 2025-season edition, camp 3rd-down role reports.",
+   "refresh": "late July (FP tendencies 2026 ed. + PFF Captain Checkdown 2025 ed.) + camp 3rd-down roles",
+   "doc": "Research/_rb-receiving-2026.md",
+   "built": "2026-06-07",
+   "lead": "<b>PPR-critical.</b> The checkdown is now <b>schemed, not a bailout</b> — two-high shells on passing downs jumped 44% (2019) → 63% (2024), and RBs took 60%+ of every checkdown category PFF charted. A target ≈ <b>2.5× a carry</b> in PPR expected-points. This is the tiebreaker that splits weekly starters from matchup plays in the committee-soup RB middle. Follow the QB's tendency, not the team.",
+   "lead_dated": "2026-06-08",
+   "cases": [
+    {
+     "name": "Tony Pollard",
+     "pos": "RB",
+     "team": "TEN",
+     "status": "Active",
+     "find": "Daboll publicly declared a two-back committee; Spears out-snapped Pollard 59%–42.6% post-IR in 2025; TEN drafted Nick Singleton in April — analysts cap him <230 carries",
+     "act": "Don't pay #89 for a committee back; Spears (#139) is the cheap side of the same backfield. *Refresh 2026-06-07: STRENGTHENED — run-lean layer ranks TEN the league's worst structural run outlook (OL #32 + bad defense = trailing scripts on top of the committee)…",
+     "layers": [
+      "Run-lean",
+      "RB-receiving",
+      "Backfield"
+     ],
+     "converge": {
+      "n": 3,
+      "layers": [
+       "Run-lean",
+       "RB-receiving",
+       "Backfield"
+      ],
+      "contested": false,
+      "line": "🎯 3 layers agree: Run-lean, RB-receiving, Backfield"
+     },
+     "profile": "Research/profiles/players/RB/tony-pollard.md"
+    },
+    {
+     "name": "Bucky Irving",
+     "pos": "RB",
+     "team": "TB",
+     "status": "Active",
+     "find": "Risk at cost — offseason shoulder surgery (NOT expected at June minicamp; camp return likely) + 3-way backfield (Gainwell pass downs 2yr/$14M, Sean Tucker GL off 8 TDs)",
+     "act": "Don't pay #54 — demand ~a round of discount or pass. Re-check camp return + first-team split. *Refresh 2026-06-04: holds — out for 6/16-18 minicamp as predicted; Schefter says camp-ready, Bowles hedges \"summer or fall\"; Gainwell/Tucker still taking first-team…",
+     "layers": [
+      "RB-receiving",
+      "Backfield"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "RB-receiving",
+       "Backfield"
+      ],
+      "contested": false,
+      "line": "🎯 2 layers agree: RB-receiving, Backfield"
+     },
+     "profile": "Research/profiles/players/RB/bucky-irving.md"
+    },
+    {
+     "name": "Omarion Hampton",
+     "pos": "RB",
+     "team": "LAC",
+     "status": "Staging",
+     "find": "Top-3 RB — lead back, 69.7% opportunity share (11th) when healthy; rookie ankle injuries \"in the past\" *(orig. premise \"Harbaugh run-heavy\" stale — Roman fired, new OC McDaniel)*",
+     "act": "Needs: Re-anchor claim to the McDaniel scheme; camp carry-share confirmation; the 69.7% opp-share figure unconfirmable *(health half corroborated 2026-06-03; mixed signal — held in Staging at 2026-06-04 sweep; 6/07: health fully corroborated — chargers.com/SI…",
+     "layers": [
+      "OL",
+      "Run-lean",
+      "RB-receiving",
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 5,
+      "layers": [
+       "OL",
+       "Run-lean",
+       "RB-receiving",
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 5 layers agree: OL, Run-lean, RB-receiving, Backfield, Coaching"
+     },
+     "profile": "Research/profiles/players/RB/omarion-hampton.md"
+    },
+    {
+     "name": "Denver backfield consolidation",
+     "pos": "RB",
+     "team": "DEN",
+     "status": "Staging",
+     "find": "OL #1 + elite defense + only +1.6 PROE behind a 3-way committee (Harvey/Dobbins/Coleman) — whoever consolidates inherits fortress run volume at committee prices. FORK of the RJ Harvey fade row: fade Harvey at #74 while…",
+     "act": "Needs: Camp depth chart / preseason usage showing one back consolidating; Payton backfields are unguessable — same trigger as the Harvey fade row. 6/07 RB-recv: Nix 19% RB tgt rate + Badie league-best pass-pro (80.9) + Coleman 3-down rookie — the fork now has…",
+     "layers": [
+      "Run-lean",
+      "RB-receiving",
+      "Backfield",
+      "Defense"
+     ],
+     "converge": {
+      "n": 4,
+      "layers": [
+       "Run-lean",
+       "RB-receiving",
+       "Backfield",
+       "Defense"
+      ],
+      "contested": false,
+      "line": "🎯 4 layers agree: Run-lean, RB-receiving, Backfield, Defense"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Ashton Jeanty — receiving bump",
+     "pos": "RB",
+     "team": "LV",
+     "status": "Staging",
+     "find": "Kubiak's designed-RB-target precedent (Kamara led ALL RBs w/ 89 tgt under him, 2024, 60 slot snaps) lands on a back who drew 73 rookie targets — receiving bump on top of the rushing-efficiency thesis; 3rd structural LV…",
+     "act": "Needs: Camp route/slot usage reports; FP 2026 QB/positional-tendencies edition (~late July)",
+     "layers": [
+      "OL",
+      "Run-lean",
+      "RB-receiving"
+     ],
+     "converge": {
+      "n": 3,
+      "layers": [
+       "OL",
+       "Run-lean",
+       "RB-receiving"
+      ],
+      "contested": false,
+      "line": "🎯 3 layers agree: OL, Run-lean, RB-receiving"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Breece Hall — receiving rebound",
+     "pos": "RB",
+     "team": "NYJ",
+     "status": "Staging",
+     "find": "Career-low 10.9% target share in 2025 = the outlier vs top-4 RB receiving in '23 AND '24; healthy, new deal, Clay flags the bounce. **CONFLICTED 2026-06-08:** the 6/06 coaching layer surfaces the OPPOSITE thesis — Reich…",
+     "act": "Needs: 2nd analyst rebound call / camp route participation — AND the camp carry split (does the rushing volume actually drop?) to settle which thesis wins",
+     "layers": [
+      "RB-receiving",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "RB-receiving",
+       "Coaching"
+      ],
+      "contested": true,
+      "line": "⚠ 2 layers contest this — RB-receiving, Coaching disagree"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Cam Skattebo",
+     "pos": "RB",
+     "team": "NYG",
+     "status": "Staging",
+     "find": "3rd-down role less safe than priced — 4.0 tgt/gm (CMC/Bijan per-game tier) BUT 11.6 PFF pass-block, DEAD LAST of 67 qualifiers, + Nagy's RB-target-negative history; Tracy (47 tgt) lurks for passing downs",
+     "act": "Needs: Camp passing-down/2-min reps; any pass-pro improvement reporting; ankle health (existing flag)",
+     "layers": [
+      "RB-receiving"
+     ],
+     "converge": null,
+     "profile": "Research/profiles/players/RB/cam-skattebo.md"
+    },
+    {
+     "name": "Jaylen Warren — stealth PPR floor",
+     "pos": "RB",
+     "team": "PIT",
+     "status": "Staging",
+     "find": "Rodgers' fastest-TTT (2.59s) + bottom-4 aDOT profile overrides McCarthy's no-RB-routes scheme history — Warren's 89% catch rate + #2 pass-block grade (72.0) keeps him on every passing down",
+     "act": "Needs: 2nd analyst PPR call / camp passing-down role confirmation vs Dowdle",
+     "layers": [
+      "RB-receiving"
+     ],
+     "converge": null,
+     "profile": ""
+    },
+    {
+     "name": "Jonathan Taylor — PPR ceiling",
+     "pos": "RB",
+     "team": "IND",
+     "status": "Staging",
+     "find": "His receiving role is a QB derivative: 1.3 tgt/gm with Richardson vs 3.6 without (career-high routes/targets in 2025 w/ Jones) — the IND QB battle IS Taylor's PPR ceiling",
+     "act": "Needs: IND QB1 resolution at camp (Jones vs Richardson first-team reps)",
+     "layers": [
+      "RB-receiving"
+     ],
+     "converge": null,
+     "profile": ""
+    }
+   ],
+   "teams": [
+    {
+     "code": "ATL",
+     "line": "elite — Bijan Robinson · 103 tgt; top-5 routes/tgt/rec all 3 pro seasons",
+     "group": "Elite",
+     "has_edge": false
+    },
+    {
+     "code": "DET",
+     "line": "elite — Jahmyr Gibbs · 94 tgt, 90.3 PFF recv; Montgomery routes stay in-house, Petzing PA-heavy",
+     "group": "Elite",
+     "has_edge": false
+    },
+    {
+     "code": "SF",
+     "line": "elite — CMC · 129 tgt/22.5% share, led RBs in every receiving category + 91.7 PFF recv; age-30 share watch",
+     "group": "Elite",
+     "has_edge": false
+    },
+    {
+     "code": "MIA",
+     "line": "elite — De'Von Achane · 85 tgt, top-5 two straight yrs; risk = Willis low-volume passing",
+     "group": "Elite",
+     "has_edge": false
+    },
+    {
+     "code": "CIN",
+     "line": "strong — Chase Brown · 88 tgt, 5th in rec two straight yrs; Perine trims pass downs",
+     "group": "Strong",
+     "has_edge": false
+    },
+    {
+     "code": "PHI",
+     "line": "strong ↑ — Saquon Barkley · 50 tgt → ~60 proj under Mannion McVay-tree install",
+     "group": "Strong",
+     "has_edge": false
+    },
+    {
+     "code": "LV",
+     "line": "strong ↑ — Ashton Jeanty · 73 rookie tgt + Kubiak = Kamara-89-tgt designer; receiving bump candidate",
+     "group": "Strong",
+     "has_edge": true
+    },
+    {
+     "code": "CHI",
+     "line": "design-positive split — D'Andre Swift · 48 tgt + Ben Johnson designed-target blueprint; Monangai runs no routes",
+     "group": "Mixed / situational",
+     "has_edge": false
+    },
+    {
+     "code": "NO",
+     "line": "moderate — Travis Etienne · 52 tgt; Kamara 3.5/gm in 11 gms if he stays — Kubiak-era usage memory",
+     "group": "Mixed / situational",
+     "has_edge": false
+    },
+    {
+     "code": "NYG",
+     "line": "paradox — Cam Skattebo · 4.0 tgt/gm (CMC-tier) BUT 11.6 pass-block dead-last + Nagy negative; Tracy 47 tgt insurance",
+     "group": "Mixed / situational",
+     "has_edge": true
+    },
+    {
+     "code": "GB",
+     "line": "quality-over-volume — Josh Jacobs · 89.5 PFF recv (career-high, real conversion) on modest 44 tgt; suspension risk rides all of it",
+     "group": "Mixed / situational",
+     "has_edge": false
+    },
+    {
+     "code": "NYJ",
+     "line": "rebound watch — Breece Hall · career-low 10% share 2025 vs top-4 RB receiver 23-24; Clay flags bounce",
+     "group": "Mixed / situational",
+     "has_edge": true
+    },
+    {
+     "code": "ARI",
+     "line": "rookie watch — Jeremiyah Love · WR-quality route tree per scouting; 22.2% college tgt rate (snippet — verify)",
+     "group": "Mixed / situational",
+     "has_edge": false
+    },
+    {
+     "code": "LAC",
+     "line": "scheme-pull/blocking-risk — Omarion Hampton · 3.9 tgt/gm + 91% catch; McDaniel wants him in routes BUT 16.3 pass-block = 2nd-worst",
+     "group": "Mixed / situational",
+     "has_edge": true
+    },
+    {
+     "code": "MIN",
+     "line": "specialist-driven — Aaron Jones · trusted vet pass-downs; Mason early downs only",
+     "group": "Mixed / situational",
+     "has_edge": false
+    },
+    {
+     "code": "WAS",
+     "line": "specialist-driven — Rachaad White · 89.1% career catch rate = best in NFL history (100+ tgt); JCM no pass downs",
+     "group": "Mixed / situational",
+     "has_edge": false
+    },
+    {
+     "code": "TEN",
+     "line": "specialist-driven — Tyjae Spears · 3.8 tgt/gm, 90% catch; Pollard fades to 2.5/gm when Spears healthy",
+     "group": "Mixed / situational",
+     "has_edge": true
+    },
+    {
+     "code": "JAC",
+     "line": "specialist-driven — LeQuint Allen · designated passing-down back; Tuten partial",
+     "group": "Mixed / situational",
+     "has_edge": false
+    },
+    {
+     "code": "CLE",
+     "line": "specialist-driven — Dylan Sampson · pass-down lead; Judkins just 2.6 tgt/gm",
+     "group": "Mixed / situational",
+     "has_edge": false
+    },
+    {
+     "code": "TB",
+     "line": "specialist-driven — Kenneth Gainwell · 85 tgt (RB6) signed for the role; Irving primary if shoulder/role holds",
+     "group": "Mixed / situational",
+     "has_edge": true
+    },
+    {
+     "code": "CAR",
+     "line": "split — Chuba Hubbard · primary pass-down back; Brooks the health wildcard",
+     "group": "Mixed / situational",
+     "has_edge": false
+    },
+    {
+     "code": "NE",
+     "line": "split tension — Henderson vs Stevenson · Henderson 83% catch upside vs Stevenson 9.1 Y/T + 69.9 pass-pro incumbency",
+     "group": "Mixed / situational",
+     "has_edge": false
+    },
+    {
+     "code": "DEN",
+     "line": "target-rich split — Harvey/Coleman/Badie · Nix 19% RB rate; Harvey 58 tgt, Coleman 3-down rookie, Badie best pass-pro (80.9)",
+     "group": "Mixed / situational",
+     "has_edge": true
+    },
+    {
+     "code": "SEA",
+     "line": "unknown — Jadarian Price · rookie receiving profile UNVERIFIED (gap); Charbonnet career-low 24 tgt; Fleury Shanahan-tree continuity",
+     "group": "Mixed / situational",
+     "has_edge": false
+    },
+    {
+     "code": "DAL",
+     "line": "volume w/o juice — Javonte Williams · 51 tgt but 2.7 Y/T — LAST among qualified RBs",
+     "group": "Mixed / situational",
+     "has_edge": false
+    },
+    {
+     "code": "IND",
+     "line": "QB-dependent — Jonathan Taylor · top-10 routes/tgt 2025 BUT 1.3 tgt/gm w/ Richardson vs 3.6 without — QB battle = PPR ceiling",
+     "group": "Low / capped",
+     "has_edge": true
+    },
+    {
+     "code": "LAR",
+     "line": "low — Kyren Williams · Stafford 11% RB rate starves the backfield despite McVay design; Kyren never >36 catches",
+     "group": "Low / capped",
+     "has_edge": false
+    },
+    {
+     "code": "BUF",
+     "line": "low — James Cook · 40 tgt (26th) = his ceiling-limiter; \"unleash\" lever unproven",
+     "group": "Low / capped",
+     "has_edge": false
+    },
+    {
+     "code": "HOU",
+     "line": "low + exception watch — Woody Marks · offense historically ignores RB receiving; Marks (24-208-3 rookie) the 3rd-down exception",
+     "group": "Low / capped",
+     "has_edge": false
+    },
+    {
+     "code": "KC",
+     "line": "low + wrinkles — Kenneth Walker · 36 tgt; Mahomes aDOT >8.0 again; satellite B. Smith; Fields-early = temporary RB-tgt spike (19.2%)",
+     "group": "Low / capped",
+     "has_edge": false
+    },
+    {
+     "code": "BAL",
+     "line": "near-zero — Justice Hill · Henry 21 tgt/outside top-45; Lamar 14% + Rush 12% — don't chase BAL RB receiving",
+     "group": "Low / capped",
+     "has_edge": false
+    },
+    {
+     "code": "PIT",
+     "line": "scheme-low/QB-high — Jaylen Warren · McCarthy doesn't design RB routes BUT Rodgers = fastest TTT (2.59s) + bottom-4 aDOT; Warren 89% catch + #2 pass-block = stealth PPR floor",
+     "group": "Low / capped",
+     "has_edge": true
+    }
+   ],
+   "teams_covered": 32
+  },
+  {
+   "id": "backfield_class",
+   "name": "Backfield — bell cow vs committee",
+   "icon": "🐎",
+   "freshness": "per-team carry shares are the profiles' who-eats layer (mostly 2026-06-03, diff-updated through 6/07); league-trend sources fetched 2026-06-07. Camp battles volatile — refresh classifications at camp (~late July) and final cutdowns.",
+   "refresh": "camp battles",
+   "doc": "Research/_backfield-usage-2026.md",
+   "built": "2026-06-07",
+   "lead": "True bell cows are structurally scarcer than the 16-game era <b>but the decline has stopped</b> (~4.8/yr since 2021, stabilizing). Volume still concentrates at the very top — four backs topped 300 carries in 2025. The market consequence: <b>the RB25–36 tier is committee soup</b>, so clear workloads are concentrated in the first ~2 rounds and evaporate fast. Pay up for clarity or punt to the receiving backs.",
+   "lead_dated": "2026-06-08",
+   "cases": [
+    {
+     "name": "Tony Pollard",
+     "pos": "RB",
+     "team": "TEN",
+     "status": "Active",
+     "find": "Daboll publicly declared a two-back committee; Spears out-snapped Pollard 59%–42.6% post-IR in 2025; TEN drafted Nick Singleton in April — analysts cap him <230 carries",
+     "act": "Don't pay #89 for a committee back; Spears (#139) is the cheap side of the same backfield. *Refresh 2026-06-07: STRENGTHENED — run-lean layer ranks TEN the league's worst structural run outlook (OL #32 + bad defense = trailing scripts on top of the committee)…",
+     "layers": [
+      "Run-lean",
+      "RB-receiving",
+      "Backfield"
+     ],
+     "converge": {
+      "n": 3,
+      "layers": [
+       "Run-lean",
+       "RB-receiving",
+       "Backfield"
+      ],
+      "contested": false,
+      "line": "🎯 3 layers agree: Run-lean, RB-receiving, Backfield"
+     },
+     "profile": "Research/profiles/players/RB/tony-pollard.md"
+    },
+    {
+     "name": "Bucky Irving",
+     "pos": "RB",
+     "team": "TB",
+     "status": "Active",
+     "find": "Risk at cost — offseason shoulder surgery (NOT expected at June minicamp; camp return likely) + 3-way backfield (Gainwell pass downs 2yr/$14M, Sean Tucker GL off 8 TDs)",
+     "act": "Don't pay #54 — demand ~a round of discount or pass. Re-check camp return + first-team split. *Refresh 2026-06-04: holds — out for 6/16-18 minicamp as predicted; Schefter says camp-ready, Bowles hedges \"summer or fall\"; Gainwell/Tucker still taking first-team…",
+     "layers": [
+      "RB-receiving",
+      "Backfield"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "RB-receiving",
+       "Backfield"
+      ],
+      "contested": false,
+      "line": "🎯 2 layers agree: RB-receiving, Backfield"
+     },
+     "profile": "Research/profiles/players/RB/bucky-irving.md"
+    },
+    {
+     "name": "Omarion Hampton",
+     "pos": "RB",
+     "team": "LAC",
+     "status": "Staging",
+     "find": "Top-3 RB — lead back, 69.7% opportunity share (11th) when healthy; rookie ankle injuries \"in the past\" *(orig. premise \"Harbaugh run-heavy\" stale — Roman fired, new OC McDaniel)*",
+     "act": "Needs: Re-anchor claim to the McDaniel scheme; camp carry-share confirmation; the 69.7% opp-share figure unconfirmable *(health half corroborated 2026-06-03; mixed signal — held in Staging at 2026-06-04 sweep; 6/07: health fully corroborated — chargers.com/SI…",
+     "layers": [
+      "OL",
+      "Run-lean",
+      "RB-receiving",
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 5,
+      "layers": [
+       "OL",
+       "Run-lean",
+       "RB-receiving",
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 5 layers agree: OL, Run-lean, RB-receiving, Backfield, Coaching"
+     },
+     "profile": "Research/profiles/players/RB/omarion-hampton.md"
+    },
+    {
+     "name": "Denver backfield consolidation",
+     "pos": "RB",
+     "team": "DEN",
+     "status": "Staging",
+     "find": "OL #1 + elite defense + only +1.6 PROE behind a 3-way committee (Harvey/Dobbins/Coleman) — whoever consolidates inherits fortress run volume at committee prices. FORK of the RJ Harvey fade row: fade Harvey at #74 while…",
+     "act": "Needs: Camp depth chart / preseason usage showing one back consolidating; Payton backfields are unguessable — same trigger as the Harvey fade row. 6/07 RB-recv: Nix 19% RB tgt rate + Badie league-best pass-pro (80.9) + Coleman 3-down rookie — the fork now has…",
+     "layers": [
+      "Run-lean",
+      "RB-receiving",
+      "Backfield",
+      "Defense"
+     ],
+     "converge": {
+      "n": 4,
+      "layers": [
+       "Run-lean",
+       "RB-receiving",
+       "Backfield",
+       "Defense"
+      ],
+      "contested": false,
+      "line": "🎯 4 layers agree: Run-lean, RB-receiving, Backfield, Defense"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Jahmyr Gibbs — floor",
+     "pos": "RB",
+     "team": "DET",
+     "status": "Staging",
+     "find": "Floor buy, not ceiling — league-wide biggest coaching-usage winner: Petzing run-lean install + Montgomery gone + good-D lead scripts lock a bellcow workload; consensus #5 prices the ceiling but under-prices the FLOOR/wo…",
+     "act": "Needs: 2nd source / camp confirmation Montgomery's vacated touches route to Gibbs vs a committee add; low timing-edge (mostly floor). *Surfaced by the 6/06 coaching pass; Hai's call to log 6/08*",
+     "layers": [
+      "Run-lean",
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 3,
+      "layers": [
+       "Run-lean",
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 3 layers agree: Run-lean, Backfield, Coaching"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Jadarian Price — buy",
+     "pos": "RB",
+     "team": "SEA",
+     "status": "Staging",
+     "find": "Buy at #81/RB28 — R1 capital + Shanahan-tree continuity (OC Fleury) + Elite-D / lead-friendly scripts + Charbonnet's ACL-PUP risk point to a lead role the rookie price doesn't reflect",
+     "act": "Needs: Resolve the 3-way camp battle (Holani/Wilson) the 6/07 diff flagged + Charbonnet return timeline; 2nd source on first-team carry share. *Surfaced by the 6/06 coaching pass; Hai's call to log 6/08*",
+     "layers": [
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 2 layers agree: Backfield, Coaching"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Travis Etienne Jr.",
+     "pos": "RB",
+     "team": "NO",
+     "status": "Staging",
+     "find": "Committee-risk — Kamara surprised by reporting to 6/3 OTAs; reworked deal blocks a post-June-1 cut and his agent says he plays for NO in 2026; the 4yr/$52M \"lead\" at #46 / RB16 is less locked than priced",
+     "act": "Needs: Camp first-team split / a Kamara trade-or-role resolution; Kendre Miller also in the room",
+     "layers": [
+      "Backfield"
+     ],
+     "converge": null,
+     "profile": "Research/profiles/players/RB/travis-etienne-jr.md"
+    }
+   ],
+   "teams": [
+    {
+     "code": "CIN",
+     "line": "Bell-cow — Chase Brown",
+     "group": "Bell-cow",
+     "has_edge": false
+    },
+    {
+     "code": "ATL",
+     "line": "Bell-cow — Bijan Robinson",
+     "group": "Bell-cow",
+     "has_edge": false
+    },
+    {
+     "code": "PHI",
+     "line": "Bell-cow — Saquon Barkley",
+     "group": "Bell-cow",
+     "has_edge": false
+    },
+    {
+     "code": "DAL",
+     "line": "Bell-cow — Javonte Williams",
+     "group": "Bell-cow",
+     "has_edge": false
+    },
+    {
+     "code": "DET",
+     "line": "Bell-cow — Jahmyr Gibbs",
+     "group": "Bell-cow",
+     "has_edge": true
+    },
+    {
+     "code": "SF",
+     "line": "Bell-cow — CMC",
+     "group": "Bell-cow",
+     "has_edge": false
+    },
+    {
+     "code": "LV",
+     "line": "Bell-cow — Ashton Jeanty",
+     "group": "Bell-cow",
+     "has_edge": false
+    },
+    {
+     "code": "BAL",
+     "line": "Bell-cow — Justice Hill",
+     "group": "Bell-cow",
+     "has_edge": false
+    },
+    {
+     "code": "NYJ",
+     "line": "Bell-cow — Breece Hall",
+     "group": "Bell-cow",
+     "has_edge": false
+    },
+    {
+     "code": "BUF",
+     "line": "Bell-cow — James Cook",
+     "group": "Bell-cow",
+     "has_edge": false
+    },
+    {
+     "code": "KC",
+     "line": "Bell-cow — Kenneth Walker",
+     "group": "Bell-cow",
+     "has_edge": false
+    },
+    {
+     "code": "IND",
+     "line": "Bell-cow — Jonathan Taylor",
+     "group": "Bell-cow",
+     "has_edge": false
+    },
+    {
+     "code": "CLE",
+     "line": "Bell-cow — Dylan Sampson",
+     "group": "Bell-cow",
+     "has_edge": false
+    },
+    {
+     "code": "LAC",
+     "line": "Bell-cow — Omarion Hampton",
+     "group": "Bell-cow",
+     "has_edge": true
+    },
+    {
+     "code": "LAR",
+     "line": "Lead-committee — Kyren Williams",
+     "group": "Lead-committee",
+     "has_edge": false
+    },
+    {
+     "code": "MIA",
+     "line": "Lead-committee — De'Von Achane",
+     "group": "Lead-committee",
+     "has_edge": false
+    },
+    {
+     "code": "ARI",
+     "line": "Lead-committee — Jeremiyah Love",
+     "group": "Lead-committee",
+     "has_edge": false
+    },
+    {
+     "code": "GB",
+     "line": "Lead-committee — Josh Jacobs",
+     "group": "Lead-committee",
+     "has_edge": false
+    },
+    {
+     "code": "HOU",
+     "line": "Lead-committee — Woody Marks",
+     "group": "Lead-committee",
+     "has_edge": false
+    },
+    {
+     "code": "TEN",
+     "line": "Lead-committee — Tyjae Spears",
+     "group": "Lead-committee",
+     "has_edge": true
+    },
+    {
+     "code": "NE",
+     "line": "Lead-committee — Henderson vs Stevenson",
+     "group": "Lead-committee",
+     "has_edge": false
+    },
+    {
+     "code": "CHI",
+     "line": "Lead-committee — D'Andre Swift",
+     "group": "Lead-committee",
+     "has_edge": false
+    },
+    {
+     "code": "NO",
+     "line": "Lead-committee — Travis Etienne",
+     "group": "Lead-committee",
+     "has_edge": true
+    },
+    {
+     "code": "MIN",
+     "line": "Committee — Aaron Jones",
+     "group": "Committee",
+     "has_edge": false
+    },
+    {
+     "code": "NYG",
+     "line": "Committee — Cam Skattebo",
+     "group": "Committee",
+     "has_edge": false
+    },
+    {
+     "code": "WAS",
+     "line": "Committee — Rachaad White",
+     "group": "Committee",
+     "has_edge": false
+    },
+    {
+     "code": "DEN",
+     "line": "Committee — Harvey/Coleman/Badie",
+     "group": "Committee",
+     "has_edge": true
+    },
+    {
+     "code": "PIT",
+     "line": "Committee — Jaylen Warren",
+     "group": "Committee",
+     "has_edge": false
+    },
+    {
+     "code": "JAC",
+     "line": "Committee — LeQuint Allen",
+     "group": "Committee",
+     "has_edge": false
+    },
+    {
+     "code": "CAR",
+     "line": "Committee — Chuba Hubbard",
+     "group": "Committee",
+     "has_edge": false
+    },
+    {
+     "code": "TB",
+     "line": "Committee — Kenneth Gainwell",
+     "group": "Committee",
+     "has_edge": true
+    },
+    {
+     "code": "SEA",
+     "line": "Committee — Jadarian Price",
+     "group": "Committee",
+     "has_edge": true
+    }
+   ],
+   "teams_covered": 32
+  },
+  {
+   "id": "defense_units",
+   "name": "Defense units",
+   "icon": "🛡️",
+   "freshness": "anchors fetched 2026-06-07. KNOWN GAP — no true 1–32 secondary ranking exists yet for 2026 (Sharp/PFF publish ~late July); secondary tiers below are a synthesis and marked accordingly. B/R's 1–32 overall ranking PRE-dates the 6/1 Garrett trade (adjusted inline).",
+   "refresh": "Sharp/PFF secondary 1-32 ~late July",
+   "doc": "Research/_defense-units-2026.md",
+   "built": "2026-06-07",
+   "lead": "Posture is the lens: <b>Aggressive</b> (blitz DNA, boom-bust), <b>Disguise</b> (sim-pressure, Fangio/Macdonald tree), <b>Solid</b> (rush-four, keep it in front). The two biggest YoY swings are both in the secondary — <b>LAR 26th → top-5</b> (McDuffie+Watson heist from KC) and <b>KC gutted</b> (both starting CBs gone). Defense feeds fantasy two ways: D/ST streaming and the script tailwind that decides whether an offense gets to run.",
+   "lead_dated": "2026-06-08",
+   "cases": [
+    {
+     "name": "Denver backfield consolidation",
+     "pos": "RB",
+     "team": "DEN",
+     "status": "Staging",
+     "find": "OL #1 + elite defense + only +1.6 PROE behind a 3-way committee (Harvey/Dobbins/Coleman) — whoever consolidates inherits fortress run volume at committee prices. FORK of the RJ Harvey fade row: fade Harvey at #74 while…",
+     "act": "Needs: Camp depth chart / preseason usage showing one back consolidating; Payton backfields are unguessable — same trigger as the Harvey fade row. 6/07 RB-recv: Nix 19% RB tgt rate + Badie league-best pass-pro (80.9) + Coleman 3-down rookie — the fork now has…",
+     "layers": [
+      "Run-lean",
+      "RB-receiving",
+      "Backfield",
+      "Defense"
+     ],
+     "converge": {
+      "n": 4,
+      "layers": [
+       "Run-lean",
+       "RB-receiving",
+       "Backfield",
+       "Defense"
+      ],
+      "contested": false,
+      "line": "🎯 4 layers agree: Run-lean, RB-receiving, Backfield, Defense"
+     },
+     "profile": ""
+    }
+   ],
+   "teams": [
+    {
+     "code": "PHI",
+     "line": "Elite · disguise · DL elite/Sec elite · DST draftable",
+     "group": "Elite",
+     "has_edge": false
+    },
+    {
+     "code": "LAR",
+     "line": "Elite · disguise · DL elite/Sec elite · DST draftable",
+     "group": "Elite",
+     "has_edge": false
+    },
+    {
+     "code": "DEN",
+     "line": "Elite · aggressive · DL elite/Sec elite · DST draftable",
+     "group": "Elite",
+     "has_edge": true
+    },
+    {
+     "code": "HOU",
+     "line": "Elite · solid · DL elite/Sec elite · DST draftable",
+     "group": "Elite",
+     "has_edge": false
+    },
+    {
+     "code": "SEA",
+     "line": "Elite · disguise · DL elite/Sec elite · DST draftable",
+     "group": "Elite",
+     "has_edge": false
+    },
+    {
+     "code": "JAC",
+     "line": "Elite · aggressive · DL good/Sec avg · DST draftable",
+     "group": "Elite",
+     "has_edge": false
+    },
+    {
+     "code": "ATL",
+     "line": "Good · aggressive · DL avg/Sec avg · DST draftable",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "DET",
+     "line": "Good · aggressive · DL avg/Sec good · DST streamer",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "IND",
+     "line": "Good · disguise · DL avg/Sec avg · DST streamer",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "CHI",
+     "line": "Good · aggressive · DL avg/Sec avg · DST streamer",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "NE",
+     "line": "Good · aggressive · DL elite/Sec good · DST draftable",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "MIN",
+     "line": "Good · aggressive · DL good/Sec good · DST draftable",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "SF",
+     "line": "Good · aggressive · DL good/Sec avg · DST streamer",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "BAL",
+     "line": "Good · aggressive · DL good/Sec good · DST draftable",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "NYG",
+     "line": "Good · aggressive · DL good/Sec weak · DST streamer",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "BUF",
+     "line": "Good · disguise · DL good/Sec avg · DST draftable",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "PIT",
+     "line": "Good · disguise · DL good/Sec avg · DST streamer",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "CAR",
+     "line": "Good · solid · DL good/Sec weak · DST streamer",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "LAC",
+     "line": "Good · disguise · DL good/Sec good · DST draftable",
+     "group": "Good",
+     "has_edge": false
+    },
+    {
+     "code": "DAL",
+     "line": "Average · disguise · DL avg/Sec avg · DST avoid",
+     "group": "Average",
+     "has_edge": false
+    },
+    {
+     "code": "KC",
+     "line": "Average · aggressive · DL avg/Sec weak · DST streamer",
+     "group": "Average",
+     "has_edge": false
+    },
+    {
+     "code": "GB",
+     "line": "Average · solid · DL avg/Sec good · DST streamer",
+     "group": "Average",
+     "has_edge": false
+    },
+    {
+     "code": "TB",
+     "line": "Average · aggressive · DL avg/Sec avg · DST streamer",
+     "group": "Average",
+     "has_edge": false
+    },
+    {
+     "code": "CLE",
+     "line": "Average · solid · DL good/Sec good · DST streamer",
+     "group": "Average",
+     "has_edge": false
+    },
+    {
+     "code": "NYJ",
+     "line": "Average · aggressive · DL weak/Sec avg · DST avoid",
+     "group": "Average",
+     "has_edge": false
+    },
+    {
+     "code": "MIA",
+     "line": "Average · solid · DL weak/Sec weak · DST streamer",
+     "group": "Average",
+     "has_edge": false
+    },
+    {
+     "code": "WAS",
+     "line": "Average · aggressive · DL weak/Sec weak · DST streamer",
+     "group": "Average",
+     "has_edge": false
+    },
+    {
+     "code": "LV",
+     "line": "Bad · disguise · DL avg/Sec weak · DST avoid",
+     "group": "Bad",
+     "has_edge": false
+    },
+    {
+     "code": "NO",
+     "line": "Bad · solid · DL avg/Sec weak · DST avoid",
+     "group": "Bad",
+     "has_edge": false
+    },
+    {
+     "code": "CIN",
+     "line": "Bad · disguise · DL weak/Sec weak · DST avoid",
+     "group": "Bad",
+     "has_edge": false
+    },
+    {
+     "code": "ARI",
+     "line": "Bad · aggressive · DL weak/Sec avg · DST avoid",
+     "group": "Bad",
+     "has_edge": false
+    },
+    {
+     "code": "TEN",
+     "line": "Bad · solid · DL weak/Sec weak · DST avoid",
+     "group": "Bad",
+     "has_edge": false
+    }
+   ],
+   "teams_covered": 32
+  },
+  {
+   "id": "coaching",
+   "name": "Coaching changes",
+   "icon": "🧠",
+   "freshness": "",
+   "refresh": "",
+   "doc": "Research/_coaching-changes-2026.md",
+   "built": "",
+   "lead": "Coaching turnover is where ADP is most likely wrong — the field prices last year's scheme, so the more a staff changed, the more its usage sits mis-priced. <b>Full resets</b> are the edge: NYG (Harbaugh), MIA (Hafley), and ATL (Stefanski) all install run-first, compressing the pass game (Nabers, London/Pitts ceilings down) while feeding the lead back (Skattebo, Achane, Bijan). The sharper tell is a new-OC install that <i>corroborates</i> a live board edge — Reich's pass-volume jump in NYJ behind <b>Garrett Wilson</b>, Petzing's run-lean making <b>Gibbs</b> the biggest usage winner in football, Zac Robinson's McVay tree lifting <b>Egbuka</b> — the calls with both the scheme logic and the edge board behind them.",
+   "lead_dated": "2026-06-12",
+   "cases": [
+    {
+     "name": "Omarion Hampton",
+     "pos": "RB",
+     "team": "LAC",
+     "status": "Staging",
+     "find": "Top-3 RB — lead back, 69.7% opportunity share (11th) when healthy; rookie ankle injuries \"in the past\" *(orig. premise \"Harbaugh run-heavy\" stale — Roman fired, new OC McDaniel)*",
+     "act": "Needs: Re-anchor claim to the McDaniel scheme; camp carry-share confirmation; the 69.7% opp-share figure unconfirmable *(health half corroborated 2026-06-03; mixed signal — held in Staging at 2026-06-04 sweep; 6/07: health fully corroborated — chargers.com/SI…",
+     "layers": [
+      "OL",
+      "Run-lean",
+      "RB-receiving",
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 5,
+      "layers": [
+       "OL",
+       "Run-lean",
+       "RB-receiving",
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 5 layers agree: OL, Run-lean, RB-receiving, Backfield, Coaching"
+     },
+     "profile": "Research/profiles/players/RB/omarion-hampton.md"
+    },
+    {
+     "name": "Jahmyr Gibbs — floor",
+     "pos": "RB",
+     "team": "DET",
+     "status": "Staging",
+     "find": "Floor buy, not ceiling — league-wide biggest coaching-usage winner: Petzing run-lean install + Montgomery gone + good-D lead scripts lock a bellcow workload; consensus #5 prices the ceiling but under-prices the FLOOR/wo…",
+     "act": "Needs: 2nd source / camp confirmation Montgomery's vacated touches route to Gibbs vs a committee add; low timing-edge (mostly floor). *Surfaced by the 6/06 coaching pass; Hai's call to log 6/08*",
+     "layers": [
+      "Run-lean",
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 3,
+      "layers": [
+       "Run-lean",
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 3 layers agree: Run-lean, Backfield, Coaching"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Breece Hall — receiving rebound",
+     "pos": "RB",
+     "team": "NYJ",
+     "status": "Staging",
+     "find": "Career-low 10.9% target share in 2025 = the outlier vs top-4 RB receiving in '23 AND '24; healthy, new deal, Clay flags the bounce. **CONFLICTED 2026-06-08:** the 6/06 coaching layer surfaces the OPPOSITE thesis — Reich…",
+     "act": "Needs: 2nd analyst rebound call / camp route participation — AND the camp carry split (does the rushing volume actually drop?) to settle which thesis wins",
+     "layers": [
+      "RB-receiving",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "RB-receiving",
+       "Coaching"
+      ],
+      "contested": true,
+      "line": "⚠ 2 layers contest this — RB-receiving, Coaching disagree"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Jadarian Price — buy",
+     "pos": "RB",
+     "team": "SEA",
+     "status": "Staging",
+     "find": "Buy at #81/RB28 — R1 capital + Shanahan-tree continuity (OC Fleury) + Elite-D / lead-friendly scripts + Charbonnet's ACL-PUP risk point to a lead role the rookie price doesn't reflect",
+     "act": "Needs: Resolve the 3-way camp battle (Holani/Wilson) the 6/07 diff flagged + Charbonnet return timeline; 2nd source on first-team carry share. *Surfaced by the 6/06 coaching pass; Hai's call to log 6/08*",
+     "layers": [
+      "Backfield",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "Backfield",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 2 layers agree: Backfield, Coaching"
+     },
+     "profile": ""
+    },
+    {
+     "name": "Ladd McConkey",
+     "pos": "WR",
+     "team": "LAC",
+     "status": "Staging",
+     "find": "Beats-ADP buy — priced off the injury-wrecked WR30 2025 while everything rebounds at once: new OC McDaniel scheme, OL health (Slater/Alt), proj 25% target share as the alpha",
+     "act": "Needs: 2nd analyst ranking him top-15 WR / camp usage; monitor the 2025 calf-biceps-foot-ankle cluster *(6/07: OL-health premise corroborated — Slater/Alt ahead of schedule, June reporting via OL layer; the ranking signal is the open half)*",
+     "layers": [
+      "OL",
+      "Coaching"
+     ],
+     "converge": {
+      "n": 2,
+      "layers": [
+       "OL",
+       "Coaching"
+      ],
+      "contested": false,
+      "line": "🎯 2 layers agree: OL, Coaching"
+     },
+     "profile": "Research/profiles/players/WR/ladd-mcconkey.md"
+    },
+    {
+     "name": "Bijan Robinson — workhorse",
+     "pos": "RB",
+     "team": "ATL",
+     "status": "Staging",
+     "find": "Supports paying the #2 ADP — new HC Stefanski's workhorse history (fed Chubb 300+) on a more run-first ATL; confirms the price more than beats it (marginal edge; receiving volume may dip under the Stefanski script)",
+     "act": "Needs: 2nd source / camp workload signal; watch the receiving-role shrink; low timing-edge. *Surfaced by the 6/06 coaching pass; Hai's call to log 6/08*",
+     "layers": [
+      "Coaching"
+     ],
+     "converge": null,
+     "profile": ""
+    },
+    {
+     "name": "Emeka Egbuka",
+     "pos": "WR",
+     "team": "TB",
+     "status": "Staging",
+     "find": "Buy — Mike Evans→SF vacates the alpha volume; Egbuka (126 tgt as rookie) projects ~26% share under new OC Zac Robinson, top-15 WR volume at a WR23 / #45 price",
+     "act": "Needs: 2nd source on TB target hierarchy / camp usage; verify Godwin health share",
+     "layers": [
+      "Coaching"
+     ],
+     "converge": null,
+     "profile": "Research/profiles/players/WR/emeka-egbuka.md"
+    }
+   ],
+   "teams": [
+    {
+     "code": "ATL",
+     "line": "Stefanski workhorse-RB, run-first",
+     "group": "Full reset (new HC)",
+     "has_edge": true
+    },
+    {
+     "code": "BAL",
+     "line": "Minter calls D; lowest-PROE offense",
+     "group": "Full reset (new HC)",
+     "has_edge": false
+    },
+    {
+     "code": "CLE",
+     "line": "Monken pass-attack; Garrett traded to LAR 6/1",
+     "group": "Full reset (new HC)",
+     "has_edge": false
+    },
+    {
+     "code": "LV",
+     "line": "Kubiak wide-zone run-lean vs a bad D pulling shootouts",
+     "group": "Full reset (new HC)",
+     "has_edge": false
+    },
+    {
+     "code": "MIA",
+     "line": "defense-first, slow pace, bottom-quartile pass volume",
+     "group": "Full reset (new HC)",
+     "has_edge": false
+    },
+    {
+     "code": "NYG",
+     "line": "\"Baltimore 2.0\" — run-first + defensive leap",
+     "group": "Full reset (new HC)",
+     "has_edge": false
+    },
+    {
+     "code": "PIT",
+     "line": "McCarthy quick-game West Coast",
+     "group": "Full reset (new HC)",
+     "has_edge": false
+    },
+    {
+     "code": "TEN",
+     "line": "Saleh calls D; Daboll QB development; bad roster",
+     "group": "Full reset (new HC)",
+     "has_edge": false
+    },
+    {
+     "code": "ARI",
+     "line": "wide-zone, motion, schemed-open passing · winners: McBride, Wilson (garbage-time too — Bad D)",
+     "group": "New OC",
+     "has_edge": false
+    },
+    {
+     "code": "DEN",
+     "line": "spread/up-tempo variance on a run-lean Payton base · winners: Waddle (target winner), RB committee TD equity (Elite D leads)",
+     "group": "New OC",
+     "has_edge": false
+    },
+    {
+     "code": "DET",
+     "line": "Petzing run-lean, TE-heavy history · winners: Gibbs (biggest winner league-wide: leads + run lean + Montgomery gone), LaPorta",
+     "group": "New OC",
+     "has_edge": true
+    },
+    {
+     "code": "KC",
+     "line": "Bieniemy-era Mahomes averaged 28.4 FPG · winners: Mahomes/Rice/Worthy/Kelce — all knee-gated (Mahomes ACL)",
+     "group": "New OC",
+     "has_edge": false
+    },
+    {
+     "code": "LAC",
+     "line": "pace + motion + outside-zone from run-heavy Roman · winners: Herbert, McConkey, Hampton, Quentin Johnston",
+     "group": "New OC",
+     "has_edge": true
+    },
+    {
+     "code": "LAR",
+     "line": "no real shift · winners: Kyren/Corum (Elite D post-Garrett-trade = lead carries)",
+     "group": "New OC",
+     "has_edge": false
+    },
+    {
+     "code": "NYJ",
+     "line": "Reich pass-volume install · winners: Garrett Wilson (corroborates the Active buy), Geno, Mason Taylor/TEs (Reich RZ equity)",
+     "group": "New OC",
+     "has_edge": true
+    },
+    {
+     "code": "PHI",
+     "line": "McVay/Shanahan-tree under-center outside-zone · winners: Barkley fit (but see Active fade — efficiency cratered), DeVonta Smith (AJB's vacated 27.5%)",
+     "group": "New OC",
+     "has_edge": false
+    },
+    {
+     "code": "SEA",
+     "line": "Shanahan-tree continuity · winners: Jadarian Price (lead-friendly scripts, Elite D), JSN share safe",
+     "group": "New OC",
+     "has_edge": true
+    },
+    {
+     "code": "TB",
+     "line": "McVay-tree 11-personnel + outside zone · winners: Egbuka (corroborates the Staging buy), Godwin, Irving ATL-style RB targets (shoulder-gated)",
+     "group": "New OC",
+     "has_edge": true
+    },
+    {
+     "code": "WAS",
+     "line": "Ben Johnson-style install; \"Terry 10 targets a game\" · winners: Daniels, McLaurin (corroborates the Staging claim), Okonkwo (PA seam)",
+     "group": "New OC",
+     "has_edge": false
+    },
+    {
+     "code": "BUF",
+     "line": "lead-creating D shortens games → Cook gains, Allen volume modest",
+     "group": "New DC",
+     "has_edge": false
+    },
+    {
+     "code": "DAL",
+     "line": "still shootout-friendly → Lamb/Pickens/Dak volume protected",
+     "group": "New DC",
+     "has_edge": false
+    },
+    {
+     "code": "GB",
+     "line": "neutral scripts; offense story is the WR-room battle (Golden/Watson/Reed)",
+     "group": "New DC",
+     "has_edge": false
+    },
+    {
+     "code": "NE",
+     "line": "positive scripts protect Henderson/Stevenson + Maye PA; no downside",
+     "group": "New DC",
+     "has_edge": false
+    },
+    {
+     "code": "SF",
+     "line": "more blitz, decent scripts; CMC script-proof, Evans steps into alpha X",
+     "group": "New DC",
+     "has_edge": false
+    },
+    {
+     "code": "CAR",
+     "line": "Full continuity",
+     "group": "Full continuity",
+     "has_edge": false
+    },
+    {
+     "code": "CHI",
+     "line": "Full continuity",
+     "group": "Full continuity",
+     "has_edge": false
+    },
+    {
+     "code": "CIN",
+     "line": "only AFC North team returning all three — but Bad D = shootout factory propping Chase/Higgins/Burrow volume",
+     "group": "Full continuity",
+     "has_edge": false
+    },
+    {
+     "code": "HOU",
+     "line": "Elite D → Montgomery lead-carries; Stroud/Collins efficiency-not-volume",
+     "group": "Full continuity",
+     "has_edge": false
+    },
+    {
+     "code": "IND",
+     "line": "Full continuity",
+     "group": "Full continuity",
+     "has_edge": false
+    },
+    {
+     "code": "JAC",
+     "line": "Elite D + Hunter→CB1 frees BTJ",
+     "group": "Full continuity",
+     "has_edge": false
+    },
+    {
+     "code": "MIN",
+     "line": "Flores extended; QB battle is the only variable",
+     "group": "Full continuity",
+     "has_edge": false
+    },
+    {
+     "code": "NO",
+     "line": "year 2 intact; Bad D = pass volume for Olave/Tyson/Shough, TD drain for Etienne",
+     "group": "Full continuity",
+     "has_edge": false
+    }
+   ],
+   "teams_covered": 32
+  },
+  {
+   "id": "wr_archetypes",
+   "name": "WR archetypes",
+   "icon": "🃏",
+   "kind": "player-grouped",
+   "freshness": "classified 2026-06-12 from current (June 2026, post-FA/post-draft) web sources via a 4-agent fan-out; 2025 actuals + verified 2026 role changes. Refresh trigger — camp/preseason role battles (JAX trio, LAC Allen squeeze, TB Godwin/Egbuka split, ARI MHJ/Wilson), and any further trades; rookies (Tate, Tyson, Lemon) firm…",
+   "refresh": "",
+   "doc": "Research/_wr-archetypes-2026.md",
+   "lead": "",
+   "lead_dated": "",
+   "cases": [],
+   "navcount": 44,
+   "groups": [
+    {
+     "archetype": "first-read-separator",
+     "label": "First-read separators",
+     "desc": "First in the QB progression on high dropback volume; floor lives in the role.",
+     "wrs": [
+      {
+       "name": "Ja'Marr Chase",
+       "team": "CIN",
+       "rank": 1,
+       "adp": "3.0",
+       "archetype": "first-read-separator",
+       "secondary": "contested-rz",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Every-down alpha on a Burrow-led pass-heavy offense; the floor is a 30%+ target share and short/intermediate separation, not deep variance.",
+       "note": "",
+       "tier_read": "Safe",
+       "tier_model": "Steady",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "30%+ target share at an 8.9 aDOT — separation alpha, floor in the role",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "30%+",
+         "src": "SI/SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "8.9",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "PFF rec grade",
+         "value": "90.1 (4th)",
+         "src": "PFF",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/jamarr-chase.md",
+       "has_edge": false
+      },
+      {
+       "name": "Jaxon Smith-Njigba",
+       "team": "SEA",
+       "rank": 4,
+       "adp": "5.0",
+       "archetype": "first-read-separator",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "The clear, every-route focal point — an NFL-leading 36% target share at a modest aDOT means the production is target-volume driven, not deep-boom dependent.",
+       "note": "",
+       "tier_read": "Safe",
+       "tier_model": "Steady",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "NFL-best 36% target share at an 11.25 aDOT — target-volume driven, not deep-boom",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "36% (1st in NFL)",
+         "src": "FantasyData",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "11.25",
+         "src": "FantasyData",
+         "date": "2025"
+        },
+        {
+         "stat": "role note",
+         "value": "Kupp + Shaheed added — mild share risk",
+         "src": "NFL.com",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/jaxon-smith-njigba.md",
+       "has_edge": false
+      },
+      {
+       "name": "CeeDee Lamb",
+       "team": "DAL",
+       "rank": 8,
+       "adp": "10.5",
+       "archetype": "first-read-separator",
+       "secondary": "contested-rz",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Still Dallas's #1 read and out-earned Pickens head-to-head, but a 2025 target-share dip (28%) and a career-low 3 TD make him more boom-bust than his pedigree suggests.",
+       "note": "",
+       "tier_read": "Balanced",
+       "tier_model": "Steady",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "still Dallas's #1 read, but Pickens competition + career-low 3 TD inject variance",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "~28% (career-low, 11 healthy g)",
+         "src": "FantasyLife",
+         "date": "2025"
+        },
+        {
+         "stat": "line",
+         "value": "75-1,077-3 in 14 g",
+         "src": "NFL Fantasy",
+         "date": "2025"
+        },
+        {
+         "stat": "role note",
+         "value": "Pickens broke out as a real #2",
+         "src": "FantasyLife",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/ceedee-lamb.md",
+       "has_edge": false
+      },
+      {
+       "name": "Justin Jefferson",
+       "team": "MIN",
+       "rank": 9,
+       "adp": "11.0",
+       "archetype": "first-read-separator",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "high",
+       "why": "Elite target magnet, but a deeper aDOT means he needs the throw to connect — and the unsettled QB room (Murray leading McCarthy) is the gate, not the role.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Steady",
+       "tier_gap": 2,
+       "tier_split": true,
+       "tier_args": {
+        "read": "elite share, but a 10.2 aDOT + unsettled QB gate the floor",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "30-31% (4th)",
+         "src": "PFN/SI",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "10.2",
+         "src": "RotoWire",
+         "date": "2025"
+        },
+        {
+         "stat": "QB",
+         "value": "Murray > McCarthy in OTAs",
+         "src": "NBC/PFT",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/justin-jefferson.md",
+       "has_edge": false
+      },
+      {
+       "name": "Drake London",
+       "team": "ATL",
+       "rank": 11,
+       "adp": "17.5",
+       "archetype": "first-read-separator",
+       "secondary": "contested-rz",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Commands a top-5 target share on a concentrated offense — the floor lives in the role, not a deep connection; box-out winner in the red zone.",
+       "note": "",
+       "tier_read": "Steady",
+       "tier_model": "Steady",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "top-5 share on a concentrated offense; only the knee history caps it",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "30% (5th)",
+         "src": "SumerSports/PFF",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "11.1",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "PFF grade",
+         "value": "89.9 (5th); knee-limited to 12 g",
+         "src": "PFF/PFR",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/drake-london.md",
+       "has_edge": false
+      },
+      {
+       "name": "Nico Collins",
+       "team": "HOU",
+       "rank": 12,
+       "adp": "22.5",
+       "archetype": "first-read-separator",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "high",
+       "why": "True alpha who wins on every level, but more of his value sits in deeper, time-dependent throws than a pure separator's — efficiency dips when the pocket breaks.",
+       "note": "",
+       "tier_read": "Balanced",
+       "tier_model": "Steady",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "true WR1, but a 13.3 aDOT + leaky HOU pass-pro add weekly swing",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "25%",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "13.3",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "line",
+         "value": "71-1,117-6, 15.7 YPR",
+         "src": "RotoWire",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/nico-collins.md",
+       "has_edge": false
+      },
+      {
+       "name": "Chris Olave",
+       "team": "NO",
+       "rank": 17,
+       "adp": "28.0",
+       "archetype": "first-read-separator",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Owns a huge target share, but a weak NO QB/offense pulled his aDOT into possession range and capped efficiency — the floor is the volume, the ceiling is gated by team quality.",
+       "note": "",
+       "tier_read": "Balanced",
+       "tier_model": "Steady",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "29% share, but a weak NO offense compressed his aDOT and caps the ceiling",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "29% (9th)",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "line",
+         "value": "100-1,163-9 on 156 tgt (career highs)",
+         "src": "RotoWire",
+         "date": "2025"
+        },
+        {
+         "stat": "catch rate",
+         "value": "64%",
+         "src": "SumerSports",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/chris-olave.md",
+       "has_edge": false
+      },
+      {
+       "name": "Malik Nabers",
+       "team": "NYG",
+       "rank": 18,
+       "adp": "29.5",
+       "archetype": "first-read-separator",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "high",
+       "why": "When on the field he's a true first-read magnet (league-high target pace) — but the entire read is gated by 2026 health (Sept ACL + a May clean-up), not by role.",
+       "note": "",
+       "tier_read": "Wild",
+       "tier_model": "Steady",
+       "tier_gap": 3,
+       "tier_split": true,
+       "tier_args": {
+        "read": "elite first-read pace, but ACL recovery + a clean-up make availability the story",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "~29% pre-injury",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "15.9",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "health",
+         "value": "ACL + May clean-up; GM optimistic Wk1",
+         "src": "Big Blue View/Yahoo",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/malik-nabers.md",
+       "has_edge": true
+      },
+      {
+       "name": "A.J. Brown",
+       "team": "NE",
+       "rank": 20,
+       "adp": "26.5",
+       "archetype": "first-read-separator",
+       "secondary": "contested-rz",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Steps from a co-#1 role in PHI into an uncontested alpha role in NE (Diggs released) with a rising QB in Maye and a thin WR room — role arrow points up; only the new-team transition keeps it off Safe.",
+       "note": "",
+       "tier_read": "Steady",
+       "tier_model": "Steady",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "new uncontested-alpha role in NE; quick-game separation; transition keeps it off Safe",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "27% (2025 PHI)",
+         "src": "RotoWire/SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "11.78; 78-1,003-7",
+         "src": "RotoWire",
+         "date": "2025"
+        },
+        {
+         "stat": "role change",
+         "value": "traded PHI->NE; Maye WR1, Diggs released",
+         "src": "NFL.com/SI",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/aj-brown.md",
+       "has_edge": true
+      },
+      {
+       "name": "Tetairoa McMillan",
+       "team": "CAR",
+       "rank": 26,
+       "adp": "38.0",
+       "archetype": "first-read-separator",
+       "secondary": "contested-rz",
+       "target_dependence": "read",
+       "ol_dependence": "high",
+       "why": "Immediate alpha — the undisputed #1 read on a thin Carolina cast with elite air-yards dominance, so he's the engine, not an option; the cap is Young + a weak offense.",
+       "note": "",
+       "tier_read": "Steady",
+       "tier_model": "Steady",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "locked alpha usage (41% air-yards share), capped by Bryce Young's ceiling",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "23%",
+         "src": "FantasyData/Last Word",
+         "date": "2025"
+        },
+        {
+         "stat": "air-yards share",
+         "value": "41%",
+         "src": "Last Word",
+         "date": "2025"
+        },
+        {
+         "stat": "accolade",
+         "value": "2025 Off. Rookie of the Year, 70-1,014-7",
+         "src": "NFL.com",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/tetairoa-mcmillan.md",
+       "has_edge": false
+      },
+      {
+       "name": "Garrett Wilson",
+       "team": "NYJ",
+       "rank": 28,
+       "adp": "37.0",
+       "archetype": "first-read-separator",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Best-separation receiver in the league and a 30%+ target hog every year — the floor is bulletproof; the cap is QB play (Fields' low volume), not his usage, plus a 2025 knee.",
+       "note": "",
+       "tier_read": "Balanced",
+       "tier_model": "Steady",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "elite separator + 30%+ share, but Justin Fields' volume caps the ceiling",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "34% (2nd) pre-injury",
+         "src": "FantasyData/SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "separation",
+         "value": "best in NFL per route data",
+         "src": "FantasyFootballers",
+         "date": "2025"
+        },
+        {
+         "stat": "QB",
+         "value": "Justin Fields — low pass volume",
+         "src": "jetsxfactor",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/garrett-wilson.md",
+       "has_edge": true
+      },
+      {
+       "name": "DeVonta Smith",
+       "team": "PHI",
+       "rank": 30,
+       "adp": "34.0",
+       "archetype": "first-read-separator",
+       "secondary": "possession-yac",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "With A.J. Brown gone he's positioned as the clear #1 read — a precise separator at a 12+ aDOT — but added pass-catchers and a run-heavy Eagles offense temper the volume.",
+       "note": "",
+       "tier_read": "Balanced",
+       "tier_model": "Steady",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "clear #1 path post-AJB, but new WRs + a run-heavy offense temper volume",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "29% (career-high)",
+         "src": "NBC/SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "12.4",
+         "src": "PFF/NBC",
+         "date": "2025"
+        },
+        {
+         "stat": "role change",
+         "value": "AJB gone, but Lemon/H.Brown/Wicks added",
+         "src": "NBC/FantasyPros",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/devonta-smith.md",
+       "has_edge": false
+      },
+      {
+       "name": "Zay Flowers",
+       "team": "BAL",
+       "rank": 37,
+       "adp": "34.5",
+       "archetype": "first-read-separator",
+       "secondary": "possession-yac",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Now the unambiguous #1 target in Baltimore at a 28% share on a low aDOT — a separation/YAC read, not a deep flier — though a run-heavy, Lamar-rushing offense caps raw volume.",
+       "note": "",
+       "tier_read": "Steady",
+       "tier_model": "Steady",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "unambiguous #1 at a 28% share on a low aDOT, but BAL's run-heavy offense caps volume",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "28% (5th)",
+         "src": "SumerSports/PFF",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "10.1; 86-1,211-5",
+         "src": "RotoWire/PFR",
+         "date": "2025"
+        },
+        {
+         "stat": "role",
+         "value": "clear top target under new OC Doyle",
+         "src": "FantasyPros",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/zay-flowers.md",
+       "has_edge": false
+      },
+      {
+       "name": "Terry McLaurin",
+       "team": "WAS",
+       "rank": 42,
+       "adp": "50.0",
+       "archetype": "first-read-separator",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "high",
+       "why": "Unquestioned alpha and air-yards hog for Daniels — the #1 read who eats target AND air-yards share — but a new OC and Daniels' health are the 2026 variables; the down year was availability, not skill.",
+       "note": "",
+       "tier_read": "Balanced",
+       "tier_model": "Steady",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "elite role + air-yards hog, but 2026 hinges on Daniels' health + a new OC",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "30.9% when on field",
+         "src": "FantasyData",
+         "date": "2025"
+        },
+        {
+         "stat": "air-yards share",
+         "value": "45.7%",
+         "src": "FantasyData",
+         "date": "2025"
+        },
+        {
+         "stat": "availability",
+         "value": "10 g (injury); new OC Blough",
+         "src": "CBS/Heavy",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/terry-mclaurin.md",
+       "has_edge": true
+      },
+      {
+       "name": "Emeka Egbuka",
+       "team": "TB",
+       "rank": 45,
+       "adp": "41.0",
+       "archetype": "first-read-separator",
+       "secondary": "possession-yac",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Commanded a top-of-progression share as a rookie and led TB in deep AND red-zone targets — a true first read, not a complementary piece, even with Godwin around.",
+       "note": "",
+       "tier_read": "Steady",
+       "tier_model": "Steady",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "locked target floor with Mayfield; led TB in deep + RZ targets as a rookie",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "first-read share",
+         "value": "31%; 25.1% target share",
+         "src": "Buccaneers.com",
+         "date": "2025"
+        },
+        {
+         "stat": "line",
+         "value": "63-938-6 on 127 tgt",
+         "src": "FantasyData",
+         "date": "2025"
+        },
+        {
+         "stat": "role",
+         "value": "co-#1 w/ Godwin; Mayfield returns",
+         "src": "bucsnation/CBS",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/emeka-egbuka.md",
+       "has_edge": true
+      },
+      {
+       "name": "Davante Adams",
+       "team": "LAR",
+       "rank": 47,
+       "adp": "48.5",
+       "archetype": "first-read-separator",
+       "secondary": "contested-rz",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Even as the nominal #2 behind Nacua he ran a 12+ targets/game, short-aDOT separator role — a read who lives on quick wins and the red zone — but the 14-TD top line and age inject regression risk.",
+       "note": "",
+       "tier_read": "Balanced",
+       "tier_model": "Balanced",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "12+ tgt/g short-aDOT separator, but 14-TD + age-33 + 53% catch = regression risk",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "targets/game",
+         "value": "12.7 (25% share)",
+         "src": "RotoWire",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "8.7; 60-789-14",
+         "src": "PFN/ESPN",
+         "date": "2025"
+        },
+        {
+         "stat": "caution",
+         "value": "age-33, 53% catch rate, 14 TD unsustainable",
+         "src": "ESPN",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/davante-adams.md",
+       "has_edge": true
+      },
+      {
+       "name": "Rome Odunze",
+       "team": "CHI",
+       "rank": 59,
+       "adp": "56.5",
+       "archetype": "first-read-separator",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Ben Johnson puts him first in the progression regularly — team-leading targets, RZ looks, and air-yards share give a role-based floor — but a low separation rank and the offense's ceiling cap the boom.",
+       "note": "",
+       "tier_read": "Steady",
+       "tier_model": "Steady",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "clear Bears first read (Moore traded), but low separation + offense cap the boom",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "routes targeted",
+         "value": "25.46% (team-high, 17th)",
+         "src": "SumerSports/Marquee",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "13.91",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "role",
+         "value": "WR1 after DJ Moore traded to BUF",
+         "src": "FantasyPros",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/rome-odunze.md",
+       "has_edge": false
+      },
+      {
+       "name": "Carnell Tate",
+       "team": "TEN",
+       "rank": 65,
+       "adp": "63.0",
+       "archetype": "first-read-separator",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Top WR in the class at No. 4 overall onto a thin Titans room — projects as the immediate primary read, though rookie + young-QB risk is real.",
+       "note": "2026 rookie — role projected from draft capital + college",
+       "tier_read": "Balanced",
+       "tier_model": "Steady",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "projected day-one WR1 on elite draft capital, discounted for rookie + young QB",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "draft",
+         "value": "No. 4 overall (highest TEN WR pick since merger)",
+         "src": "NFL.com",
+         "date": "2026"
+        },
+        {
+         "stat": "college",
+         "value": "51-875-9 in 2025; 'crafty separator, large catch radius'",
+         "src": "247Sports/NFL.com",
+         "date": "2026"
+        },
+        {
+         "stat": "investment",
+         "value": "$51.1M fully guaranteed",
+         "src": "247Sports",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/carnell-tate.md",
+       "has_edge": true
+      },
+      {
+       "name": "DK Metcalf",
+       "team": "PIT",
+       "rank": 73,
+       "adp": "73.0",
+       "archetype": "first-read-separator",
+       "secondary": "contested-rz",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Clear PIT WR1 and air-yards alpha whose role got shorter and more manufactured in a run-first scheme — still the read, but the boom now comes from YAC/splash, not deep volume.",
+       "note": "",
+       "tier_read": "Balanced",
+       "tier_model": "Balanced",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "PIT WR1 + air-yards alpha, but a run-first scheme shrank the aDOT and caps volume",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "air-yards share",
+         "value": "37.4% (19.6% target share)",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "10.55 (~half his career norm)",
+         "src": "Steelers Depot",
+         "date": "2025"
+        },
+        {
+         "stat": "role",
+         "value": "team-led 8 RZ + 9 deep targets",
+         "src": "Steelers Depot",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/dk-metcalf.md",
+       "has_edge": false
+      },
+      {
+       "name": "Jordyn Tyson",
+       "team": "NO",
+       "rank": 90,
+       "adp": "71.5",
+       "archetype": "first-read-separator",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Elite separator at all three levels with a clear runway to the WR2 job behind Olave — top-8 draft capital means a real target floor, but rookie + rookie-QB Shough add volatility.",
+       "note": "2026 rookie — role projected from draft capital + college",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Balanced",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "projected WR2 behind Olave on top-8 capital, but rookie + rookie-QB volatility",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "draft",
+         "value": "No. 8 overall",
+         "src": "NFL.com",
+         "date": "2026"
+        },
+        {
+         "stat": "college",
+         "value": "136 rec/1,812 yds over 2024-25; 'elite separator'",
+         "src": "ESPN/CBS",
+         "date": "2026"
+        },
+        {
+         "stat": "role",
+         "value": "only the WR2 slot behind Olave is open",
+         "src": "Canal Street Chronicles",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/jordyn-tyson.md",
+       "has_edge": false
+      },
+      {
+       "name": "Brian Thomas Jr.",
+       "team": "JAC",
+       "rank": 92,
+       "adp": "74.5",
+       "archetype": "first-read-separator",
+       "secondary": "field-stretcher",
+       "target_dependence": "read",
+       "ol_dependence": "high",
+       "why": "The downfield alpha whose value rides on developing deep routes — needs a clean pocket — and 2025 dropped on QB/scheme noise; a rebound bet, not a stable floor yet.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Balanced",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "downfield alpha (19.7 aDOT late) on a down 2025 — a rebound bet that needs the pocket",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "aDOT",
+         "value": "14.45 (4th in air yards/tgt)",
+         "src": "FantasyPros",
+         "date": "2025"
+        },
+        {
+         "stat": "share",
+         "value": "19% target / 22% first-read since Wk13",
+         "src": "FantasyPros",
+         "date": "2025"
+        },
+        {
+         "stat": "line",
+         "value": "48-707-2 on 91 tgt (down year)",
+         "src": "RotoWire/PFF",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/brian-thomas-jr.md",
+       "has_edge": true
+      },
+      {
+       "name": "Ricky Pearsall",
+       "team": "SF",
+       "rank": 97,
+       "adp": "98.0",
+       "archetype": "first-read-separator",
+       "secondary": "field-stretcher",
+       "target_dependence": "read",
+       "ol_dependence": "high",
+       "why": "Vertical separator with a strong early-2025 stretch, but a knee injury wrecked his season and the Mike Evans signing threatens his target priority.",
+       "note": "",
+       "tier_read": "Wild",
+       "tier_model": "Balanced",
+       "tier_gap": 2,
+       "tier_split": true,
+       "tier_args": {
+        "read": "vertical separator who flashed early, but injury + the Mike Evans signing threaten the role",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "aDOT",
+         "value": "14.11 (15.9 + 69% catch first month)",
+         "src": "RotoWire/NBC",
+         "date": "2025"
+        },
+        {
+         "stat": "line",
+         "value": "36-528-0 in 9 g (injury)",
+         "src": "RotoWire/ESPN",
+         "date": "2025"
+        },
+        {
+         "stat": "caution",
+         "value": "Mike Evans signing may push him to WR2",
+         "src": "Sportskeeda/Yahoo",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/ricky-pearsall.md",
+       "has_edge": false
+      }
+     ]
+    },
+    {
+     "archetype": "possession-yac",
+     "label": "Possession / YAC",
+     "desc": "High catch rate, low aDOT, manufactured underneath touches.",
+     "wrs": [
+      {
+       "name": "Puka Nacua",
+       "team": "LAR",
+       "rank": 3,
+       "adp": "4.0",
+       "archetype": "possession-yac",
+       "secondary": "first-read-separator",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Engineered underneath volume — a league-high 36% target-per-route at a 78% catch rate; the floor is touches, not a deep connection or a clean pocket.",
+       "note": "",
+       "tier_read": "Safe",
+       "tier_model": "Steady",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "league-high target-per-route at 78% catch and a low aDOT — floor is touches",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "tgt/route",
+         "value": "36.1% (league-high)",
+         "src": "NBC/RotoWire",
+         "date": "2025"
+        },
+        {
+         "stat": "catch rate",
+         "value": "78%",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "RZ target share",
+         "value": "17% (Adams ahead)",
+         "src": "NBC",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/puka-nacua.md",
+       "has_edge": false
+      },
+      {
+       "name": "Amon-Ra St. Brown",
+       "team": "DET",
+       "rank": 6,
+       "adp": "7.5",
+       "archetype": "possession-yac",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "The archetypal high-floor slot — an 8.4 aDOT and ~72% catch rate mean production is manufactured underneath volume; about as QB-pressure-proof as a WR1 gets.",
+       "note": "",
+       "tier_read": "Safe",
+       "tier_model": "Steady",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "8.4 aDOT slot — manufactured underneath volume, maximally pressure-proof",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "aDOT",
+         "value": "8.4 (lowest of the elite tier)",
+         "src": "PFF/SI",
+         "date": "2025"
+        },
+        {
+         "stat": "PFF grade",
+         "value": "90.7 (3rd)",
+         "src": "PFF",
+         "date": "2025"
+        },
+        {
+         "stat": "role note",
+         "value": "new OC Petzing — mild scheme watch",
+         "src": "SI",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/amon-ra-st-brown.md",
+       "has_edge": false
+      },
+      {
+       "name": "Rashee Rice",
+       "team": "KC",
+       "rank": 23,
+       "adp": "26.0",
+       "archetype": "possession-yac",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "When on the field he's Mahomes' clear underneath read at a near-double-digit per-game target rate (floor = volume + YAC) — but a suspension/probation overhang makes availability the whole risk.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Steady",
+       "tier_gap": 2,
+       "tier_split": true,
+       "tier_args": {
+        "read": "Mahomes' clear underneath read when active — but suspension/availability is the story",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "targets/game",
+         "value": "9.8 when active",
+         "src": "Yahoo/RotoWire",
+         "date": "2026"
+        },
+        {
+         "stat": "line",
+         "value": "53-571-5 (limited)",
+         "src": "CBS",
+         "date": "2025"
+        },
+        {
+         "stat": "availability",
+         "value": "6-game suspension + probation flag",
+         "src": "PrizePicks/Heavy",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/rashee-rice.md",
+       "has_edge": true
+      },
+      {
+       "name": "Ladd McConkey",
+       "team": "LAC",
+       "rank": 35,
+       "adp": "38.5",
+       "archetype": "possession-yac",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Slot-heavy underneath/YAC profile, but his target share got squeezed by Keenan Allen working the same short-intermediate zones — efficient yet volume-capped.",
+       "note": "",
+       "tier_read": "Steady",
+       "tier_model": "Steady",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "reliable slot YAC floor, but Keenan Allen squeezes the same short zones",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "slot rate",
+         "value": "63.7%; aDOT 10.5",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "line",
+         "value": "66-789-6 on 102 tgt",
+         "src": "FantasyData",
+         "date": "2025"
+        },
+        {
+         "stat": "role note",
+         "value": "3rd-down targets cut after Allen returned",
+         "src": "Stormcloud",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/ladd-mcconkey.md",
+       "has_edge": true
+      },
+      {
+       "name": "Luther Burden III",
+       "team": "CHI",
+       "rank": 41,
+       "adp": "44.5",
+       "archetype": "possession-yac",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Pure YAC slot weapon whose value is manufactured-touch volume and run-after-catch — the floor scales with the role Ben Johnson keeps handing him, but it isn't locked.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Steady",
+       "tier_gap": 2,
+       "tier_split": true,
+       "tier_args": {
+        "read": "YAC slot with a real Yr-2 leap, but the role isn't locked yet",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "YPRR",
+         "value": "2.69 (led rookies)",
+         "src": "RotoViz",
+         "date": "2025"
+        },
+        {
+         "stat": "closing share",
+         "value": "~20% over final 5 g",
+         "src": "bearstalk",
+         "date": "2025"
+        },
+        {
+         "stat": "line",
+         "value": "47-652-2, 342 YAC",
+         "src": "ESPN/FantasyData",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/luther-burden-iii.md",
+       "has_edge": false
+      },
+      {
+       "name": "DJ Moore",
+       "team": "BUF",
+       "rank": 55,
+       "adp": "52.0",
+       "archetype": "possession-yac",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Underneath/manufactured-touch separator reuniting with Joe Brady — a low-aDOT possession piece whose floor depends on Allen's volume in a thin but share-spreading Bills room.",
+       "note": "",
+       "tier_read": "Balanced",
+       "tier_model": "Steady",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "underneath separator reuniting with Joe Brady, but Buffalo spreads it around",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "role change",
+         "value": "traded CHI->BUF; reunites w/ OC Brady",
+         "src": "ESPN/Bills.com",
+         "date": "2026"
+        },
+        {
+         "stat": "line",
+         "value": "50-682-6 (down year)",
+         "src": "NFL.com",
+         "date": "2025"
+        },
+        {
+         "stat": "room",
+         "value": "thin behind Shakir -> projected bump",
+         "src": "buffalorumblings",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/dj-moore.md",
+       "has_edge": false
+      },
+      {
+       "name": "Michael Wilson",
+       "team": "ARI",
+       "rank": 77,
+       "adp": "89.5",
+       "archetype": "possession-yac",
+       "secondary": "complementary-committee",
+       "target_dependence": "option",
+       "ol_dependence": "low",
+       "why": "His big 2025 was almost entirely MHJ-absence inflation; profiled into a YAC/possession Z role 'closer to the core,' he's productive on volume but capped whenever Arizona's WR1 is active.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Balanced",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "2025 was MHJ-absence inflation; capped to a Z role when MHJ is healthy",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "split",
+         "value": "37% first-read share w/ MHJ out vs ~17% healthy",
+         "src": "Footballguys/PFF",
+         "date": "2025"
+        },
+        {
+         "stat": "line",
+         "value": "88-1,124-7 (first 1,000-yd yr)",
+         "src": "CBS",
+         "date": "2025"
+        },
+        {
+         "stat": "role",
+         "value": "2026 Z, 'Puka Nacua role, closer to core'",
+         "src": "RotoWire",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/michael-wilson.md",
+       "has_edge": false
+      },
+      {
+       "name": "Chris Godwin Jr.",
+       "team": "TB",
+       "rank": 78,
+       "adp": "91.0",
+       "archetype": "possession-yac",
+       "secondary": "first-read-separator",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "A slot possession/YAC technician who wins underneath and in third-down/RZ situations — reliable role, but 2025 was injury-shredded and he shares the tree with Egbuka.",
+       "note": "",
+       "tier_read": "Balanced",
+       "tier_model": "Balanced",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "slot YAC technician + WR1-by-default post-Evans, but age + injury + a split tree temper it",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "role",
+         "value": "WR1-by-default after Evans left; shares w/ Egbuka",
+         "src": "Bucs.com",
+         "date": "2026"
+        },
+        {
+         "stat": "line",
+         "value": "33-360-2 in 9 g (fibula)",
+         "src": "CBS/Bucs",
+         "date": "2025"
+        },
+        {
+         "stat": "share",
+         "value": "17.4% target / 21.1% first-read late",
+         "src": "FantasyPros",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/chris-godwin-jr.md",
+       "has_edge": false
+      },
+      {
+       "name": "Jakobi Meyers",
+       "team": "JAC",
+       "rank": 83,
+       "adp": "97.0",
+       "archetype": "possession-yac",
+       "secondary": "first-read-separator",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Low-aDOT chain-mover who wins on separation/hands, not speed — volume + catch rate give a floor even in a crowded trio (Meyers, BTJ, Hunter).",
+       "note": "",
+       "tier_read": "Steady",
+       "tier_model": "Balanced",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "low-aDOT chain-mover with a 25% share, but a crowded JAX trio caps the ceiling",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "aDOT",
+         "value": "9.4",
+         "src": "FantasyData",
+         "date": "2025"
+        },
+        {
+         "stat": "target share",
+         "value": "25%",
+         "src": "FantasyData",
+         "date": "2025"
+        },
+        {
+         "stat": "role change",
+         "value": "traded to JAC + 3yr/$60M; reunites w/ Lawrence",
+         "src": "jaguars.com",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/jakobi-meyers.md",
+       "has_edge": false
+      },
+      {
+       "name": "Michael Pittman Jr.",
+       "team": "PIT",
+       "rank": 85,
+       "adp": "99.0",
+       "archetype": "possession-yac",
+       "secondary": "contested-rz",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Big-bodied short-area target — ~8-yd aDOT, high catch rate — who slots in as the clear WR2 behind DK Metcalf, his depth-of-target ceiling tied to Rodgers' arm.",
+       "note": "",
+       "tier_read": "Balanced",
+       "tier_model": "Balanced",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "big-bodied short-area WR2 behind Metcalf; ceiling tied to Rodgers' arm",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "aDOT",
+         "value": "~8.0 (9.8 YPR)",
+         "src": "RotoWire",
+         "date": "2025"
+        },
+        {
+         "stat": "line",
+         "value": "80-784-7 (career-high TD)",
+         "src": "PFR/RotoWire",
+         "date": "2025"
+        },
+        {
+         "stat": "role change",
+         "value": "traded to PIT; WR2 behind Metcalf, Rodgers QB",
+         "src": "NFL.com/SI",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/michael-pittman-jr.md",
+       "has_edge": false
+      },
+      {
+       "name": "Wan'Dale Robinson",
+       "team": "TEN",
+       "rank": 91,
+       "adp": "110.5",
+       "archetype": "possession-yac",
+       "secondary": "",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Pure slot underneath-target — manufactured touches and a 28% target share — who projects as Cam Ward's most-targeted man in Daboll's offense.",
+       "note": "",
+       "tier_read": "Steady",
+       "tier_model": "Balanced",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "pure slot at a 28% share, but a low aDOT caps the spike ceiling",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "28% (69% catch)",
+         "src": "heavy/clutchpoints",
+         "date": "2025"
+        },
+        {
+         "stat": "slot",
+         "value": "led all WRs with 622 slot yards",
+         "src": "tennesseetitans.com",
+         "date": "2025"
+        },
+        {
+         "stat": "role change",
+         "value": "signed TEN; reunites w/ OC Daboll, QB Ward",
+         "src": "si.com",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/wandale-robinson.md",
+       "has_edge": false
+      },
+      {
+       "name": "Makai Lemon",
+       "team": "PHI",
+       "rank": 95,
+       "adp": "84.5",
+       "archetype": "possession-yac",
+       "secondary": "first-read-separator",
+       "target_dependence": "option",
+       "ol_dependence": "low",
+       "why": "Biletnikoff-winning slot technician with elite deceleration and YAC, but his college production leaned on screens he won't get at NFL volume, and he's behind DeVonta Smith as a rookie.",
+       "note": "2026 rookie — role projected from draft capital + college",
+       "tier_read": "Wild",
+       "tier_model": "Balanced",
+       "tier_gap": 2,
+       "tier_split": true,
+       "tier_args": {
+        "read": "Biletnikoff YAC slot, but a rookie buried behind D.Smith on a screen-heavy profile",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "draft",
+         "value": "No. 20 overall (trade-up)",
+         "src": "NFL.com",
+         "date": "2026"
+        },
+        {
+         "stat": "college",
+         "value": "79-1,156-11, Biletnikoff; 3.22 YPRR",
+         "src": "phillyvoice/fantasylife",
+         "date": "2025"
+        },
+        {
+         "stat": "caution",
+         "value": "65.6% slot but 23% screen rate won't carry",
+         "src": "fantasylife",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/makai-lemon.md",
+       "has_edge": false
+      },
+      {
+       "name": "Parker Washington",
+       "team": "JAC",
+       "rank": 96,
+       "adp": "73.0",
+       "archetype": "possession-yac",
+       "secondary": "complementary-committee",
+       "target_dependence": "read",
+       "ol_dependence": "low",
+       "why": "Liam Coen's slot beneficiary who broke out down the stretch, but his role is share-capped and unstable now that the JAX WR room (Meyers, BTJ, Hunter) is healthy.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Boom/Bust",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "Coen slot beneficiary who flashed late, but share-capped in a healthy JAX room",
+        "model": "CV 0.7 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "line",
+         "value": "58-847-5, 14.6 YPR",
+         "src": "FantasyPros/RotoWire",
+         "date": "2025"
+        },
+        {
+         "stat": "PFF grade",
+         "value": "82.4 (14th of 81)",
+         "src": "PFF",
+         "date": "2025"
+        },
+        {
+         "stat": "role note",
+         "value": "2H surge coincided w/ Hunter's absence",
+         "src": "blackandteal",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/parker-washington.md",
+       "has_edge": true
+      }
+     ]
+    },
+    {
+     "archetype": "field-stretcher",
+     "label": "Field-stretchers",
+     "desc": "Value back-loaded into deep shots as an OPTION; boom-bust.",
+     "wrs": [
+      {
+       "name": "George Pickens",
+       "team": "DAL",
+       "rank": 16,
+       "adp": "25.5",
+       "archetype": "field-stretcher",
+       "secondary": "contested-rz",
+       "target_dependence": "option",
+       "ol_dependence": "high",
+       "why": "A massive air-yards profile on a moderate target share — production rides deep connections as the #2 in a two-mouth offense, so it's spike-heavy even with strong totals.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Balanced",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "44.9% of team air yards on a 23% share behind Lamb — rides deep connections",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "air-yards share",
+         "value": "44.9% (T-3rd)",
+         "src": "SumerSports/nfelo",
+         "date": "2025"
+        },
+        {
+         "stat": "target share",
+         "value": "23% (26th)",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "12.0; 93-1,423-9",
+         "src": "SumerSports/RotoWire",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/george-pickens.md",
+       "has_edge": false
+      },
+      {
+       "name": "Jaylen Waddle",
+       "team": "DEN",
+       "rank": 38,
+       "adp": "51.0",
+       "archetype": "field-stretcher",
+       "secondary": "",
+       "target_dependence": "option",
+       "ol_dependence": "high",
+       "why": "Sean Payton's stated plan is Waddle outside as the explosive second option behind Sutton to take pressure off Nix — a back-loaded deep-shot role, not the first read.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Balanced",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "new team/QB; the explicit #2 deep option behind Sutton in Denver",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "role change",
+         "value": "traded MIA->DEN; Bo Nix's 'explosive #2'",
+         "src": "NFL.com/Heavy",
+         "date": "2026"
+        },
+        {
+         "stat": "line",
+         "value": "64-910-6, 14.2 YPR (2025 MIA)",
+         "src": "PFR/StatMuse",
+         "date": "2025"
+        },
+        {
+         "stat": "split",
+         "value": "80 ypg without Hill in 2025",
+         "src": "PhinPhanatic",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/jaylen-waddle.md",
+       "has_edge": false
+      },
+      {
+       "name": "Jameson Williams",
+       "team": "DET",
+       "rank": 51,
+       "adp": "50.5",
+       "archetype": "field-stretcher",
+       "secondary": "",
+       "target_dependence": "option",
+       "ol_dependence": "high",
+       "why": "Value is back-loaded into deep shots behind St. Brown (the clear #1 read) — a high-aDOT vertical option whose weeks live and die on the explosive play.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Boom/Bust",
+       "tier_gap": 0,
+       "tier_split": false,
+       "tier_args": {
+        "read": "18% share behind St. Brown at a 12.7 aDOT — matchup-and-big-play dependent",
+        "model": "CV 0.7 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "18% (47th)",
+         "src": "FantasyData/RotoWire",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "12.7; 65-1,117-7, 17.2 YPR",
+         "src": "RotoWire/PFF",
+         "date": "2025"
+        },
+        {
+         "stat": "YAC",
+         "value": "447; PFF 76.7 (28th)",
+         "src": "PFF",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/jameson-williams.md",
+       "has_edge": false
+      },
+      {
+       "name": "Christian Watson",
+       "team": "GB",
+       "rank": 58,
+       "adp": "55.0",
+       "archetype": "field-stretcher",
+       "secondary": "",
+       "target_dependence": "option",
+       "ol_dependence": "high",
+       "why": "The highest-aDOT deep specialist in a Packers committee — an air-yards monster whose production is downfield-shot dependent, though vacated 2026 targets could push him toward a fuller role.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Balanced",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "18.0 aDOT deep specialist in a GB committee — pure deep-shot dependence",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "aDOT",
+         "value": "18.0; 34% air-yards share",
+         "src": "AOL/Yahoo",
+         "date": "2025"
+        },
+        {
+         "stat": "pace",
+         "value": "Wks 8-17 = WR9 half-PPR pace",
+         "src": "DraftSharks",
+         "date": "2025"
+        },
+        {
+         "stat": "health",
+         "value": "ACL return; Doubs/Wicks gone -> bigger role",
+         "src": "DraftSharks",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/christian-watson.md",
+       "has_edge": false
+      },
+      {
+       "name": "Marvin Harrison Jr.",
+       "team": "ARI",
+       "rank": 64,
+       "adp": "67.0",
+       "archetype": "field-stretcher",
+       "secondary": "contested-rz",
+       "target_dependence": "option",
+       "ol_dependence": "high",
+       "why": "Deployed as a high-aDOT go-route specialist who stretches the field rather than earning easy underneath volume — boom-bust, and 2025 showed how thin the floor gets when the offense doesn't feed him.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Balanced",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "used as a go-route specialist, slipped behind M.Wilson — thin floor when not fed",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "~20.6% (slipped to de-facto WR2)",
+         "src": "Yardbarker/SI",
+         "date": "2025"
+        },
+        {
+         "stat": "aDOT",
+         "value": "~12.1 w/ Murray (17.4 w/ Brissett)",
+         "src": "CBS/Draftpunk",
+         "date": "2025"
+        },
+        {
+         "stat": "line",
+         "value": "41-608-4, ended on IR",
+         "src": "PFF/PFR",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/marvin-harrison-jr.md",
+       "has_edge": false
+      },
+      {
+       "name": "Alec Pierce",
+       "team": "IND",
+       "rank": 79,
+       "adp": "75.5",
+       "archetype": "field-stretcher",
+       "secondary": "",
+       "target_dependence": "option",
+       "ol_dependence": "high",
+       "why": "A low-volume, max-aDOT vertical specialist whose value is back-loaded into deep shots as an option behind the primary reads — efficiency hides a thin, boom-bust target floor.",
+       "note": "",
+       "tier_read": "Wild",
+       "tier_model": "Balanced",
+       "tier_gap": 2,
+       "tier_split": true,
+       "tier_args": {
+        "read": "textbook deep option — 18% share at a 20.0 aDOT; craters without the deep ball",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "aDOT",
+         "value": "20.0 (NFL-best 21.3 YPR)",
+         "src": "SumerSports/Colts.com",
+         "date": "2025"
+        },
+        {
+         "stat": "target share",
+         "value": "18% (low for the yardage)",
+         "src": "PFF",
+         "date": "2025"
+        },
+        {
+         "stat": "deep",
+         "value": "led NFL in 15+ air-yard targets (61)",
+         "src": "Colts.com",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/alec-pierce.md",
+       "has_edge": false
+      }
+     ]
+    },
+    {
+     "archetype": "contested-rz",
+     "label": "Contested / red-zone",
+     "desc": "Body/box-out winner, TD-dependent.",
+     "wrs": [
+      {
+       "name": "Tee Higgins",
+       "team": "CIN",
+       "rank": 33,
+       "adp": "36.5",
+       "archetype": "contested-rz",
+       "secondary": "field-stretcher",
+       "target_dependence": "option",
+       "ol_dependence": "high",
+       "why": "Box-out, TD-dependent X who eats outside the numbers — the deeper option behind Chase, so the value is back-loaded and red-zone-driven, not a first-progression floor.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Balanced",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "TD-dependent #2 behind Chase with a concussion history — weekly variance is high",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "TDs",
+         "value": "11 (career-high), 846 yds",
+         "src": "RotoWire/Athlon",
+         "date": "2025"
+        },
+        {
+         "stat": "role",
+         "value": "clear #2 to Chase",
+         "src": "FantasyPros",
+         "date": "2026"
+        },
+        {
+         "stat": "health",
+         "value": "multiple concussions in 2025",
+         "src": "RotoWire",
+         "date": "2025"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/tee-higgins.md",
+       "has_edge": false
+      },
+      {
+       "name": "Mike Evans",
+       "team": "SF",
+       "rank": 50,
+       "adp": "55.0",
+       "archetype": "contested-rz",
+       "secondary": "field-stretcher",
+       "target_dependence": "option",
+       "ol_dependence": "high",
+       "why": "Box-out, red-zone, downfield body in a Shanahan offense built on YAC and structure — a TD-dependent finisher and deep option, not the high-dropback first read.",
+       "note": "",
+       "tier_read": "Boom/Bust",
+       "tier_model": "Steady",
+       "tier_gap": 2,
+       "tier_split": true,
+       "tier_args": {
+        "read": "new team at age-33; TD-dependent box/deep option in a YAC Shanahan offense",
+        "model": "CV 0.49 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "role change",
+         "value": "signed SF 3-yr; outside + RZ for Purdy",
+         "src": "49ers.com/NFL.com",
+         "date": "2026"
+        },
+        {
+         "stat": "line",
+         "value": "30-368-3 in 8 g (injury, TB)",
+         "src": "NFL.com/ESPN",
+         "date": "2025"
+        },
+        {
+         "stat": "caution",
+         "value": "age-33, target competition (Jennings/Pearsall/Kittle)",
+         "src": "ESPN",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/mike-evans.md",
+       "has_edge": false
+      },
+      {
+       "name": "Courtland Sutton",
+       "team": "DEN",
+       "rank": 66,
+       "adp": "79.5",
+       "archetype": "contested-rz",
+       "secondary": "first-read-separator",
+       "target_dependence": "read",
+       "ol_dependence": "high",
+       "why": "The Broncos' clear target and red-zone leader who wins on body/contested balls more than separation — reliable volume, but a low catch rate makes him TD-and-volume dependent.",
+       "note": "",
+       "tier_read": "Steady",
+       "tier_model": "Balanced",
+       "tier_gap": 1,
+       "tier_split": true,
+       "tier_args": {
+        "read": "clear target + RZ leader, but a 60% catch rate keeps weekly variance up",
+        "model": "CV 0.58 (week-to-week scoring spread; lower = steadier) from role keywords, no 2026 actuals yet"
+       },
+       "anchors": [
+        {
+         "stat": "target share",
+         "value": "21% (124 tgt); 74-1,017-7",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "catch rate",
+         "value": "60% (131st)",
+         "src": "SumerSports",
+         "date": "2025"
+        },
+        {
+         "stat": "role",
+         "value": "team-2nd RZ(10)+deep(13); Waddle added",
+         "src": "FantasyPros",
+         "date": "2026"
+        }
+       ],
+       "profile": "Research/profiles/players/WR/courtland-sutton.md",
+       "has_edge": false
+      }
+     ]
+    }
+   ],
+   "counts": {
+    "wrs": 44,
+    "splits": 31,
+    "loud_splits": 8
+   }
+  }
+ ]
+}
