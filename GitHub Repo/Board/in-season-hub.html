@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>In-Season Hub — 2026</title>
+<!--
+  in-season-hub.html — surface #3 of 3 (manage weekly). R4 D3 + R5a/R5b (2026-06-05).
+  Reads Data/weekly-sidecar.json (the §9 HARD in-season layer) — falls back to the
+  embedded SAMPLE_WEEKLY when fetch fails (file:// double-click) or the file is absent.
+  R5a: opponent-context line per row (implied total · spread · DvP rank) from §9's
+  nullable enrichment. R5b: reads Data/usage-trends.json (§10) — trend arrows per row
+  (joined via sleeper_id) + the "usage spikes" panel; absent file → empty-state, never invented.
+  R7 (2026-06-05): reads Data/league-sidecar.json (§11) — opponent panel (their projected
+  lineup vs mine, holes, bench depth), waiver-capital chip (faab|priority per the registry
+  preset), spike waiver-pressure chips, league switcher when >1 league (ffhub.league).
+  R9+R10 (2026-06-10): posture selector (floor/median/ceiling re-rank of the §9 bands)
+  + the H2H win-prob band that drives the auto-posture suggestion. §10 trend charts.
+  Per-device state (see the STATE band in the script): lineup overrides + posture
+  (per week), trend-chart view, league choice. Never reads draft ranks or draft
+  state; never writes the sidecar.
+  Shared atoms injected between SHARED:JS markers by Skills/build-digest.py sync.
+  Palette is its own (game-day green) — CSS deliberately not shared across surfaces.
+-->
+<style>
+  :root{
+    --bg:#0a0f0c; --panel:#101712; --card:#141d17; --rule:#213026;
+    --ink:#e7eee9; --dim:#93a39a; --acc:#3fb950; --accdim:#238636;
+    --warn:#d29922; --bad:#f85149; --edge:#a371f7; --link:#58a6ff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+  header{position:sticky;top:0;z-index:9;background:var(--panel);border-bottom:1px solid var(--rule);padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  header h1{font-size:16px;margin:0;letter-spacing:.3px}
+  .wk{background:var(--accdim);color:#fff;border-radius:6px;padding:2px 10px;font-weight:700}
+  .sample-badge{background:var(--warn);color:#1a1a1a;border-radius:6px;padding:2px 10px;font-weight:700;display:none}
+  .hlinks{margin-left:auto;display:flex;gap:10px;font-size:12.5px}
+  .fresh{width:100%;font-size:11.5px;color:var(--dim)}
+  #alerts{display:flex;flex-direction:column;gap:6px;padding:10px 16px 0}
+  .alert{border:1px solid var(--rule);border-left:4px solid var(--warn);background:var(--panel);border-radius:6px;padding:7px 12px;font-size:13px}
+  .alert.bad{border-left-color:var(--bad)}
+  .alert b{margin-right:6px}
+  main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px;padding:14px 16px;max-width:1280px;margin:0 auto}
+  @media(max-width:900px){main{grid-template-columns:1fr}}
+  section{background:var(--panel);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  section>h2{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin:0;padding:9px 14px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:8px}
+  section>h2 .right{margin-left:auto;display:flex;gap:8px}
+  button{background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:6px;padding:3px 10px;font-size:11.5px;cursor:pointer}
+  button:hover{border-color:var(--acc)}
+  .slot{display:grid;grid-template-columns:54px minmax(0,1fr) 86px 64px;gap:8px;align-items:center;padding:8px 14px;border-bottom:1px solid var(--rule);cursor:pointer}
+  .slot:hover{background:var(--card)}
+  .slot.gap{background:rgba(248,81,73,.08)}
+  .slot .tag{font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.5px}
+  .slot .who{min-width:0}
+  .slot .who .nm{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .slot .who .sub{font-size:11.5px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .slot .proj{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+  .slot .proj .lbl{display:block;font-size:10px;color:var(--dim);font-weight:400}
+  .slot .st{text-align:right;font-size:11px}
+  .chip{display:inline-block;border-radius:5px;padding:1px 6px;font-size:10.5px;font-weight:700}
+  .chip.ok{background:rgba(63,185,80,.15);color:var(--acc)}
+  .chip.q{background:rgba(210,153,34,.18);color:var(--warn)}
+  .chip.out{background:rgba(248,81,73,.18);color:var(--bad)}
+  .chip.edge{background:rgba(163,113,247,.16);color:var(--edge)}
+  .chip.bye{background:rgba(248,81,73,.18);color:var(--bad)}
+  .chip.waiver{background:rgba(88,166,255,.14);color:var(--link)}
+  .chip.rostered{background:rgba(147,163,154,.15);color:var(--dim)}
+  .empty{color:var(--bad);font-weight:700}
+  .swaplist{border-bottom:1px solid var(--rule);background:var(--card);padding:6px 14px 10px}
+  .swaplist .opt{display:flex;gap:10px;align-items:baseline;padding:5px 8px;border-radius:6px;cursor:pointer;font-size:13px}
+  .swaplist .opt:hover{background:var(--panel)}
+  .swaplist .opt .p{margin-left:auto;font-variant-numeric:tabular-nums;font-weight:600}
+  .swaplist .hint{font-size:11px;color:var(--dim);padding:2px 8px 6px}
+  .rowline{display:flex;gap:10px;align-items:baseline;padding:7px 14px;border-bottom:1px solid var(--rule);font-size:13px}
+  .rowline:last-child{border-bottom:none}
+  .rowline .nm{font-weight:600}
+  .rowline .meta{color:var(--dim);font-size:11.5px}
+  .rowline .p{margin-left:auto;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+  .rowline .note{flex-basis:100%;color:var(--dim);font-size:11.5px;margin-top:-3px}
+  .rowline{flex-wrap:wrap}
+  .xl{font-size:10.5px;white-space:nowrap}
+  .ctx{color:var(--link);font-size:10.5px;white-space:nowrap}
+  .trend{font-weight:700;margin-left:4px;font-size:12px;cursor:default}
+  .trend.up2{color:var(--acc)} .trend.up{color:var(--acc);opacity:.7} .trend.dn{color:var(--bad)}
+  .hl{outline:2px solid var(--acc);outline-offset:-2px;border-radius:4px}
+  .delta-pos{color:var(--acc)} .delta-neg{color:var(--bad)}
+  footer{max-width:1280px;margin:0 auto;padding:6px 16px 26px;color:var(--dim);font-size:11.5px}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .twocol>div{min-width:0}
+  .twocol>div:first-child{border-right:1px solid var(--rule)}
+  .subhead{font-size:11px;color:var(--dim);font-weight:700;letter-spacing:.5px;padding:7px 14px 2px}
+  select#leagueSel{background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:6px;padding:2px 6px;font-size:11.5px;display:none}
+  .capbar{height:6px;background:var(--card);border:1px solid var(--rule);border-radius:4px;overflow:hidden;flex:1;min-width:60px}
+  .capfill{height:100%;background:var(--acc)}
+  .caprow{display:flex;gap:10px;align-items:center;padding:7px 14px;border-bottom:1px solid var(--rule);font-size:13px}
+  .caprow:last-child{border-bottom:none}
+  .caprow .big{font-weight:700;font-variant-numeric:tabular-nums}
+  .vsline{display:flex;gap:10px;align-items:baseline;padding:8px 14px;border-bottom:1px solid var(--rule);font-size:13px}
+  .vsline .tot{font-weight:700;font-variant-numeric:tabular-nums}
+  /* ---- R9 posture (2026-06-10) ---- */
+  :root{--floor:#58a6ff;--med:#e7eee9;--ceil:#f0a35e}
+  .postbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px 14px}
+  .pbtn{background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:7px;padding:6px 11px;cursor:pointer;font-size:12.5px;display:flex;flex-direction:column;gap:1px;min-width:104px;text-align:left}
+  .pbtn .t{font-weight:700}
+  .pbtn .d{font-size:10px;color:var(--dim)}
+  .pbtn.on{border-color:var(--acc);background:rgba(63,185,80,.12)}
+  .pbtn.on.alpha{border-color:var(--ceil);background:rgba(240,163,94,.12)}
+  .pbtn.on.cons{border-color:var(--floor);background:rgba(88,166,255,.12)}
+  .pauto{font-size:10.5px;color:var(--dim);border:1px dashed var(--rule);border-radius:6px;padding:3px 8px}
+  .pauto b{color:var(--acc)}
+  .pauto button{border:none;background:none;color:var(--link);cursor:pointer;font-size:10.5px;padding:0 0 0 6px}
+  .slider{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--dim);padding:0 14px 10px}
+  .slider input{flex:1}
+  .plegend{display:flex;gap:14px;font-size:10.5px;color:var(--dim);padding:0 14px 10px;flex-wrap:wrap}
+  .plegend .sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+  .rbar svg{display:block}
+  .chip.risk-Safe{background:rgba(63,185,80,.14);color:var(--acc)}
+  .chip.risk-Steady{background:rgba(63,185,80,.10);color:#7ec88a}
+  .chip.risk-Balanced{background:rgba(147,163,154,.16);color:var(--dim)}
+  .chip.risk-Boom-Bust{background:rgba(240,163,94,.16);color:var(--ceil)}
+  .chip.risk-Wild{background:rgba(248,81,73,.16);color:var(--bad)}
+  /* ---- R10 head-to-head band (2026-06-10) ---- */
+  .h2h-top{display:flex;align-items:baseline;gap:10px;padding:10px 14px 2px}
+  .wp{font-size:28px;font-weight:800;font-variant-numeric:tabular-nums}
+  .wp.good{color:var(--acc)} .wp.bad{color:var(--bad)} .wp.mid{color:var(--warn)}
+  .wp-sub{font-size:12px;color:var(--dim)}
+  .teamrow{display:grid;grid-template-columns:96px 1fr 56px;gap:8px;align-items:center;padding:5px 14px;font-size:12px}
+  .teamrow .nm2{color:var(--dim)} .teamrow .nm2 b{color:var(--ink)}
+  .teamrow .tot{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+  .suggest{margin:8px 14px 10px;border:1px dashed var(--rule);border-radius:7px;padding:7px 11px;font-size:12px;color:var(--dim);display:flex;align-items:center;gap:10px}
+  .suggest b{color:var(--ink)}
+  .suggest button{margin-left:auto;background:var(--accdim);color:#fff;border:none;border-radius:6px;padding:3px 11px;font-size:11px;cursor:pointer;white-space:nowrap}
+  .h2hnote{font-size:10.5px;color:var(--dim);padding:0 14px 9px;border-bottom:1px solid var(--rule)}
+  /* ---- usage-trend charts (2026-06-10) ---- */
+  #trendsSec{grid-column:1/-1}
+  .tctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 14px 4px;font-size:12px}
+  .tctl select{background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:6px;padding:3px 8px;font-size:12px}
+  .tctl .seg2{display:flex;gap:4px;background:var(--card);border:1px solid var(--rule);border-radius:7px;padding:2px}
+  .tctl .seg2 button{border:none;background:transparent;color:var(--dim);padding:3px 9px;border-radius:5px;font-size:11.5px;cursor:pointer}
+  .tctl .seg2 button.on{background:var(--panel);color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule)}
+  .chartwrap{padding:6px 14px 12px}
+  .clegend{display:flex;gap:14px;font-size:11px;color:var(--dim);padding:0 14px 10px;flex-wrap:wrap}
+  .clegend .sw{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:5px;vertical-align:3px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🏈 In-Season Hub</h1>
+  <span class="wk" id="wk">Week —</span>
+  <span class="sample-badge" id="sampleBadge">SAMPLE DATA</span>
+  <select id="leagueSel" title="league (registry §11)"></select>
+  <span id="capChip" style="font-size:11.5px;color:var(--dim)"></span>
+  <div class="hlinks">
+    <a id="lnkBoard" href="draft-board.html">⤴ draft board</a>
+    <a id="lnkDigest" href="research-digest.html">🔎 research digest</a>
+  </div>
+  <div class="fresh" id="fresh">loading weekly sidecar…</div>
+</header>
+
+<div id="alerts"></div>
+
+<main>
+  <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+    <section id="postureSec">
+      <h2>Posture — which point of each range you bet <span class="right"><span class="pauto" id="pauto"></span></span></h2>
+      <div class="postbar" id="postbar">
+        <button class="pbtn cons" data-p="cons"><span class="t">🛡️ Conservative</span><span class="d">rank by FLOOR · protect a lead</span></button>
+        <button class="pbtn" data-p="bal"><span class="t">⚖️ Balanced</span><span class="d">rank by MEDIAN · default</span></button>
+        <button class="pbtn alpha" data-p="alpha"><span class="t">🚀 Alpha</span><span class="d">rank by CEILING · need the spike</span></button>
+        <button class="pbtn" data-p="hybrid"><span class="t">🎚️ Hybrid</span><span class="d">blend · tune the tilt</span></button>
+      </div>
+      <div class="slider" id="sliderWrap" style="display:none">
+        <span>floor</span><input type="range" id="tilt" min="0" max="100" value="50"><span>ceiling</span>
+        <span id="tiltval" style="min-width:84px;text-align:right;color:var(--ink)">median blend</span>
+      </div>
+      <div class="plegend">
+        <span><span class="sw" style="background:var(--floor)"></span>floor</span>
+        <span><span class="sw" style="background:var(--med)"></span>median</span>
+        <span><span class="sw" style="background:var(--ceil)"></span>ceiling</span>
+        <span>▼ marker = the point this posture bets on · band from <code>range_model</code> (§9 R8)</span>
+      </div>
+    </section>
+    <section id="lineupSec">
+      <h2>Start / Sit — my lineup
+        <span class="right"><button id="resetBtn" title="Clear manual overrides for this week">reset to skill verdicts</button></span>
+      </h2>
+      <div id="lineup"></div>
+    </section>
+    <section>
+      <h2>FLEX optimizer</h2>
+      <div id="flexOpt"></div>
+    </section>
+    <section>
+      <h2>Bench — sit (and why)</h2>
+      <div id="bench"></div>
+    </section>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+    <section>
+      <h2 id="oppHead">Opponent — this week</h2>
+      <div id="oppPanel"></div>
+    </section>
+    <section>
+      <h2 id="capHead">Waiver capital</h2>
+      <div id="capPanel"></div>
+    </section>
+    <section>
+      <h2>Streaming — D/ST &amp; K</h2>
+      <div class="twocol">
+        <div><div class="subhead">D/ST</div><div id="strDST"></div></div>
+        <div><div class="subhead">K</div><div id="strK"></div></div>
+      </div>
+    </section>
+    <section>
+      <h2>Waiver targets</h2>
+      <div id="waivers"></div>
+    </section>
+    <section>
+      <h2 id="spikesHead">Usage spikes — not yet priced in</h2>
+      <div id="spikes"></div>
+    </section>
+  </div>
+
+  <section id="trendsSec">
+    <h2 id="trendsHead">Usage trends — the stock view (§10)</h2>
+    <div class="tctl" id="trendCtl" style="display:none">
+      <div class="seg2" id="tMode"><button data-m="player" class="on">By player</button><button data-m="team">By team</button></div>
+      <select id="tSel"></select>
+      <select id="tMetric" style="display:none">
+        <option value="tgt_share">target share %</option>
+        <option value="carry_share">carry share %</option>
+        <option value="snap_pct">snap %</option>
+      </select>
+    </div>
+    <div class="clegend" id="tLegend"></div>
+    <div class="chartwrap" id="trendChart"></div>
+  </section>
+</main>
+
+<footer id="foot"></footer>
+
+<script>
+/* SHARED:JS:START — generated from Board/_shared.js by Skills/build-digest.py; do not edit between markers */
+/* ============================================================
+   _shared.js — canonical cross-surface helpers for the FF 2026 boards.
+
+   This is the SINGLE SOURCE OF TRUTH for the key / lifecycle-flag / CSV-parse
+   logic used by BOTH surfaces. Skills/build-digest.py injects this file verbatim
+   between the SHARED:JS markers in draft-board.html AND research-digest.html.
+
+   DO NOT edit the injected copies (between markers) in those files — edit THIS
+   file, then run:  python3 Skills/build-digest.py sync
+   Documented in Skills/_conventions.md (§ Surfaces — shared logic).
+
+   NOTE: CSS is intentionally NOT shared — the two surfaces use different visual
+   languages (draft tool vs. reading view) and divergent token palettes. Only the
+   data/logic layer is de-duped. See _conventions.md for the rationale.
+   ============================================================ */
+
+/* Canonical player key, shared by both surfaces. Produces an identical string
+   for a board player (p.Name/p.Position) and a digest player (CSV Name/Position),
+   so sidecar joins line up across surfaces. */
+function keyOf(name, pos){ return `${name}|${pos}`; }
+
+/* Canonical HTML-escaper. null/undefined → ""; everything else (incl. 0) is
+   stringified then escaped. Surfaces alias this (`const esc = escapeHtml;`)
+   rather than re-declaring their own copies — three drifted variants existed
+   before the 2026-06-11 cleanup. */
+function escapeHtml(s){ return String(s==null?"":s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+/* Lifecycle-flag readers. Take a sidecar ENTRY (researchSidecar.players[key]),
+   NOT a player object. edge = verified + still-unpriced (set/cleared by
+   /edge-board-update on Verify/demote); hype = a verified hype-train claim. */
+function scIsEdge(sc){ return !!(sc && sc.research_flags && sc.research_flags.edge); }
+function scIsHype(sc){ return !!(sc && sc.research_flags && sc.research_flags.hype); }
+
+/* Parse the canonical players CSV (Data/players.csv schema) into row objects,
+   coercing numeric columns. Validation is non-fatal: missing required columns
+   and unparseable numbers are logged via console.warn so the surface still
+   renders with partial data. */
+function parseCSV(text){
+  const lines = text.trim().split(/\r?\n/);
+  const headers = parseCSVLine(lines[0]);
+  const REQUIRED = ["Name","Position","NFL_Team","Consensus_Rank","ADP","Bye_Week","Tier"];
+  const missing = REQUIRED.filter(h => !headers.includes(h));
+  if(missing.length) console.warn("parseCSV: missing required column(s): " + missing.join(", ") + ". Surface will render with partial data.");
+  const INT_COLS = ["Consensus_Rank","Consensus_Pos_Rank","ESPN_Rank","ESPN_Pos_Rank","Bye_Week","Tier"];
+  const FLOAT_COLS = ["ADP","Projection"];
+  return lines.slice(1).map((line,idx) => {
+    const vals = parseCSVLine(line);
+    const row = {};
+    headers.forEach((h,i) => row[h] = vals[i] || "");
+    INT_COLS.forEach(k => { if(row[k]!==""){ const n = parseInt(row[k],10); if(isNaN(n)) console.warn(`parseCSV: row ${idx+2} (${row.Name||"?"}) — non-numeric ${k}: "${row[k]}"`); else row[k] = n; } });
+    FLOAT_COLS.forEach(k => { if(row[k]!==""){ const n = parseFloat(row[k]); if(isNaN(n)) console.warn(`parseCSV: row ${idx+2} (${row.Name||"?"}) — non-numeric ${k}: "${row[k]}"`); else row[k] = n; } });
+    return row;
+  });
+}
+function parseCSVLine(line){
+  const result = []; let cur = ""; let inQ = false;
+  for(let i=0;i<line.length;i++){
+    const c = line[i];
+    if(c === '"'){ inQ = !inQ; continue; }
+    if(c === ',' && !inQ){ result.push(cur); cur=""; continue; }
+    cur += c;
+  }
+  result.push(cur);
+  return result;
+}
+
+/* Unified data-loading pattern for the live views (2026-06-11 cleanup).
+   Non-OK responses count as failures. A failure resolves to null and is
+   ALWAYS console.warn'd — never silent — then each surface applies its own
+   visible fallback: draft board renders sidecar-less, digest shows its error
+   panel / Reads empty-state, in-season hub falls back to the embedded sample
+   (mode label says so). Call sites keep their `typeof fetch` guards. */
+function warnFetchFail(label, err){
+  console.warn(label + " not loaded (" + (err && err.message ? err.message : err) + ") — surface falls back per its data-loading pattern (expected over file://).");
+}
+function fetchJSON(path, label){
+  return fetch(path)
+    .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .catch(err => { warnFetchFail(label || path, err); return null; });
+}
+function fetchText(path, label){
+  return fetch(path)
+    .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+    .catch(err => { warnFetchFail(label || path, err); return null; });
+}
+
+/* ============================================================
+   Draft-value lens (2026-06-12) — a MECHANICAL bucket per player, computed live
+   on both surfaces from data they already load. The football/roster ROLE is the
+   label; the inputs (ADP-vs-rank gap, risk tier, edge flag) are the evidence.
+   Hai layers Target / Do-Not-Draft tags on top later — this is the auto floor.
+
+   Buckets (priority order):
+     💎 Sleeper  — cheap (deep ADP/rank) AND upside (an ⚡edge or a Boom/Bust|Wild
+                   risk tier): a diamond-in-the-rough dart.
+     Value +N    — ADP falls N+ picks PAST consensus rank → profit if you wait.
+     Reach −N    — ADP runs N+ picks AHEAD of rank → you'd be overpaying.
+     Solid fill-in — a Safe/Steady tier past the early rounds → reliable roster glue.
+     (none)      — no strong signal.
+   Thresholds live in VALUE_CFG (tune here, both surfaces follow). Inputs are
+   passed as primitives so each surface feeds what it has. */
+var VALUE_CFG = { gap: 12, sleeperADP: 100, deepRank: 100, fillMinRank: 24 };
+function vNum(x){ const n = parseFloat(x); return isNaN(n) ? null : n; }
+function valueTag(o){
+  o = o || {};
+  const rank = vNum(o.rank), adp = vNum(o.adp), risk = o.risk || "", edge = !!o.edge;
+  const boom = risk === "Boom/Bust" || risk === "Wild";
+  const safe = risk === "Safe" || risk === "Steady";
+  const gap = (rank != null && adp != null) ? Math.round(adp - rank) : null;
+  if (((adp != null && adp >= VALUE_CFG.sleeperADP) || (rank != null && rank >= VALUE_CFG.deepRank)) && (edge || boom))
+    return { bucket: "sleeper", label: "💎 Sleeper", gap };
+  if (gap != null && gap >= VALUE_CFG.gap)  return { bucket: "value", label: "Value +" + gap, gap };
+  if (gap != null && gap <= -VALUE_CFG.gap) return { bucket: "reach", label: "Reach " + gap, gap };
+  if (safe && rank != null && rank > VALUE_CFG.fillMinRank) return { bucket: "fill", label: "Solid fill-in", gap };
+  return { bucket: "", label: "", gap };
+}
+/* SHARED:JS:END */
+
+/* ============================================================
+   HUB SCRIPT MAP (2026-06-11 cleanup) — banded like the digest's READS block.
+     1 CORE            slot model, globals, sidecar join helpers
+     2 STATE           every localStorage key, one load/save pattern
+     3 RANGE/POSTURE   R9 — bands, posture point, range bars, selector
+     4 H2H BAND        R10 — win-prob math, matchup suggestion
+     5 TREND CHARTS    §10 — arrows, spikes panel, the stock view
+     6 LEAGUE PANELS   §11 — opponent, waiver capital, league switcher
+     7 LINEUP CORE     start/sit resolve, swap, FLEX, bench, alerts
+     8 SAMPLE          embedded file:// demo data (sample:true-guarded)
+     9 ORCHESTRATION   renderAll, boot, event wiring, fetch
+   Behavior identical to pre-cleanup; only organization changed.
+   ============================================================ */
+
+/* ============================== 1 CORE — slot model, globals, sidecar join ============================== */
+
+/* ---------- hub logic (renders only — /weekly-lineup computes; §9 contract) ---------- */
+const SLOTS = [
+  {id:"QB",  tag:"QB",   pos:["QB"]},
+  {id:"RB1", tag:"RB",   pos:["RB"]},
+  {id:"RB2", tag:"RB",   pos:["RB"]},
+  {id:"WR1", tag:"WR",   pos:["WR"]},
+  {id:"WR2", tag:"WR",   pos:["WR"]},
+  {id:"TE",  tag:"TE",   pos:["TE"]},
+  {id:"FLEX",tag:"FLEX", pos:["RB","WR","TE"]},
+  {id:"DST", tag:"D/ST", pos:["DST"]},
+  {id:"K",   tag:"K",    pos:["K"]}
+];
+const OUT_STATUSES = ["O","IR","NA","Out"];
+let DATA = null, TRENDS = null, LEAGUE = null, LEAGUE_ID = null, MODE = "", openSwap = null;
+
+let POSTURE = null, SUGGEST = null;        // POSTURE = effective {p,tilt,manual}; SUGGEST = {p,reason,label}
+
+/* esc = the canonical escaper from the SHARED:JS block (Board/_shared.js). */
+const esc = escapeHtml;
+
+function entries(){
+  return Object.entries(DATA.roster || {}).map(([k,v]) => {
+    const [name,pos] = k.split("|");
+    return Object.assign({key:k, name, pos}, v);
+  });
+}
+const isOut = e => e.bye || OUT_STATUSES.includes(e.injury_status);
+const isEdge = k => scIsEdge({research_flags:(DATA.research_flags||{})[k]});
+
+/* ============================== 2 STATE — localStorage, one pattern ==============================
+   Keys this surface owns (all per-device):
+     ffhub.lineup.{season}-W{N}   manual slot overrides for the week (§9 contract)
+     ffhub.posture.{season}-W{N}  manual posture choice for the week (R9)
+     ffhub.trends                 trend-chart view state (mode/player/team/metric, §10)
+     ffhub.league                 chosen league id (raw string — predates the JSON pattern)
+   JSON keys go through lsLoad/lsSave/lsClear — same try/catch everywhere; bad or
+   absent JSON → fallback, never a throw. Consolidated 2026-06-11, no behavior change. */
+function lsLoad(key, fallback){ try{ return JSON.parse(localStorage.getItem(key)) || fallback; }catch(e){ return fallback; } }
+const lsSave  = (key, val) => localStorage.setItem(key, JSON.stringify(val));
+const lsClear = key => localStorage.removeItem(key);
+
+/* lineup overrides */
+const stateKey = () => `ffhub.lineup.${DATA.season}-W${DATA.week}`;
+const loadOverrides  = () => lsLoad(stateKey(), {});
+const saveOverrides  = o => lsSave(stateKey(), o);
+const clearOverrides = () => lsClear(stateKey());
+
+/* posture (R9) — o.p validated so a stale/foreign blob can't poison the selector */
+const postureKey = () => `ffhub.posture.${DATA.season}-W${DATA.week}`;
+function loadPosture(){ const o = lsLoad(postureKey(), null); return (o && o.p) ? o : null; }
+const savePosture  = o => lsSave(postureKey(), o);
+const clearPosture = () => lsClear(postureKey());
+
+/* trend-chart view state (§10 charts) */
+let TSTATE = lsLoad("ffhub.trends", {});
+const saveTrendsState = () => lsSave("ffhub.trends", TSTATE);
+
+/* league choice — raw string get/set (NOT JSON: existing stored values predate the helpers) */
+const loadLeagueChoice = () => localStorage.getItem("ffhub.league");
+const saveLeagueChoice = id => localStorage.setItem("ffhub.league", id);
+
+/* ============================== 3 RANGE / POSTURE (R9, 2026-06-10) ============================== */
+
+/* ============ R9 posture + R10 head-to-head (2026-06-10; spec Features 2+3) ============
+   Pure client-side re-rank of the §9 sidecar — no schema change. The posture picks the
+   point on each player's floor–median–ceiling band the lineup ranks by; the H2H band
+   (my summed range vs the opponent's) computes the SUGGESTED posture. Suggestion is a
+   default the human overrides — clicking a posture stores a manual choice per week. */
+const DEFAULT_CV = {QB:0.33,RB:0.5,WR:0.58,TE:0.62,K:0.45,DST:0.75,DEF:0.75,FLEX:0.55};
+function postureT(p, tilt){ return p==="cons" ? 0 : p==="alpha" ? 1 : p==="hybrid" ? (tilt==null?0.5:tilt) : 0.5; }
+const POSTURE_LBL = {cons:"FLOOR", bal:"MED", alpha:"CEIL", hybrid:"BLEND"};
+const POSTURE_NAME = {cons:"Conservative", bal:"Balanced", alpha:"Alpha", hybrid:"Hybrid"};
+
+/* prior band fallback — same prior backend/knobs as range_model.py, read from the §9
+   provenance block when present. Used ONLY where a row has a projection but no band
+   (e.g. opponent rosters — §11 carries single-point projections). Labeled, never silent. */
+function priorBand(m, pos){
+  const rm = (DATA && DATA.range_model) || {};
+  const cv = ((rm.cv_by_pos || DEFAULT_CV)[pos] != null ? (rm.cv_by_pos || DEFAULT_CV)[pos] : 0.55);
+  const fk = rm.floor_k != null ? rm.floor_k : 1.0, ck = rm.ceiling_k != null ? rm.ceiling_k : 1.45;
+  return {f: Math.max(0, +(m*(1-cv*fk)).toFixed(1)), c: +(m*(1+cv*ck)).toFixed(1)};
+}
+function bandOf(e){                                 // → {f,m,c,prior} | null
+  const m = e.weekly_projection;
+  if(m == null) return null;
+  if(e.floor != null && e.ceiling != null) return {f:e.floor, m, c:e.ceiling, prior:false};
+  const pb = priorBand(m, e.pos || (e.key||"|").split("|")[1] || "FLEX");
+  return {f:pb.f, m, c:pb.c, prior:true};
+}
+function point(b, t){                               // piecewise floor→median→ceiling
+  if(!b) return null;
+  return t<=0.5 ? b.f + (b.m-b.f)*(t/0.5) : b.m + (b.c-b.m)*((t-0.5)/0.5);
+}
+function pScore(e, t){                              // posture rank score; no band → median
+  const b = bandOf(e);
+  return b ? point(b, t) : (e.weekly_projection || 0);
+}
+
+/* range bar svg — shared by lineup/flex/bench rows. marker ▼ = the posture point. */
+function rangeBar(b, marker, W){
+  if(!b) return "";
+  W = W || 150; const H=20, y=11, SCALE=Math.max(34, b.c+2);
+  const x = v => Math.max(0, Math.min(W, v/SCALE*W));
+  const xf=x(b.f), xc=x(b.c), xm=x(b.m), xk=x(marker==null?b.m:marker);
+  const tit = `floor ${b.f} · median ${b.m} · ceiling ${b.c}${b.prior?" (prior-model band)":""}`;
+  return `<span class="rbar" title="${esc(tit)}"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+    <line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="var(--rule)" stroke-width="1"/>
+    <rect x="${xf}" y="${y-4}" width="${Math.max(1,xc-xf)}" height="8" rx="4" fill="rgba(88,166,255,${b.prior?".09":".16"})" stroke="rgba(88,166,255,${b.prior?".25":".45"})" stroke-width="1"${b.prior?' stroke-dasharray="3,2"':''}/>
+    <circle cx="${xf}" cy="${y}" r="2.2" fill="var(--floor)"/>
+    <circle cx="${xc}" cy="${y}" r="2.2" fill="var(--ceil)"/>
+    <line x1="${xm}" y1="${y-5}" x2="${xm}" y2="${y+5}" stroke="var(--med)" stroke-width="1.4"/>
+    <path d="M${xk},${y-6} L${xk-3.6},${y-12} L${xk+3.6},${y-12} Z" fill="var(--acc)"/>
+  </svg></span>`;
+}
+const riskChip = e => e.risk_tier ? ` <span class="chip risk-${esc(String(e.risk_tier).replace(/[^A-Za-z]+/g,"-"))}" title="risk tier (range_model §9 R8.5 — same tiers as the draft board)">${esc(e.risk_tier)}</span>` : "";
+
+/* ---------- R9 posture bar ---------- */
+function renderPosture(){
+  document.querySelectorAll("#postbar .pbtn").forEach(b => b.classList.toggle("on", b.dataset.p === POSTURE.p));
+  document.getElementById("sliderWrap").style.display = POSTURE.p === "hybrid" ? "flex" : "none";
+  const tilt = document.getElementById("tilt"); tilt.value = Math.round((POSTURE.tilt==null?0.5:POSTURE.tilt)*100);
+  const v = POSTURE.tilt==null?0.5:POSTURE.tilt;
+  document.getElementById("tiltval").textContent = v<0.4?"floor-leaning":v>0.6?"ceiling-leaning":"median blend";
+  const a = document.getElementById("pauto");
+  a.innerHTML = POSTURE.manual
+    ? `manual<button id="pAutoBtn" title="follow the matchup suggestion again">↺ auto</button>`
+    : (SUGGEST ? `<b>auto</b> · from the matchup` : `<b>auto</b> · no matchup → Balanced`);
+  const ab = document.getElementById("pAutoBtn");
+  if(ab) ab.onclick = () => { clearPosture(); renderAll(false); };
+}
+
+/* ============================== 4 H2H BAND (R10, 2026-06-10) ============================== */
+
+const sigma2 = b => b ? Math.pow((b.c-b.f)/4, 2) : 0;
+function erf(x){ const s=x<0?-1:1; x=Math.abs(x); const u=1/(1+0.3275911*x);
+  const y=1-(((((1.061405429*u-1.453152027)*u)+1.421413741)*u-0.284496736)*u+0.254829592)*u*Math.exp(-x*x); return s*y; }
+const winProb = (muMy,muOpp,varMy,varOpp) => 0.5*(1+erf((muMy-muOpp)/((Math.sqrt(varMy+varOpp)||1)*Math.SQRT2)));
+
+/* R10 (2026-06-10): the head-to-head band — my starters' summed floor/median/ceiling vs the
+   opponent's, projected margin + win-probability band (normal approx over the two summed
+   ranges, σ ≈ (ceil−floor)/4 per slot — spec open-question 4 resolved: distribution overlap).
+   Computed from a BALANCED-resolved lineup so the suggested posture never chases its own tail.
+   Opponent rows are §11 single-point projections → prior-model bands (dashed), labeled.
+   Fixture-validated June 2026; goes live the moment the ESPN league exists (§11 cookies+ids). */
+function computeH2H(){
+  const lg = curLeague();
+  if(!lg) return null;
+  const oppId = (lg.my_matchup||{}).opponent_team_id;
+  const opp = oppId != null ? lgTeam(lg, oppId) : null;
+  if(!opp) return null;
+  const balLineup = resolveLineup(0.5);
+  let my = {f:0,m:0,c:0,v:0,known:0,of:0};
+  for(const k of Object.values(balLineup)){ my.of++;
+    const e = k ? Object.assign({pos:k.split("|")[1]}, DATA.roster[k]) : null;
+    const b = e ? bandOf(e) : null;
+    if(b){ my.f+=b.f; my.m+=b.m; my.c+=b.c; my.v+=sigma2(b); my.known++; } }
+  const oSt = starters(opp);
+  let o = {f:0,m:0,c:0,v:0,known:0,of:oSt.length};
+  for(const p of oSt){
+    const b = p.weekly_projection != null ? bandOf(Object.assign({pos:p.pos}, p)) : null;
+    if(b){ o.f+=b.f; o.m+=b.m; o.c+=b.c; o.v+=sigma2(b); o.known++; } }
+  const wp = winProb(my.m, o.m, my.v, o.v)*100, margin = +(my.m - o.m).toFixed(1);
+  let p, reason;
+  if(wp >= 62){ p="cons"; reason=`favored (+${margin.toFixed(0)}, ${wp.toFixed(0)}% win prob) — protect the lead, bet floors`; }
+  else if(wp <= 42){ p="alpha"; reason=`underdog (${margin.toFixed(0)}, ${wp.toFixed(0)}% win prob) — you need ceilings`; }
+  else { p="bal"; reason=`coin-flip (${margin>0?"+":""}${margin.toFixed(0)}, ${wp.toFixed(0)}% win prob) — play the medians`; }
+  return {opp, oSt, my, o, wp, margin, suggest:{p, reason}};
+}
+function teamBandRow(name, s, me, TMAX){
+  const xb = v => Math.max(0, Math.min(100, v/TMAX*100));
+  return `<div class="teamrow"><div class="nm2">${me?"<b>You</b>":esc(name)}</div>
+    <div><svg width="100%" height="18" viewBox="0 0 100 18" preserveAspectRatio="none">
+      <rect x="${xb(s.f)}" y="5" width="${Math.max(.5,xb(s.c)-xb(s.f))}" height="8" rx="2" fill="${me?'rgba(63,185,80,.22)':'rgba(147,163,154,.18)'}" stroke="${me?'var(--acc)':'var(--dim)'}" stroke-width="0.6"/>
+      <line x1="${xb(s.m)}" y1="2" x2="${xb(s.m)}" y2="16" stroke="${me?'var(--acc)':'var(--ink)'}" stroke-width="0.9"/>
+    </svg></div>
+    <div class="tot">${s.m.toFixed(0)}</div></div>`;
+}
+
+/* ============================== 5 TREND CHARTS (§10) ============================== */
+
+/* R5b — usage-trend arrow per player row, joined to usage-trends.json (§10) via sleeper_id.
+   ▲ spike · ↗ leaning up (≥ half threshold) · ↘ leaning down (≤ −threshold) · nothing = steady/no data. */
+function trendArrow(e){
+  const t = TRENDS && e.sleeper_id ? (TRENDS.players || {})[String(e.sleeper_id)] : null;
+  if(!t || !t.deltas) return "";
+  const d = t.deltas, th = TRENDS.thresholds || {snap_pct:8, tgt_share:5, carry_share:7};
+  const F = ["snap_pct","tgt_share","carry_share"], L = {snap_pct:"snap", tgt_share:"tgt", carry_share:"carry"};
+  const parts = F.filter(f => d[f] != null).map(f => `${L[f]} ${d[f] > 0 ? "+" : ""}${d[f]}`);
+  if(!parts.length) return "";
+  const title = `usage WoW through W${TRENDS.week}: ${parts.join(" · ")}` + (t.spike ? ` — SPIKE (${t.spike.from_to})` : "") + " — click for the trend chart";
+  const up = F.some(f => d[f] != null && d[f] >= th[f] / 2);
+  const dn = F.some(f => d[f] != null && -d[f] >= th[f]);
+  let cls = "", sym = "";
+  if(t.spike){ cls = "up2"; sym = "▲"; }
+  else if(up && !dn){ cls = "up"; sym = "↗"; }
+  else if(dn && !up){ cls = "dn"; sym = "↘"; }
+  else return "";
+  return ` <span class="trend ${cls}" data-sid="${esc(String(e.sleeper_id))}" style="cursor:pointer" title="${esc(title)}">${sym}</span>`;
+}
+
+/* ---------- usage-trend charts (the stock view, §10 — 2026-06-10) ----------
+   Grows the row sparkline into full per-player (snap/target/carry share by week) and
+   per-team (one metric, a line per player) charts. Renders ONLY what usage-trends.json
+   carries — no weeks data → empty state, never invented (§10 rule). */
+const T_COLORS = ["#3fb950","#58a6ff","#f0a35e","#a371f7","#f85149","#d29922","#93a39a","#7ec88a"];
+const T_METRIC_LBL = {snap_pct:"snap %", tgt_share:"target share %", carry_share:"carry share %"};
+function trendPlayers(){
+  if(!TRENDS || !TRENDS.players) return [];
+  return Object.entries(TRENDS.players)
+    .filter(([id,p]) => p.weeks && Object.keys(p.weeks).length >= 2)
+    .map(([id,p]) => Object.assign({sid:id}, p));
+}
+function chartSVG(seriesList, weeks){
+  const W=760, H=230, L=38, R=86, T=12, B=26, PW=W-L-R, PH=H-T-B;
+  let mx = 0;
+  seriesList.forEach(s => s.pts.forEach(p => { if(p.v != null && p.v > mx) mx = p.v; }));
+  mx = Math.max(10, Math.ceil(mx/10)*10);
+  const X = w => L + (weeks.length<2 ? PW/2 : (weeks.indexOf(w)/(weeks.length-1))*PW);
+  const Y = v => T + PH - (v/mx)*PH;
+  let g = "";
+  for(let i=0;i<=4;i++){ const yv = mx*i/4, y = Y(yv);
+    g += `<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="var(--rule)" stroke-width="${i===0?1:.5}"/>
+          <text x="${L-6}" y="${y+3.5}" font-size="9.5" fill="var(--dim)" text-anchor="end">${yv}</text>`; }
+  weeks.forEach(w => { g += `<text x="${X(w)}" y="${H-8}" font-size="9.5" fill="var(--dim)" text-anchor="middle">W${w}</text>`; });
+  seriesList.forEach((s,i) => {
+    const col = s.color || T_COLORS[i%T_COLORS.length];
+    const pts = s.pts.filter(p => p.v != null);
+    if(!pts.length) return;
+    g += `<polyline points="${pts.map(p=>`${X(p.w).toFixed(1)},${Y(p.v).toFixed(1)}`).join(" ")}" fill="none" stroke="${col}" stroke-width="1.8"/>`;
+    pts.forEach(p => { g += `<circle cx="${X(p.w).toFixed(1)}" cy="${Y(p.v).toFixed(1)}" r="2.3" fill="${col}"><title>${esc(s.label)} W${p.w}: ${p.v}</title></circle>`; });
+    const last = pts[pts.length-1];
+    g += `<text x="${X(last.w)+6}" y="${Y(last.v)+3.5}" font-size="9.5" fill="${col}">${esc(s.tag||s.label)} ${last.v}</text>`;
+  });
+  return `<svg width="100%" viewBox="0 0 ${W} ${H}" style="max-width:980px;display:block">${g}</svg>`;
+}
+function renderTrends(){
+  const head = document.getElementById("trendsHead"), ctl = document.getElementById("trendCtl"),
+        leg = document.getElementById("tLegend"), box = document.getElementById("trendChart");
+  const tp = trendPlayers();
+  if(!tp.length){
+    head.textContent = "Usage trends — the stock view (§10)";
+    ctl.style.display = "none"; leg.innerHTML = "";
+    box.innerHTML = `<div class="rowline"><span class="meta">no per-week usage history yet — <code>Skills/usage-trends.py</code> accumulates it Tuesdays in-season (§10); charts light up from Week 2</span></div>`;
+    return;
+  }
+  head.textContent = `Usage trends — the stock view (through W${TRENDS.week}${TRENDS.sample?" · SAMPLE":""}) — role moves before projections do`;
+  ctl.style.display = "flex";
+  const mode = TSTATE.mode === "team" ? "team" : "player";
+  document.querySelectorAll("#tMode button").forEach(b => b.classList.toggle("on", b.dataset.m === mode));
+  document.getElementById("tMetric").style.display = mode === "team" ? "" : "none";
+  const metric = T_METRIC_LBL[TSTATE.metric] ? TSTATE.metric : "tgt_share";
+  document.getElementById("tMetric").value = metric;
+  const sel = document.getElementById("tSel");
+  const weeksOf = p => Object.keys(p.weeks).map(Number).sort((a,b)=>a-b);
+  let weeks = [...new Set(tp.flatMap(weeksOf))].sort((a,b)=>a-b);
+  if(mode === "player"){
+    const opts = tp.slice().sort((a,b)=>a.name.localeCompare(b.name));
+    const cur = opts.some(p=>p.sid===TSTATE.player) ? TSTATE.player : opts[0].sid;
+    sel.innerHTML = opts.map(p=>`<option value="${p.sid}"${p.sid===cur?" selected":""}>${esc(p.name)} (${esc(p.pos)} ${esc(p.team)})</option>`).join("");
+    const p = tp.find(x=>x.sid===cur);
+    const mets = [["snap_pct","snap %","#3fb950"],["tgt_share","tgt share %","#58a6ff"],["carry_share","carry share %","#f0a35e"]];
+    const series = mets.map(([k,lab,col]) => ({label:`${p.name} ${lab}`, tag:lab.split(" ")[0], color:col,
+      pts: weeksOf(p).map(w => ({w, v:(p.weeks[String(w)]||{})[k]}))}));
+    leg.innerHTML = mets.map(([k,lab,col])=>`<span><span class="sw" style="background:${col}"></span>${lab}</span>`).join("") +
+      `<span style="margin-left:auto">${p.spike?`▲ spike: ${esc(p.spike.from_to)} — auto-Noted on the edge board`:"steady — no §10 spike flag"}</span>`;
+    box.innerHTML = chartSVG(series, weeksOf(p));
+  } else {
+    const teams = [...new Set(tp.map(p=>p.team))].sort();
+    const curT = teams.includes(TSTATE.team) ? TSTATE.team : teams[0];
+    sel.innerHTML = teams.map(tm=>`<option${tm===curT?" selected":""}>${esc(tm)}</option>`).join("");
+    const roster = tp.filter(p=>p.team===curT)
+      .sort((a,b)=>{ const lw = p=>{const ws=weeksOf(p); return (p.weeks[String(ws[ws.length-1])]||{})[metric]||0;}; return lw(b)-lw(a); })
+      .slice(0,8);
+    const tWeeks = [...new Set(roster.flatMap(weeksOf))].sort((a,b)=>a-b);
+    const series = roster.map((p,i)=>({label:`${p.name} ${T_METRIC_LBL[metric]}`, tag:p.name.split(" ").pop(), color:T_COLORS[i%T_COLORS.length],
+      pts: weeksOf(p).map(w=>({w, v:(p.weeks[String(w)]||{})[metric]}))}));
+    leg.innerHTML = roster.map((p,i)=>`<span><span class="sw" style="background:${T_COLORS[i%T_COLORS.length]}"></span>${esc(p.name)}</span>`).join("") +
+      `<span style="margin-left:auto">${esc(curT)} · ${esc(T_METRIC_LBL[metric])} — who's eating the role</span>`;
+    box.innerHTML = series.length ? chartSVG(series, tWeeks) : `<div class="rowline"><span class="meta">no tracked players on ${esc(curT)}</span></div>`;
+  }
+  sel.onchange = e => { if(mode==="player") TSTATE.player = e.target.value; else TSTATE.team = e.target.value;
+    saveTrendsState(); renderTrends(); };
+}
+function focusTrendChart(sid){
+  TSTATE.mode = "player"; TSTATE.player = String(sid);
+  saveTrendsState();
+  renderTrends();
+  document.getElementById("trendsSec").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function renderSpikes(){
+  const box = document.getElementById("spikes"), head = document.getElementById("spikesHead");
+  if(!TRENDS){
+    head.textContent = "Usage spikes — not yet priced in";
+    box.innerHTML = '<div class="rowline"><span class="meta">no usage-trends.json yet — <code>Skills/usage-trends.py</code> runs Tuesday am in-season (§10)</span></div>';
+    return;
+  }
+  head.textContent = `Usage spikes — not yet priced in (through W${TRENDS.week}${TRENDS.sample?" · SAMPLE":""})`;
+  const list = TRENDS.spikes || [];
+  box.innerHTML = list.map(s => `<div class="rowline">
+    <span class="nm" data-name="${esc(s.name)}">${esc(s.name)}</span>
+    <span class="meta">${esc(s.pos)} · ${esc(s.team)}</span>
+    <span class="chip ${s.rostered?"rostered":"waiver"}">${s.rostered?"rostered":"waiver"}</span>${spikePressure(s.pos)} ${xlinks(s.name)}
+    <span class="p">${esc(s.from_to)}</span>
+    <span class="note">${esc(s.note||"")} — auto-Noted on the edge board; verify before acting</span></div>`).join("")
+    || `<div class="rowline"><span class="meta">no spikes — usage steady through W${TRENDS.week}</span></div>`;
+}
+
+/* ============================== 6 LEAGUE PANELS (§11) ============================== */
+
+/* ---------- R7 league context (§11) — renders only; refresh-league.py computes ---------- */
+const STARTER_SLOTS = ["QB","RB","WR","TE","FLEX","DST","K"];
+function curLeague(){
+  if(!LEAGUE) return null;
+  if(!LEAGUE_ID || !(LEAGUE.leagues||{})[LEAGUE_ID]){
+    LEAGUE_ID = loadLeagueChoice();
+    if(!LEAGUE_ID || !(LEAGUE.leagues||{})[LEAGUE_ID]) LEAGUE_ID = LEAGUE.default_league;
+  }
+  return (LEAGUE.leagues||{})[LEAGUE_ID] || null;
+}
+const lgTeam = (lg,id) => (lg.teams||[]).find(t => t.team_id === id) || null;
+const starters = t => (t.roster||[]).filter(p => STARTER_SLOTS.includes(p.slot));
+function renderLeagueSel(){
+  const sel = document.getElementById("leagueSel");
+  const ids = LEAGUE ? Object.keys(LEAGUE.leagues||{}) : [];
+  sel.style.display = ids.length > 1 ? "inline-block" : "none";
+  if(ids.length > 1){
+    sel.innerHTML = ids.map(i => `<option value="${esc(i)}"${i===LEAGUE_ID?" selected":""}>${esc((LEAGUE.leagues[i]||{}).name||i)}</option>`).join("");
+  }
+}
+
+function renderOpponent(lineup, h2h){
+  const box = document.getElementById("oppPanel"), head = document.getElementById("oppHead");
+  const lg = curLeague();
+  head.textContent = "Opponent — head-to-head" + (LEAGUE && LEAGUE.sample ? " (SAMPLE)" : "");
+  if(!lg){ box.innerHTML = '<div class="rowline"><span class="meta">no league-sidecar.json yet — <code>Skills/refresh-league.py</code> runs Tuesday after refresh-weekly (§11); needs league ids + cookies in <code>Skills/.env</code> (goes live when the league drafts)</span></div>'; return; }
+  if(!h2h){ box.innerHTML = '<div class="rowline"><span class="meta">no matchup this week (bye / my_team_id not set in league-config.json)</span></div>'; return; }
+  const {opp, oSt, my, o, wp, margin, suggest} = h2h;
+  const holes = oSt.filter(p => ["O","IR","NA"].includes(p.injury_status));
+  const qs = oSt.filter(p => ["Q","D"].includes(p.injury_status));
+  const bench = (opp.roster||[]).filter(p => p.slot === "BE");
+  const depth = {}; bench.forEach(p => depth[p.pos] = (depth[p.pos]||0)+1);
+  const TMAX = Math.max(my.c, o.c) || 1;
+  const sugMatch = POSTURE.p === suggest.p;
+  box.innerHTML =
+    `<div class="vsline"><span class="nm">${esc(opp.name||"?")}</span><span class="meta">${esc(opp.owner||"")} · ${esc(opp.record||"")}</span>
+      <span class="p"><span class="meta">proj margin</span> <span class="${margin>=0?"delta-pos":"delta-neg"}">${margin>=0?"+":""}${margin}</span></span></div>` +
+    `<div class="h2h-top"><span class="wp ${wp>=62?"good":wp<=42?"bad":"mid"}">${wp.toFixed(0)}%</span>
+      <span class="wp-sub">win probability · you ${my.m.toFixed(0)} – ${o.m.toFixed(0)}<br>your range ${my.f.toFixed(0)}–${my.c.toFixed(0)} · theirs ${o.f.toFixed(0)}–${o.c.toFixed(0)}</span></div>` +
+    teamBandRow("You", my, true, TMAX) + teamBandRow(opp.name||"opp", o, false, TMAX) +
+    `<div class="suggest" id="h2hSuggest">${sugMatch
+       ? `<span>✓ Posture matches the matchup: <b>${POSTURE_NAME[suggest.p]}</b> — ${esc(suggest.reason)}.</span>`
+       : `<span>Suggested: <b>${POSTURE_NAME[suggest.p]}</b> — ${esc(suggest.reason)}.</span><button id="applySug">Apply</button>`}</div>` +
+    `<div class="h2hnote">win-prob = overlap of the two summed range distributions (σ≈(ceil−floor)/4); my bands from range_model (§9 R8), opponent bands prior-model over their §11 projections (${o.known}/${o.of} proj.). The band moves as projections, odds (§9) + usage (§10) move during the week.</div>` +
+    oSt.map(p => `<div class="rowline">
+      <span class="tag" style="font-size:10.5px;color:var(--dim);font-weight:700;min-width:34px">${esc(p.slot)}</span>
+      <span class="nm" data-name="${esc(p.name)}">${esc(p.name)}${trendArrow(p)}</span>
+      <span class="meta">${esc(p.pos)} · ${esc(p.team||"FA")}</span>
+      ${statusChip({bye:false,injury_status:p.injury_status})}
+      <span class="p">${p.weekly_projection!=null?p.weekly_projection:"–"}</span></div>`).join("") +
+    `<div class="rowline"><span class="meta">holes: ${holes.length?holes.map(p=>esc(p.name)+" ("+esc(p.injury_status)+")").join(", "):"none"}${qs.length?` · re-check Sun: ${qs.map(p=>esc(p.name)).join(", ")}`:""}
+      · bench depth: ${Object.keys(depth).length?Object.entries(depth).map(([p,n])=>`${esc(p)}×${n}`).join(" "):"—"}</span></div>`;
+  const ap = document.getElementById("applySug");
+  if(ap) ap.onclick = () => { savePosture({p:suggest.p, tilt:POSTURE.tilt, manual:true}); renderAll(false); };
+}
+
+function renderWaiverCapital(){
+  const box = document.getElementById("capPanel"), head = document.getElementById("capHead"),
+        chip = document.getElementById("capChip");
+  const lg = curLeague();
+  chip.textContent = "";
+  if(!lg){ head.textContent = "Waiver capital";
+    box.innerHTML = '<div class="rowline"><span class="meta">league data not loaded — waiver capital unknown</span></div>'; return; }
+  const me = lg.my_team_id != null ? lgTeam(lg, lg.my_team_id) : null;
+  const rivals = (lg.teams||[]).filter(t => !me || t.team_id !== me.team_id);
+  head.textContent = `Waiver capital — ${lg.waiver_type === "priority" ? "priority" : "FAAB"}${LEAGUE.sample ? " (SAMPLE)" : ""}`;
+  if(lg.waiver_type === "priority"){
+    const rank = me ? me.waiver_rank : null;
+    const ahead = rank != null ? (lg.teams||[]).filter(t => t.waiver_rank != null && t.waiver_rank < rank && (!me || t.team_id !== me.team_id)) : [];
+    chip.textContent = rank != null ? `waiver #${rank}` : "";
+    box.innerHTML = `<div class="caprow"><span class="big">${rank!=null?`claim #${rank} of ${ (lg.teams||[]).length }`:"my waiver slot unknown"}</span></div>` +
+      (rank != null ? `<div class="rowline"><span class="meta">ahead of me: ${ahead.length?ahead.sort((a,b)=>a.waiver_rank-b.waiver_rank).map(t=>esc(t.name)+" (#"+t.waiver_rank+")").join(", "):"no one — first claim"}</span></div>` : "") +
+      '<div class="rowline"><span class="meta">log resolved claims in <code>2026 Season/Data/waiver-log.csv</code> (§11)</span></div>';
+    return;
+  }
+  const budget = lg.faab_budget, rem = me ? me.faab_remaining : null;
+  const rems = rivals.map(t => t.faab_remaining).filter(v => v != null).sort((a,b)=>a-b);
+  const median = rems.length ? rems[Math.floor(rems.length/2)] : null;
+  const top = rivals.filter(t => t.faab_remaining != null).sort((a,b)=>b.faab_remaining-a.faab_remaining)[0] || null;
+  const canOutbid = rem != null ? rivals.filter(t => t.faab_remaining != null && t.faab_remaining > rem).length : null;
+  chip.textContent = rem != null ? `FAAB $${rem}` : "";
+  box.innerHTML =
+    `<div class="caprow"><span class="big">${rem!=null?`$${rem}`:"$?"}</span><span class="meta">of $${budget!=null?budget:"?"} left</span>
+      ${rem!=null&&budget?`<span class="capbar"><span class="capfill" style="width:${Math.max(0,Math.min(100,rem/budget*100))}%"></span></span>`:""}</div>` +
+    `<div class="rowline"><span class="meta">league median (rivals): ${median!=null?"$"+median:"?"} · biggest stack: ${top?esc(top.name)+" $"+top.faab_remaining:"?"}${canOutbid!=null?` · ${canOutbid} can outbid me`:""}</span></div>` +
+    '<div class="rowline"><span class="meta">log bids in <code>2026 Season/Data/waiver-log.csv</code> (§11) — it feeds the "what do spikes cost" calibration</span></div>';
+}
+
+/* spike waiver-pressure: rivals with an O/IR starter at the spiking position = likely claim competition */
+function spikePressure(pos){
+  const lg = curLeague();
+  if(!lg) return "";
+  const rivals = (lg.teams||[]).filter(t => t.team_id !== lg.my_team_id);
+  const n = rivals.filter(t => starters(t).some(p => p.pos === pos && ["O","IR","NA"].includes(p.injury_status))).length;
+  return n ? ` <span class="chip q" title="rivals with an O/IR starter at ${esc(pos)} — likely claim competition">${n} rival${n>1?"s":""} weak at ${esc(pos)}</span>` : "";
+}
+
+/* ============================== 7 LINEUP CORE — start/sit, swap, FLEX, bench, alerts ============================== */
+
+/* R9: tArg = posture point on [0..1] (0=floor, .5=median, 1=ceiling). Balanced keeps the
+   skill-verdict precedence exactly as before; a non-balanced posture re-ranks by the
+   posture point FIRST (the bet changed — that's the whole feature), verdict as tiebreak. */
+function resolveLineup(tArg){
+  const t = tArg == null ? postureT(POSTURE.p, POSTURE.tilt) : tArg;
+  const bal = Math.abs(t - 0.5) < 1e-9;
+  const ov = loadOverrides(); const used = new Set(); const lineup = {};
+  // pass 1 — apply valid overrides (player exists, eligible, not used; null = forced empty)
+  for(const s of SLOTS){
+    if(!(s.id in ov)) continue;
+    const k = ov[s.id];
+    if(k === null){ lineup[s.id] = null; continue; }
+    const e = DATA.roster[k];
+    if(e && s.pos.includes(k.split("|")[1]) && !used.has(k)){ lineup[s.id] = k; used.add(k); }
+  }
+  // pass 2 — fill the rest (balanced: verdict then median; other postures: posture point then verdict)
+  const w = v => v==="start"?2 : v==="flex"?1 : 0;
+  for(const s of SLOTS){
+    if(s.id in lineup) continue;
+    let c = entries().filter(e => s.pos.includes(e.pos) && !used.has(e.key) && !isOut(e));
+    c.sort((a,b) => bal ? ((w(b.verdict)-w(a.verdict)) || (pScore(b,t)-pScore(a,t)))
+                        : ((pScore(b,t)-pScore(a,t)) || (w(b.verdict)-w(a.verdict))));
+    if(s.id==="FLEX" && bal){
+      const fl = c.filter(e=>e.verdict==="flex");
+      if(fl.length) c = fl.concat(c.filter(e=>e.verdict!=="flex"));
+    }
+    if(c.length){ lineup[s.id] = c[0].key; used.add(c[0].key); }
+    else lineup[s.id] = null;
+  }
+  return lineup;
+}
+
+function statusChip(e){
+  if(e.bye) return '<span class="chip bye">BYE</span>';
+  if(OUT_STATUSES.includes(e.injury_status)) return `<span class="chip out">${esc(e.injury_status)}</span>`;
+  if(e.injury_status && e.injury_status!=="Healthy") return `<span class="chip q">${esc(e.injury_status)}</span>`;
+  return '<span class="chip ok">✓</span>';
+}
+const edgeBadge = k => isEdge(k) ? ' <span class="chip edge">⚡ edge</span>' : "";
+
+/* R5a — opponent context line: implied team total · spread · opponent DvP rank.
+   Nullable enrichment (§9): only non-null parts render; bye/null-opponent renders nothing. */
+function oppCtx(e){
+  if(e.opponent == null) return "";
+  const bits = [];
+  if(e.implied_total != null) bits.push(`impl ${e.implied_total}`);
+  if(e.spread != null) bits.push(e.spread === 0 ? "PK" : (e.spread > 0 ? `+${e.spread}` : `${e.spread}`));
+  if(e.opp_rank_vs_pos != null){
+    const r = e.opp_rank_vs_pos, c = r <= 8 ? "delta-pos" : (r >= 25 ? "delta-neg" : "");
+    bits.push(`<span class="${c}">DvP ${r}</span>`);
+  }
+  return bits.length ? ` <span class="ctx" title="implied team total · spread (− = favored) · opponent rank vs position (1 = easiest)">${bits.join(" · ")}</span>` : "";
+}
+
+const xlinks = name => {
+  const q = encodeURIComponent(name);
+  return `<span class="xl"><a href="draft-board.html?q=${q}">⤴ board</a> · <a href="research-digest.html?q=${q}">🔎 digest</a></span>`;
+};
+
+function renderLineup(){
+  const t = postureT(POSTURE.p, POSTURE.tilt), lbl = POSTURE_LBL[POSTURE.p];
+  const lineup = resolveLineup(t); const box = document.getElementById("lineup");
+  document.querySelector("#lineupSec>h2").firstChild.textContent = `Start / Sit — my lineup · betting the ${lbl} `;
+  box.innerHTML = SLOTS.map(s => {
+    const k = lineup[s.id]; const e = k ? Object.assign({key:k,name:k.split("|")[0],pos:k.split("|")[1]}, DATA.roster[k]) : null;
+    const gap = !e || isOut(e);
+    let who, range, proj, st;
+    if(e){
+      const b = bandOf(e), sc = pScore(e, t);
+      who = `<div class="nm" data-name="${esc(e.name)}">${esc(e.name)}${edgeBadge(k)}${trendArrow(e)}${riskChip(e)}</div>
+             <div class="sub">${esc(e.team)} ${e.opponent ? (e.home?"vs ":"@ ")+esc(e.opponent) : "<b>BYE</b>"}${oppCtx(e)} · ${esc(e.matchup_note||"")} ${xlinks(e.name)}</div>`;
+      range = rangeBar(b, b?point(b,t):null);
+      proj = `${e.weekly_projection==null?"–":sc.toFixed(1)}<span class="lbl">${e.weekly_projection==null?"proj":lbl.toLowerCase()}${POSTURE.p!=="bal"&&e.weekly_projection!=null?` · med ${e.weekly_projection}`:""}</span>`;
+      st = statusChip(e);
+    } else {
+      who = `<div class="nm empty">EMPTY SLOT</div><div class="sub">no startable option — bench can't cover; see waivers</div>`;
+      range = ""; proj = "–"; st = '<span class="chip out">GAP</span>';
+    }
+    const open = openSwap === s.id ? renderSwap(s, lineup) : "";
+    return `<div class="slot${gap?" gap":""}" data-slot="${s.id}" style="grid-template-columns:54px minmax(0,1fr) 154px 92px 64px">
+      <span class="tag">${s.tag}</span><div class="who">${who}</div>
+      <span>${range}</span><span class="proj">${proj}</span><span class="st">${st}</span>
+    </div>${open}`;
+  }).join("");
+  box.querySelectorAll(".slot").forEach(el => el.addEventListener("click", ev => {
+    if(ev.target.closest("a")) return;
+    openSwap = openSwap === el.dataset.slot ? null : el.dataset.slot;
+    renderAll(false);
+  }));
+  box.querySelectorAll(".swaplist .opt").forEach(el => el.addEventListener("click", ev => {
+    ev.stopPropagation();
+    const ov = loadOverrides();
+    ov[el.dataset.forslot] = el.dataset.key === "" ? null : el.dataset.key;
+    saveOverrides(ov); openSwap = null; renderAll(false);
+  }));
+  return lineup;
+}
+
+function renderSwap(s, lineup){
+  const t = postureT(POSTURE.p, POSTURE.tilt);
+  const inSlots = new Set(Object.values(lineup).filter(Boolean));
+  const cur = lineup[s.id];
+  const c = entries().filter(e => s.pos.includes(e.pos) && e.key !== cur && !inSlots.has(e.key))
+                     .sort((a,b)=>pScore(b,t)-pScore(a,t));
+  const opts = c.map(e => `<div class="opt" data-forslot="${s.id}" data-key="${esc(e.key)}">
+      <span>${esc(e.name)}${trendArrow(e)} <span class="meta">${esc(e.pos)} · ${e.opponent?(e.home?"vs ":"@ ")+esc(e.opponent):"BYE"}</span>${oppCtx(e)} ${statusChip(e)}</span>
+      <span class="p">${e.weekly_projection==null?"–":pScore(e,t).toFixed(1)}</span></div>`).join("");
+  return `<div class="swaplist"><div class="hint">swap ${s.tag} → ranked by the ${POSTURE_LBL[POSTURE.p]} (saved to this device for Week ${DATA.week})</div>
+    ${opts || '<div class="hint">no eligible bench option</div>'}
+    <div class="opt" data-forslot="${s.id}" data-key=""><span class="meta">— leave empty —</span></div></div>`;
+}
+
+function renderFlex(lineup){
+  const t = postureT(POSTURE.p, POSTURE.tilt), lbl = POSTURE_LBL[POSTURE.p];
+  const inSlots = new Set(Object.values(lineup).filter(Boolean));
+  const flexKey = lineup["FLEX"];
+  const flexE = flexKey ? Object.assign({key:flexKey,pos:flexKey.split("|")[1]}, DATA.roster[flexKey]) : null;
+  const base = flexE ? pScore(flexE, t) : 0;
+  const cands = entries().filter(e => ["RB","WR","TE"].includes(e.pos) && !inSlots.has(e.key))
+                         .sort((a,b)=>pScore(b,t)-pScore(a,t)).slice(0,3);
+  const cur = flexKey ? `<div class="rowline"><span class="nm">current: ${esc(flexKey.split("|")[0])}</span>
+      <span class="meta">${esc(flexKey.split("|")[1])}</span>${flexE?rangeBar(bandOf(flexE), point(bandOf(flexE),t), 120):""}<span class="p">${base.toFixed(1)} <span class="meta">${lbl.toLowerCase()}</span></span></div>` :
+      '<div class="rowline"><span class="nm empty">FLEX empty</span></div>';
+  document.getElementById("flexOpt").innerHTML = cur + (cands.map(e => {
+    const b = bandOf(e), sc = pScore(e, t), d = +(sc - base).toFixed(1);
+    return `<div class="rowline"><span class="nm">${esc(e.name)}${edgeBadge(e.key)}${trendArrow(e)}${riskChip(e)}</span>
+      <span class="meta">${esc(e.pos)} · ${e.opponent?(e.home?"vs ":"@ ")+esc(e.opponent):"BYE"}</span>${oppCtx(e)} ${statusChip(e)}
+      ${rangeBar(b, b?point(b,t):null, 120)}
+      <span class="p">${e.weekly_projection==null?"–":sc.toFixed(1)} <span class="${d>=0?"delta-pos":"delta-neg"}">(${d>=0?"+":""}${d})</span></span>
+      <span class="note">${esc(e.verdict_note||"")}</span></div>`;
+  }).join("") || '<div class="rowline"><span class="meta">no contenders on the bench</span></div>');
+}
+
+function renderBench(lineup){
+  const t = postureT(POSTURE.p, POSTURE.tilt);
+  const inSlots = new Set(Object.values(lineup).filter(Boolean));
+  const b = entries().filter(e => !inSlots.has(e.key)).sort((a,b)=>pScore(b,t)-pScore(a,t));
+  document.getElementById("bench").innerHTML = b.map(e => `<div class="rowline">
+    <span class="nm" data-name="${esc(e.name)}">${esc(e.name)}${edgeBadge(e.key)}${trendArrow(e)}${riskChip(e)}</span>
+    <span class="meta">${esc(e.pos)} · ${esc(e.team)} ${e.opponent?(e.home?"vs ":"@ ")+esc(e.opponent):"BYE"}</span>${oppCtx(e)}
+    ${statusChip(e)} ${xlinks(e.name)}${rangeBar(bandOf(e), point(bandOf(e), t), 120)}<span class="p">${e.weekly_projection==null?"–":pScore(e,t).toFixed(1)}</span>
+    <span class="note">${esc(e.verdict_note||"")}</span></div>`).join("")
+    || '<div class="rowline"><span class="meta">bench is empty</span></div>';
+}
+
+function renderStreaming(){
+  const rostered = new Set(Object.keys(DATA.roster||{}).map(k=>k.split("|")[0]));
+  const render = list => (list||[]).map(o => `<div class="rowline">
+    <span class="nm">${esc(o.name)}</span>
+    <span class="meta">${esc(o.team)} vs ${esc(o.opponent)}</span>
+    <span class="chip ${rostered.has(o.name)?"rostered":"waiver"}">${rostered.has(o.name)?"rostered":"waiver"}</span>
+    <span class="note">${esc(o.rationale||"")}</span></div>`).join("")
+    || '<div class="rowline"><span class="meta">—</span></div>';
+  document.getElementById("strDST").innerHTML = render((DATA.streaming||{}).DST);
+  document.getElementById("strK").innerHTML  = render((DATA.streaming||{}).K);
+}
+
+function renderWaivers(){
+  document.getElementById("waivers").innerHTML = (DATA.waivers||[]).map(o => `<div class="rowline">
+    <span class="nm">${esc(o.name)}</span><span class="meta">${esc(o.position)}</span>
+    <span class="chip ${o.priority==="high"?"out":o.priority==="medium"?"q":"ok"}">${esc(o.priority||"")}</span>
+    <span class="p">FAAB ${o.faab_pct!=null?o.faab_pct+"%":"–"}</span>
+    <span class="note">${esc(o.reason||"")}</span></div>`).join("")
+    || '<div class="rowline"><span class="meta">no targets this week</span></div>';
+}
+
+function renderAlerts(lineup){
+  const box = document.getElementById("alerts"); const out = [];
+  if(LEAGUE && !LEAGUE.sample && DATA && !DATA.sample && LEAGUE.week !== DATA.week)
+    out.push({bad:false, label:"LEAGUE DATA STALE", note:`league sidecar is W${LEAGUE.week} but lineup is W${DATA.week} — rerun Skills/refresh-league.py`});
+  // computed gaps first — loudest line on the card
+  for(const s of SLOTS){
+    const k = lineup[s.id];
+    if(!k) out.push({bad:true, label:"EMPTY "+s.tag, note:"no startable option in the slot — fill from bench or waivers"});
+    else { const e = DATA.roster[k];
+      if(e.bye) out.push({bad:true, label:s.tag+" ON BYE", note:k.split("|")[0]+" is on bye in this slot"});
+      else if(OUT_STATUSES.includes(e.injury_status)) out.push({bad:true, label:s.tag+" "+e.injury_status, note:k.split("|")[0]+" is "+e.injury_status+" and still slotted"});
+    }
+  }
+  // severity: red = injury (O/IR) / empty-slot; amber = inactive (Q/D re-check) / bye / stale.
+  // (Was inverted pre-2026-06-11 — fixed to match _browser-checklists.md item 17 + §9 alert vocab.)
+  for(const a of (DATA.alerts||[])) out.push({bad:a.type==="injury"||a.type==="empty-slot", label:(a.type||"").toUpperCase(), note:(a.subjects||[]).map(s=>s.split("|")[0]).join(", ")+" — "+(a.note||"")});
+  box.innerHTML = out.map(a=>`<div class="alert${a.bad?" bad":""}"><b>${esc(a.label)}</b>${esc(a.note)}</div>`).join("");
+}
+
+/* ============================== 8 SAMPLE — embedded file:// demo data (sample:true-guarded) ============================== */
+
+/* ---------- embedded sample (fallback when fetch fails / file:// open) ---------- */
+const SAMPLE_WEEKLY = {"generated":"2026-06-04 07:30","sample":true,"week":1,"season":"2026",
+"sources":{"projections":"SAMPLE (embedded)","status":"SAMPLE","pulled_at":"2026-06-04 07:30"},
+"roster":{
+"Joe Burrow|QB":{"team":"CIN","opponent":"CLE","home":true,"weekly_projection":21.4,"implied_total":26.5,"spread":-6.5,"opp_rank_vs_pos":3,"matchup_note":"SAMPLE — soft secondary, high implied total","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"locked-in QB1, no thought required"},
+"Chase Brown|RB":{"sleeper_id":"9002","team":"CIN","opponent":"CLE","home":true,"weekly_projection":15.8,"implied_total":26.5,"spread":-6.5,"opp_rank_vs_pos":12,"matchup_note":"SAMPLE — bell-cow usage vs middling run D","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"volume floor holds in any script"},
+"Bucky Irving|RB":{"team":"TB","opponent":"ATL","home":false,"weekly_projection":14.9,"matchup_note":"SAMPLE — pass-game role keeps PPR floor","injury_status":"Q","bye":false,"verdict":"start","verdict_note":"Q (ankle) — re-check Sunday morning"},
+"Amon-Ra St. Brown|WR":{"team":"DET","opponent":"GB","home":true,"weekly_projection":17.6,"implied_total":27.2,"spread":-3.5,"opp_rank_vs_pos":28,"matchup_note":"SAMPLE — slot volume vs zone-heavy D","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"target hog, every-week WR1"},
+"DeVonta Smith|WR":{"team":"PHI","opponent":"DAL","home":true,"weekly_projection":14.2,"matchup_note":"SAMPLE — target share up with A.J. Brown gone","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"post-AJB share bump still unpriced"},
+"Sam LaPorta|TE":{"team":"DET","opponent":"GB","home":true,"weekly_projection":11.8,"matchup_note":"SAMPLE — red-zone role intact","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"clear TE1 on the roster"},
+"Jaylen Warren|RB":{"sleeper_id":"9007","team":"PIT","opponent":"NYJ","home":false,"weekly_projection":12.1,"implied_total":21.5,"spread":-1.5,"opp_rank_vs_pos":26,"matchup_note":"SAMPLE — lead-back share, tough front","injury_status":"Healthy","bye":false,"verdict":"flex","verdict_note":"coin-flip with Godwin — volume edge wins by a hair"},
+"Pittsburgh Steelers|DST":{"team":"PIT","opponent":"NYJ","home":false,"weekly_projection":7.5,"matchup_note":"SAMPLE — pressure rate vs shaky OL","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"hold — matchup fine, see streaming alt"},
+"Cameron Dicker|K":{"team":"LAC","opponent":"KC","home":true,"weekly_projection":8.2,"matchup_note":"SAMPLE — decent total, accurate leg","injury_status":"Healthy","bye":false,"verdict":"start","verdict_note":"hold"},
+"Wan'Dale Robinson|WR":{"team":"TEN","opponent":"DEN","home":false,"weekly_projection":11.4,"matchup_note":"SAMPLE — slot PPR floor, low ceiling","injury_status":"Healthy","bye":false,"verdict":"sit","verdict_note":"floor play if Irving sits"},
+"Kyle Monangai|RB":{"sleeper_id":"9011","team":"CHI","opponent":"MIN","home":true,"weekly_projection":9.8,"opp_rank_vs_pos":2,"matchup_note":"SAMPLE — committee, TD-dependent","injury_status":"Healthy","bye":false,"verdict":"sit","verdict_note":"hold for the role to grow"},
+"Parker Washington|WR":{"team":"JAC","opponent":"CAR","home":true,"weekly_projection":8.9,"matchup_note":"SAMPLE — WR3 in a crowded room","injury_status":"Healthy","bye":false,"verdict":"sit","verdict_note":"stash"},
+"Bo Nix|QB":{"team":"DEN","opponent":"TEN","home":true,"weekly_projection":18.7,"matchup_note":"SAMPLE — rushing floor, soft matchup","injury_status":"Healthy","bye":false,"verdict":"sit","verdict_note":"QB2 — Burrow's slot, hold for byes"},
+"Kenneth Gainwell|RB":{"team":"TB","opponent":"ATL","home":false,"weekly_projection":6.2,"matchup_note":"SAMPLE — Irving handcuff","injury_status":"O","bye":false,"verdict":"sit","verdict_note":"OUT (hamstring) — do not start"},
+"Dalton Kincaid|TE":{"team":"BUF","opponent":"BAL","home":false,"weekly_projection":9.1,"matchup_note":"SAMPLE — TD-or-bust profile","injury_status":"Healthy","bye":false,"verdict":"sit","verdict_note":"TE2 behind LaPorta"},
+"Chris Godwin Jr.|WR":{"team":"TB","opponent":"ATL","home":false,"weekly_projection":12.6,"matchup_note":"SAMPLE — slot revival, chain-mover","injury_status":"Healthy","bye":false,"verdict":"sit","verdict_note":"coin-flip FLEX contender vs Warren — projection edge, role risk"}},
+"streaming":{"K":[{"name":"Cameron Dicker","team":"LAC","opponent":"KC","rationale":"SAMPLE — hold; decent implied total"},{"name":"Jason Myers","team":"SEA","opponent":"ARI","rationale":"SAMPLE — waiver alt if Dicker's total craters"}],
+"DST":[{"name":"Pittsburgh Steelers","team":"PIT","opponent":"NYJ","rationale":"SAMPLE — hold; top pressure rate vs shaky OL"},{"name":"Jacksonville Jaguars","team":"JAC","opponent":"CAR","rationale":"SAMPLE — waiver stream vs turnover-prone offense"}]},
+"waivers":[{"name":"Jadarian Price","position":"RB","reason":"SAMPLE — RB depth thin with Gainwell out; standalone flex weeks possible","priority":"medium","faab_pct":8}],
+"alerts":[{"type":"injury","subjects":["Kenneth Gainwell|RB"],"note":"OUT (hamstring) — bench, do not start"},{"type":"inactive","subjects":["Bucky Irving|RB"],"note":"Q (ankle) — re-check Sunday 90 min before kickoff; Wan'Dale is the pivot"}],
+"research_flags":{"DeVonta Smith|WR":{"edge":true},"Chase Brown|RB":{"edge":true}}};
+
+/* ---------- embedded sample trends (§10) — same fallback rule as SAMPLE_WEEKLY.
+     2026-06-10: week series added so the trend CHARTS also demo over file://. ---------- */
+const SAMPLE_TRENDS = {"generated":"2026-06-10 (SAMPLE)","sample":true,"season":"2026","week":5,
+"source":"SAMPLE (embedded)","thresholds":{"snap_pct":8,"tgt_share":5,"carry_share":7,
+"floor_snap_pct":30,"floor_tgt_share":10,"floor_carry_share":20},
+"players":{
+"9002":{"name":"Chase Brown","pos":"RB","team":"CIN","weeks":{"1":{"snap_pct":64,"tgt_share":8.1,"carry_share":62.0,"ppr":14.2},"2":{"snap_pct":65,"tgt_share":9.5,"carry_share":63.5,"ppr":12.8},"3":{"snap_pct":66,"tgt_share":8.8,"carry_share":64.0,"ppr":18.4},"4":{"snap_pct":67,"tgt_share":11.2,"carry_share":65.1,"ppr":15.9},"5":{"snap_pct":68,"tgt_share":10.4,"carry_share":66.2,"ppr":16.6}},"deltas":{"snap_pct":2.1,"tgt_share":1.4,"carry_share":3.8},"spike":null},
+"9007":{"name":"Jaylen Warren","pos":"RB","team":"PIT","weeks":{"1":{"snap_pct":58,"tgt_share":10.2,"carry_share":55.0,"ppr":13.1},"2":{"snap_pct":56,"tgt_share":8.9,"carry_share":52.4,"ppr":15.2},"3":{"snap_pct":53,"tgt_share":8.1,"carry_share":49.8,"ppr":9.4},"4":{"snap_pct":50,"tgt_share":6.0,"carry_share":47.0,"ppr":8.8},"5":{"snap_pct":47,"tgt_share":5.5,"carry_share":44.1,"ppr":16.8}},"deltas":{"snap_pct":-9.2,"tgt_share":-2.0,"carry_share":-8.5},"spike":null},
+"9011":{"name":"Kyle Monangai","pos":"RB","team":"CHI","weeks":{"1":{"snap_pct":24,"tgt_share":3.0,"carry_share":22.0,"ppr":4.2},"2":{"snap_pct":27,"tgt_share":3.2,"carry_share":24.5,"ppr":6.8},"3":{"snap_pct":31,"tgt_share":5.1,"carry_share":28.0,"ppr":7.9},"4":{"snap_pct":36,"tgt_share":5.8,"carry_share":33.2,"ppr":11.4},"5":{"snap_pct":42,"tgt_share":7.4,"carry_share":40.4,"ppr":13.6}},"deltas":{"snap_pct":11.0,"tgt_share":1.2,"carry_share":12.4},"spike":{"fields":["snap_pct","carry_share"],"from_to":"31%→42% snap · 28%→40.4% carry"}},
+"9101":{"name":"Jordan Mercer","pos":"RB","team":"CHI","weeks":{"1":{"snap_pct":22,"tgt_share":0.0,"carry_share":14.0,"ppr":2.1},"2":{"snap_pct":25,"tgt_share":2.4,"carry_share":17.2,"ppr":3.8},"3":{"snap_pct":31,"tgt_share":2.8,"carry_share":22.5,"ppr":6.2},"4":{"snap_pct":38,"tgt_share":4.9,"carry_share":29.2,"ppr":5.1},"5":{"snap_pct":64,"tgt_share":7.1,"carry_share":57.7,"ppr":15.3}},"deltas":{"snap_pct":26.0,"tgt_share":2.2,"carry_share":28.5},"spike":{"fields":["snap_pct","carry_share"],"from_to":"38.1%→64.1% snap · 29.2%→57.7% carry"}}},
+"spikes":[
+{"sleeper_id":"9011","name":"Kyle Monangai","pos":"RB","team":"CHI","fields":["snap_pct","carry_share"],"from_to":"31%→42% snap · 28%→40.4% carry","rostered":true,"note":"SAMPLE — GL role growing; on my roster"},
+{"sleeper_id":"9101","name":"Jordan Mercer","pos":"RB","team":"CHI","fields":["snap_pct","carry_share"],"from_to":"38.1%→64.1% snap · 29.2%→57.7% carry","rostered":false,"note":"SAMPLE — waiver radar; claim before Wednesday wave"}]};
+
+/* ---------- embedded sample league (§11) — same fallback rule as SAMPLE_WEEKLY ---------- */
+const SAMPLE_LEAGUE = {"generated":"2026-06-05 07:30","sample":true,"season":"2026","week":1,
+"default_league":"espn-main","leagues":{"espn-main":{
+"name":"Main League (SAMPLE)","platform":"espn","espn_league_id":123456,"my_team_id":4,
+"waiver_type":"faab","faab_budget":100,
+"sources":{"league":"SAMPLE (embedded)","pulled_at":"2026-06-05 07:30"},
+"teams":[
+{"team_id":4,"name":"Haiwatha","owner":"Hai V.","record":"2-1","points_for":341.2,"waiver_rank":9,"faab_remaining":64,"faab_spent":36,"roster":[
+ {"name":"Joe Burrow","pos":"QB","team":"CIN","slot":"QB","injury_status":"Healthy","sleeper_id":"9001","weekly_projection":21.4},
+ {"name":"Chase Brown","pos":"RB","team":"CIN","slot":"RB","injury_status":"Healthy","sleeper_id":"9002","weekly_projection":15.8},
+ {"name":"Bucky Irving","pos":"RB","team":"TB","slot":"RB","injury_status":"Q","sleeper_id":"9003","weekly_projection":14.9},
+ {"name":"Amon-Ra St. Brown","pos":"WR","team":"DET","slot":"WR","injury_status":"Healthy","sleeper_id":"9004","weekly_projection":17.6},
+ {"name":"DeVonta Smith","pos":"WR","team":"PHI","slot":"WR","injury_status":"Healthy","sleeper_id":"9005","weekly_projection":14.2},
+ {"name":"Sam LaPorta","pos":"TE","team":"DET","slot":"TE","injury_status":"Healthy","sleeper_id":"9006","weekly_projection":11.8},
+ {"name":"Jaylen Warren","pos":"RB","team":"PIT","slot":"FLEX","injury_status":"Healthy","sleeper_id":"9007","weekly_projection":12.1},
+ {"name":"Steelers D/ST","pos":"DST","team":"PIT","slot":"DST","injury_status":"Healthy","sleeper_id":null,"weekly_projection":7.5},
+ {"name":"Cameron Dicker","pos":"K","team":"LAC","slot":"K","injury_status":"Healthy","sleeper_id":"9009","weekly_projection":8.2},
+ {"name":"Bo Nix","pos":"QB","team":"DEN","slot":"BE","injury_status":"Healthy","sleeper_id":"9013","weekly_projection":18.7},
+ {"name":"Kenneth Gainwell","pos":"RB","team":"TB","slot":"BE","injury_status":"O","sleeper_id":"9014","weekly_projection":6.2}]},
+{"team_id":6,"name":"Gridiron Geese","owner":"Max W.","record":"3-0","points_for":355.0,"waiver_rank":12,"faab_remaining":81,"faab_spent":19,"roster":[
+ {"name":"Patrick Mahomes","pos":"QB","team":"KC","slot":"QB","injury_status":"Healthy","sleeper_id":null,"weekly_projection":22.1},
+ {"name":"Bijan Robinson","pos":"RB","team":"ATL","slot":"RB","injury_status":"Healthy","sleeper_id":null,"weekly_projection":18.4},
+ {"name":"Breece Hall","pos":"RB","team":"NYJ","slot":"RB","injury_status":"Q","sleeper_id":null,"weekly_projection":13.2},
+ {"name":"Justin Jefferson","pos":"WR","team":"MIN","slot":"WR","injury_status":"Healthy","sleeper_id":null,"weekly_projection":18.9},
+ {"name":"CeeDee Lamb","pos":"WR","team":"DAL","slot":"WR","injury_status":"Healthy","sleeper_id":null,"weekly_projection":16.8},
+ {"name":"Trey McBride","pos":"TE","team":"ARI","slot":"TE","injury_status":"Healthy","sleeper_id":null,"weekly_projection":12.4},
+ {"name":"James Cook","pos":"RB","team":"BUF","slot":"FLEX","injury_status":"Healthy","sleeper_id":null,"weekly_projection":13.8},
+ {"name":"49ers D/ST","pos":"DST","team":"SF","slot":"DST","injury_status":"Healthy","sleeper_id":null,"weekly_projection":6.9},
+ {"name":"Brandon Aubrey","pos":"K","team":"DAL","slot":"K","injury_status":"Healthy","sleeper_id":null,"weekly_projection":8.8},
+ {"name":"Khalil Shakir","pos":"WR","team":"BUF","slot":"BE","injury_status":"O","sleeper_id":null,"weekly_projection":9.4},
+ {"name":"Jordan Mercer","pos":"RB","team":"CHI","slot":"BE","injury_status":"Healthy","sleeper_id":"9101","weekly_projection":7.1}]},
+{"team_id":1,"name":"Team Rex","owner":"Rex L.","record":"1-2","points_for":290.1,"waiver_rank":3,"faab_remaining":45,"faab_spent":55,"roster":[
+ {"name":"Brian Robinson Jr.","pos":"RB","team":"WAS","slot":"RB","injury_status":"IR","sleeper_id":null,"weekly_projection":null}]},
+{"team_id":2,"name":"Park Place","owner":"Sam P.","record":"2-1","points_for":312.6,"waiver_rank":7,"faab_remaining":58,"faab_spent":42,"roster":[]},
+{"team_id":3,"name":"Diaz Dynasty","owner":"Ana D.","record":"0-3","points_for":265.4,"waiver_rank":1,"faab_remaining":92,"faab_spent":8,"roster":[]},
+{"team_id":5,"name":"Kingmakers","owner":"Joe K.","record":"1-2","points_for":301.9,"waiver_rank":5,"faab_remaining":29,"faab_spent":71,"roster":[]},
+{"team_id":7,"name":"Chan Do","owner":"Lia C.","record":"2-1","points_for":322.3,"waiver_rank":8,"faab_remaining":75,"faab_spent":25,"roster":[]},
+{"team_id":8,"name":"Reed It","owner":"Tom R.","record":"1-2","points_for":288.8,"waiver_rank":4,"faab_remaining":40,"faab_spent":60,"roster":[]},
+{"team_id":9,"name":"Nash Bridges","owner":"Ivy N.","record":"3-0","points_for":348.5,"waiver_rank":11,"faab_remaining":88,"faab_spent":12,"roster":[]},
+{"team_id":10,"name":"Cole Train","owner":"Ben C.","record":"0-3","points_for":255.0,"waiver_rank":2,"faab_remaining":10,"faab_spent":90,"roster":[]},
+{"team_id":11,"name":"Hart Attack","owner":"Zoe H.","record":"2-1","points_for":318.4,"waiver_rank":10,"faab_remaining":33,"faab_spent":67,"roster":[]},
+{"team_id":12,"name":"Ford Tough","owner":"Eli F.","record":"1-2","points_for":295.7,"waiver_rank":6,"faab_remaining":47,"faab_spent":53,"roster":[]}],
+"matchups":{"1":[{"home":4,"away":6}]},"my_matchup":{"opponent_team_id":6}}}};
+
+/* Embedded-sample fallback only (file:// open): give the sample rows the same prior-model
+   bands + risk tiers the live sidecar carries, and the same sleeper_ids, so every R9/R10
+   surface still demos offline. Marked SAMPLE everywhere it shows. */
+function ensureSampleBands(d){
+  if(d.range_model) return d;
+  d.range_model = {backends:"prior only (embedded SAMPLE)", sources:{},
+                   cv_by_pos:DEFAULT_CV, floor_k:1.0, ceiling_k:1.45};
+  const RISK_T = [[0.30,"Safe"],[0.45,"Steady"],[0.60,"Balanced"],[0.80,"Boom-Bust"],[99,"Wild"]];
+  const SAMPLE_IDS = {"Joe Burrow|QB":"9001","Bucky Irving|RB":"9003","Amon-Ra St. Brown|WR":"9004",
+    "DeVonta Smith|WR":"9005","Sam LaPorta|TE":"9006","Cameron Dicker|K":"9009","Bo Nix|QB":"9013",
+    "Kenneth Gainwell|RB":"9014","Chris Godwin Jr.|WR":"9015","Wan'Dale Robinson|WR":"9016",
+    "Dalton Kincaid|TE":"9017","Parker Washington|WR":"9018"};
+  for(const [k,e] of Object.entries(d.roster||{})){
+    if(SAMPLE_IDS[k] && e.sleeper_id == null) e.sleeper_id = SAMPLE_IDS[k];
+    const m = e.weekly_projection, pos = k.split("|")[1];
+    if(m == null || e.bye) continue;
+    if(e.floor == null || e.ceiling == null){
+      const pb = priorBand(m, pos); e.floor = pb.f; e.ceiling = pb.c;
+    }
+    if(!e.risk_tier){
+      const cv = (e.ceiling - e.floor) / (2.45*m);
+      e.risk_tier = (RISK_T.find(([th]) => cv <= th) || RISK_T[RISK_T.length-1])[1];
+    }
+  }
+  return d;
+}
+
+/* ============================== 9 ORCHESTRATION — renderAll, boot, wiring, fetch ============================== */
+
+function renderAll(scrollQ){
+  // R9/R10 (2026-06-10): effective posture = stored manual choice, else the matchup
+  // suggestion (a default the human overrides — never a lock). Suggestion comes from a
+  // Balanced-resolved lineup, so it is independent of the posture it suggests.
+  const stored = loadPosture();
+  POSTURE = stored || {p:"bal", tilt:0.5, manual:false};
+  const h2h = computeH2H();
+  SUGGEST = h2h ? h2h.suggest : null;
+  if(!stored && SUGGEST) POSTURE = {p:SUGGEST.p, tilt:0.5, manual:false};
+  renderPosture();
+  const lineup = renderLineup();
+  renderLeagueSel(); renderFlex(lineup); renderBench(lineup); renderStreaming(); renderWaivers();
+  renderSpikes(); renderOpponent(lineup, h2h); renderWaiverCapital(); renderAlerts(lineup); renderTrends();
+  document.getElementById("wk").textContent = `Week ${DATA.week} · ${DATA.season}`;
+  document.getElementById("sampleBadge").style.display = DATA.sample ? "inline-block" : "none";
+  const n = Object.keys(DATA.roster||{}).length;
+  document.getElementById("fresh").textContent =
+    `${n} roster players · generated ${DATA.generated} · status pulled ${(DATA.sources||{}).pulled_at||"?"} · data: ${MODE}` +
+    ` · trends: ${TRENDS ? (TRENDS.sample ? "sample" : `usage through W${TRENDS.week}`) : "—"}` +
+    ` · league: ${LEAGUE ? (LEAGUE.sample ? "sample" : `W${LEAGUE.week} pulled ${LEAGUE.generated}`) : "—"}` +
+    ` · posture: ${POSTURE_NAME[POSTURE.p]}${POSTURE.manual ? "" : " (auto)"}` +
+    (DATA.sample ? " · SAMPLE — not a real week" : "");
+  document.getElementById("foot").innerHTML =
+    `Hub renders only — <code>/weekly-lineup</code> computes and writes the sidecar (conventions §9). ` +
+    `State on this device: manual slot overrides + posture for Week ${DATA.week} only. ` +
+    `Posture re-ranks by the chosen point of each floor–median–ceiling band (R9, 2026-06-10).`;
+  if(scrollQ){
+    const q = new URLSearchParams(location.search).get("q");
+    if(q){ const el = [...document.querySelectorAll("[data-name]")].find(x => x.dataset.name.toLowerCase().includes(q.toLowerCase()));
+      if(el){ const row = el.closest(".slot,.rowline"); if(row){ row.classList.add("hl"); row.scrollIntoView({block:"center"}); } } }
+  }
+}
+
+function boot(data, mode){ DATA = data; MODE = mode; renderAll(true); }
+document.getElementById("resetBtn").addEventListener("click", () => {
+  clearOverrides(); openSwap = null; renderAll(false);
+});
+document.getElementById("leagueSel").addEventListener("change", ev => {
+  LEAGUE_ID = ev.target.value; saveLeagueChoice(LEAGUE_ID); renderAll(false);
+});
+document.getElementById("postbar").addEventListener("click", ev => {
+  const b = ev.target.closest(".pbtn"); if(!b) return;
+  savePosture({p:b.dataset.p, tilt:POSTURE?POSTURE.tilt:0.5, manual:true}); renderAll(false);
+});
+document.getElementById("tilt").addEventListener("input", ev => {
+  savePosture({p:"hybrid", tilt:+ev.target.value/100, manual:true}); renderAll(false);
+});
+document.getElementById("tMode").addEventListener("click", ev => {
+  const b = ev.target.closest("button"); if(!b) return;
+  TSTATE.mode = b.dataset.m; saveTrendsState(); renderTrends();
+});
+document.getElementById("tMetric").addEventListener("change", ev => {
+  TSTATE.metric = ev.target.value; saveTrendsState(); renderTrends();
+});
+document.addEventListener("click", ev => {                 // trend arrow → its chart
+  const tr = ev.target.closest(".trend[data-sid]");
+  if(tr && tr.dataset.sid && tr.dataset.sid !== "undefined"){ ev.stopPropagation(); focusTrendChart(tr.dataset.sid); }
+}, true);
+
+/* Shared data-loading pattern (_shared.js fetchJSON): each failure resolves
+   null + console.warn (never silent). Visible fallback: weekly missing →
+   embedded sample (mode label says so); trends/league null → empty-states. */
+Promise.all([
+  fetchJSON("../Data/weekly-sidecar.json"),
+  fetchJSON("../Data/usage-trends.json"),
+  fetchJSON("../Data/league-sidecar.json")
+]).then(([d, t, l]) => {
+  if(d){ TRENDS = t; LEAGUE = l; boot(d, "live fetch"); } // live; trends/league null → empty-states
+  else { TRENDS = SAMPLE_TRENDS; LEAGUE = SAMPLE_LEAGUE; boot(ensureSampleBands(SAMPLE_WEEKLY), "embedded sample (fetch unavailable)"); }
+});
+</script>
+</body>
+</html>
