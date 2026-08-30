@@ -1,15 +1,15 @@
 {
- "generated": "2026-08-30 00:54",
+ "generated": "2026-08-30 20:09",
  "counts": {
   "topics": 18,
   "converging": 7,
   "contested": 6,
   "cases": 63,
-  "leads": 7,
+  "leads": 18,
   "teams_covered": 416,
   "wr_archetypes": 44,
   "wr_splits": 34,
-  "rb_archetypes": 55,
+  "rb_archetypes": 54,
   "te_archetypes": 20,
   "wr_cb_shadow": 21
  },
@@ -2797,8 +2797,8 @@
    "refresh": "preseason snap counts (wk1 ~8/16 through 8/29), then cutdowns 8/31",
    "doc": "Research/_red-zone-goal-line-2026.md",
    "built": "2026-08-12",
-   "lead": "",
-   "lead_dated": "",
+   "lead": "Touchdown equity is where ADP guesses wrong most — five distinct threads worth knowing before you draft a single running back.\n\n<b>① The QB is the league's most underpriced vulture.</b> Buffalo (Josh Allen owns the goal line outright), Philadelphia (the tush push isn't even up for a vote in 2026 — it fell two votes short in May 2025 and nothing was filed for this cycle) and the Giants (Jaxson Dart led all rookie QBs with 9 rush TDs) all cap their RB room's touchdown equity by design, not injury.\n\n<b>② \"Lead back\" doesn't mean \"the guy who scores.\"</b> Tampa Bay is the sharpest case: every one of the team's 19 carries inside the opponent 5 in 2025 went to Rachaad White or Sean Tucker — Bucky Irving got zero. Seattle is a correction, not a confirmation: Zach Charbonnet, not Kenneth Walker, held the 2025 goal-line job, but a torn ACL keeps him out through at least a month of the season — whoever else wins camp's job keeps it into October.\n\n<b>③ Efficiency and volume are different bets.</b> Philadelphia had the league's best red-zone TD rate (70.5%) on the 5th-fewest trips; LAR had the most trips (76) at a merely 8th-best rate — a high-rate/low-volume offense makes its skill players efficient, not voluminous.\n\n<b>④ Team red-zone quality isn't offensive quality.</b> Cincinnati's problem is a shape problem, not a talent one — the league's 2nd-lowest rush-TD share caps Chase Brown's ceiling despite a dominant 73.9% red-zone snap share. New Orleans was dead last in conversion at 44.4% — every Saints skill asset carries that discount.\n\n<b>⑤ Two rookie short-yardage bangers to watch, not bet on.</b> Washington's Kaytron Allen and Tennessee's Kalel Mullings are both drawing real camp praise — neither is depth-chart-confirmed, and camp hype for a late-round banger converts to real carries far less often than the reporting implies.",
+   "lead_dated": "2026-08-30",
    "cases": [],
    "teams": [
     {
@@ -3043,8 +3043,8 @@
    "refresh": "preseason wk1 snaps ~8/16, cutdowns 8/31; full re-rate on 2026 defensive data in September",
    "doc": "Research/_schedule-strength-2026.md",
    "built": "2026-08-13",
-   "lead": "",
-   "lead_dated": "",
+   "lead": "Schedule strength splits by position and by time of season — four threads worth knowing before the market's single \"SOS\" number misleads you.\n\n<b>① Philadelphia is a schedule mirage.</b> The league's easiest full-season TE slate (1st) and top-4 at WR/QB, then SEA/HOU/SF in weeks 15-17 drop its WR schedule 23 ranking spots to 27th, its QB slate 19 spots to 22nd — the part of the schedule that decides your title looks nothing like the part public rankings quote in May.\n\n<b>② Buffalo and the Chargers are the mispriced mirror image.</b> BUF carries a bottom-3 full-season RB/QB slate that reads like a fade all year, then a top-7 slate at all four positions once the fantasy playoffs hit. LAC is the same shape — mediocre all season (RB 24th, TE 24th, QB 18th), then the best fantasy-playoff slate in football (QB 1st, WR 2nd, RB 3rd, TE 5th) — the tiebreaker when two players are otherwise close on the board.\n\n<b>③ Minnesota and Detroit are opposite case studies.</b> Minnesota is the one team top-6 at all four positions in both the full season and the playoffs — the cleanest positive signal in the whole table. Detroit is the sharpest single-team contradiction: a 3rd-easiest RB slate sitting next to a 29th-hardest TE slate, one team pointing two different directions.\n\n<b>④ The single highest-leverage number in the model is a live fault line.</b> San Francisco's 1.5 vs-QB rating is the softest in the league and the reason LAC's QB playoff slate grades 1st — but it rests on an unconfirmed Nick Bosa health read. If he's back to full speed, that one number (and everything built on it) needs to be re-rated.",
+   "lead_dated": "2026-08-30",
    "cases": [],
    "teams": [
     {
@@ -3284,8 +3284,8 @@
    "refresh": "",
    "doc": "Research/_dst-archetypes-2026.md",
    "built": "",
-   "lead": "",
-   "lead_dated": "",
+   "lead": "Consensus D/ST rank hides HOW a unit scores — the archetype is the real streaming and start/sit signal. Eight defenses — ATL, DAL, TEN, CIN, MIA, WAS, LV, ARI — are flatly rebuilding-soft: matchup fodder for opposing offenses, undraftable even at a discount. The eight pressure-front units (HOU, DEN, LAR, PIT, MIN, BAL, SF, NYG) carry the league's highest turnover upside off the pass rush alone, while Seattle, Philadelphia and New England win almost entirely off an elite secondary even with a middling front seven. Confidence: 11 high, 21 medium, 0 low across all 32 — a trustworthy read, not a guess.",
+   "lead_dated": "2026-08-30",
    "cases": [],
    "teams": [
     {
@@ -3494,8 +3494,8 @@
    "refresh": "",
    "doc": "Research/_pace-play-volume-2026.md",
    "built": "",
-   "lead": "",
-   "lead_dated": "",
+   "lead": "Pace and play volume move independently of talent — five team-specific bets worth tracking as the season opens.\n\n<b>① Washington's deliberate reversal is the layer's headline.</b> The Commanders ran 1,279 plays out of no-huddle in 2025 — 815 more than the #2 team (Philadelphia) — yet still finished 4th-lowest in total plays per game (57.2), because no-huddle clock management doesn't create extra snaps by itself. New OC David Blough wants to cut that to roughly 20% no-huddle in 2026; whether that raises or lowers the Commanders' play count is genuinely unresolved.\n\n<b>② New York Giants — the largest volume-direction reversal in the league.</b> 2025's top-4 pace/plays numbers belong to the pre-Harbaugh staff; the new regime's declared identity is explicitly run-first, which should compress the pass-catcher pie (Nabers, the TE room) below what 2025 tape suggests.\n\n<b>③ Green Bay is the clearest coach-confirmed speed-up.</b> LaFleur named tempo an explicit 2026 emphasis after GB posted the fewest non-kneel possessions/game since 1999 — camp reporting already shows more no-huddle, growing the WR-trio/Kraft pie without touching Jacobs' carry share.\n\n<b>④ Kansas City is the quiet pace-down risk nobody's pricing.</b> Bieniemy pushing under-center looks away from a league-high 80.6% shotgun rate is a plausible drag on Rice/Kelce/Worthy volume that Mahomes-health headlines are drowning out.\n\n<b>⑤ Three more tempo bets worth a watch:</b> Pittsburgh's McCarthy has stated a quantified 55-plays/gm goal (up from 45.41 in 2025) that his own source calls \"overly ambitious\"; Baltimore's new OC Doyle is pushing tempo on a bottom-3-volume 2025 offense; and Denver's Nix was materially better in no-huddle last year (7.1 Y/A vs 6.3) under a new playcaller reportedly favoring faster huddle-exits.",
+   "lead_dated": "2026-08-30",
    "cases": [],
    "teams": [
     {
@@ -3735,8 +3735,8 @@
    "refresh": "",
    "doc": "Research/_dst-streaming-2026.md",
    "built": "",
-   "lead": "",
-   "lead_dated": "",
+   "lead": "D/ST streaming here does two jobs — the computed weeks 1-4 matrix, and the real research that corrects it where the model's proxy misses something.\n\n<b>① Week 1 has six smash-grade streams by the model, but two of them play each other.</b> Miami and Las Vegas share a Week 1 game, so only one side can actually be started — a trap the raw list alone won't catch. Buffalo (vs Houston) and Cleveland (vs Jacksonville) are the clean, uncontested Week 1 streams; Indianapolis is a smash in three of its four opening weeks (BAL Wk1, HOU Wk3, WAS Wk4) despite sitting outside the roster-worthy top-12.\n\n<b>② Real reporting corrects the model in three places.</b> Philadelphia gets an independent tailwind on top of its own Week 1 tag — Washington opens without starting LT Laremy Tunsil (biceps). The Chargers are a hold-don't-stream call even though they're outside the streaming pool — top-10 in sacks and takeaways, drawing ARI then LV to open the year. And the Bears/Panthers Week 1 matchup is a case where the model's OL-rank proxy likely understates the matchup — Carolina's actual 23rd-ranked pass-block win rate is a sharper signal than its mid-pack overall OL grade.",
+   "lead_dated": "2026-08-30",
    "cases": [],
    "teams": [
     {
@@ -3976,8 +3976,8 @@
    "refresh": "",
    "doc": "Research/_pass-protection-qb-pressure-2026.md",
    "built": "",
-   "lead": "",
-   "lead_dated": "",
+   "lead": "Two different pressure stories live in this layer — one about rosters, one about the quarterbacks throwing behind them.\n\n<b>① The OL grade and the real sack outcome disagree by 10+ ranking spots on 13 of 32 teams</b> — and that gap, not the grade itself, is the signal. Green Bay and Houston are the biggest positive surprises: bottom-5-graded lines (28th and 30th) that still produced top-10 sack outcomes, Jordan Love's own 9.1% pressure-to-sack rate (tied 6th-best of all tracked QBs) doing real work for GB. The Jets and Chargers are the inverse — elite-graded tackle talent (Fashanu/Membou, Slater/Alt) that still finished bottom-3 in actual sacks allowed, pointing at scheme or QB processing speed rather than the roster.\n\n<b>② The QB-level pressure-to-sack leaderboard names the individual risk.</b> Tua Tagovailoa is the name to fade hardest on rate alone — literally half of his pressured dropbacks became sacks in 2025 (50.0%, worst of any tracked QB) — with Aaron Rodgers (30.4%), Cam Ward (32.4%), Mac Jones (37.5%) and J.J. McCarthy (40.9%) also converting pressure into lost downs at a high clip. Pair this with an opponent's pass-rush strength for the sharpest weekly QB streaming/fade calls once that data exists.",
+   "lead_dated": "2026-08-30",
    "cases": [],
    "teams": [
     {
@@ -4217,8 +4217,8 @@
    "refresh": "",
    "doc": "Research/_kicker-situation-2026.md",
    "built": "",
-   "lead": "",
-   "lead_dated": "",
+   "lead": "Four teams' kickers won their job only after the consensus ranking used here had gone to print. The Giants' is the wildest camp battle in the league: rookie Dominic Zvada went 48-of-51 in padded camp work, including a 61-yard make, to beat out veteran Ben Sauls (5-of-6) — a real leg, but next to zero NFL track record heading into Week 1. Brandon Aubrey (DAL) is both the #1 consensus kicker by accuracy AND the #1 volume play by a separate red-zone/pace proxy — the two signals agreeing is a real data point, not a coincidence — while that same proxy's other top volume flag (NYG) now lands on Zvada's unproven leg instead of an established name, worth downgrading until he shows something in real games.",
+   "lead_dated": "2026-08-30",
    "cases": [],
    "teams": [
     {
@@ -4426,8 +4426,8 @@
    "freshness": "DELTA REFRESH 2026-08-14 (overnight run A — CHI/IND/SF/KC/TB rooms only, see § REFRESH at bottom; 3 entries superseded, Godwin Balanced→Steady, Pearsall OUT-2026, Rice tier_arg rebuilt). June baseline — classified 2026-06-12 from current (June 2026, post-FA/post-draft) web sources via a 4-agent fan-out; 2025 actuals +…",
    "refresh": "",
    "doc": "Research/_wr-archetypes-2026.md",
-   "lead": "",
-   "lead_dated": "",
+   "lead": "The WR-archetype lens does three different jobs — flags where the model's own numbers are wrong, catches a live market gap, and tracks which rooms actually changed hands this offseason.\n\n<b>① The model under-discriminates receivers.</b> Across the 44-WR pool, this lens found 31 outright disagreements with the model's own CV-based risk tier. The two loudest, both top-12 overall: Justin Jefferson grades Steady by the model but reads Boom/Bust by role (elite volume, but a deep aDOT means he needs the ball to connect), and Malik Nabers grades Steady but reads Wild, because health, not role, is now the entire swing factor.\n\n<b>② The sharpest market gap the lens caught:</b> Chris Godwin is priced as a health-question backup (ADP 105, WR36) while two independently dated August sources confirm he's a healthy, confirmed first-string slot starter in a post-Evans Tampa Bay offense — the strongest buy-low case the whole layer surfaced.\n\n<b>③ Real 2026 room changes</b>, verified and baked into the archetype reads: Waddle (MIA→DEN, Nix's #2 deep option), DJ Moore (CHI→BUF, reunited with Brady), Mike Evans (TB→SF, a Shanahan RZ/deep option), Michael Pittman (IND→PIT, WR2 behind Metcalf on a Rodgers-led offense), Jakobi Meyers (→JAC, 3yr/$60M), and A.J. Brown (PHI→NE, stepping into an uncontested WR1 role next to Maye).",
+   "lead_dated": "2026-08-30",
    "cases": [],
    "navcount": 44,
    "groups": [
@@ -4850,7 +4850,7 @@
         }
        ],
        "profile": "Research/profiles/players/WR/chris-olave.md",
-       "has_edge": false
+       "has_edge": true
       },
       {
        "name": "DeVonta Smith",
@@ -6838,10 +6838,10 @@
    "freshness": "classified 2026-08-26 (full 145-player pool) via Parts 1-5 + Codex full-pool schema fill, both fact-audited 2026-08-26 (see Research/catchup/2026-08-26-archetype-parts-1-5-claude-consolidation/FACT-AUDIT-2026-08-26.md and FACT-AUDIT-CODEX-BATCH-2026-08-26.md). Wired to the sidecar 2026-08-26 for the 55 RBs that alread…",
    "refresh": "",
    "doc": "Research/_rb-archetypes-2026.md",
-   "lead": "",
-   "lead_dated": "",
+   "lead": "Of the full 145-player pool, only three backs — Christian McCaffrey, Ashton Jeanty, Breece Hall — carry a high-confidence, locked-on-every-down bell-cow role; 102 carry some form of committee-timeshare instead. Blake Corum's fantasy relevance is the flip side of that scarcity — a 40%-carry committee share, but a role built purely to vulture touchdowns near the goal line, no bell-cow workload required — while Jaylen Warren proves the PPR mirror image: a 45%-carry share but real weekly floor built on passing-down targets alone.",
+   "lead_dated": "2026-08-30",
    "cases": [],
-   "navcount": 55,
+   "navcount": 54,
    "groups": [
     {
      "archetype": "bell-cow-three-down",
@@ -7524,55 +7524,6 @@
        ],
        "confidence": "high",
        "profile": "Research/profiles/players/RB/jaylen-warren.md",
-       "has_edge": false
-      },
-      {
-       "name": "Kenny Gainwell",
-       "team": "TB",
-       "rank": 99,
-       "adp": "99.0",
-       "archetype": "passing-down-back",
-       "secondary": "committee-timeshare",
-       "tags": [
-        {
-         "text": "contested",
-         "cls": ""
-        },
-        {
-         "text": "every-down",
-         "cls": ""
-        },
-        {
-         "text": "OL-low",
-         "cls": ""
-        }
-       ],
-       "why": "classification defaults from CSV depth/rank plus TB team-level context; player-specific role evidence is thin.",
-       "note": "",
-       "tier_read": "Balanced",
-       "tier_split": false,
-       "anchors": [
-        {
-         "claim": "CSV pool row: Kenny Gainwell|RB; team TB; Consensus_Rank=99; Consensus_Pos_Rank=35; ADP=99.0; Depth_Level=Backup; Injury_Status=Healthy; Tier=8",
-         "source": "Data/players.csv",
-         "date": "2026-08-26 file mtime",
-         "confidence": "high"
-        },
-        {
-         "claim": "RB receiving role: specialist-driven lead=Kenneth Gainwell note=85 tgt (RB6) signed for the role; Irving primary if shoulder/role holds",
-         "source": "Research/_rb-receiving-2026.md",
-         "date": "last_updated 2026-08-25",
-         "confidence": "medium"
-        },
-        {
-         "claim": "Red-zone read: GL=Sean Tucker vulture=Sean Tucker, directly on Bucky Irving confidence=high (split)",
-         "source": "Research/_red-zone-goal-line-2026.md",
-         "date": "created 2026-08-12; audit 2026-08-12",
-         "confidence": "medium"
-        }
-       ],
-       "confidence": "medium",
-       "profile": "Research/profiles/players/RB/kenneth-gainwell.md",
        "has_edge": false
       },
       {
@@ -10178,8 +10129,8 @@
    "method": "Each RB is classified into a football ROLE (touch security + receiving role) from Data/rb-archetypes.json, fact-audited 2026-08-26. Only RBs with an individual sidecar profile are wired here — deep-bench committee names are classified but not yet surfaced. Per-stat citations sit on each card's evidence.",
    "sources": "Data/players.csv plus dated local topic layers (backfield-usage, rb-receiving, red-zone/goal-line) — see Data/rb-archetypes.json anchors for the per-player citation trail",
    "counts": {
-    "wrs": 55,
-    "n": 55,
+    "wrs": 54,
+    "n": 54,
     "label": "RBs"
    }
   },
@@ -10191,8 +10142,8 @@
    "freshness": "classified 2026-08-26 (full 83-player pool) via Parts 1-5 + Codex full-pool schema fill, both fact-audited 2026-08-26. Wired to the sidecar 2026-08-26 for the 20 TEs that already carry an individual profile — the other 63 are deep-bench/blocking-role names without a profile yet (honest absence).",
    "refresh": "",
    "doc": "Research/_te-archetypes-2026.md",
-   "lead": "",
-   "lead_dated": "",
+   "lead": "Seven of the position's biggest names — Bowers, McBride, Loveland, Warren, Fannin, Kelce, Kincaid — are move-tight-ends: floor from being a receiving weapon first, insulated from whoever's throwing to them. The inline-y group — Kraft, LaPorta, Kittle, Ferguson — is the opposite, the most QB- and scheme-locked role at the position; Dallas Goedert is the clearest red-zone-specialist, touchdown equity that doesn't need target volume, and Kyle Pitts carries a seam-stretcher/move-TE hybrid tag — not a guaranteed first read even on plays he's featured. Real route data exists for only 8 of 20 wired TEs (McBride 69.3%, Kelce 63.2%) — the rest are a taxonomy estimate.",
+   "lead_dated": "2026-08-30",
    "cases": [],
    "navcount": 20,
    "groups": [
@@ -11341,8 +11292,8 @@
    "freshness": "\"CB shadow-tier taxonomy from a dated, current (2026-08-17) source; WR pool from this vault's own fact-audited wr_archetype layer (2026-08-26); weeks 1-4 cross-reference computed 2026-08-30 from Data/schedule-2026.csv. Real shadow ASSIGNMENTS are a game-week coaching decision, not knowable in August — this doc identif…",
    "refresh": "",
    "doc": "Research/_wr-cb-shadow-2026.md",
-   "lead": "",
-   "lead_dated": "",
+   "lead": "Brian Thomas Jr. draws a shadow-capable corner in all four of his first four weeks — Ward, Surtain, Gonzalez, Turner — the sharpest finding in the layer, since shadow coverage suppresses catch rate and aDOT more reliably than it suppresses raw target share. A.J. Brown, DK Metcalf and Nico Collins each face three of four weeks. Seven of the pool's biggest names — Jefferson, Lamb, Nabers, Wilson, Olave, Tyson, and DeVonta Smith (whose only \"shadow corner\" plays for his own team) — carry a completely clean slate through Week 4, the group worth leaning into if two receivers are otherwise close on the board.",
+   "lead_dated": "2026-08-30",
    "cases": [],
    "navcount": 21,
    "groups": [
@@ -11726,7 +11677,7 @@
        "weeks_1_4": [],
        "line": "no shadow-capable CB on the weeks 1-4 slate",
        "group": "Clean early slate (0 wks)",
-       "has_edge": false
+       "has_edge": true
       },
       {
        "name": "DeVonta Smith",
