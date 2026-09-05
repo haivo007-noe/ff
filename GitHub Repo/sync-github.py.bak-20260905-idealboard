@@ -23,10 +23,6 @@ FILES = {
     SRC / "Data" / "weekly-sidecar.json":    HERE / "Data" / "weekly-sidecar.json",
     SRC / "Data" / "usage-trends.json":      HERE / "Data" / "usage-trends.json",
     SRC / "Data" / "league-sidecar.json":    HERE / "Data" / "league-sidecar.json",
-    # Ideal-players board source of truth (2026-09-05). The board EMBEDS this file as
-    # IDEAL_BOARD_SEED (no fetch — must work over file:// too), so publishing it is for
-    # readability/diffing, not for the page to run. Re-embed with Skills/embed-ideal-board.py.
-    SRC / "Data" / "ideal-board.json":       HERE / "Data" / "ideal-board.json",
 }
 
 for src, dst in FILES.items():
