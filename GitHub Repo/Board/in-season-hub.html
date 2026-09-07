@@ -63,6 +63,14 @@
   .chip.q{background:rgba(210,153,34,.18);color:var(--warn)}
   .chip.out{background:rgba(248,81,73,.18);color:var(--bad)}
   .chip.edge{background:rgba(163,113,247,.16);color:var(--edge)}
+  .chip.exp{background:rgba(125,145,175,.18);color:var(--muted);cursor:help}   /* R15 cross-league exposure */
+  /* R15.1 bye outlook */
+  .bye{border:1px solid var(--rule);border-left:4px solid var(--warn);background:var(--panel);border-radius:6px;padding:7px 10px;font-size:12.5px;margin-bottom:6px}
+  .bye.forced{border-left-color:var(--bad)}
+  .bye .wk{font-weight:700}
+  .bye .both{color:var(--bad);font-weight:700;font-size:11px;letter-spacing:.03em}
+  .bye .lg{color:var(--muted);font-size:11.5px;margin-top:3px}
+  .bye .gap{color:var(--bad);font-weight:600}
   .chip.bye{background:rgba(248,81,73,.18);color:var(--bad)}
   .chip.waiver{background:rgba(88,166,255,.14);color:var(--link)}
   .chip.rostered{background:rgba(147,163,154,.15);color:var(--dim)}
@@ -205,6 +213,10 @@
     <section>
       <h2 id="capHead">Waiver capital</h2>
       <div id="capPanel"></div>
+    </section>
+    <section id="byeSec" hidden>
+      <h2 id="byeHead">Bye outlook</h2>
+      <div id="byePanel"></div>
     </section>
     <section>
       <h2>Streaming — D/ST &amp; K</h2>
@@ -390,6 +402,11 @@ const SLOTS = [
   {id:"K",   tag:"K",    pos:["K"]}
 ];
 const OUT_STATUSES = ["O","IR","NA","Out"];
+/* R15 (2026-09-07) — WEEKLY is the whole §9 file; DATA is the LEAGUE-RESOLVED VIEW of it
+   (top-level meta + the selected league's roster/streaming/waivers/alerts/flags/range_model).
+   Every renderer below still reads DATA exactly as it did pre-R15 — switching league just
+   rebuilds the view and re-renders. A pre-R15 file (no `leagues{}`) resolves to itself. */
+let WEEKLY = null;
 let DATA = null, TRENDS = null, LEAGUE = null, LEAGUE_ID = null, MODE = "", openSwap = null;
 
 let POSTURE = null, SUGGEST = null;        // POSTURE = effective {p,tilt,manual}; SUGGEST = {p,reason,label}
@@ -408,27 +425,41 @@ const isEdge = k => scIsEdge({research_flags:(DATA.research_flags||{})[k]});
 
 /* ============================== 2 STATE — localStorage, one pattern ==============================
    Keys this surface owns (all per-device):
-     ffhub.lineup.{season}-W{N}   manual slot overrides for the week (§9 contract)
-     ffhub.posture.{season}-W{N}  manual posture choice for the week (R9)
-     ffhub.trends                 trend-chart view state (mode/player/team/metric, §10)
-     ffhub.league                 chosen league id (raw string — predates the JSON pattern)
+     ffhub.lineup.{league}.{season}-W{N}   manual slot overrides for the week (§9 contract)
+     ffhub.posture.{league}.{season}-W{N}  manual posture choice for the week (R9)
+     ffhub.trends                          trend-chart view state (mode/player/team/metric, §10)
+     ffhub.league                          chosen league id (raw string — predates the JSON pattern)
    JSON keys go through lsLoad/lsSave/lsClear — same try/catch everywhere; bad or
-   absent JSON → fallback, never a throw. Consolidated 2026-06-11, no behavior change. */
+   absent JSON → fallback, never a throw. Consolidated 2026-06-11, no behavior change.
+   R15 (2026-09-07): lineup + posture keys are LEAGUE-SCOPED — two leagues in the same week
+   are two different lineups and two different postures, and must never share a slot override.
+   Legacy unscoped keys are read once as a fallback for the DEFAULT league only (a lineup set
+   before this change survives the upgrade); writes always go to the scoped key. */
 function lsLoad(key, fallback){ try{ return JSON.parse(localStorage.getItem(key)) || fallback; }catch(e){ return fallback; } }
 const lsSave  = (key, val) => localStorage.setItem(key, JSON.stringify(val));
 const lsClear = key => localStorage.removeItem(key);
 
+/* R15 — the league segment of every week-scoped key. Falls back to the file's default
+   (or "espn-main") so a pre-R15 single-league file still produces a stable key. */
+const lgSeg = () => LEAGUE_ID || (WEEKLY && WEEKLY.default_league) || "espn-main";
+const weekSeg = () => `${DATA.season}-W${DATA.week}`;
+/* one read of the pre-R15 unscoped key, DEFAULT league only — see the STATE band note */
+function legacyRead(prefix){
+  const def = (WEEKLY && WEEKLY.default_league) || "espn-main";
+  return lgSeg() === def ? lsLoad(`ffhub.${prefix}.${weekSeg()}`, null) : null;
+}
+
 /* lineup overrides */
-const stateKey = () => `ffhub.lineup.${DATA.season}-W${DATA.week}`;
-const loadOverrides  = () => lsLoad(stateKey(), {});
+const stateKey = () => `ffhub.lineup.${lgSeg()}.${weekSeg()}`;
+const loadOverrides  = () => lsLoad(stateKey(), null) || legacyRead("lineup") || {};
 const saveOverrides  = o => lsSave(stateKey(), o);
-const clearOverrides = () => lsClear(stateKey());
+const clearOverrides = () => { lsClear(stateKey()); lsClear(`ffhub.lineup.${weekSeg()}`); };
 
 /* posture (R9) — o.p validated so a stale/foreign blob can't poison the selector */
-const postureKey = () => `ffhub.posture.${DATA.season}-W${DATA.week}`;
-function loadPosture(){ const o = lsLoad(postureKey(), null); return (o && o.p) ? o : null; }
+const postureKey = () => `ffhub.posture.${lgSeg()}.${weekSeg()}`;
+function loadPosture(){ const o = lsLoad(postureKey(), null) || legacyRead("posture"); return (o && o.p) ? o : null; }
 const savePosture  = o => lsSave(postureKey(), o);
-const clearPosture = () => lsClear(postureKey());
+const clearPosture = () => { lsClear(postureKey()); lsClear(`ffhub.posture.${weekSeg()}`); };
 
 /* trend-chart view state (§10 charts) */
 let TSTATE = lsLoad("ffhub.trends", {});
@@ -437,6 +468,40 @@ const saveTrendsState = () => lsSave("ffhub.trends", TSTATE);
 /* league choice — raw string get/set (NOT JSON: existing stored values predate the helpers) */
 const loadLeagueChoice = () => localStorage.getItem("ffhub.league");
 const saveLeagueChoice = id => localStorage.setItem("ffhub.league", id);
+
+/* ---------- R15 league resolution — the ONE place a league id becomes a data view ----------
+   Ids are the UNION of the two sidecars: the weekly file (§9, roster/lineup) and the league
+   file (§11, opponent/waiver). They are refreshed by different scripts on different cadences
+   and refresh-league.py is Mac+cookies-only, so a league can legitimately exist in one and
+   not the other. Union — never intersection — so a league is never invisible because its
+   slower feed hasn't landed. */
+function allLeagueIds(){
+  const ids = [];
+  const push = o => Object.keys((o && o.leagues) || {}).forEach(i => { if(!ids.includes(i)) ids.push(i); });
+  push(WEEKLY); push(LEAGUE);
+  return ids;
+}
+function leagueName(id){
+  return ((WEEKLY && (WEEKLY.leagues||{})[id]) || {}).name
+      || ((LEAGUE && (LEAGUE.leagues||{})[id]) || {}).name || id;
+}
+function resolveLeagueId(){
+  const ids = allLeagueIds();
+  if(!ids.length) return null;                       // pre-R15 file — top-level compat mirror
+  const stored = loadLeagueChoice();
+  if(stored && ids.includes(stored)) return stored;
+  const def = (WEEKLY && WEEKLY.default_league) || (LEAGUE && LEAGUE.default_league);
+  return (def && ids.includes(def)) ? def : ids[0];
+}
+/* the league-resolved view every renderer reads. Missing league block → fall back to the
+   top-level compat mirror rather than rendering an empty roster (loud in the fresh line). */
+function viewFor(id){
+  const w = WEEKLY || {};
+  const blk = id ? ((w.leagues || {})[id] || null) : null;
+  return blk ? Object.assign({}, w, blk) : w;
+}
+/* R15 — cross-league exposure (computed at the spine by refresh-weekly; rendered here) */
+const exposureOf = k => ((WEEKLY && WEEKLY.exposure) || {})[k] || null;
 
 /* ============================== 3 RANGE / POSTURE (R9, 2026-06-10) ============================== */
 
@@ -689,23 +754,62 @@ function renderSpikes(){
 
 /* ---------- R7 league context (§11) — renders only; refresh-league.py computes ---------- */
 const STARTER_SLOTS = ["QB","RB","WR","TE","FLEX","DST","K"];
+/* R15: pure lookup — LEAGUE_ID is resolved once by resolveLeagueId() and owned by boot()/the
+   switcher. This used to reassign LEAGUE_ID as a side effect, which would silently drag the
+   ROSTER panels to a different league than the one the user picked once §9 became league-aware.
+   Returns null when the selected league has no §11 block yet (opponent panel shows its empty
+   state); it must NOT fall back to a different league's opponent. */
 function curLeague(){
-  if(!LEAGUE) return null;
-  if(!LEAGUE_ID || !(LEAGUE.leagues||{})[LEAGUE_ID]){
-    LEAGUE_ID = loadLeagueChoice();
-    if(!LEAGUE_ID || !(LEAGUE.leagues||{})[LEAGUE_ID]) LEAGUE_ID = LEAGUE.default_league;
-  }
+  if(!LEAGUE || !LEAGUE_ID) return null;
   return (LEAGUE.leagues||{})[LEAGUE_ID] || null;
 }
 const lgTeam = (lg,id) => (lg.teams||[]).find(t => t.team_id === id) || null;
 const starters = t => (t.roster||[]).filter(p => STARTER_SLOTS.includes(p.slot));
+/* R15: the switcher now drives BOTH layers (roster/lineup §9 + opponent/waiver §11), and its
+   options come from the union of the two — so it appears as soon as the weekly file knows
+   about two leagues, without waiting on the cookie-gated league sidecar. */
 function renderLeagueSel(){
   const sel = document.getElementById("leagueSel");
-  const ids = LEAGUE ? Object.keys(LEAGUE.leagues||{}) : [];
+  const ids = allLeagueIds();
   sel.style.display = ids.length > 1 ? "inline-block" : "none";
   if(ids.length > 1){
-    sel.innerHTML = ids.map(i => `<option value="${esc(i)}"${i===LEAGUE_ID?" selected":""}>${esc((LEAGUE.leagues[i]||{}).name||i)}</option>`).join("");
+    sel.innerHTML = ids.map(i => {
+      const noWeekly = !((WEEKLY && WEEKLY.leagues || {})[i]);
+      return `<option value="${esc(i)}"${i===LEAGUE_ID?" selected":""}>${esc(leagueName(i))}${noWeekly?" (no roster yet)":""}</option>`;
+    }).join("");
   }
+}
+
+/* R15.1 — bye outlook. Forward-looking: computed at the spine from the roster CSV's
+   season-long bye column, so it covers players the Sleeper join never matched. Renders
+   ONLY weeks that actually cost a starting slot — a bye week you can absorb is not news.
+   Cross-league by design: the panel shows every league, not just the selected one,
+   because the decision it informs ("which week do I need to bank FAAB for") is a
+   both-teams decision. This is the one panel that deliberately ignores the switcher. */
+function renderBye(){
+  const sec = document.getElementById("byeSec"), box = document.getElementById("byePanel");
+  const bo = (WEEKLY && WEEKLY.bye_outlook) || null;
+  const worst = (bo && bo.worst) || [];
+  if(!worst.length){ sec.hidden = true; return; }
+  sec.hidden = false;
+  const nForced = worst.filter(w => w.severity === "forced-add").length;
+  document.getElementById("byeHead").textContent =
+    `Bye outlook — ${nForced ? `${nForced} week${nForced===1?" forces":"s force"} a waiver add` : `${worst.length} week${worst.length===1?"":"s"} to watch`}`;
+  box.innerHTML = worst.slice(0, 8).map(w => {
+    const wk = bo.weeks[String(w.week)] || {leagues:{}, shared_out:[]};
+    const lines = Object.entries(wk.leagues).map(([lid, d]) => {
+      const gaps = Object.entries(d.gaps || {}).map(([p,n]) => `${p} short ${n}`)
+        .concat(d.flex_gap ? [`FLEX short ${d.flex_gap}`] : []);
+      const body = gaps.length ? `<span class="gap">can't fill ${esc(gaps.join(", "))}</span>`
+                               : `${d.out} out, lineup still fills`;
+      return `<div class="lg">${esc(leagueName(lid))}: ${body} — ${esc((d.out_names||[]).map(x=>x.split("|")[0]).join(", "))}</div>`;
+    }).join("");
+    const shared = (wk.shared_out||[]).length
+      ? `<div class="lg">on bye in BOTH: ${esc(wk.shared_out.map(x=>x.split("|")[0]).join(", "))}</div>` : "";
+    return `<div class="bye${w.severity==="forced-add"?" forced":""}">
+      <span class="wk">Week ${w.week}</span>${w.both_hit?' <span class="both">BOTH LEAGUES</span>':""}
+      ${lines}${shared}</div>`;
+  }).join("");
 }
 
 function renderOpponent(lineup, h2h){
@@ -826,6 +930,17 @@ function statusChip(e){
 }
 const edgeBadge = k => isEdge(k) ? ' <span class="chip edge">⚡ edge</span>' : "";
 
+/* R15 — cross-league exposure chip. Concentration risk is invisible inside one league: if
+   the same player is your RB1 in both, one injury takes down two teams in the same hour.
+   Renders ONLY when the player is on >1 roster (a 1-of-2 player is unremarkable), and only
+   when more than one league exists at all. The other leagues are named in the tooltip. */
+function expBadge(k){
+  const x = exposureOf(k);
+  if(!x || x.n < 2) return "";
+  const others = x.leagues.filter(i => i !== LEAGUE_ID).map(leagueName);
+  return ` <span class="chip exp" title="also rostered in: ${esc(others.join(", "))} — one injury hits ${x.n} of your ${x.of} teams">${x.n}/${x.of}</span>`;
+}
+
 /* R5a — opponent context line: implied team total · spread · opponent DvP rank.
    Nullable enrichment (§9): only non-null parts render; bye/null-opponent renders nothing. */
 function oppCtx(e){
@@ -855,7 +970,7 @@ function renderLineup(){
     let who, range, proj, st;
     if(e){
       const b = bandOf(e), sc = pScore(e, t);
-      who = `<div class="nm" data-name="${esc(e.name)}">${esc(e.name)}${edgeBadge(k)}${trendArrow(e)}${riskChip(e)}</div>
+      who = `<div class="nm" data-name="${esc(e.name)}">${esc(e.name)}${edgeBadge(k)}${expBadge(k)}${trendArrow(e)}${riskChip(e)}</div>
              <div class="sub">${esc(e.team)} ${e.opponent ? (e.home?"vs ":"@ ")+esc(e.opponent) : "<b>BYE</b>"}${oppCtx(e)} · ${esc(e.matchup_note||"")} ${xlinks(e.name)}</div>`;
       range = rangeBar(b, b?point(b,t):null);
       proj = `${e.weekly_projection==null?"–":sc.toFixed(1)}<span class="lbl">${e.weekly_projection==null?"proj":lbl.toLowerCase()}${POSTURE.p!=="bal"&&e.weekly_projection!=null?` · med ${e.weekly_projection}`:""}</span>`;
@@ -911,7 +1026,7 @@ function renderFlex(lineup){
       '<div class="rowline"><span class="nm empty">FLEX empty</span></div>';
   document.getElementById("flexOpt").innerHTML = cur + (cands.map(e => {
     const b = bandOf(e), sc = pScore(e, t), d = +(sc - base).toFixed(1);
-    return `<div class="rowline"><span class="nm">${esc(e.name)}${edgeBadge(e.key)}${trendArrow(e)}${riskChip(e)}</span>
+    return `<div class="rowline"><span class="nm">${esc(e.name)}${edgeBadge(e.key)}${expBadge(e.key)}${trendArrow(e)}${riskChip(e)}</span>
       <span class="meta">${esc(e.pos)} · ${e.opponent?(e.home?"vs ":"@ ")+esc(e.opponent):"BYE"}</span>${oppCtx(e)} ${statusChip(e)}
       ${rangeBar(b, b?point(b,t):null, 120)}
       <span class="p">${e.weekly_projection==null?"–":sc.toFixed(1)} <span class="${d>=0?"delta-pos":"delta-neg"}">(${d>=0?"+":""}${d})</span></span>
@@ -924,7 +1039,7 @@ function renderBench(lineup){
   const inSlots = new Set(Object.values(lineup).filter(Boolean));
   const b = entries().filter(e => !inSlots.has(e.key)).sort((a,b)=>pScore(b,t)-pScore(a,t));
   document.getElementById("bench").innerHTML = b.map(e => `<div class="rowline">
-    <span class="nm" data-name="${esc(e.name)}">${esc(e.name)}${edgeBadge(e.key)}${trendArrow(e)}${riskChip(e)}</span>
+    <span class="nm" data-name="${esc(e.name)}">${esc(e.name)}${edgeBadge(e.key)}${expBadge(e.key)}${trendArrow(e)}${riskChip(e)}</span>
     <span class="meta">${esc(e.pos)} · ${esc(e.team)} ${e.opponent?(e.home?"vs ":"@ ")+esc(e.opponent):"BYE"}</span>${oppCtx(e)}
     ${statusChip(e)} ${xlinks(e.name)}${rangeBar(bandOf(e), point(bandOf(e), t), 120)}<span class="p">${e.weekly_projection==null?"–":pScore(e,t).toFixed(1)}</span>
     <span class="note">${esc(e.verdict_note||"")}</span></div>`).join("")
@@ -1098,20 +1213,31 @@ function renderAll(scrollQ){
   renderPosture();
   const lineup = renderLineup();
   renderLeagueSel(); renderFlex(lineup); renderBench(lineup); renderStreaming(); renderWaivers();
-  renderSpikes(); renderOpponent(lineup, h2h); renderWaiverCapital(); renderAlerts(lineup); renderTrends();
+  renderSpikes(); renderOpponent(lineup, h2h); renderWaiverCapital(); renderBye(); renderAlerts(lineup); renderTrends();
   document.getElementById("wk").textContent = `Week ${DATA.week} · ${DATA.season}`;
   document.getElementById("sampleBadge").style.display = DATA.sample ? "inline-block" : "none";
   const n = Object.keys(DATA.roster||{}).length;
+  // R15 — say WHICH league is on screen, and flag the two ways a multi-league view can be
+  // partial: no §9 roster block for it, or no §11 opponent block for it. Both are loud.
+  const nLg = allLeagueIds().length;
+  const noWeeklyBlk = LEAGUE_ID && WEEKLY && WEEKLY.leagues && !WEEKLY.leagues[LEAGUE_ID];
+  const nExp = Object.keys((WEEKLY && WEEKLY.exposure) || {}).length;
   document.getElementById("fresh").textContent =
+    (nLg > 1 ? `${leagueName(LEAGUE_ID)} · ` : "") +
     `${n} roster players · generated ${DATA.generated} · status pulled ${(DATA.sources||{}).pulled_at||"?"} · data: ${MODE}` +
+    (noWeeklyBlk ? " · ⚠ NO ROSTER for this league in weekly-sidecar (showing the default league's) — add its rows to current-roster.csv + re-run refresh-weekly" : "") +
     ` · trends: ${TRENDS ? (TRENDS.sample ? "sample" : `usage through W${TRENDS.week}`) : "—"}` +
     ` · league: ${LEAGUE ? (LEAGUE.sample ? "sample" : `W${LEAGUE.week} pulled ${LEAGUE.generated}`) : "—"}` +
+    (nLg > 1 && LEAGUE && !curLeague() ? " (no §11 block for this league yet)" : "") +
     ` · posture: ${POSTURE_NAME[POSTURE.p]}${POSTURE.manual ? "" : " (auto)"}` +
+    (nExp ? ` · exposure: ${nExp} player${nExp===1?"":"s"} in >1 league` : "") +
     (DATA.sample ? " · SAMPLE — not a real week" : "");
   document.getElementById("foot").innerHTML =
     `Hub renders only — <code>/weekly-lineup</code> computes and writes the sidecar (conventions §9). ` +
-    `State on this device: manual slot overrides + posture for Week ${DATA.week} only. ` +
-    `Posture re-ranks by the chosen point of each floor–median–ceiling band (R9, 2026-06-10).`;
+    `State on this device: manual slot overrides + posture for Week ${DATA.week}` +
+    (nLg > 1 ? ` in <b>${esc(leagueName(LEAGUE_ID))}</b> only — each league keeps its own lineup and posture. ` : ` only. `) +
+    `Posture re-ranks by the chosen point of each floor–median–ceiling band (R9, 2026-06-10).` +
+    (nLg > 1 ? ` The <span class="chip exp">n/m</span> chip = cross-league exposure (R15, 2026-09-07).` : "");
   if(scrollQ){
     const q = new URLSearchParams(location.search).get("q");
     if(q){ const el = [...document.querySelectorAll("[data-name]")].find(x => x.dataset.name.toLowerCase().includes(q.toLowerCase()));
@@ -1119,13 +1245,23 @@ function renderAll(scrollQ){
   }
 }
 
-function boot(data, mode){ DATA = data; MODE = mode; renderAll(true); }
+/* R15: boot resolves the league ONCE, then hands every renderer the resolved view. */
+function boot(data, mode){
+  WEEKLY = data; MODE = mode;
+  LEAGUE_ID = resolveLeagueId();
+  DATA = viewFor(LEAGUE_ID);
+  renderAll(true);
+}
+function switchLeague(id){
+  LEAGUE_ID = id; saveLeagueChoice(id);
+  DATA = viewFor(id);                                 // roster/lineup follow the switcher too
+  openSwap = null;                                    // an open swap belongs to the old league
+  renderAll(false);
+}
 document.getElementById("resetBtn").addEventListener("click", () => {
   clearOverrides(); openSwap = null; renderAll(false);
 });
-document.getElementById("leagueSel").addEventListener("change", ev => {
-  LEAGUE_ID = ev.target.value; saveLeagueChoice(LEAGUE_ID); renderAll(false);
-});
+document.getElementById("leagueSel").addEventListener("change", ev => switchLeague(ev.target.value));
 document.getElementById("postbar").addEventListener("click", ev => {
   const b = ev.target.closest(".pbtn"); if(!b) return;
   savePosture({p:b.dataset.p, tilt:POSTURE?POSTURE.tilt:0.5, manual:true}); renderAll(false);

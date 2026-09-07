@@ -1,15 +1,15 @@
 {
- "generated": "2026-06-10 (SAMPLE — authored for the opponent overlay; real file = Skills/refresh-league.py once league ids + cookies land)",
+ "generated": "2026-09-07 (SAMPLE re-keyed espn-main -> espn-yard so the R15 union switcher shows no dead league; rosters/records are still fabricated June demo data. Overwritten wholesale by Skills/refresh-league.py.)",
  "sample": true,
  "season": "2026",
  "week": 1,
- "default_league": "espn-main",
+ "default_league": "espn-yard",
  "leagues": {
-  "espn-main": {
-   "name": "Main League (SAMPLE)",
+  "espn-yard": {
+   "name": "The Yard (SAMPLE — refresh-league.py has not run)",
    "platform": "espn",
-   "espn_league_id": 123456,
-   "my_team_id": 4,
+   "espn_league_id": 677115595,
+   "my_team_id": 3,
    "waiver_type": "faab",
    "faab_budget": 100,
    "sources": {
@@ -18,7 +18,7 @@
    },
    "teams": [
     {
-     "team_id": 4,
+     "team_id": 3,
      "name": "Haiwatha",
      "owner": "Hai V.",
      "record": "2-1",
