@@ -736,7 +736,7 @@ function renderSpikes(){
   const box = document.getElementById("spikes"), head = document.getElementById("spikesHead");
   if(!TRENDS){
     head.textContent = "Usage spikes — not yet priced in";
-    box.innerHTML = '<div class="rowline"><span class="meta">no usage-trends.json yet — <code>Skills/usage-trends.py</code> runs Tuesday am in-season (§10)</span></div>';
+    box.innerHTML = '<div class="rowline"><span class="meta">no usage-trends.json yet — <code>Skills/usage-trends.py</code> runs Monday night / Tuesday am in-season (§10). Week 1 has not been played, so no 2026 usage exists; the June SAMPLE was retired 2026-09-07 rather than shown as real. First real file lands after the W1 slate, and it carries NO spikes — §10 needs a prior week to compute deltas, so spikes begin in W2.</span></div>';
     return;
   }
   head.textContent = `Usage spikes — not yet priced in (through W${TRENDS.week}${TRENDS.sample?" · SAMPLE":""})`;
@@ -816,7 +816,7 @@ function renderOpponent(lineup, h2h){
   const box = document.getElementById("oppPanel"), head = document.getElementById("oppHead");
   const lg = curLeague();
   head.textContent = "Opponent — head-to-head" + (LEAGUE && LEAGUE.sample ? " (SAMPLE)" : "");
-  if(!lg){ box.innerHTML = '<div class="rowline"><span class="meta">no league-sidecar.json yet — <code>Skills/refresh-league.py</code> runs Tuesday after refresh-weekly (§11); needs league ids + cookies in <code>Skills/.env</code> (goes live when the league drafts)</span></div>'; return; }
+  if(!lg){ box.innerHTML = '<div class="rowline"><span class="meta">no league-sidecar.json yet — <code>Skills/refresh-league.py</code> runs Monday/Tuesday after refresh-weekly (§11). League ids are set; the June SAMPLE was retired 2026-09-07 rather than shown as real. Needs a Sleeper pull, which is Codex-only (blocked from the sandbox AND from Chrome) — the ESPN half works uncredentialed for the public league and via signed-in Chrome for the private one.</span></div>'; return; }
   if(!h2h){ box.innerHTML = '<div class="rowline"><span class="meta">no matchup this week (bye / my_team_id not set in league-config.json)</span></div>'; return; }
   const {opp, oSt, my, o, wp, margin, suggest} = h2h;
   const holes = oSt.filter(p => ["O","IR","NA"].includes(p.injury_status));

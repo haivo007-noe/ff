@@ -11,9 +11,6 @@
    "last_updated": "2026-09-04",
    "source_count": 6,
    "profile": "Research/profiles/players/WR/jamarr-chase.md",
-   "research_flags": {
-    "hype": true
-   },
    "risk": {
     "tier": "Steady",
     "volatility": 0.49,
@@ -86,9 +83,6 @@
    "last_updated": "2026-08-26",
    "source_count": 3,
    "profile": "Research/profiles/players/RB/bijan-robinson.md",
-   "research_flags": {
-    "hype": true
-   },
    "handcuff_candidates": [
     "Brian Robinson Jr.",
     "Tyler Goodson"
@@ -166,9 +160,6 @@
    "handcuff_candidates": [
     "Will Shipley"
    ],
-   "research_flags": {
-    "edge": true
-   },
    "risk": {
     "tier": "Steady",
     "volatility": 0.42,
@@ -359,9 +350,6 @@
    "last_updated": "2026-08-26",
    "source_count": 4,
    "profile": "Research/profiles/players/RB/jahmyr-gibbs.md",
-   "research_flags": {
-    "hype": true
-   },
    "handcuff_candidates": [
     "Isiah Pacheco"
    ],
@@ -487,9 +475,6 @@
    "last_updated": "2026-09-04",
    "source_count": 4,
    "profile": "Research/profiles/players/WR/puka-nacua.md",
-   "research_flags": {
-    "hype": true
-   },
    "risk": {
     "tier": "Balanced",
     "volatility": 0.58,
@@ -891,9 +876,6 @@
    "last_updated": "2026-09-04",
    "source_count": 9,
    "profile": "Research/profiles/players/WR/brian-thomas-jr.md",
-   "research_flags": {
-    "hype": true
-   },
    "risk": {
     "tier": "Steady",
     "volatility": 0.49,
@@ -1063,9 +1045,6 @@
    "last_updated": "2026-08-30",
    "source_count": 5,
    "profile": "Research/profiles/players/WR/garrett-wilson.md",
-   "research_flags": {
-    "edge": true
-   },
    "risk": {
     "tier": "Steady",
     "volatility": 0.49,
@@ -1199,9 +1178,6 @@
    "last_updated": "2026-08-26",
    "source_count": 5,
    "profile": "Research/profiles/players/WR/aj-brown.md",
-   "research_flags": {
-    "edge": true
-   },
    "risk": {
     "tier": "Steady",
     "volatility": 0.49,
@@ -1644,9 +1620,6 @@
     "volatility": 0.42,
     "basis": "role"
    },
-   "research_flags": {
-    "edge": true
-   },
    "rb_archetype": {
     "archetype": "bell-cow-three-down",
     "why": "team usage lists Jonathan Taylor at 70% carries with lead goal-line tag; passing usage lists a 11% target share note; RB receiving layer names him the QB-dependent pass-game lead; red-zone layer points to him in the goal-line picture.",
@@ -1777,9 +1750,6 @@
    "last_updated": "2026-08-12",
    "source_count": 5,
    "profile": "Research/profiles/players/QB/jayden-daniels.md",
-   "research_flags": {
-    "hype": true
-   },
    "stack_partners": [
     "Terry McLaurin",
     "Chig Okonkwo"
@@ -2588,9 +2558,6 @@
    "last_updated": "2026-09-04",
    "source_count": 6,
    "profile": "Research/profiles/players/WR/chris-olave.md",
-   "research_flags": {
-    "edge": true
-   },
    "risk": {
     "tier": "Steady",
     "volatility": 0.49,
@@ -3224,9 +3191,6 @@
    "last_updated": "2026-08-26",
    "source_count": 3,
    "profile": "Research/profiles/players/WR/ladd-mcconkey.md",
-   "research_flags": {
-    "edge": true
-   },
    "risk": {
     "tier": "Steady",
     "volatility": 0.49,
@@ -3278,9 +3242,6 @@
    "last_updated": "2026-08-26",
    "source_count": 3,
    "profile": "Research/profiles/players/TE/colston-loveland.md",
-   "research_flags": {
-    "edge": true
-   },
    "risk": {
     "tier": "Balanced",
     "volatility": 0.53,
@@ -3593,9 +3554,6 @@
    "last_updated": "2026-09-04",
    "source_count": 3,
    "profile": "Research/profiles/players/WR/emeka-egbuka.md",
-   "research_flags": {
-    "edge": true
-   },
    "risk": {
     "tier": "Steady",
     "volatility": 0.49,
@@ -4115,9 +4073,6 @@
    "last_updated": "2026-09-04",
    "source_count": 4,
    "profile": "Research/profiles/players/RB/cam-skattebo.md",
-   "research_flags": {
-    "edge": true
-   },
    "handcuff_candidates": [
     "Tyrone Tracy Jr.",
     "Devin Singletary"
@@ -4742,9 +4697,6 @@
    "last_updated": "2026-08-16",
    "source_count": 3,
    "profile": "Research/profiles/players/RB/jaylen-warren.md",
-   "research_flags": {
-    "edge": true
-   },
    "handcuff_candidates": [
     "Rico Dowdle",
     "Kaleb Johnson"
@@ -4823,9 +4775,6 @@
    "last_updated": "2026-08-25",
    "source_count": 6,
    "profile": "Research/profiles/players/TE/tucker-kraft.md",
-   "research_flags": {
-    "edge": true
-   },
    "risk": {
     "tier": "Balanced",
     "volatility": 0.53,
@@ -4888,9 +4837,6 @@
    "last_updated": "2026-08-16",
    "source_count": 7,
    "profile": "Research/profiles/players/TE/harold-fannin-jr.md",
-   "research_flags": {
-    "edge": true
-   },
    "risk": {
     "tier": "Balanced",
     "volatility": 0.62,
@@ -5068,9 +5014,6 @@
    "last_updated": "2026-08-26",
    "source_count": 4,
    "profile": "Research/profiles/players/RB/rj-harvey.md",
-   "research_flags": {
-    "edge": true
-   },
    "handcuff_candidates": [
     "J.K. Dobbins",
     "Jonah Coleman"
@@ -5218,9 +5161,6 @@
    "last_updated": "2026-08-03",
    "source_count": 3,
    "profile": "Research/profiles/players/QB/jaxson-dart.md",
-   "research_flags": {
-    "edge": true
-   },
    "stack_partners": [
     "Malik Nabers",
     "Wan'Dale Robinson",
@@ -5448,9 +5388,6 @@
    "last_updated": "2026-09-04",
    "source_count": 5,
    "profile": "Research/profiles/players/RB/jadarian-price.md",
-   "research_flags": {
-    "edge": true
-   },
    "handcuff_candidates": [
     "Emanuel Wilson",
     "Zach Charbonnet"
@@ -5870,9 +5807,6 @@
    "last_updated": "2026-08-25",
    "source_count": 4,
    "profile": "Research/profiles/players/RB/tony-pollard.md",
-   "research_flags": {
-    "edge": true
-   },
    "handcuff_candidates": [
     "Tyjae Spears"
    ],
@@ -6061,9 +5995,6 @@
    "last_updated": "2026-08-03",
    "source_count": 3,
    "profile": "Research/profiles/players/QB/brock-purdy.md",
-   "research_flags": {
-    "edge": true
-   },
    "stack_partners": [
     "Mike Evans",
     "Christian Kirk",
@@ -6310,9 +6241,6 @@
    "source_count": 4,
    "profile": "Research/profiles/players/WR/josh-downs.md",
    "key_capture": "8/25: Still making plays (TD, deep ball) after Colts signed competitor Keenan Allen; viable, share less certain (Codex Package A).",
-   "research_flags": {
-    "hype": true
-   },
    "risk": {
     "tier": "Balanced",
     "volatility": 0.58,
@@ -6475,9 +6403,6 @@
    "source_count": 5,
    "profile": "Research/profiles/players/TE/dalton-kincaid.md",
    "key_capture": "8/25: Hot camp start w/ red-zone TDs from Allen, says he feels good; counters single-source knee concern (Codex Package A).",
-   "research_flags": {
-    "hype": true
-   },
    "risk": {
     "tier": "Balanced",
     "volatility": 0.62,
@@ -6557,9 +6482,6 @@
    "last_updated": "2026-08-25",
    "source_count": 4,
    "profile": "Research/profiles/players/WR/jayden-reed.md",
-   "research_flags": {
-    "hype": true
-   },
    "risk": {
     "tier": "Balanced",
     "volatility": 0.58,
@@ -6576,9 +6498,6 @@
    "source_count": 4,
    "profile": "Research/profiles/players/RB/blake-corum.md",
    "key_capture": "8/25: Still looks lean/explosive late in Rams camp; needs first-team/preseason split proof to upgrade (Codex Package A).",
-   "research_flags": {
-    "hype": true
-   },
    "handcuff_candidates": [
     "Ronnie Rivers"
    ],
@@ -6688,9 +6607,6 @@
    "source_count": 7,
    "profile": "Research/profiles/players/WR/quentin-johnston.md",
    "key_capture": "7/26: The +15 is mostly real (coach-confirmed role, scheme fit, Allen vacancy) but NOT clean — Tre' Harris, not just 'rookies lurking,' is a coach-endorsed near-term threat to who captures any McConkey-missed time.",
-   "research_flags": {
-    "hype": true
-   },
    "risk": {
     "tier": "Steady",
     "volatility": 0.49,
@@ -7081,10 +6997,6 @@
    "last_updated": "2026-08-30",
    "source_count": 2,
    "profile": "Research/profiles/players/TE/chig-okonkwo.md",
-   "research_flags": {
-    "edge": true,
-    "hype": true
-   },
    "risk": {
     "tier": "Balanced",
     "volatility": 0.62,
@@ -7147,10 +7059,6 @@
    "last_updated": "2026-08-31",
    "source_count": 10,
    "profile": "Research/profiles/players/WR/matthew-golden.md",
-   "research_flags": {
-    "edge": true,
-    "hype": true
-   },
    "risk": {
     "tier": "Balanced",
     "volatility": 0.58,
@@ -7431,9 +7339,6 @@
      "value": "high",
      "basis": "derived from teams.ARI.ol.rank_2026=#21; top-16 OL => low dependence, 17-32 => high dependence"
     }
-   },
-   "research_flags": {
-    "edge": true
    }
   },
   "Chris Rodriguez Jr.|RB": {
