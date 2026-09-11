@@ -51,6 +51,8 @@
   .slot{display:grid;grid-template-columns:54px minmax(0,1fr) 86px 64px;gap:8px;align-items:center;padding:8px 14px;border-bottom:1px solid var(--rule);cursor:pointer}
   .slot:hover{background:var(--card)}
   .slot.gap{background:rgba(248,81,73,.08)}
+  .slot.locked{opacity:.75;background:rgba(147,163,154,.06)}
+  .slot.locked .proj{color:var(--dim)}
   .slot .tag{font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.5px}
   .slot .who{min-width:0}
   .slot .who .nm{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -191,7 +193,7 @@
     </section>
     <section id="lineupSec">
       <h2>Start / Sit — my lineup
-        <span class="right"><button id="resetBtn" title="Clear manual overrides for this week">reset to skill verdicts</button></span>
+        <span class="right"><button id="resetEspnBtn" style="display:none" title="Clear what-if swaps for this week (ESPN is always the baseline)">↺ reset to ESPN</button><button id="resetBtn" title="Clear manual overrides for this week">reset to skill verdicts</button></span>
       </h2>
       <div id="lineup"></div>
     </section>
@@ -425,7 +427,9 @@ const isEdge = k => scIsEdge({research_flags:(DATA.research_flags||{})[k]});
 
 /* ============================== 2 STATE — localStorage, one pattern ==============================
    Keys this surface owns (all per-device):
-     ffhub.lineup.{league}.{season}-W{N}   manual slot overrides for the week (§9 contract)
+     ffhub.lineup.{league}.{season}-W{N}   manual slot overrides for the week (§9 contract) — MODEL mode only
+     ffhub.whatif.{league}.{season}-W{N}@{pulled}  ESPN-mode what-if swaps, keyed to the ESPN pull
+                                            timestamp so a fresh pull resets them (R16, 2026-09-10)
      ffhub.posture.{league}.{season}-W{N}  manual posture choice for the week (R9)
      ffhub.trends                          trend-chart view state (mode/player/team/metric, §10)
      ffhub.league                          chosen league id (raw string — predates the JSON pattern)
@@ -454,6 +458,16 @@ const stateKey = () => `ffhub.lineup.${lgSeg()}.${weekSeg()}`;
 const loadOverrides  = () => lsLoad(stateKey(), null) || legacyRead("lineup") || {};
 const saveOverrides  = o => lsSave(stateKey(), o);
 const clearOverrides = () => { lsClear(stateKey()); lsClear(`ffhub.lineup.${weekSeg()}`); };
+
+/* what-if overrides — ESPN mode only (R16, 2026-09-10). ESPN is the baseline; these are
+   swaps ON TOP of the ESPN pull, never a replacement for it. The key embeds LEAGUE.generated
+   (the pull timestamp) so a fresh ESPN pull resets every what-if automatically — a swap can
+   never silently survive a lineup change upstream. The model-mode override key above
+   (ffhub.lineup...) is a completely separate key and is never read or written from here. */
+const whatifKey   = () => `ffhub.whatif.${lgSeg()}.${weekSeg()}@${LEAGUE && LEAGUE.generated}`;
+const loadWhatIf  = () => lsLoad(whatifKey(), null) || {};
+const saveWhatIf  = o => lsSave(whatifKey(), o);
+const clearWhatIf = () => lsClear(whatifKey());
 
 /* posture (R9) — o.p validated so a stale/foreign blob can't poison the selector */
 const postureKey = () => `ffhub.posture.${lgSeg()}.${weekSeg()}`;
@@ -593,22 +607,47 @@ function computeH2H(){
   const opp = oppId != null ? lgTeam(lg, oppId) : null;
   if(!opp) return null;
   const balLineup = resolveLineup(0.5);
-  let my = {f:0,m:0,c:0,v:0,known:0,of:0};
+  // R17 (2026-09-11) — a LOCKED starter's game has already started: its band collapses to a
+  // single known point (f=m=c=actual_points), which folds it into mu (my.m/o.m) and zeroes
+  // its variance via the existing sigma2 formula — no special-casing win-prob/margin below.
+  // isLocked()/espnRowFor() are no-ops (always false/null) on any sidecar without `locked`
+  // (old sidecars, sample mode, model mode) — this whole block is then a pure no-op too.
+  let my = {f:0,m:0,c:0,v:0,known:0,of:0}, myBanked=0, myLeft=0, myNullProj=0, anyLocked=false;
   for(const k of Object.values(balLineup)){ my.of++;
     const e = k ? Object.assign({pos:k.split("|")[1]}, DATA.roster[k]) : null;
-    const b = e ? bandOf(e) : null;
-    if(b){ my.f+=b.f; my.m+=b.m; my.c+=b.c; my.v+=sigma2(b); my.known++; } }
+    const row = k ? espnRowFor(k) : null;
+    if(isLocked(row)){
+      anyLocked = true;
+      const actual = row.actual_points != null ? row.actual_points : 0;
+      my.f += actual; my.m += actual; my.c += actual; my.known++;
+      myBanked += actual;
+    } else {
+      const b = e ? bandOf(e) : null;
+      if(b){ my.f+=b.f; my.m+=b.m; my.c+=b.c; my.v+=sigma2(b); my.known++; myLeft += b.m; }
+      if(e && e.weekly_projection == null) myNullProj++;
+    }
+  }
   const oSt = starters(opp);
-  let o = {f:0,m:0,c:0,v:0,known:0,of:oSt.length};
+  let o = {f:0,m:0,c:0,v:0,known:0,of:oSt.length}, oppBanked=0, oppLeft=0, oppNullProj=0;
   for(const p of oSt){
-    const b = p.weekly_projection != null ? bandOf(Object.assign({pos:p.pos}, p)) : null;
-    if(b){ o.f+=b.f; o.m+=b.m; o.c+=b.c; o.v+=sigma2(b); o.known++; } }
+    if(isLocked(p)){
+      anyLocked = true;
+      const actual = p.actual_points != null ? p.actual_points : 0;
+      o.f += actual; o.m += actual; o.c += actual; o.known++;
+      oppBanked += actual;
+    } else {
+      const b = p.weekly_projection != null ? bandOf(Object.assign({pos:p.pos}, p)) : null;
+      if(b){ o.f+=b.f; o.m+=b.m; o.c+=b.c; o.v+=sigma2(b); o.known++; oppLeft += b.m; }
+      if(p.weekly_projection == null) oppNullProj++;
+    }
+  }
   const wp = winProb(my.m, o.m, my.v, o.v)*100, margin = +(my.m - o.m).toFixed(1);
   let p, reason;
   if(wp >= 62){ p="cons"; reason=`favored (+${margin.toFixed(0)}, ${wp.toFixed(0)}% win prob) — protect the lead, bet floors`; }
   else if(wp <= 42){ p="alpha"; reason=`underdog (${margin.toFixed(0)}, ${wp.toFixed(0)}% win prob) — you need ceilings`; }
   else { p="bal"; reason=`coin-flip (${margin>0?"+":""}${margin.toFixed(0)}, ${wp.toFixed(0)}% win prob) — play the medians`; }
-  return {opp, oSt, my, o, wp, margin, suggest:{p, reason}};
+  return {opp, oSt, my, o, wp, margin, suggest:{p, reason},
+          myBanked, myLeft, oppBanked, oppLeft, myNullProj, oppNullProj, anyLocked};
 }
 function teamBandRow(name, s, me, TMAX){
   const xb = v => Math.max(0, Math.min(100, v/TMAX*100));
@@ -818,18 +857,29 @@ function renderOpponent(lineup, h2h){
   head.textContent = "Opponent — head-to-head" + (LEAGUE && LEAGUE.sample ? " (SAMPLE)" : "");
   if(!lg){ box.innerHTML = '<div class="rowline"><span class="meta">no league-sidecar.json yet — <code>Skills/refresh-league.py</code> runs Monday/Tuesday after refresh-weekly (§11). League ids are set; the June SAMPLE was retired 2026-09-07 rather than shown as real. Needs a Sleeper pull, which is Codex-only (blocked from the sandbox AND from Chrome) — the ESPN half works uncredentialed for the public league and via signed-in Chrome for the private one.</span></div>'; return; }
   if(!h2h){ box.innerHTML = '<div class="rowline"><span class="meta">no matchup this week (bye / my_team_id not set in league-config.json)</span></div>'; return; }
-  const {opp, oSt, my, o, wp, margin, suggest} = h2h;
+  const {opp, oSt, my, o, wp, margin, suggest, myBanked, myLeft, oppBanked, oppLeft,
+         myNullProj, oppNullProj, anyLocked} = h2h;
   const holes = oSt.filter(p => ["O","IR","NA"].includes(p.injury_status));
   const qs = oSt.filter(p => ["Q","D"].includes(p.injury_status));
   const bench = (opp.roster||[]).filter(p => p.slot === "BE");
   const depth = {}; bench.forEach(p => depth[p.pos] = (depth[p.pos]||0)+1);
   const TMAX = Math.max(my.c, o.c) || 1;
   const sugMatch = POSTURE.p === suggest.p;
+  // R17 (2026-09-11) — banked/left line, ONLY once a game has started (anyLocked); no-op
+  // (empty string) for every sidecar without `locked` — old data, sample mode, model mode.
+  const bankedHTML = anyLocked ?
+    `<div class="rowline"><span class="meta">You ${myBanked.toFixed(1)} + ${myLeft.toFixed(1)} left = ${(myBanked+myLeft).toFixed(1)}` +
+      (myNullProj ? ` (+ ${myNullProj} starter${myNullProj===1?"":"s"} with no projection)` : "") +
+      ` · Them ${oppBanked.toFixed(1)} + ${oppLeft.toFixed(1)} left = ${(oppBanked+oppLeft).toFixed(1)}` +
+      (oppNullProj ? ` (+ ${oppNullProj} starter${oppNullProj===1?"":"s"} with no projection)` : "") +
+      `</span></div>` +
+    `<div class="rowline"><span class="meta">points as of pull ${esc((lg.sources && lg.sources.pulled_at) || LEAGUE.generated)}</span></div>` : "";
   box.innerHTML =
     `<div class="vsline"><span class="nm">${esc(opp.name||"?")}</span><span class="meta">${esc(opp.owner||"")} · ${esc(opp.record||"")}</span>
       <span class="p"><span class="meta">proj margin</span> <span class="${margin>=0?"delta-pos":"delta-neg"}">${margin>=0?"+":""}${margin}</span></span></div>` +
     `<div class="h2h-top"><span class="wp ${wp>=62?"good":wp<=42?"bad":"mid"}">${wp.toFixed(0)}%</span>
       <span class="wp-sub">win probability · you ${my.m.toFixed(0)} – ${o.m.toFixed(0)}<br>your range ${my.f.toFixed(0)}–${my.c.toFixed(0)} · theirs ${o.f.toFixed(0)}–${o.c.toFixed(0)}</span></div>` +
+    bankedHTML +
     teamBandRow("You", my, true, TMAX) + teamBandRow(opp.name||"opp", o, false, TMAX) +
     `<div class="suggest" id="h2hSuggest">${sugMatch
        ? `<span>✓ Posture matches the matchup: <b>${POSTURE_NAME[suggest.p]}</b> — ${esc(suggest.reason)}.</span>`
@@ -840,7 +890,7 @@ function renderOpponent(lineup, h2h){
       <span class="nm" data-name="${esc(p.name)}">${esc(p.name)}${trendArrow(p)}</span>
       <span class="meta">${esc(p.pos)} · ${esc(p.team||"FA")}</span>
       ${statusChip({bye:false,injury_status:p.injury_status})}
-      <span class="p">${p.weekly_projection!=null?p.weekly_projection:"–"}</span></div>`).join("") +
+      <span class="p">${isLocked(p) ? "🔒 "+(p.actual_points!=null?p.actual_points:0) : (p.weekly_projection!=null?p.weekly_projection:"–")}</span></div>`).join("") +
     `<div class="rowline"><span class="meta">holes: ${holes.length?holes.map(p=>esc(p.name)+" ("+esc(p.injury_status)+")").join(", "):"none"}${qs.length?` · re-check Sun: ${qs.map(p=>esc(p.name)).join(", ")}`:""}
       · bench depth: ${Object.keys(depth).length?Object.entries(depth).map(([p,n])=>`${esc(p)}×${n}`).join(" "):"—"}</span></div>`;
   const ap = document.getElementById("applySug");
@@ -890,15 +940,108 @@ function spikePressure(pos){
 
 /* ============================== 7 LINEUP CORE — start/sit, swap, FLEX, bench, alerts ============================== */
 
+/* R16 (2026-09-10) — "what's in ESPN should be what I see". ESPN's actual lineup slots
+   (league-sidecar.json — my team's roster) are the baseline truth; the model's opinion
+   (resolveModelLineup, below) becomes a labeled SUGGESTION, never a silent replacement.
+   Returns null (—> old model-driven path) unless the league sidecar is real, current, and
+   my team is resolvable — a partial/stale pull must never masquerade as ESPN truth. Reuses
+   STARTER_SLOTS (band 6, §11) so the two lineup notions of "starter" can never drift apart. */
+/* R17 (2026-09-11) — myEspnTeam(): the one ESPN-mode-eligibility guard, factored out of
+   espnLineup() so espnRowFor() (below) checks the exact same conditions — a real, current,
+   non-sample pull with my team resolvable. Returns null for every "nothing to show" case. */
+function myEspnTeam(){
+  if(!LEAGUE || LEAGUE.sample) return null;
+  if(LEAGUE.week !== DATA.week) return null;
+  const lg = curLeague();
+  if(!lg) return null;
+  return lg.my_team_id != null ? lgTeam(lg, lg.my_team_id) : null;
+}
+/* R17 — one ESPN roster row -> its DATA.roster key, or null. The single resolution chain
+   (exact name|pos, then sleeper_id, then team+pos when it names exactly one weekly entry)
+   used by BOTH espnLineup() (row -> starter slot) and espnRowFor() (key -> row, for
+   locked/actual_points) — factored out 2026-09-11 so the two can never resolve a player two
+   different ways. */
+function resolveEspnKey(p){
+  const exact = `${p.name}|${p.pos}`;
+  if(DATA.roster[exact]) return exact;
+  if(p.sleeper_id != null){
+    const found = Object.entries(DATA.roster).find(([,v]) => v.sleeper_id != null && String(v.sleeper_id) === String(p.sleeper_id));
+    if(found) return found[0];
+  }
+  // 3rd step (R16 bugfix, 2026-09-10): team+pos fallback — mirrors sync-roster.py's
+  // dst_by_team idea (DST has no stable sleeper_id in league-sidecar), generalized to any
+  // position since the weekly roster has no `pos` field of its own (only the "Name|POS" key).
+  // Only trusted when it names exactly one weekly entry — a second same-team/same-pos entry
+  // means "don't guess", same as every other unmatched case here.
+  if(p.pos && p.team){
+    const matches = Object.entries(DATA.roster).filter(([kk,v]) => kk.split("|")[1] === p.pos && v.team === p.team);
+    if(matches.length === 1) return matches[0][0];
+  }
+  return null;
+}
+/* R16 (2026-09-10) — "what's in ESPN should be what I see". ESPN's actual lineup slots
+   (league-sidecar.json — my team's roster) are the baseline truth; the model's opinion
+   (resolveModelLineup, below) becomes a labeled SUGGESTION, never a silent replacement.
+   Returns null (—> old model-driven path) unless the league sidecar is real, current, and
+   my team is resolvable — a partial/stale pull must never masquerade as ESPN truth. Reuses
+   STARTER_SLOTS (band 6, §11) so the two lineup notions of "starter" can never drift apart. */
+function espnLineup(){
+  const me = myEspnTeam();
+  if(!me) return null;
+  const lg = curLeague();   // BUGFIX (2026-09-11): need the LEAGUE object for sources.pulled_at
+  const map = {QB:null, RB1:null, RB2:null, WR1:null, WR2:null, TE:null, FLEX:null, DST:null, K:null};
+  const unmatched = [];
+  const put = (slotIds, k) => { for(const id of slotIds){ if(map[id] == null){ map[id] = k; return; } } };
+  for(const p of (me.roster||[])){
+    if(!STARTER_SLOTS.includes(p.slot)) continue;
+    const k = resolveEspnKey(p);
+    if(!k){ unmatched.push(p.name); continue; }
+    if(p.slot === "RB") put(["RB1","RB2"], k);
+    else if(p.slot === "WR") put(["WR1","WR2"], k);
+    else put([p.slot], k);           // QB/TE/FLEX/DST/K — one slot each
+  }
+  const pulledAt = (lg.sources && lg.sources.pulled_at) || LEAGUE.generated;
+  return {map, pulled: pulledAt, unmatched};
+}
+/* R17 — MY league-sidecar roster row for a DATA.roster key (locked/actual_points live there,
+   not in the weekly sidecar). Same resolver as espnLineup(), so a player can never resolve to
+   a starter slot under one path and a different row under this one. null whenever ESPN mode
+   itself would be null, or when this key isn't one of my ESPN roster rows — both are ordinary
+   "nothing to show" cases, not errors. Everything downstream treats a null/missing `locked`
+   as unlocked, so old sidecars, sample mode and model mode are all unaffected no-ops. */
+function espnRowFor(key){
+  const me = myEspnTeam();
+  if(!me || !key) return null;
+  for(const p of (me.roster||[])){
+    if(resolveEspnKey(p) === key) return p;
+  }
+  return null;
+}
+const isLocked = row => !!row && row.locked === true;
+
 /* R9: tArg = posture point on [0..1] (0=floor, .5=median, 1=ceiling). Balanced keeps the
    skill-verdict precedence exactly as before; a non-balanced posture re-ranks by the
-   posture point FIRST (the bet changed — that's the whole feature), verdict as tiebreak. */
-function resolveLineup(tArg){
+   posture point FIRST (the bet changed — that's the whole feature), verdict as tiebreak.
+   R16: renamed from resolveLineup — this is now the MODEL's opinion, read by resolveLineup
+   only as a fallback (no usable ESPN pull) and by the "Model suggests" comparison below. */
+function resolveModelLineup(tArg, opts){
   const t = tArg == null ? postureT(POSTURE.p, POSTURE.tilt) : tArg;
   const bal = Math.abs(t - 0.5) < 1e-9;
+  // R17 (2026-09-11): opts.pinned = {slotId: key} forces a slot to a specific player BEFORE
+  // overrides/ranking ever run (used to pin locked ESPN starters so they can't be "suggested"
+  // away); opts.exclude = Set(keys) removes players from candidacy entirely (locked bench
+  // players — already started, can't be suggested in). Both default to nothing, so a call
+  // without opts is byte-for-byte the old behavior.
+  const pinned = (opts && opts.pinned) || {};
+  const exclude = (opts && opts.exclude) || null;
   const ov = loadOverrides(); const used = new Set(); const lineup = {};
+  // pass 0 — pinned slots win over everything, including overrides
+  for(const s of SLOTS){
+    if(pinned[s.id] != null){ lineup[s.id] = pinned[s.id]; used.add(pinned[s.id]); }
+  }
   // pass 1 — apply valid overrides (player exists, eligible, not used; null = forced empty)
   for(const s of SLOTS){
+    if(s.id in lineup) continue;
     if(!(s.id in ov)) continue;
     const k = ov[s.id];
     if(k === null){ lineup[s.id] = null; continue; }
@@ -909,7 +1052,8 @@ function resolveLineup(tArg){
   const w = v => v==="start"?2 : v==="flex"?1 : 0;
   for(const s of SLOTS){
     if(s.id in lineup) continue;
-    let c = entries().filter(e => s.pos.includes(e.pos) && !used.has(e.key) && !isOut(e));
+    let c = entries().filter(e => s.pos.includes(e.pos) && !used.has(e.key) && !isOut(e)
+                                  && !(exclude && exclude.has(e.key)));
     c.sort((a,b) => bal ? ((w(b.verdict)-w(a.verdict)) || (pScore(b,t)-pScore(a,t)))
                         : ((pScore(b,t)-pScore(a,t)) || (w(b.verdict)-w(a.verdict))));
     if(s.id==="FLEX" && bal){
@@ -920,6 +1064,36 @@ function resolveLineup(tArg){
     else lineup[s.id] = null;
   }
   return lineup;
+}
+
+/* R16: ESPN is the baseline (espnLineup, above). resolveLineup is the ONE function every
+   renderer (renderLineup/FLEX/bench, computeH2H, alerts) calls — it now dispatches: no usable
+   ESPN pull → the old model path, unchanged; a usable pull → ESPN's own slots + this device's
+   what-if swaps (never the model's re-rank). tArg is ignored in ESPN mode — ESPN's lineup
+   doesn't move with the posture slider, only the projections shown on top of it do. */
+function resolveLineup(tArg){
+  const espn = espnLineup();
+  if(!espn) return resolveModelLineup(tArg);
+  const map = Object.assign({}, espn.map);
+  const wi = loadWhatIf();
+  for(const s of SLOTS){
+    if(!(s.id in wi)) continue;
+    const k = wi[s.id];
+    // R17 (2026-09-11): a what-if can never move a locked player in or out — enforced here,
+    // at LOAD time, so a stored what-if from before a player locked is simply never applied
+    // (the effective "drop" — it stays in localStorage but has no effect on any render).
+    // Two locked-ness checks: the ESPN incumbent this slot would swap OUT (its game may have
+    // started since the what-if was saved), and the candidate k this slot would swap IN
+    // (already locked on the bench — can't be started after the fact either).
+    if(isLocked(espnRowFor(espn.map[s.id]))) continue;
+    if(k !== null && isLocked(espnRowFor(k))) continue;
+    if(k === null){ map[s.id] = null; continue; }
+    const e = DATA.roster[k];
+    if(!e || !s.pos.includes(k.split("|")[1])) continue;      // stale/foreign what-if — ignore
+    for(const sid of Object.keys(map)) if(map[sid] === k) map[sid] = null;  // no duplicates
+    map[s.id] = k;
+  }
+  return map;
 }
 
 function statusChip(e){
@@ -960,50 +1134,146 @@ const xlinks = name => {
   return `<span class="xl"><a href="draft-board.html?q=${q}">⤴ board</a> · <a href="research-digest.html?q=${q}">🔎 digest</a></span>`;
 };
 
+/* R16: espn = null in model mode (unchanged rendering); a non-null espn drives the ESPN
+   heading, the what-if diff chip, the unmatched-starter warning, the Reset-to-ESPN button,
+   and the "Model suggests" block below the slots. */
 function renderLineup(){
+  const espn = espnLineup();
   const t = postureT(POSTURE.p, POSTURE.tilt), lbl = POSTURE_LBL[POSTURE.p];
   const lineup = resolveLineup(t); const box = document.getElementById("lineup");
-  document.querySelector("#lineupSec>h2").firstChild.textContent = `Start / Sit — my lineup · betting the ${lbl} `;
-  box.innerHTML = SLOTS.map(s => {
+  const headText = document.querySelector("#lineupSec>h2").firstChild;
+  const resetBtn = document.getElementById("resetBtn"), resetEspnBtn = document.getElementById("resetEspnBtn");
+  if(espn){
+    headText.textContent = `Lineup — ESPN (pulled ${espn.pulled}) `;
+    resetBtn.style.display = "none";
+    resetEspnBtn.style.display = Object.keys(loadWhatIf()).length ? "inline-block" : "none";
+  } else {
+    headText.textContent = `Start / Sit — my lineup · betting the ${lbl} `;
+    resetBtn.style.display = "inline-block";
+    resetEspnBtn.style.display = "none";
+  }
+  const unmatchedHTML = (espn && espn.unmatched.length)
+    ? `<div class="alert bad" style="margin:8px 14px 0"><b>ESPN starter(s) not in weekly roster</b>${esc(espn.unmatched.join(", "))} — run sync-roster + refresh-weekly</div>`
+    : "";
+  const slotsHTML = SLOTS.map(s => {
     const k = lineup[s.id]; const e = k ? Object.assign({key:k,name:k.split("|")[0],pos:k.split("|")[1]}, DATA.roster[k]) : null;
     const gap = !e || isOut(e);
+    const espnKey = espn ? espn.map[s.id] : k;
+    const whatIfChip = (espn && espnKey !== k) ? ' <span class="chip q" title="this device shows a what-if swap — the ESPN app itself still has the other player started">what-if ≠ ESPN</span>' : "";
+    // R17 (2026-09-11): a starter whose ESPN row is locked (game started) shows the actual
+    // points banked, not a projection/pScore — there is nothing left to project. Locked slots
+    // are also not swap-clickable (below) and excluded from swap candidates (renderSwap).
+    const lockedRow = (espn && k) ? espnRowFor(k) : null;
+    const locked = isLocked(lockedRow);
     let who, range, proj, st;
-    if(e){
-      const b = bandOf(e), sc = pScore(e, t);
+    if(e && locked){
       who = `<div class="nm" data-name="${esc(e.name)}">${esc(e.name)}${edgeBadge(k)}${expBadge(k)}${trendArrow(e)}${riskChip(e)}</div>
+             <div class="sub">${esc(e.team)} ${e.opponent ? (e.home?"vs ":"@ ")+esc(e.opponent) : "<b>BYE</b>"}${oppCtx(e)} · ${esc(e.matchup_note||"")} ${xlinks(e.name)}</div>`;
+      range = "";
+      proj = `🔒 ${(lockedRow.actual_points!=null?lockedRow.actual_points:0).toFixed(1)}<span class="lbl">pts</span>`;
+      st = statusChip(e);
+    } else if(e){
+      const b = bandOf(e), sc = pScore(e, t);
+      who = `<div class="nm" data-name="${esc(e.name)}">${esc(e.name)}${edgeBadge(k)}${expBadge(k)}${trendArrow(e)}${riskChip(e)}${whatIfChip}</div>
              <div class="sub">${esc(e.team)} ${e.opponent ? (e.home?"vs ":"@ ")+esc(e.opponent) : "<b>BYE</b>"}${oppCtx(e)} · ${esc(e.matchup_note||"")} ${xlinks(e.name)}</div>`;
       range = rangeBar(b, b?point(b,t):null);
       proj = `${e.weekly_projection==null?"–":sc.toFixed(1)}<span class="lbl">${e.weekly_projection==null?"proj":lbl.toLowerCase()}${POSTURE.p!=="bal"&&e.weekly_projection!=null?` · med ${e.weekly_projection}`:""}</span>`;
       st = statusChip(e);
     } else {
-      who = `<div class="nm empty">EMPTY SLOT</div><div class="sub">no startable option — bench can't cover; see waivers</div>`;
+      who = `<div class="nm empty">EMPTY SLOT</div><div class="sub">no startable option — bench can't cover; see waivers</div>${whatIfChip}`;
       range = ""; proj = "–"; st = '<span class="chip out">GAP</span>';
     }
-    const open = openSwap === s.id ? renderSwap(s, lineup) : "";
-    return `<div class="slot${gap?" gap":""}" data-slot="${s.id}" style="grid-template-columns:54px minmax(0,1fr) 154px 92px 64px">
+    const open = (!locked && openSwap === s.id) ? renderSwap(s, lineup) : "";
+    return `<div class="slot${gap?" gap":""}${locked?" locked":""}" data-slot="${s.id}" data-locked="${locked?"1":"0"}" style="grid-template-columns:54px minmax(0,1fr) 154px 92px 64px">
       <span class="tag">${s.tag}</span><div class="who">${who}</div>
       <span>${range}</span><span class="proj">${proj}</span><span class="st">${st}</span>
     </div>${open}`;
   }).join("");
+  const modelHTML = espn ? renderModelSuggests(t, espn) : "";
+  box.innerHTML = unmatchedHTML + slotsHTML + modelHTML;
   box.querySelectorAll(".slot").forEach(el => el.addEventListener("click", ev => {
     if(ev.target.closest("a")) return;
+    if(el.dataset.locked === "1") return;   // R17 — locked slots are not swap-clickable
     openSwap = openSwap === el.dataset.slot ? null : el.dataset.slot;
     renderAll(false);
   }));
   box.querySelectorAll(".swaplist .opt").forEach(el => el.addEventListener("click", ev => {
     ev.stopPropagation();
-    const ov = loadOverrides();
-    ov[el.dataset.forslot] = el.dataset.key === "" ? null : el.dataset.key;
-    saveOverrides(ov); openSwap = null; renderAll(false);
+    if(espn){
+      const wi = loadWhatIf();
+      wi[el.dataset.forslot] = el.dataset.key === "" ? null : el.dataset.key;
+      saveWhatIf(wi);
+    } else {
+      const ov = loadOverrides();
+      ov[el.dataset.forslot] = el.dataset.key === "" ? null : el.dataset.key;
+      saveOverrides(ov);
+    }
+    openSwap = null; renderAll(false);
   }));
   return lineup;
+}
+
+/* R16 — "Model suggests": resolveModelLineup vs the ESPN lineup on screen, slot by slot.
+   Suggestion only — nothing here ever writes a lineup. Δ uses weekly_projection (not the
+   posture point) so it reads as a plain "who's projected for more", independent of posture. */
+function renderModelSuggests(t, espn){
+  // R16 bugfix (2026-09-10): compare STARTER SETS, not slot-by-slot — the model and ESPN can
+  // fill the same two players into e.g. RB1/RB2 in opposite order, which is not a suggestion,
+  // just a different slot id for an identical set of starters. model_in = model starters ESPN
+  // doesn't already start; espn_out = ESPN starters the model doesn't start. Pair them
+  // same-position first (so a WR swap reads as WR-for-WR), then FLEX-eligible RB/WR/TE,
+  // largest projection gain first — a pure rearrangement (both sets empty) says nothing.
+  // R17 (2026-09-11): pin locked ESPN starters into the model lineup and exclude locked
+  // bench players from model candidates BEFORE diffing — a suggestion line must never name
+  // a locked player, in either direction. No-op when nothing on this team is locked.
+  const pinned = {}, exclude = new Set();
+  for(const s of SLOTS){
+    const k = espn.map[s.id];
+    if(k && isLocked(espnRowFor(k))) pinned[s.id] = k;
+  }
+  for(const e of entries()){
+    if(!Object.values(espn.map).includes(e.key) && isLocked(espnRowFor(e.key))) exclude.add(e.key);
+  }
+  const model = resolveModelLineup(t, {pinned, exclude});
+  const espnSet = new Set(Object.values(espn.map).filter(Boolean));
+  const modelSet = new Set(Object.values(model).filter(Boolean));
+  const proj = k => (DATA.roster[k]||{}).weekly_projection;
+  const posOf = k => k.split("|")[1];
+  const FLEX_POS = new Set(["RB","WR","TE"]);
+  let modelIn = [...modelSet].filter(k => !espnSet.has(k));
+  let espnOut = [...espnSet].filter(k => !modelSet.has(k));
+  const pairs = [];
+  const takeMatch = (mk) => {
+    let i = espnOut.findIndex(ek => posOf(ek) === posOf(mk));
+    if(i === -1 && FLEX_POS.has(posOf(mk))) i = espnOut.findIndex(ek => FLEX_POS.has(posOf(ek)));
+    if(i === -1) return null;
+    return espnOut.splice(i, 1)[0];
+  };
+  modelIn.sort((a,b) => (proj(b)||0) - (proj(a)||0));
+  for(const mk of modelIn){
+    const ek = takeMatch(mk);
+    if(ek == null) continue;
+    const mProj = proj(mk), eProj = proj(ek);
+    const d = (mProj != null && eProj != null) ? +(mProj - eProj).toFixed(1) : null;
+    pairs.push({mk, ek, d});
+  }
+  pairs.sort((a,b) => (b.d==null?-Infinity:b.d) - (a.d==null?-Infinity:a.d));
+  const lines = pairs.map(({mk, ek, d}) => {
+    const mName = mk.split("|")[0], eName = ek.split("|")[0];
+    return `<div class="rowline"><span class="nm">Start ${esc(mName)} over ${esc(eName)}</span>` +
+      (d != null ? ` <span class="p ${d>=0?"delta-pos":"delta-neg"}">(${d>=0?"+":""}${d})</span>` : "") + `</div>`;
+  }).join("");
+  return `<div class="subhead">Model suggests</div>` +
+    (lines || `<div class="rowline"><span class="meta">Model agrees with your ESPN lineup.</span></div>`);
 }
 
 function renderSwap(s, lineup){
   const t = postureT(POSTURE.p, POSTURE.tilt);
   const inSlots = new Set(Object.values(lineup).filter(Boolean));
   const cur = lineup[s.id];
-  const c = entries().filter(e => s.pos.includes(e.pos) && e.key !== cur && !inSlots.has(e.key))
+  const espn = espnLineup();   // R17 — locked bench players are never swap candidates
+  const c = entries().filter(e => s.pos.includes(e.pos) && e.key !== cur && !inSlots.has(e.key)
+                     && !(espn && isLocked(espnRowFor(e.key))))
                      .sort((a,b)=>pScore(b,t)-pScore(a,t));
   const opts = c.map(e => `<div class="opt" data-forslot="${s.id}" data-key="${esc(e.key)}">
       <span>${esc(e.name)}${trendArrow(e)} <span class="meta">${esc(e.pos)} · ${e.opponent?(e.home?"vs ":"@ ")+esc(e.opponent):"BYE"}</span>${oppCtx(e)} ${statusChip(e)}</span>
@@ -1260,6 +1530,9 @@ function switchLeague(id){
 }
 document.getElementById("resetBtn").addEventListener("click", () => {
   clearOverrides(); openSwap = null; renderAll(false);
+});
+document.getElementById("resetEspnBtn").addEventListener("click", () => {
+  clearWhatIf(); openSwap = null; renderAll(false);
 });
 document.getElementById("leagueSel").addEventListener("change", ev => switchLeague(ev.target.value));
 document.getElementById("postbar").addEventListener("click", ev => {
