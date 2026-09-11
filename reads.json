@@ -1,0 +1,2820 @@
+{
+ "generated": "2026-09-05 12:49",
+ "counts": {
+  "draft": 30,
+  "inseason": 32,
+  "verified": 33,
+  "with_pages": 42,
+  "converging": 8,
+  "contested": 5,
+  "buy": 32,
+  "fade": 11,
+  "watch": 19
+ },
+ "reads": [
+  {
+   "id": "garrett-wilson-wr",
+   "phase": "draft",
+   "kind": "Value",
+   "tone": "buy",
+   "name": "Garrett Wilson",
+   "pos": "WR",
+   "team": "NYJ",
+   "title": "Garrett Wilson",
+   "consensus": "ADP WR15 / #37 *(2026-07-26: consensus #28 / WR15, unmoved)*",
+   "edge": "Post-injury ADP discount + secure alpha share → healthy ~90/1,000/5-7 floor with WR1 ceiling if the offense jumps. ~~\"best QB of his career (Geno Smith)\"~~ **← REFUTED, see correction**",
+   "read": "Draft as a WR2 with WR1 upside, a round after ADP. **⚠ CORRECTION 2026-07-26: the QB leg was FACTUALLY WRONG when written.** Geno Smith's 2025 NYJ season was 3,025 yd / 19 TD / 17 INT in 15 gms, PFF 58.2 — **36th among QBs**. That is not \"the best QB of his career\" by any measure; it only reads as \"best available vs Zach Wilson,\" which doesn't justify an unpriced edge. **Thesis rewritten around the two legs that DO verify:** (a) health — full participant OTAs/minicamp, no restrictions, no camp designation (NYJ 7/20); (b) scheme — new OC **Frank Reich**, Wilson: \"one of the offenses that I'm going to look back on in a few years and love the most… it's really player empowering\" (NYJ.com 7/21). Consensus rank unmoved #28→#28. **·· SWEEP 2026-08-25 ·· THE \"NARROWING\" READ IS REVERSED BY THE HARD DATA.** Consensus flat #28→#29 since June, but ADP moved 33→40 — the discount widened from 5 to 11 spots in nine days. Cannot demote on a narrowing that isn't happening; ADP moved away from consensus, not toward it. Supporting camp evidence: NYJ's 8/07 practice report has Geno targeting Wilson 5x in third-and-long team periods with no incompletion, plus a downfield completion over coverage (newyorkjets.com, pub 2026-08-07).",
+   "conviction": "Verified",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-06-02",
+   "date_verified": "2026-06-02",
+   "updated": "2026-08-30",
+   "sources": [
+    {
+     "name": "RotoBaller/sweep (consensus-lean) + DraftSharks OTA \"fully back\" report",
+     "date": "2026-06-02",
+     "url": ""
+    },
+    {
+     "name": "si.com",
+     "date": "2026-08-30",
+     "url": "https://www.si.com/onsi/fantasy/rankings/garrett-wilson-discounted-adp-makes-him-a-smart-2026-fantasy-football-target"
+    },
+    {
+     "name": "fantasylife.com",
+     "date": "2026-08-30",
+     "url": "https://www.fantasylife.com/articles/fantasy/geno-smith-fantasy-football-outlook-after-trade-to-new-york-jets-return-could-elevate-garrett-wilson"
+    },
+    {
+     "name": "cbssports.com",
+     "date": "2026-08-30",
+     "url": "https://www.cbssports.com/nfl/news/garrett-wilson-injury-update-jets-wr-knee/"
+    },
+    {
+     "name": "draftsharks.com",
+     "date": "2026-08-30",
+     "url": "https://www.draftsharks.com/fantasy-football-news/81936/jets-otas-open-with-garrett-wilson-and-braelon-allen-fully-back"
+    },
+    {
+     "name": "newyorkjets.com",
+     "date": "2026-08-30",
+     "url": "https://www.newyorkjets.com/news/jets-training-camp-practice-report-geno-smith-garrett-wilson-connection-08-07-2026"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/garrett-wilson.md",
+   "converge": null,
+   "counter": "**Field has caught up on the discount itself** — SI and 4for4 are both publishing the \"buy the dip\" thesis. Target competition also rose: Adonai Mitchell had a full in-scheme offseason, Tim Patrick signed in May (now active/PUP), and NYJ **traded back into Rd 1 for WR Omar Cooper Jr. at No. 30**. Geno also has an open NFL investigation (FL battery case declared inactive 7/14, no charges).",
+   "verdict": "Buy"
+  },
+  {
+   "id": "colston-loveland-te",
+   "phase": "draft",
+   "kind": "Value",
+   "tone": "buy",
+   "name": "Colston Loveland",
+   "pos": "TE",
+   "team": "CHI",
+   "title": "Colston Loveland",
+   "consensus": "TE3 / #36; ADP 44 *(2026-07-26: consensus **#38 / TE3**, unmoved — sd 14.3, range 22–87)*",
+   "edge": "Overall TE1 over Bowers & McBride — Caleb Williams' go-to late (10+ tgts final 4 games), Ben Johnson Y2, 7th in FP/route-run as rookie",
+   "read": "Draft as your TE at TE3 cost with TE1 upside — don't pay up for Bowers/McBride. **Refresh 2026-07-26: IMPROVED, and the field has NOT moved (#36 → #38 over seven weeks) — this is now the cleanest still-open row on the board.** The decisive change is roster, not health: **the Bears traded D.J. Moore to Buffalo** (BUF sent a 2026 2nd; CHI sent Moore + a 5th), removing the offense's highest-volume incumbent target and ~$16.5M in cap. Second: this is Loveland's **first healthy offseason** — he missed most of the 2025 program after shoulder surgery from his final Michigan year and *still* led the team in receiving (58-713-6, first Bears rookie TE to lead the team in receiving yards since Ditka in 1961; 8-137 in the wild-card win). Attended Tight End University in late June. Ben Johnson at June minicamp: *\"He's one of the most consistent players I've been around… We've been able to take the route tree to the next level.\"* Healthy, no designation; CHI camp 7/29–8/27. *Refresh 2026-08-03 — **THE 'DECISIVE CHANGE' LEG IS FALSIFIED.** The D.J. Moore trade was NOT a July development: it was agreed **~March 4–5, 2026** and official at the new league year ~3/11 ([Chicago Sun-Times 2026/03/05](https://chicago.suntimes.com/bears/2026/03/05/bears-dj-moore-trade-bills-says-goodbye-nfl-fans-teammates-halas-hall); [Bills.com official](https://www.buffalobills.com/news/buffalo-bills-officially-acquire-wide-receiver-dj-moore-from-bears-via-trade)). A thesis premised on 'the field hasn't priced this yet' cannot rest on a five-month-old transaction — the market has had a full offseason and a draft. **This inverts the 7/26 reading:** seven flat weeks of consensus (#36→#38) after a fully-digested trade is the field **pricing** him, not missing him. **→ FLAGGED DEMOTE CANDIDATE (still NOT demoted — see 8/16 fold below for why).** **·· FRESHENED 2026-08-26 (research-diff item 4) ·· FIRST REAL POSITIVE SIGNAL since the flag went up.** Bears lost to Cincinnati 27-9 in preseason Wk2 (8/22); starters (incl. Caleb Williams) played only the opening series. Williams went 2-of-5, and BOTH completions were tight-end/WR: **Loveland (1 catch, 10 yds) and Odunze (1 catch, 18 yds)** — Williams also missed Loveland on a potential TD in the red zone on that same series. **Cole Kmet did not draw a target in the sample.** Read against the row's own 8/16 falsifiable trigger (\"If Loveland does not clearly out-target Kmet with the ones, DEMOTE at the next sweep\"): in the one series the starters played, Loveland clearly out-targeted Kmet (1 target + a near-TD vs. zero) — the trigger fired POSITIVE, not negative. Sample is tiny (one drive, five pass attempts) — directional confirm, not season-defining — and preseason Wk3 is very likely another starters-rest week (Ben Johnson has sat starters, or played them one series, in both Wk1 and Wk2), so this may be the last real data point before the draft. **Still NOT demoted**: field still at TE3/#37 vs the claim of overall TE1, no lead time to measure yet — demoting would still be premature. HOLD Active. What survives and is current: Loveland starred in the first fan-attended practice (4 catches in the two-minute period) and **Caleb Williams said he 'can become the best tight end in the league'** ([247Sports](https://247sports.com/nfl/chicago-bears/article/ahead-of-pivotal-year-two-colston-loveland-making-big-strides-in-chicago-bears-training-camp--288601899/)).* **·· PRESEASON WK1 FOLD 2026-08-16 ··** **HOLD in Active — run A decided against the requested demote, and the reasoning is the point.** The D.J. Moore leg above is **STRUCK** (falsified 8/03 — the trade was March, not July; a March transaction the field has had five months to digest is not an edge). But demoting to *Consensus* would be **factually wrong**: Consensus means the field caught up, and the field is still at **TE3 / #38** against a claim of overall **TE1 over Bowers and McBride**. The gap between claim and price is unchanged, so there is **no lead time to measure**, and demoting would corrupt the audit ledger the Consensus section exists to protect. **New situational leg replacing the dead one:** Ben Johnson intends **13-personnel with all three TEs on the field** — Chicago ran **94 three-TE snaps in 2025, 5th in the NFL** ([Sun-Times](https://chicago.suntimes.com/bears/2026/08/04/bears-coach-ben-johnson-now-has-3-premium-talents-at-tight-end-and-his-offense-is-about-to-get-wild) **pub 2026-08-04**). Logged neutrally on purpose — see Counter. **⏱ FALSIFIABLE TRIGGER SET, which this row has lacked since 8/03: the preseason Wk2 Loveland-vs-Kmet snap split and target distribution (8/20–23). If Loveland does not clearly out-target Kmet with the ones, DEMOTE at the next sweep.** Preseason Wk1 gave zero evidence either way — **neither tight end played.**",
+   "conviction": "Verified",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-05-31",
+   "date_verified": "2026-06-04",
+   "updated": "2026-08-26",
+   "sources": [
+    {
+     "name": "Pollizze/RotoBaller (consensus-lean) + R3 team research (led CHI 58-713-6 as rookie, proj ",
+     "date": "2026-06-04",
+     "url": ""
+    },
+    {
+     "name": "bleachernation.com",
+     "date": "2026-08-26",
+     "url": "https://www.bleachernation.com/bears/2026/05/30/colston-loveland-forecast/"
+    },
+    {
+     "name": "nfl.com",
+     "date": "2026-08-26",
+     "url": "https://www.nfl.com/news/bears-te-colston-loveland-embracing-larger-role-i-wouldn-t-want-it-any-other-way"
+    },
+    {
+     "name": "sportsmockery.com",
+     "date": "2026-08-26",
+     "url": "https://www.sportsmockery.com/chicago-bears/why-ben-johnsons-plans-for-colston-loveland-are-more-ambitious-than-ever/"
+    }
+   ],
+   "profile": "Research/profiles/players/TE/colston-loveland.md",
+   "converge": null,
+   "counter": "Target competition **shifted rather than disappeared**: CHI drafted **TE Sam Roush (Rd 3, No. 69)** explicitly to run more 12/13 personnel — Poles: *\"a team that runs a lot of 12 and 13 personnel… I think we're top five in both\"* — and the 2025 TE3 still played 293 snaps (25%). Kmet remains a real red-zone competitor. The Moore trade cuts both ways: it removes a target competitor **but also the defensive attention** that created Loveland's late-season middle-of-field windows (SI's Bears desk: \"a bigger bet than the Bears want to admit\"). Durability data point: a concussion late in the divisional loss to the Rams. **·· 2026-08-16 ··** **The 13-personnel fact cuts both ways and this row has to say so.** Three TEs on the field at once raises Loveland's **snap floor** (he is not platooning with Kmet, he plays alongside him) but works directly **against the target concentration an overall-TE1 season requires**. And the consensus has now been **flat #36 → #38 for seven-plus weeks across a fully-digested transaction** — under this board's own model, a field that has had five months and has not moved is a field that has **priced it**, not one that missed it.",
+   "verdict": "Buy"
+  },
+  {
+   "id": "jaylen-warren-stealth-ppr-floor-rb",
+   "phase": "draft",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Jaylen Warren — stealth PPR floor",
+   "pos": "RB",
+   "team": "PIT",
+   "title": "Jaylen Warren — stealth PPR floor",
+   "consensus": "Priced as a committee back; the field prices touches, not passing-down security",
+   "edge": "Rodgers' fastest-TTT (2.59s) + bottom-4 aDOT profile overrides McCarthy's no-RB-routes scheme history — Warren's 89% catch rate + #2 pass-block grade (72.0) keep him on every passing down",
+   "read": "**VERIFY BAR CLEARED — promoted 2026-08-03.** Fittipaldo 7/25: he expects Warren to 'do a lot of the things that Gainwell did last year… you'll see him back in that role this year' — the second independent analyst call the row required. The 8/03 camp check did **not** contradict the passing-down claim. So-what: draft Warren as a PPR floor play, not a volume bet.",
+   "conviction": "Verified",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-06-07",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-03",
+   "sources": [
+    {
+     "name": "RB-recv topic layer (FP + PFF + nfelo) **+ Ray Fittipaldo (Post-Gazette beat), on air 7/25",
+     "date": "2026-08-03",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": {
+    "n": 2,
+    "layers": [
+     "RB-receiving",
+     "Backfield"
+    ],
+    "contested": true,
+    "line": "⚠ 2 layers contest this — RB-receiving, Backfield disagree"
+   },
+   "counter": "**Different axis, still open:** a 7/13 Steelers Depot review of McCarthy's five Dallas seasons found his top back averaged **66.9% of the two-man workload, lopsided in four of five years**, and **Rico Dowdle** enters with a pre-existing McCarthy relationship. As of the 8/1 report the RB1 job is genuinely unresolved and 'may come down to the hot hand.' The passing-down role looks secure; the total workload does not.",
+   "verdict": "Buy"
+  },
+  {
+   "id": "brock-purdy-qb",
+   "phase": "draft",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Brock Purdy",
+   "pos": "QB",
+   "team": "SF",
+   "title": "Brock Purdy",
+   "consensus": "QB12 / #93",
+   "edge": "Value — 2025 was turf toe, not arm (6-1, 31.0 ppg after the Wk-11 return); QB6-in-PPG since 2023, with Mike Evans and Christian Kirk added",
+   "read": "**VERIFY BAR CLEARED 2026-08-03.** The Need was \"a 2nd analyst top-10 QB ranking.\" Got two: **NFL.com #9** (Parr: *\"Purdy has finished among the top 10 QBs in FPPG for three consecutive seasons… the arrow is pointing up\"*) and **PFF #10**. So-what: late-round QB target at a full round of discount.",
+   "conviction": "Verified",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-06-03",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-03",
+   "sources": [
+    {
+     "name": "R3 player research (Noted 6/03) **+ NFL.com (Dan Parr) #9 Tier 3 + PFF #10** — two indepen",
+     "date": "2026-08-03",
+     "url": ""
+    },
+    {
+     "name": "fantasylife.com",
+     "date": "2026-08-03",
+     "url": "https://www.fantasylife.com/articles/fantasy/brock-purdy-fantasy-football-outlook-for-2026-the-late-round-qb"
+    },
+    {
+     "name": "nbcsportsbayarea.com",
+     "date": "2026-08-03",
+     "url": "https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/brock-purdy-toe-injury-big-picture-2025/1915100/"
+    },
+    {
+     "name": "cbssports.com",
+     "date": "2026-08-03",
+     "url": "https://www.cbssports.com/fantasy/football/news/fantasy-football-2026-49ers-deep-dive-player-outlooks/"
+    }
+   ],
+   "profile": "Research/profiles/players/QB/brock-purdy.md",
+   "converge": null,
+   "counter": "**The receiver room is materially worse than this thesis assumed.** Ricky Pearsall is **OUT FOR THE SEASON** (knee, IR) and ~~George Kittle is on active/PUP off an Achilles with an 8/30 cutdown binary~~ **← STALE 2026-08-25: Kittle was activated off active/PUP 8/23, see DEAD** — so the Evans/Kirk additions are replacing lost production, not stacking on top of it (the Pearsall leg of this counter still stands on its own). SF also opens Week 1 in Melbourne. The ceiling case is thinner than at Noted time. **⚠ New counterweight 2026-08-13 (SOS layer + run-B audit): SF owns the HARDEST full-season QB schedule in the league (32nd of 32) and is 30th in weeks 15–17** — `Research/_schedule-strength-2026.md`. This is the opponent half of the equation the row never priced: the thesis is 'top-10 production at a QB12 price,' and the schedule argues the production half is the part at risk, not the price. The audit checked and this is *not* an artefact of SF's own (superseded) defensive rating — it is driven entirely by SF's opponents. **Row NOT demoted** — a hard schedule is a magnitude argument, not a falsification, and the two Tier-1 top-10 rankings that cleared the verify bar stand. Flagged for Hai.",
+   "verdict": "Buy"
+  },
+  {
+   "id": "jaxson-dart-qb",
+   "phase": "draft",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Jaxson Dart",
+   "pos": "QB",
+   "team": "NYG",
+   "title": "Jaxson Dart",
+   "consensus": "#76 / QB9",
+   "edge": "Value — 22.6 FP/gm across 12 rookie starts + **7.2 rushing FP/gm, 2nd only to Josh Allen** = borderline QB1 production, and Harbaugh has confirmed the designed-rushing role survives into Year 2",
+   "read": "**VERIFY BAR CLEARED — but call this the weakest promotion in this sweep.** The Need was \"a 2nd analyst QB1 ranking.\" FantasyLife's panel splits **QB7 (two rankers) / QB12 (two rankers)**, headline literally *\"Jaxson Dart Stepping Up To Top-10 QB Status.\"* NFL.com has him **#13** — one spot OUTSIDE the top-12 — while writing that he \"has the upside to be a top-10 fantasy QB.\" **The honest read: the field has moved to fringe-top-12, not top-10.** The rushing leg is the stronger half — Harbaugh, on record: *\"We can get in the pistol and we can run RPOs. We can run quarterback-driven runs with Jaxson Dart. A lot of the stuff that we did in Baltimore with Lamar as well.\"* So-what: still a value at #76, but the edge is thinner than the row was written for. **⚠ DEMOTE-FLAG REMOVED 2026-08-26: the flag was \"demote candidate if any list moves him inside QB10\" — the opposite happened.** 8/25 export: ADP 71→91, consensus #91→#94 / QB11→QB12 — the field moved AWAY from the claim, not toward it. Flag dropped; row stays Active on the rushing-role leg.",
+   "conviction": "Verified",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-06-03",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-03",
+   "sources": [
+    {
+     "name": "R3 player research (Noted 6/03) **+ FantasyLife (Ian Hartitz) 6/11 + NFL.com #13 + RotoBal",
+     "date": "2026-08-03",
+     "url": ""
+    },
+    {
+     "name": "cbssports.com",
+     "date": "2026-08-03",
+     "url": "https://www.cbssports.com/fantasy/football/news/jameys-2026-fantasy-breakouts-1-0-jaxson-dart-headlines-rising-stars/"
+    },
+    {
+     "name": "fantasylife.com",
+     "date": "2026-08-03",
+     "url": "https://www.fantasylife.com/articles/fantasy/jaxson-dart-2026-fantasy-football-outlook-a-potential-league-win"
+    },
+    {
+     "name": "playerprofiler.com",
+     "date": "2026-08-03",
+     "url": "https://www.playerprofiler.com/news/jaxson-dart-giants-will-be-run-focused/"
+    }
+   ],
+   "profile": "Research/profiles/players/QB/jaxson-dart.md",
+   "converge": null,
+   "counter": "**Malik Nabers is a live dependency and he is not right** — individual drills only, no target date, ~10 months from a multi-ligament repair. Without him the supporting cast is Mooney/Slayton/Austin/Fields/Likely. A rookie-year rushing rate is also the least sticky QB stat in fantasy; defenses adjust and coaches protect franchise QBs.",
+   "verdict": "Buy"
+  },
+  {
+   "id": "chris-olave-wr",
+   "phase": "draft",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Chris Olave",
+   "pos": "WR",
+   "team": "NO",
+   "title": "Chris Olave",
+   "consensus": "CSV 2026-09-04: Consensus **#16 / WR10**, ADP 26, ESPN 24 / WR10 — moved 17→16 (ADP 27→26) across the post-cutdown refresh",
+   "edge": "Buy — the blood-clot issue is FULLY cleared (Loomis: \"full go\") and the 4yr/$124M extension removes the contract-year distraction, resolving both doubts a cautious price might still be carrying",
+   "read": "**PROMOTED 2026-09-04 — the row's Need was a market check, and the market check ran.** The Need read verbatim: \"Check the next CSV/ADP refresh for movement post-clearance/extension — no movement despite full clearance is the gap.\" The 9/04 refresh moved him one spot. ⚠ **Logged as a deliberate exception to the never-promote-on-one-source rule** (same class of call as the 8/31 Nabers kill): the *market* leg is independently confirmed, the *fact* leg is not. So-what: draft at ADP 26 as a WR2 with WR1 ceiling. **Falsifier: any recurrence report, or consensus/ESPN jumping inside WR8 (field caught up).**",
+   "conviction": "Verified",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-08-30",
+   "date_verified": "2026-09-04",
+   "updated": "2026-09-04",
+   "sources": [
+    {
+     "name": "Pro Football Rumors ×2 (Jul + Aug 2026) via /capture 2026-08-30 — ⚠ **single-outlet chain;",
+     "date": "2026-09-04",
+     "url": ""
+    },
+    {
+     "name": "nfl.com",
+     "date": "2026-09-04",
+     "url": "https://www.nfl.com/news/saints-wr-chris-olave-still-not-fully-cleared-following-blood-clot-issue"
+    },
+    {
+     "name": "sports.yahoo.com",
+     "date": "2026-09-04",
+     "url": "https://sports.yahoo.com/articles/saints-wr-chris-olave-receives-201737081.html"
+    },
+    {
+     "name": "getmoresports.com",
+     "date": "2026-09-04",
+     "url": "https://www.getmoresports.com/saints-cautiously-optimistic-about-wide-receiver-duo-chris-olave-jordyn-tyson/"
+    },
+    {
+     "name": "profootballrumors.com",
+     "date": "2026-09-04",
+     "url": "https://www.profootballrumors.com/2026/07/chris-olave-receives-clearance-from-blood-clot-issue-saints-wr-staging-partial-hold-in"
+    },
+    {
+     "name": "profootballrumors.com",
+     "date": "2026-09-04",
+     "url": "https://www.profootballrumors.com/2026/08/saints-to-extend-wr-chris-olave"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/chris-olave.md",
+   "converge": null,
+   "counter": "The extension reportedly carves out an exception voiding injury guarantees specifically for concussion/blood-clot recurrence — the team priced the tail even as the market did not, and that carve-out is the best argument the discount is rational rather than stale. The clearance traces to one outlet's chain, and Olave has missed significant time in multiple seasons.",
+   "verdict": "Buy"
+  },
+  {
+   "id": "ladd-mcconkey-wr",
+   "phase": "draft",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Ladd McConkey",
+   "pos": "WR",
+   "team": "LAC",
+   "title": "Ladd McConkey",
+   "consensus": "Consensus #32 / WR17, ESPN 40 / WR19, ADP 43 (2026-09-04 export)",
+   "edge": "Beats-ADP buy — priced off the injury-wrecked WR30 2025 season while everything rebounds at once: new OC McDaniel scheme, OL health (Slater/Alt both full-go), proj 25% target share as the alpha",
+   "read": "**PROMOTED 2026-09-05 — a 94-day Staging row, cleared on its own pre-committed rule.** The row set two Needs at the 8/25 sweep, either of which would resolve it: (a) a 2nd analyst top-15 WR ranking, or (b) an explanation of the bare `Questionable` CSV flag carried since 8/25 with no supporting text. (a) remains open — consensus is WR17, just outside top-15. (b) is now resolved: the 2026-09-05 volatile-field patch replaced the bare flag with a dated, sourced explanation (June-OTA hamstring tweak, declared \"full go\" for camp per NBC Sports 7/28 + CBS corroboration), and the row's own kill condition — \"kill at next sweep if (a) hasn't arrived AND (b) turns out to be a real designation\" — did not fire, because (b) turned out to be explainable, not a live designation. So-what: draft at ADP 43 as a WR2 with the McDaniel-scheme/OL-health rebound intact; the mechanical rank/ADP gap is unchanged, so this is a value hold, not a fresh catalyst.",
+   "conviction": "Verified",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-06-03",
+   "date_verified": "2026-09-05",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "R3 player research (Noted 2026-06-03) + CSV data-hygiene resolution 2026-09-05 (Questionab",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "nbcsports.com",
+     "date": "2026-08-26",
+     "url": "https://www.nbcsports.com/fantasy/football/news/what-mike-mcdaniels-offense-means-for-justin-herbert-ladd-mcconkey-and-omarion-hampton"
+    },
+    {
+     "name": "cbssports.com",
+     "date": "2026-08-26",
+     "url": "https://www.cbssports.com/fantasy/football/news/fantasy-football-today-bounceback-candidates-to-target-for-2026/"
+    },
+    {
+     "name": "draftsharks.com",
+     "date": "2026-08-26",
+     "url": "https://www.draftsharks.com/article/los-angeles-chargers-preview"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/ladd-mcconkey.md",
+   "converge": {
+    "n": 2,
+    "layers": [
+     "OL",
+     "Coaching"
+    ],
+    "contested": false,
+    "line": "🎯 2 layers agree: OL, Coaching"
+   },
+   "counter": "The ranking leg the row originally asked for still hasn't arrived (WR17, not top-15) — this promotion rests on the data-hygiene Need, which is a weaker trigger than a second analyst call. ⚠ No September re-check on the underlying 2025 calf/biceps/foot/ankle chain has ever been published — the health picture is absence-of-bad-news, not a fresh clearance. **Demote-candidate trigger: ADP inside 36 (field closes the gap), or a recurrence report.**",
+   "verdict": "Buy"
+  },
+  {
+   "id": "chig-okonkwo-te",
+   "phase": "draft",
+   "kind": "Hype",
+   "tone": "buy",
+   "name": "Chig Okonkwo",
+   "pos": "TE",
+   "team": "WAS",
+   "title": "Chig Okonkwo",
+   "consensus": "TE21 / #167 — priced as a streamer",
+   "edge": "Post-hype value — left TEN for WAS as the receiving-TE upgrade for Jayden Daniels in OC David Blough's play-action offense. **He has won the move-TE role outright**",
+   "read": "**VERIFY BAR CLEARED 2026-08-03.** The Need was \"camp role + target share.\" Baltimore Banner, 8/1: *\"By the end of day, Chig Okonkwo was the talk of the Commanders offense. Daniels couldn't stop targeting him.\"* GM Adam Peters on record: *\"It's almost like we have four receivers on the field when he's out there.\"* Terry McLaurin: *\"He's gonna get a lot of opportunities here.\"* Independent second angle: WAS installed **Wes Welker** as his position coach specifically to accelerate the role (Riggo's Rag 7/29). So-what: a top-12 TE outcome is live at a TE21 price — the cheapest real TE upside on the board. **·· AMENDED 2026-09-04 — the gap WIDENED.** Across the post-cutdown refresh the field moved *away*: ADP **178→201** (−23) against a near-flat consensus (151→155). The 9/04 ESPN bridge is lower still at **219 / TE25**. A verified starting move-TE role is now available at close to free in Hai's room — the row is more actionable than when it was promoted, which is unusual and worth noting in the audit.",
+   "conviction": "Verified",
+   "theme": "Hype trains",
+   "date_in": "2026-06-02",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-30",
+   "sources": [
+    {
+     "name": "sweep (Noted 6/02) **+ Baltimore Banner beat report 8/1 + Riggo's Rag 7/29** — independent",
+     "date": "2026-08-03",
+     "url": ""
+    },
+    {
+     "name": "thebaltimorebanner.com",
+     "date": "2026-08-30",
+     "url": "https://www.thebaltimorebanner.com/"
+    },
+    {
+     "name": "riggosrag.com",
+     "date": "2026-08-30",
+     "url": "https://riggosrag.com/"
+    }
+   ],
+   "profile": "Research/profiles/players/TE/chig-okonkwo.md",
+   "converge": null,
+   "counter": "Still qualitative — no target-share number has been published, and \"talk of camp\" in early August is the single most over-fit signal in fantasy. Washington's target tree runs through McLaurin first, and Daniels' own availability is a live variable (7 games, 3 injuries in 2025).",
+   "verdict": "Buy"
+  },
+  {
+   "id": "matthew-golden-wr",
+   "phase": "draft",
+   "kind": "Hype",
+   "tone": "buy",
+   "name": "Matthew Golden",
+   "pos": "WR",
+   "team": "GB",
+   "title": "Matthew Golden",
+   "consensus": "WR55 / #137 — priced as a crowded-room Year-2 flier",
+   "edge": "**Justified, not empty** — the hype question this row existed to settle is answered: Golden and Christian Watson are taking the lion's share of the STARTING OUTSIDE reps, with Jayden Reed in the slot. Doubs and Wicks both gone = ~131 vacated targets",
+   "read": "**VERIFY BAR CLEARED 2026-08-03 — and note WHAT cleared it.** The row's stated gap on 6/07 was *\"hype accelerating — teammate quotes only, zero camp production data; empty-leaning until evidence arrives.\"* The evidence arrived and it is on-field pecking-order reporting, not quotes: Demovsky has him \"making plays all over the field,\" Schneidman documents specific route wins vs rookie CB Brandon Cisse, and Huber: \"Golden has been superb.\" So-what: buy at WR55 — the justified-vs-empty coin landed justified. **·· PRESEASON WK1 FOLD 2026-08-16 ··** **ADVANCES — third consecutive confirming datapoint.** Golden **started in 12-personnel over incumbent slot man Jayden Reed** in the preseason opener. The justified-vs-empty question this row exists to settle keeps resolving **justified**, and it is now resolving on snaps rather than on beat quotes.",
+   "conviction": "Verified",
+   "theme": "Hype trains",
+   "date_in": "2026-06-02",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-31",
+   "sources": [
+    {
+     "name": "sweep (Noted 6/02) **+ Lombardi Ave 8/2 (citing WFRV's Carson Fowler + Packers On SI's Bil",
+     "date": "2026-08-03",
+     "url": ""
+    },
+    {
+     "name": "sports.yahoo.com",
+     "date": "2026-08-31",
+     "url": "https://sports.yahoo.com/articles/packers-wr-matthew-golden-shows-154719073.html"
+    },
+    {
+     "name": "lombardiave.com",
+     "date": "2026-08-31",
+     "url": "https://lombardiave.com/matthew-golden-and-3-packers-whose-stock-soaring-entering-preseason-finale"
+    },
+    {
+     "name": "lombardiave.com",
+     "date": "2026-08-31",
+     "url": "https://lombardiave.com/"
+    },
+    {
+     "name": "sportsnaut.com",
+     "date": "2026-08-31",
+     "url": "https://sportsnaut.com/"
+    },
+    {
+     "name": "packers.com",
+     "date": "2026-08-31",
+     "url": "https://www.packers.com/news/matthew-golden-kept-the-big-plays-coming-on-family-night-aug-8-2026"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/matthew-golden.md",
+   "converge": null,
+   "counter": "Green Bay's room is still genuinely crowded (Watson, Reed, plus Kraft returning at TE), and Matt LaFleur has historically spread targets to a fault — no Packers WR has cleared 1,000 yards since Davante Adams. Camp reps in shells are not September targets.",
+   "verdict": "Buy"
+  },
+  {
+   "id": "harold-fannin-jr-te",
+   "phase": "draft",
+   "kind": "Usage",
+   "tone": "value",
+   "name": "Harold Fannin Jr.",
+   "pos": "TE",
+   "team": "CLE",
+   "title": "Harold Fannin Jr.",
+   "consensus": "TE6 / #69 — priced with the missed-offseason discount still in",
+   "edge": "Buy — **HC** Todd Monken *(← title corrected 2026-08-16; was \"OC\")* publicly comps him to Brock Bowers (~22% proj target share, Njoku gone); led CLE with **72-731-6 as a rookie**. The health watch that held this in Staging for two months is now CLEARED",
+   "read": "**VERIFY BAR CLEARED 2026-08-03 — and this row was the vault's longest-open question.** He missed the ENTIRE offseason program (OTAs + the 6/9-11 mandatory minicamp) on an undisclosed issue; the 7/26 pass could only confirm he wasn't on PUP/NFI. Now resolved at the source: he had **offseason groin surgery**, was cleared ~2 weeks before camp, and said at the Day-1 podium **\"I'll be full go.\"** Two separate writers quoting two separate availabilities. So-what: draft him as your TE at TE6 cost — the discount is for a risk that no longer exists. **·· PRESEASON WK1 FOLD 2026-08-16 ··** **HEALTH LEG NOW CLEAN, plus an attribution error fixed.** **(1) Title correction:** Todd Monken is Cleveland's **head coach**, not its offensive coordinator — hired **2026-01-28** after Kevin Stefanski was fired 1/05 (Stefanski is now Atlanta's head coach). Cleveland's OC is **Travis Switzer**. The Bowers comp itself is unaffected, and a *head coach* making it is stronger, not weaker. **Scope checked before writing:** `Research/profiles/teams/CLE.md` was already correct, so this was one stale cell on this board, not a broken team layer. **(2) Health:** full-go since **7/29**, and he played **9 of 10 first-team snaps (~90%) in the 8/15 preseason opener**, the one miss being a short-yardage package. The 'present but not participating' note is **refuted**. **Recommend re-theming this row Injury/Health → Usage/Role at the next sweep** — the health question it was built around is closed.",
+   "conviction": "Verified",
+   "theme": "Usage / Role / Scheme",
+   "date_in": "2026-06-03",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-16",
+   "sources": [
+    {
+     "name": "R3 player research (Noted 6/03) **+ two independent Day-1 beat reports 7/29** — Mary Kay C",
+     "date": "2026-08-03",
+     "url": ""
+    },
+    {
+     "name": "dawgsbynature.com",
+     "date": "2026-08-16",
+     "url": "https://www.dawgsbynature.com/cleveland-browns-news/126443/browns-minicamp-injuries-mason-graham-harold-fannin-maliek-collins-emw"
+    },
+    {
+     "name": "heavy.com",
+     "date": "2026-08-16",
+     "url": "https://heavy.com/sports/nfl/cleveland-browns/harold-fannin-injury-camp/"
+    },
+    {
+     "name": "playerprofiler.com",
+     "date": "2026-08-16",
+     "url": "https://www.playerprofiler.com/news/harold-fannin-jr-sitting-out-ota-practice-sessions/"
+    },
+    {
+     "name": "dawgpounddaily.com",
+     "date": "2026-08-16",
+     "url": "https://dawgpounddaily.com/harold-fannin-jr-s-ota-absence-feels-much-more-important-for-one-reason"
+    },
+    {
+     "name": "247sports.com",
+     "date": "2026-08-16",
+     "url": "https://247sports.com/nfl/cleveland-browns/longformarticle/cleveland-browns-otas-mason-graham-quinshon-judkins-carson-schwesinger-harold-fannin-jr-286093479/"
+    }
+   ],
+   "profile": "Research/profiles/players/TE/harold-fannin-jr.md",
+   "converge": null,
+   "counter": "One Day-1 podium quote is not a month of pads. He has still never completed a full NFL offseason program, and the groin is a recurrence-prone soft-tissue site. Watch for a missed padded practice; the 7/26 sweep already flagged him as \"the highest-leverage item nobody is pricing,\" which cuts both ways — if he's this good the field will notice fast. **·· 2026-08-16 ··** **Cleveland's QB1 is undecided as of 8/16.** Watson started the preseason opener (first half, two scoring drives, no interceptions) and has the inside track; **Sanders is scheduled to start the next preseason game vs Buffalo.** A target-leading-TE projection is resting on an offense whose quarterback is not settled — that is the live bear case now that health has retired. **·· HOUSEKEEPING 2026-08-26 ·· MOVED Injury/Health → Usage/Role** (no state/date change): health confirmed full-go since 7/29 + 9-of-10 first-team snaps in the 8/15 opener is a role-question row now, not a health-question row. Hard data flat: #71, ADP 64→65, now TE5.",
+   "verdict": "Buy"
+  },
+  {
+   "id": "a-j-brown-wr",
+   "phase": "draft",
+   "kind": "Situation",
+   "tone": "buy",
+   "name": "A.J. Brown",
+   "pos": "WR",
+   "team": "NE",
+   "title": "A.J. Brown",
+   "consensus": "ADP WR12 / #26.5",
+   "edge": "Buy-low: traded PHI→NE as the clear WR1 vacuum-filler for Drake Maye; ~130 tgt / 86 / 1,216 / 7 projection = WR1 volume, but ADP still reflects the down-2025 PHI role. ~~Bye now Wk11 (CSV stale at 9)~~ **← STALE PARENTHETICAL STRUCK 2026-08-26: CSV has read bye 11 since the 7/26 export; the fix was already done, this was just an outdated caveat.**",
+   "read": "Buy at ADP as a high-floor WR2 / upside WR1; the bet is Maye's leap. Verify NE pass volume + Maye camp reports. **⚠ FLAGGED DEMOTE CANDIDATE 2026-08-26**: ADP 27→20 in nine days against flat consensus #12/WR8 — an 8-spot ADP lag, the same Step-4 signature that closed Parker Washington and Alec Pierce this sweep. Trigger: ADP inside 15, or a Tier-2 list publishing the Maye-leap WR1 case. Not demoted yet — the field hasn't fully arrived. **·· DEMOTE-CANDIDATE RE-FLAGGED 2026-09-04 (second sweep on the clock, not moving).** Trigger was \"ADP inside 15\"; ADP moved 20→18 across the refresh, consensus flat at **#12 / WR8**. Closer, not there. ESPN 20 / WR8 is in line with consensus, so no room-specific divergence to exploit either way.",
+   "conviction": "Verified",
+   "theme": "Situation / Personnel",
+   "date_in": "2026-06-02",
+   "date_verified": "2026-06-02",
+   "updated": "2026-08-26",
+   "sources": [
+    {
+     "name": "RotoBaller/sweep (consensus-lean) + confirmed PHI→NE trade",
+     "date": "2026-06-02",
+     "url": ""
+    },
+    {
+     "name": "patspulpit.com",
+     "date": "2026-08-26",
+     "url": "https://www.patspulpit.com/new-england-patriots-training-camp/130152/2026-wide-receiver-preview-aj-brown-romeo-doubs"
+    },
+    {
+     "name": "patriots.com",
+     "date": "2026-08-26",
+     "url": "https://www.patriots.com/news/analysis-inside-a-j-brown-s-first-patriots-practice-and-other-takeaways-from-otas"
+    },
+    {
+     "name": "espn.com",
+     "date": "2026-08-26",
+     "url": "https://www.espn.com/nfl/story/_/id/49032332/new-england-patriots-minicamp-aj-brown-impressions"
+    },
+    {
+     "name": "patriots.com",
+     "date": "2026-08-26",
+     "url": "https://www.patriots.com/news/analysis-breaking-down-the-patriots-competitive-camp-battle-at-wide-receiver"
+    },
+    {
+     "name": "patriots.com",
+     "date": "2026-08-26",
+     "url": "https://www.patriots.com/news/day-17-blogservations-maye-and-brown-find-their-deep-connection"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/aj-brown.md",
+   "converge": null,
+   "counter": "The whole thesis is Maye's Year-3 leap; NE pass volume and OL are unproven; the down-2025 output could be decline rather than situation.",
+   "verdict": "Buy"
+  },
+  {
+   "id": "las-vegas-raiders-qb",
+   "phase": "draft",
+   "kind": "Situation",
+   "tone": "watch",
+   "name": "Las Vegas Raiders",
+   "pos": "QB",
+   "team": "",
+   "title": "Las Vegas Raiders",
+   "consensus": "Field prices LV pass-catchers off a stable QB year",
+   "edge": "Cousins starts, #1-overall rookie Mendoza expected to take over in-season — shifts timeline + ceiling for all LV pass-catchers (Bowers, WR room)",
+   "read": "Discount LV pass-catcher floors; watch the takeover timeline before paying Bowers's ADP",
+   "conviction": "Verified",
+   "theme": "Situation / Personnel",
+   "date_in": "2026-06-01",
+   "date_verified": "2026-06-04",
+   "updated": "2026-06-04",
+   "sources": [
+    {
+     "name": "Eisenberg/CBS + R3 corroboration (Cousins Wk-1 confirmed; Mendoza #1 OVERALL pick)",
+     "date": "2026-06-04",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": null,
+   "counter": "If Cousins holds the job all season (rookie not ready), the discount was unwarranted and the pass-catchers play a stable year; the takeover timing is a guess.",
+   "verdict": "Watch"
+  },
+  {
+   "id": "jonathan-taylor-ppr-ceiling-rb",
+   "phase": "draft",
+   "kind": "Situation",
+   "tone": "watch",
+   "name": "Jonathan Taylor — PPR ceiling",
+   "pos": "RB",
+   "team": "IND",
+   "title": "Jonathan Taylor — PPR ceiling",
+   "consensus": "Priced off a blended QB outcome; the field hasn't re-priced his receiving floor to the Jones-specific number",
+   "edge": "His receiving role is a QB derivative: 1.3 tgt/gm with Richardson vs 3.6 without (career-high routes/targets in 2025 with Jones) — the IND QB battle IS his PPR ceiling, and it has resolved to the good side",
+   "read": "**VERIFY BAR CLEARED 2026-08-03.** The Need was 'IND QB1 resolution at camp.' Resolved: **Daniel Jones cleared post-Achilles, avoided PUP, 'looked like himself' Day 1** ([colts.com](https://www.colts.com/news/colts-have-high-expectations-for-wr-josh-downs-to-begin-training-camp), Aug 2026). Jones is the high-RB-target QB in the split, so Taylor's PPR ceiling survives intact. So-what: pay for Taylor on the PPR projection, not the rushing-only one.",
+   "conviction": "Verified",
+   "theme": "Situation / Personnel",
+   "date_in": "2026-06-07",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-03",
+   "sources": [
+    {
+     "name": "Fantasy Points QB-tendencies (T1) **+ 8/03 camp confirmation that Jones is cleared and sta",
+     "date": "2026-08-03",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": null,
+   "counter": "**Taylor is unsigned** on the final year of 3yr/$42M — a hold-in is speculation (no player statement, no beat report of intent) but not zero. IND also has a stated **workload-reduction plan** for him, and Jones' Achilles was to his push-off foot, capping the downfield game that keeps boxes honest. DJ Giddens is the only real handcuff.",
+   "verdict": "Watch"
+  },
+  {
+   "id": "atlanta-qb-room",
+   "phase": "draft",
+   "kind": "Situation",
+   "tone": "watch",
+   "name": "Atlanta QB room",
+   "pos": "",
+   "team": "",
+   "title": "Atlanta QB room",
+   "consensus": "Projections for London (and Bijan's receiving script) were largely built on a Penix-led offense",
+   "edge": "**The board is stale on who starts.** Penix (left ACL, Wk11 2025) is still NOT cleared for 11-on-11 into August; **Tua Tagovailoa — signed by ATL in March — is the Week 1 starter.** Changes the passing funnel for Drake London and the receiving script for Bijan Robinson",
+   "read": "**VERIFY BAR CLEARED 2026-08-03.** The Need was 'a 2nd source confirming the Week 1 starter.' Penix remains limited to individual/7-on-7 with full clearance **~4 weeks away by his own account**; Tua is the clear Week 1 favourite. So-what: re-check whether London's projection was built on Penix, and discount Bijan's receiving volume accordingly.",
+   "conviction": "Verified",
+   "theme": "Situation / Personnel",
+   "date_in": "2026-07-26",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-03",
+   "sources": [
+    {
+     "name": "7/26 sweep (ESPN/Raimondi 7/13 + AtlantaFalcons.com) **+ 8/03 camp confirmation — Penix sa",
+     "date": "2026-08-03",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": null,
+   "counter": "**Tua missed the camp opener with back tightness** and Atlanta added **Cooper Rush** — the room isn't fully stable either. Penix's 9–12 month window does open mid-camp, so a late-August clearance would flip this back before Week 1. **No player profile for either QB — cross-link gap.**",
+   "verdict": "Watch"
+  },
+  {
+   "id": "jadarian-price-buy-rb",
+   "phase": "draft",
+   "kind": "Situation",
+   "tone": "watch",
+   "name": "Jadarian Price — buy",
+   "pos": "RB",
+   "team": "SEA",
+   "title": "Jadarian Price — buy",
+   "consensus": "CSV 2026-09-04: Consensus **#65 / RB24**, ADP 57, ESPN 58 / RB24 — field moved only 70→65 despite Charbonnet's reserve/PUP being an official public transaction since 8/30",
+   "edge": "Lead back in the post-Walker Seattle backfield — R1 capital + Shanahan-tree continuity (OC Fleury) + Charbonnet on reserve/PUP, with the position coach naming him the lead on the record",
+   "read": "**PROMOTED 2026-09-04 — all three Needs answered.** (1) Charbonnet timeline: resolved by transaction — reserve/PUP 8/30, out a minimum of four games. (2) The 3-way camp battle: Hammock casts Holani as the third-down/pass-pro back (CSV #242) and Emanuel Wilson as power/goal-line, leaving early downs to Price. (3) Second source on the role: Henderson independently reports the same plan. So-what: draft as an RB2 at an RB24 price with Weeks 1–4 lead volume effectively locked. ✅ **His CSV `Injury_Status` cell is FIXED (2026-09-05)** — the stale 8/13 \"lower-body soreness\" text was superseded by the 8/29 resolution and has now been replaced by the volatile-field patch (`Skills/patch-volatile-20260905.py`); the cell reads Healthy / confirmed Wk1 lead back.",
+   "conviction": "Verified",
+   "theme": "Situation / Personnel",
+   "date_in": "2026-06-08",
+   "date_verified": "2026-09-04",
+   "updated": "2026-09-04",
+   "sources": [
+    {
+     "name": "coaching-changes layer 2026-06-06 (Noted 6/08) **+ RB coach Thomas Hammock on the record v",
+     "date": "2026-09-04",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": {
+    "n": 3,
+    "layers": [
+     "RB-receiving",
+     "Backfield",
+     "Coaching"
+    ],
+    "contested": false,
+    "line": "🎯 3 layers agree: RB-receiving, Backfield, Coaching"
+   },
+   "counter": "Walker's departure also removes the offense's explosive element, so the lead role may come with worse scripts than the 2025 baseline. Hammock is a coach describing a plan, not a snap count — no first-team carry-share number has ever been published for this backfield. Emanuel Wilson at the goal line caps the TD equity, and Charbonnet returns around Week 5.",
+   "verdict": "Watch"
+  },
+  {
+   "id": "saquon-barkley-rb",
+   "phase": "draft",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "Saquon Barkley",
+   "pos": "RB",
+   "team": "PHI",
+   "title": "Saquon Barkley",
+   "consensus": "ADP RB6-8 / #14.5; Consensus ~RB10",
+   "edge": "Fade vs ADP — 2025 efficiency cratered (4.1 YPC from 5.8; career-low 1.6 YACo) AND A.J. Brown's box-lightening gravity left for NE → stacked boxes vs a brand-new under-center wide-zone (Mannion); market still RB6-8",
+   "read": "Don't pay the RB6-8 price; if I want PHI RB exposure it's at a discount or pass. Pairs with the CMC age/decline fade theme. *Refresh 2026-06-07: counter-evidence — OL topic layer ranks PHI #2/32 (all 5 starters back) and run-lean profiles PHI as a fortress with a more-run install; the stacked-box premise is weaker. Fade holds on the efficiency/age data, sized smaller*",
+   "conviction": "Verified",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-06-02",
+   "date_verified": "2026-06-02",
+   "updated": "2026-08-30",
+   "sources": [
+    {
+     "name": "PFF/efficiency data (edge) + confirmed A.J. Brown trade (situation) — two independent sign",
+     "date": "2026-06-02",
+     "url": ""
+    },
+    {
+     "name": "sports.yahoo.com",
+     "date": "2026-08-30",
+     "url": "https://sports.yahoo.com/articles/saquon-barkley-early-2026-adp-011619909.html"
+    },
+    {
+     "name": "bleedinggreennation.com",
+     "date": "2026-08-30",
+     "url": "https://www.bleedinggreennation.com/news/176049/saquon-barkley-ota-comments-aj-brown-situation-outside-zone-changes-offense"
+    },
+    {
+     "name": "thefantasyfootballers.com",
+     "date": "2026-08-30",
+     "url": "https://www.thefantasyfootballers.com/news/214691/saquon-barkley-saquon-barkley-to-benefit-from-new-look-offense-in-2026/"
+    },
+    {
+     "name": "fantasypros.com",
+     "date": "2026-08-30",
+     "url": "https://www.fantasypros.com/nfl/players/saquon-barkley.php"
+    }
+   ],
+   "profile": "Research/profiles/players/RB/saquon-barkley.md",
+   "converge": {
+    "n": 2,
+    "layers": [
+     "OL",
+     "Run-lean"
+    ],
+    "contested": true,
+    "line": "⚠ 2 layers contest this — OL, Run-lean disagree"
+   },
+   "counter": "Philadelphia's line grades top-2 with all five starters back and a run-first install, which softens the stacked-box case; an elite line and volume can absorb efficiency regression.",
+   "verdict": "Fade"
+  },
+  {
+   "id": "tony-pollard-rb",
+   "phase": "draft",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "Tony Pollard",
+   "pos": "RB",
+   "team": "TEN",
+   "title": "Tony Pollard",
+   "consensus": "RB32 / #89; ADP 79.5 prices the 275-touch 2025 workload",
+   "edge": "Daboll publicly declared a two-back committee; Spears out-snapped Pollard 59%–42.6% post-IR in 2025; TEN drafted Nick Singleton in April — analysts cap him <230 carries",
+   "read": "Don't pay #89 for a committee back; Spears (#139) is the cheap side of the same backfield. *Refresh 2026-06-07: STRENGTHENED — run-lean layer ranks TEN the league's worst structural run outlook (OL #32 + bad defense = trailing scripts on top of the committee). Same-day RB-recv layer: Spears 3.8 tgt/gm + 90% catch; Pollard fell to 2.5 tgt/gm when Spears healthy — third independent support* **·· PRESEASON WK1 FOLD 2026-08-16 ··** **CONFIRMED BY SNAP DATA — the first hard usage evidence this row has ever had.** **Tyjae Spears out-snapped Pollard on a rotating basis in the preseason opener (5-5, 5-0, 3-3 by drive)**, against Pollard's ~70/30 lead share in 2025. The committee Daboll declared verbally in June is now visible on the field, which is the difference between a coach-speak row and a usage row. **·· DEMOTE-CANDIDATE RE-FLAGGED 2026-09-04 (not moving) — but the fade got MORE actionable.** Consensus 83→81, ADP 81→76: drifting toward the row, not yet caught up. The new signal is room-specific: **ESPN has him at 68 against consensus 81**, so in Hai's league Pollard goes *earlier* than ADP implies — meaning the overpay this row warns about is larger here than the market number suggests.",
+   "conviction": "Verified",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-06-03",
+   "date_verified": "2026-06-04",
+   "updated": "2026-08-25",
+   "sources": [
+    {
+     "name": "Daboll public statement via team coverage + R3 player research (Singleton pick + carry cap",
+     "date": "2026-06-04",
+     "url": ""
+    },
+    {
+     "name": "fantasylife.com",
+     "date": "2026-08-25",
+     "url": "https://www.fantasylife.com/articles/fantasy/tennessee-titans-2026-fantasy-football-cheat-sheet-cam-ward-carnell-tate-and-more"
+    },
+    {
+     "name": "titansized.com",
+     "date": "2026-08-25",
+     "url": "https://titansized.com/titans-immediately-put-their-entire-rb-room-on-notice-with-just-1-pick"
+    },
+    {
+     "name": "si.com",
+     "date": "2026-08-25",
+     "url": "https://www.si.com/nfl/titans/onsi/titans-running-backs-what-fans-need-to-know-about-each-player-on-the-roster-pollard-spears"
+    },
+    {
+     "name": "pff.com",
+     "date": "2026-08-25",
+     "url": "https://www.pff.com/news/nfl-preseason-2026-week-1-recap-immediate-takeaways-2026"
+    }
+   ],
+   "profile": "Research/profiles/players/RB/tony-pollard.md",
+   "converge": {
+    "n": 3,
+    "layers": [
+     "Run-lean",
+     "RB-receiving",
+     "Backfield"
+    ],
+    "contested": false,
+    "line": "🎯 3 layers agree: Run-lean, RB-receiving, Backfield"
+   },
+   "counter": "If Spears gets hurt (real injury history) Pollard inherits the workload his price assumes, and a Daboll backfield can still yield an RB2 if one back separates. Weakest counter on the board — the layers run against him. **⚠ FLAGGED DEMOTE CANDIDATE 2026-08-26**: ADP 81 vs consensus #83 — the gap is now ~zero. Trigger: ADP drifting past rank, or a Tier-2 fade list. Not demoted yet — the field hasn't crossed.",
+   "verdict": "Fade"
+  },
+  {
+   "id": "cam-skattebo-rb",
+   "phase": "draft",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "Cam Skattebo",
+   "pos": "RB",
+   "team": "NYG",
+   "title": "Cam Skattebo",
+   "consensus": "Priced on the target rate, not the pass-block grade",
+   "edge": "Fade the third-down role — 4.0 tgt/gm (CMC/Bijan per-game tier) BUT **11.6 PFF pass-block, DEAD LAST of 67 qualifiers**, plus an RB-target-negative coaching history; Tyrone Tracy (47 tgt) lurks for passing downs",
+   "read": "**VERIFY BAR PARTIALLY CLEARED — promoted on the committee leg 2026-08-03.** Two of the three Needs answered. **Ankle: clean** — Schoen at the first practice: *\"He'll be out here, he'll be ready to go today, and he'll be doing everything\"*; Skattebo: \"I've felt 99%… the 100% is when I put shoulder pads on.\" **Committee: confirmed** — Giants.com has him and Tracy both taking first-team reps with Singletary mixing in, and Skattebo himself named Tracy, Singletary and Dante Miller as sharing the backfield. So-what: the fade holds on role, and the ankle bear case is retired. **·· STRENGTHENED 2026-09-04.** A third independent signal, and the strongest yet: PFF projects **no Giants RB finishes top-30**, resting on a specific structural fact — the Giants were **the only one of 32 teams running a true three-man preseason rotation** — plus a Harbaugh/2019-Ravens scheme comp. Critically the field is moving the *other* way: Skattebo is going **RB18** while Tyrone Tracy sits at RB44, so the fade is *more* unpriced than at verification, not less. Note also **ESPN 45 vs consensus 55** — his own room reaches for him harder than the market does.",
+   "conviction": "Verified",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-06-07",
+   "date_verified": "2026-08-03",
+   "updated": "2026-09-04",
+   "sources": [
+    {
+     "name": "PFF 2025 grades + RB-recv topic layer (Noted 6/07) **+ Giants.com 7/29 and AP wire 7/31** ",
+     "date": "2026-08-03",
+     "url": ""
+    },
+    {
+     "name": "nfl.com",
+     "date": "2026-09-04",
+     "url": "https://www.nfl.com/news/giants-cam-skattebo-speaks-on-ankle-rehab"
+    },
+    {
+     "name": "heavy.com",
+     "date": "2026-09-04",
+     "url": "https://heavy.com/sports/nfl/new-york-giants/boosted-promising-cam-skattebo-injury-update/"
+    },
+    {
+     "name": "empiresportsmedia.com",
+     "date": "2026-09-04",
+     "url": "https://empiresportsmedia.com/new-york-giants/cam-skattebo-gives-ny-giants-hope-but-also-a-real-question/"
+    },
+    {
+     "name": "pff.com",
+     "date": "2026-09-04",
+     "url": "https://www.pff.com/news/fantasy-football-bold-predictions-2026"
+    }
+   ],
+   "profile": "Research/profiles/players/RB/cam-skattebo.md",
+   "converge": {
+    "n": 2,
+    "layers": [
+     "RB-receiving",
+     "Backfield"
+    ],
+    "contested": false,
+    "line": "🎯 2 layers agree: RB-receiving, Backfield"
+   },
+   "counter": "**The pass-protection leg is still untested** — no camp pass-pro grade or rep report exists, and coverage explicitly notes pass-pro is hard to judge until pads/preseason. If he improved, the whole fade weakens. Note the ankle resolving clean is genuinely good news that cuts against the row.",
+   "verdict": "Fade"
+  },
+  {
+   "id": "rj-harvey-rb",
+   "phase": "draft",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "RJ Harvey",
+   "pos": "RB",
+   "team": "DEN",
+   "title": "RJ Harvey",
+   "consensus": "CSV: Consensus **#91 / RB32, ADP 83 (8/25 export)** — the field has already moved him off the June #74, and ADP has tightened further",
+   "edge": "**Fade — he has not won the job, ~~and now he is losing the early downs too~~ **← CLAUSE STRUCK 2026-08-16, see So-what**.** Dobbins is the listed RB1; R4 rookie Jonah Coleman (No. 108, Washington) is out-producing Harvey between the tackles in pads — which is precisely Harvey's rookie-year weakness (3.7 YPC)",
+   "read": "Don't pay ADP 88 for the third-best claim to early-down work in this backfield. For Denver exposure, Dobbins is *cheaper* (ADP 98) and listed RB1; Coleman (ADP 186) is the lottery ticket on the same room. ⚠ **Low timing-edge — flagged as a demote candidate in this same sweep; trigger = ADP crosses Dobbins.** **·· PRESEASON WK1 FOLD 2026-08-16 ··** **CLAIM AMENDED — an unsupported clause struck out.** The 'losing the early downs too' clause is **withdrawn**: adjudicated unsupported, and traced to a 7/21 radio opinion that the 8/11 depth chart contradicts. **What the preseason opener actually showed: Harvey started, and took roughly 79% of the first-two-series snaps.** Corrected reading — *Dobbins is the listed RB1 (8/11 chart) and Harvey remains RB2; he has not won the job, but he has not lost early downs either. R4 Jonah Coleman is now ahead of McLaughlin and Badie.* **The fade survives on price, not on a demotion that never happened** — that is a materially weaker row than it read on 8/11 and it should be sized accordingly. **·· SWEEP 2026-08-25 ·· TRIGGER CHECKED, NOT FIRED, AND THE FADE STRENGTHENED ON PRICE.** The 8/25 export has Harvey ADP 83.0 vs Dobbins ADP 87.0 — trigger (\"ADP crosses Dobbins\") did NOT fire. The fade actually strengthened instead: Harvey ADP 88→83 against consensus #92→#91 (gap widened from 4 to 8 spots ahead of rank), while Dobbins closed 98→87 (rank #105→#98) and Coleman 186→168 (#159→#152). Second source added: PFF's Wk1 preseason recap (pub 8/16) has Harvey handling the first 11 Denver RB snaps before Coleman relieved him. **·· AMENDED 2026-09-04 — the demote trigger has fired on ESPN's board but NOT on ADP.** The stated trigger was \"ADP crosses Dobbins.\" On FantasyPros it has not: Harvey ADP 85 vs Dobbins 89, the same 4-spot gap as at flagging. **But the 9/04 ESPN bridge has Dobbins ahead — ESPN 100 vs Harvey 108** — so in the room Hai actually drafts in, the field has already caught up. Held Active per the letter of the trigger; **trigger tightened: demote when FantasyPros ADP crosses, since ESPN already has.**",
+   "conviction": "Verified",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-06-03",
+   "date_verified": "2026-08-11",
+   "updated": "2026-08-26",
+   "sources": [
+    {
+     "name": "R3 team research (Noted 6/03) + 8/03 team-site refresh **+ 2026-08-11 blind re-derivation:",
+     "date": "2026-08-11",
+     "url": ""
+    },
+    {
+     "name": "si.com",
+     "date": "2026-08-26",
+     "url": "https://www.si.com/nfl/broncos/onsi/broncos-depth-chart-projection-entering-otas-features-some-new-names"
+    },
+    {
+     "name": "predominantlyorange.com",
+     "date": "2026-08-26",
+     "url": "https://predominantlyorange.com/updated-broncos-rb-depth-chart-proves-former-weakness-is-now-a-strength"
+    },
+    {
+     "name": "espn.com",
+     "date": "2026-08-26",
+     "url": "https://www.espn.com/nfl/story/_/id/47243809/rj-harvey-rookie-running-back-denver-broncos-career-high-rushing-yards-receptions"
+    },
+    {
+     "name": "pff.com",
+     "date": "2026-08-26",
+     "url": "https://www.pff.com/news/fantasy-football-preseason-week-1-recap-immediate-takeaways-2026"
+    }
+   ],
+   "profile": "Research/profiles/players/RB/rj-harvey.md",
+   "converge": null,
+   "counter": "**Dobbins left the 8/10 practice with a soft-tissue issue** (Payton: precautionary) — if it lingers, Harvey's early-down claim revives. Note the four outlets carrying that injury all trace to **one** Payton presser. And Coleman's ascent is camp-report-based: **no preseason snap counts exist yet** — first real evidence is the 8/14 opener.",
+   "verdict": "Fade"
+  },
+  {
+   "id": "davante-adams-wr",
+   "phase": "draft",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "Davante Adams",
+   "pos": "WR",
+   "team": "LAR",
+   "title": "Davante Adams",
+   "consensus": "",
+   "edge": "TD-regression fade — 14 rec TD (11 inside the 10) on a career-low 53% catch rate; 9.3 PPR/gm in games without a TD; age-34 season at WR24 / #47",
+   "read": "Needs: 2nd analyst fade / camp route-share data; 13-personnel snap-trim chatter is Tier-3 only — don't double-count it *Refresh 2026-08-03: **CONFLICTED — the camp evidence runs AGAINST the fade.** Rams.com's own \"10 Observations\" series (Days 2, 4, 5) has Adams featured, not receding: first in line in individual drills **at Puka Nacua's request**, strong Stafford connections, and one **team-confirmed scheduled rest day** (not injury, not role). The 13-personnel snap-trim thesis exists (Turf Show Times) but reads as analyst projection and its date could not be confirmed — it may be pre-camp speculation. **No route-share or snap-count data has been published.** The TD-regression math (14 rec TD, 11 from inside the 10, 53% catch rate, 9.3 PPR/gm without a TD, age-34) is unchanged and still the strongest leg. Mark CONFLICTED like the Odunze row — do not kill, do not promote; preseason snaps decide.* **·· CHECK 2026-08-29 ·· STILL CONFLICTED, no new tilt.** Continued strong camp chemistry (an over-the-shoulder TD catch beating tight coverage) plus one scheduled rest day team-confirmed by McVay as non-injury. No route-share/snap-count data has surfaced and no 2nd analyst fade call has landed either — the TD-regression math is unchanged and still the strongest leg. HOLD.* **·· CHECK 2026-09-05 ·· HELD, Need corrected — the 'new' fade source is not a new source.** A fresh look at a widely-circulated 2nd fade call (Bleacher Report/Alex Kay, \"closer to WR50 than WR25\") traces to a quote already logged in `Data/research-sidecar.json` dated 2026-07-26 — a re-find of an already-known single source, not independent corroboration. It does not clear the two-source promotion bar. The camp-chemistry counter-evidence (Nacua-requested drills, Stafford connections, one team-confirmed rest day) still stands unrebutted, and the TD-regression math is unchanged. **Not promoted, not killed — still genuinely CONFLICTED.** Demote-candidate trigger: Weeks 1-3 route-share/target data, whichever direction it breaks.",
+   "conviction": "Noted",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-06-03",
+   "date_verified": "",
+   "updated": "2026-08-26",
+   "sources": [
+    {
+     "name": "R3 player research (single source)",
+     "date": "2026-06-03",
+     "url": ""
+    },
+    {
+     "name": "cbssports.com",
+     "date": "2026-08-26",
+     "url": "https://www.cbssports.com/fantasy/football/news/fantasy-football-2026-ramsdeep-dive/"
+    },
+    {
+     "name": "si.com",
+     "date": "2026-08-26",
+     "url": "https://www.si.com/nfl/rams/onsi/davante-adams-rams-roster-preview-2026"
+    },
+    {
+     "name": "si.com",
+     "date": "2026-08-26",
+     "url": "https://www.si.com/nfl/rams/los-angeles-fantasy-football-kyren-williams-puka-nacua-davante-adams-tennessee-titans"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/davante-adams.md",
+   "converge": null,
+   "counter": "",
+   "verdict": "Watch"
+  },
+  {
+   "id": "breece-hall-receiving-rebound-rb",
+   "phase": "draft",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Breece Hall — receiving rebound",
+   "pos": "RB",
+   "team": "NYJ",
+   "title": "Breece Hall — receiving rebound",
+   "consensus": "",
+   "edge": "Career-low 10.9% target share in 2025 = the outlier vs top-4 RB receiving in '23 AND '24; healthy, new deal, Clay flags the bounce. **CONFLICTED 2026-06-08:** the 6/06 coaching layer surfaces the OPPOSITE thesis — Reich's install removes the QB-run-era carry inflation while Geno elevates the pass game → a *fade* at RB18/#57 on stale usage. Two opposing reads (receiving-rebound buy vs usage fade) now tracked on the same player; the buy banks on route/target volume, the fade on lost rushing inflation — not mutually exclusive in PPR",
+   "read": "Needs: 2nd analyst rebound call / camp route participation — AND the camp carry split (does the rushing volume actually drop?) to settle which thesis wins *Refresh 2026-08-03: **THE CONFLICT IS RESOLVING TOWARD THE FADE SIDE — on carries.** Jets Day 1 official practice report (newyorkjets.com, 7/29): *\"Breece Hall, Isaiah Davis and Braelon Allen took a majority of the rushes\"* — all three named together, not Hall alone. HC Aaron Glenn calls it a **\"three-headed monster\"**, and a projection carried in coverage has Hall at 250 carries vs Allen 130 / Davis 80, well down from his 279-touch 2025. Independent corroboration from LastWordOnSports (7/28) and SI's \"by-committee RB room\" preview. **The receiving-rebound half remains UNTESTED** — no route-participation or target-share camp data for Hall has surfaced. Net: the carry-inflation-removal fade is now better supported than in June; the PPR rebound is still an open question. Both halves stay live (they are not mutually exclusive in PPR).* **·· PRESEASON WK1 2026-08-16 ·· STRENGTHENS — but does not verify, and the distinction is deliberate.** **Hall played 10 of 11 snaps on the Jets' opening drive** (8/14) and **stayed on the field for two third downs** — far above his 2025 committee share; corroborated by two independent accounts (PFF's Friday recap + the Buccaneers' own game recap). Separately, **Isaiah Davis — the back described across outlets as the Jets' 2025 third-down man — is out with a knee injury** (AP wire 8/06, HC Aaron Glenn: 'a couple of weeks'; DNP the opener per CBS). **⚠ Honesty note, and it is why this stays Noted: the causal link 'Davis's absence clears the receiving work for Hall' is an INFERENCE, not a reported fact.** No outlet states it, and no source numerically establishes Davis as the *primary* rather than a co-third-down back. One opening drive in a preseason game with the incumbent third-down back injured is exactly the shape of evidence that looks like a role change and isn't. **The Need still standing: Wk2 route participation WITH Davis available** — the only test that separates a real role change from a one-drive script. **·· SWEEP 2026-08-25 ·· THE Wk2 TEST IS UNOBTAINABLE, NOT MISSING.** Hall suffered a right groin strain at the 8/17 practice (~2-3 weeks of practice missed, targeted for a clean Week 1 per HC Glenn 8/24), and Isaiah Davis is still knee-DNP — so the row's stated Need (Wk2 route participation WITH Davis available) required both on the field 8/20-23, and neither was. This does not need /research-diff — the event didn't occur, no fetch produces it. Both theses (receiving rebound vs carry-inflation fade) stay live/unresolved into draft day — treat as a coin-flip. Hard data 8/25: #39/RB13, ADP 33 (was #41/ADP 31), CSV now flagged Questionable. **New Need, re-scoped past the draft: Week 1 route participation with Davis active.** **·· CHECK 2026-09-05 ·· HELD — the Need is legitimately unobtainable pre-draft, not stalled.** The standing Need (Wk2 route participation WITH Isaiah Davis available) required both backs on the field 8/20-23; neither was (Hall's groin strain, Davis's knee DNP), and the preseason window that could have produced the test is now closed — there is no more preseason left to generate it before Sunday's draft. This is an evidentiary dead end, not new silence, so the row is held rather than re-flagged as stale. **Price note:** current CSV has Hall at ADP 33 vs consensus #39/RB13 — a 6-spot ADP premium over rank, meaning the market is pricing the receiving-rebound upside slightly ahead of the carry-inflation fade, the opposite lean of the row's own CONFLICTED framing. Both theses stay live into the draft; treat as a coin-flip per the 8/25 note. **New Need, re-scoped past the draft: Week 1 route participation with Davis active.**",
+   "conviction": "Noted",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-06-07",
+   "date_verified": "",
+   "updated": "2026-06-07",
+   "sources": [
+    {
+     "name": "Clay/ESPN RB profiles + JetsXFactor share stat (rebound) **vs** coaching-changes layer 202",
+     "date": "2026-06-07",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": {
+    "n": 3,
+    "layers": [
+     "RB-receiving",
+     "Backfield",
+     "Coaching"
+    ],
+    "contested": true,
+    "line": "⚠ 3 layers contest this — RB-receiving, Backfield, Coaching disagree"
+   },
+   "counter": "",
+   "verdict": "Watch"
+  },
+  {
+   "id": "isaiah-likely-te-nyg-negative",
+   "phase": "draft",
+   "kind": "Usage",
+   "tone": "value",
+   "name": "Isaiah Likely (TE, NYG) ⚠️ **NEGATIVE**",
+   "pos": "",
+   "team": "",
+   "title": "Isaiah Likely (TE, NYG) ⚠️ **NEGATIVE**",
+   "consensus": "",
+   "edge": "**A committee tight end on a starter's contract.** Signed **3yr / $40M (upside $47.5M) on 2026-03-09** to follow John Harbaugh to New York (Harbaugh hired as Giants HC 2026-01-20 — both verified independently this pass), and is listed TE1 on the unofficial depth chart. But in the preseason opener he played **6 first-team snaps, all in 11-personnel / passing situations**, with **Theo Johnson (7 snaps) taking the run-down work** and Chris Manhertz (5) the heavy sets. PFF calls the usage concerning for a player expected to lead the room. CSV **#118 / TE13, ADP 113**.",
+   "read": "Needs: **Wk2 snap split vs Theo Johnson**, specifically whether Likely takes any base-personnel snaps. ⚠ **Correction to the diff carried into this row: the first-team ran 16 snaps on that possession, not '10–11'** — so 6-of-16 is a *smaller* share than the diff implied, which makes the negative read stronger, not weaker. Contract guarantee is disputed ($26M vs $20.5M) and unresolved; not load-bearing. **·· SWEEP 2026-08-25 + FRESHENED 2026-08-26 ·· GAP WIDENED, Wk2 test a confirmed non-event.** Market moved against him while the Wk2 test went unrun (Likely rested Wk2, 8/24 vs MIA): consensus #118→#123 (TE13→TE14), ADP 113→106 (market now 17 spots ahead of rank, up from 5). The Wk1 snap split now has a soft SECOND source (2026-08-26 research-diff — independent WebSearch synthesis pulling from Giants beat coverage corroborates the same 6-of-16 first-team split) — still directionally single-narrative but no longer purely single-outlet. Still Noted, must not move a pick until fully corroborated. **·· CHECK 2026-09-05 ·· HELD, Need re-scoped — the Wk2 test failed to fire twice, and preseason is now exhausted.** The row's own Need (\"Wk2 snap split vs Theo Johnson, specifically base-personnel snaps\") never got a clean test: Likely was rested Wk2 (8/24 vs MIA) and preseason has now ended with no further padded snaps to observe. **Market moved slightly TOWARD him, not away**, since the last check (ADP 106→~unchanged, no new adverse signal) — a live fade would expect the opposite. **Need REPLACED (the Wk2/preseason version is no longer obtainable): Week 1 base-personnel snaps vs Theo Johnson** — the first real-game data this row can use. Still Noted; must not move a pick until fully corroborated.",
+   "conviction": "Noted",
+   "theme": "Usage / Role",
+   "date_in": "2026-08-16",
+   "date_verified": "",
+   "updated": "2026-08-16",
+   "sources": [
+    {
+     "name": "PFF **2026-08-16** + RotoBaller snap-count reporting — ⚠ **the snap split rests on a singl",
+     "date": "2026-08-16",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": null,
+   "counter": "",
+   "verdict": "Watch"
+  },
+  {
+   "id": "marshawn-lloyd-rb",
+   "phase": "draft",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "MarShawn Lloyd",
+   "pos": "RB",
+   "team": "GB",
+   "title": "MarShawn Lloyd",
+   "consensus": "",
+   "edge": "**Fade the presumption, not the player.** The field is pricing him as Jacobs' replacement at #110/RB but the lead role is **PRESUMED, never team-announced** — Packers.com (9/02) says only that he is \"quite likely\" the Wk1 feature back, and notes he has **six carries and one reception total as a pro** entering Year 3. LaFleur has been deliberately gradual with him all camp; GB traded for **Kaleb Johnson on 8/30** as soon as Jacobs went to the Exempt List; Footballguys' own share model has **Johnson 32% vs Lloyd 30%**, and its two writers split RB23 vs RB33 in the same piece. Missed all of 2025 with a chronic hamstring traced to a 2020 ACL",
+   "read": "Needs: Wk1 carry split. **Falsifier: Lloyd takes ≥65% of GB carries in Wk1** → this is a straight buy, not a fade. Also watch whether GB ever announces him as the starter, which as of 9/05 it has not. ⚠ Cross-read: the Josh Jacobs row (CONSENSUS 8/31) is the parent event — this row is the unpriced half the Jacobs demotion left behind",
+   "conviction": "Noted",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "Packers.com 9/02 + Footballguys 8/30 (two independent, but both on the ROLE; the fade fram",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "fantasypros.com",
+     "date": "2026-09-05",
+     "url": "https://www.fantasypros.com/2026/08/fantasy-football-outlook-josh-jacobs-marshawn-lloyd-2026/"
+    },
+    {
+     "name": "packers.com",
+     "date": "2026-09-05",
+     "url": "https://www.packers.com/news/rb-marshawn-lloyd-as-ready-as-he-s-ever-been-to-help-packers-sep-2-2026"
+    },
+    {
+     "name": "footballguys.com",
+     "date": "2026-09-05",
+     "url": "https://www.footballguys.com/article/2026-jacobs-placed-on-commissioner-exempt-list-how-should-we-proceed"
+    },
+    {
+     "name": "atozsports.com",
+     "date": "2026-09-05",
+     "url": "https://atozsports.com/nfl/green-bay-packers-news/marshawn-lloyd-injury-update-training-camp/"
+    }
+   ],
+   "profile": "Research/profiles/players/RB/marshawn-lloyd.md",
+   "converge": null,
+   "counter": "",
+   "verdict": "Watch"
+  },
+  {
+   "id": "pat-bryant-wr",
+   "phase": "draft",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Pat Bryant",
+   "pos": "WR",
+   "team": "DEN",
+   "title": "Pat Bryant",
+   "consensus": "",
+   "edge": "**Room-specific price dislocation — ESPN 263 vs consensus 176.** Camp momentum moved him past Troy Franklin for the DEN WR3 job across August: DEN's first unofficial depth chart lists Bryant WR4 **ahead of Franklin at WR6**, FantasyPros (9/03) calls him \"the favorite for the Broncos' No. 3 WR role,\" and a camp report has S Talanoa Hufanga naming him the team's most improved offensive player. 6'2\" contested-catch/red-zone edge over the 5'11\" Mims; Payton has invoked Michael Thomas as the skill-set comp",
+   "read": "Needs: Wk1 snap share over Franklin/Mims. **Falsifier: Mims or Franklin opens as the clear No. 3.** ⚠ Note the ceiling even if he wins: Payton spreads the ball and Bryant would still be Denver's 4th option behind Sutton, Waddle and Engram. This was flagged as a gap in the board's own 9/04 frontmatter and is written here for the first time",
+   "conviction": "Noted",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "FantasyPros 9/03 + AtoZ/Yahoo 8/10 (two consensus-lean) — **but genuinely contested**: CBS",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "fantasypros.com",
+     "date": "2026-09-05",
+     "url": "https://www.fantasypros.com/nfl/notes/419268/pat-bryant-2026-outlook.php"
+    },
+    {
+     "name": "sports.yahoo.com",
+     "date": "2026-09-05",
+     "url": "https://sports.yahoo.com/articles/something-big-brewing-denver-broncos-184706908.html"
+    },
+    {
+     "name": "cbssports.com",
+     "date": "2026-09-05",
+     "url": "https://www.cbssports.com/fantasy/football/news/2026-outlook-pat-bryant/"
+    },
+    {
+     "name": "si.com",
+     "date": "2026-09-05",
+     "url": "https://www.si.com/onsi/fantasy/fantasy-football-depth-chart-debate-pat-bryant-vs-troy-franklin"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/pat-bryant.md",
+   "converge": null,
+   "counter": "",
+   "verdict": "Watch"
+  },
+  {
+   "id": "ja-kobi-lane-wr",
+   "phase": "draft",
+   "kind": "Situation",
+   "tone": "watch",
+   "name": "Ja'Kobi Lane",
+   "pos": "WR",
+   "team": "BAL",
+   "title": "Ja'Kobi Lane",
+   "consensus": "",
+   "edge": "**Unpriced availability tail on the man in front of him.** 3rd-rd rookie (No. 80) has run with the **first team all camp** while the WR2 ahead of him, Rashod Bateman, has an **OPEN NFL Personal Conduct Policy review with no resolution date** — GM Eric DeCosta said on the record 9/02 that he does not know when the league will finalise it and that BAL is preparing for the possibility of opening without him. Lane started preseason Gm 1 and played into the 2nd qtr, then sat Gm 3 entirely (protection pattern, not a bubble pattern); Lamar Jackson publicly comped him to \"a combination of Odell Beckham Jr. and DeAndre Hopkins.\" Priced #205",
+   "read": "Needs: Bateman discipline announced (either direction), **or** Lane Wk1 snap share ≥50%. **Falsifier: Bateman cleared and active Wk1 with Lane under 30% snaps.** ⚠ Counter that keeps this in Staging not Active: the scouting file says TD-or-bust red-zone specialist (limited separation, 4 drops in each of his last two college seasons), and BAL has never supported a fantasy-relevant WR3",
+   "conviction": "Noted",
+   "theme": "Situation / Personnel",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "Ravens beat + Yahoo (Jackson quote) 2026 (single source on the role); the Bateman procedur",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "sports.yahoo.com",
+     "date": "2026-09-05",
+     "url": "https://sports.yahoo.com/articles/lamar-jacksons-jakobi-lane-praise-183000002.html"
+    },
+    {
+     "name": "ebonybird.com",
+     "date": "2026-09-05",
+     "url": "https://ebonybird.com/baltimore-ravens-may-have-no-choice-but-to-get-this-viral-rookie-jakobi-lane-on-the-field-early"
+    },
+    {
+     "name": "fantasypros.com",
+     "date": "2026-09-05",
+     "url": "https://www.fantasypros.com/nfl/players/jakobi-lane.php"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/jakobi-lane.md",
+   "converge": null,
+   "counter": "",
+   "verdict": "Watch"
+  },
+  {
+   "id": "malachi-fields-wr",
+   "phase": "draft",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Malachi Fields",
+   "pos": "WR",
+   "team": "NYG",
+   "title": "Malachi Fields",
+   "consensus": "",
+   "edge": "**Already holds the job the price says he doesn't.** Listed as the **starting WR2 opposite Malik Nabers** on the Giants' own 9/01 projected depth chart, ahead of veteran Darius Slayton — and he was **PFF's highest-graded and most-targeted Giants receiver of the 2026 preseason** (153.5 passer rating when targeted, both contested-catch chances converted, the team's only preseason offensive TD, on a Jaxson Dart fade). Played almost exclusively on the perimeter — one slot snap all preseason. Priced #215",
+   "read": "Needs: A 2nd outlet naming him the Wk1 WR2, **or** Wk1 snap share ≥60% / 5+ targets. **Falsifier: Nabers and Slayton both healthy and active Wk1 with Fields under 40% snaps.** ⚠ Both squeeze-risks carry their own availability questions per the same 9/01 piece — Nabers' Wk1 readiness is in doubt and Slayton is recovering from sports hernia surgery after a quiet summer. Counter: 4.61 forty cooled his draft stock, and Dart is an inconsistent 2nd-yr passer",
+   "conviction": "Noted",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "Traina/SI Giants beat 9/01 (single source on the depth chart); PFN 8/29 covers the same pl",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "si.com",
+     "date": "2026-09-05",
+     "url": "https://www.si.com/nfl/giants/onsi/depth-chart-takeaways-01m1cbv7nx47"
+    },
+    {
+     "name": "sports.yahoo.com",
+     "date": "2026-09-05",
+     "url": "https://sports.yahoo.com/articles/updated-malachi-fields-fantasy-outlook-124410784.html"
+    },
+    {
+     "name": "giants.com",
+     "date": "2026-09-05",
+     "url": "https://www.giants.com/news/malachi-fields-scouting-report-notre-dame-wide-receiver-2026-nfl-draft-third-round-3-trade"
+    },
+    {
+     "name": "gmenhq.com",
+     "date": "2026-09-05",
+     "url": "https://gmenhq.com/new-york-giants-crowded-wr-depth-chart-is-finally-starting-to-take-shape"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/malachi-fields.md",
+   "converge": null,
+   "counter": "",
+   "verdict": "Watch"
+  },
+  {
+   "id": "emanuel-wilson-rb",
+   "phase": "draft",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Emanuel Wilson",
+   "pos": "RB",
+   "team": "SEA",
+   "title": "Emanuel Wilson",
+   "consensus": "",
+   "edge": "**The cheap half of a backfield the board already likes.** $2.1M one-year ERFA-tier signing (SEA 3/13, ex-GB) with the **best per-touch profile of Seattle's three backs** — 82.9 PFF overall (2024), 73.9 PFF rushing (2025), 76.8% yards-after-contact rate, 4.5 career YPC and per RotoBaller the **3rd-best rushing success rate in the league** last season. Steps into the role vacated by Kenneth Walker III (left for KC in FA after Super Bowl LX MVP) while Zach Charbonnet sits on reserve/PUP, out 4 games minimum. SI's framing: \"NFL's Best Value Starting RB in 2026.\" Priced #244",
+   "read": "Needs: Wk1-2 carry share vs Jadarian Price. **Falsifier: Price takes a clear early-down lead (≥55% of carries) through Wk2.** ⚠ **Cross-read — this row deliberately does NOT contradict the Active board.** `Jadarian Price — buy` was promoted to ACTIVE 9/04 on R1 capital plus the position coach naming him the lead, and that stands. This is the narrower claim that the per-touch evidence favours the $2.1M veteran while the market prices him 163 picks later, and that Charbonnet's return around Wk5 caps BOTH. Read the two rows together; do not draft them as the same bet",
+   "conviction": "Noted",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "SI Seahawks 4/09 (edge-lean, single source) + PFF grades via Buday; contract confirmed on ",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "seahawks.com",
+     "date": "2026-09-05",
+     "url": "https://www.seahawks.com/news/seahawks-sign-rb-emanuel-wilson"
+    },
+    {
+     "name": "si.com",
+     "date": "2026-09-05",
+     "url": "https://www.si.com/nfl/seahawks/onsi/seahawks-news/seattle-seahawks-emanuel-wilson-nfl-best-value-starting-rb-2026"
+    },
+    {
+     "name": "seahawks.com",
+     "date": "2026-09-05",
+     "url": "https://www.seahawks.com/news/seahawks-rb-zach-charbonnet-placed-on-pup-list"
+    }
+   ],
+   "profile": "Research/profiles/players/RB/emanuel-wilson.md",
+   "converge": null,
+   "counter": "",
+   "verdict": "Watch"
+  },
+  {
+   "id": "jalen-nailor-wr",
+   "phase": "draft",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Jalen Nailor",
+   "pos": "WR",
+   "team": "LV",
+   "title": "Jalen Nailor",
+   "consensus": "",
+   "edge": "**Starter money for a career WR3, priced as neither.** Signed **3yr/$35M with $23M guaranteed** in UFA on 3/09 after four Minnesota seasons — that is the front office paying for a starting outside receiver. Raiders Wire (8/14) has him expected to occupy the No. 1 receiver role and describes him as the most productive pass-catcher in team drills **behind only Brock Bowers**. Career-high 2025 of 29/444/4 at 15.4 yds per catch in a part-time No. 3 role, with 6 TD on 28 catches back in 2023. Priced #184",
+   "read": "Needs: Wk1 target share ≥18%, **or** a 2nd beat naming him the LV WR1. **Falsifier: Tre Tucker or Jack Bech opens as the clear perimeter No. 1.** ⚠ Two cautions. (1) The \"Cousins chemistry\" line circulating in camp coverage is soft — the 2025 Minnesota chemistry reporting was about **J.J. McCarthy, not Cousins**. (2) Cross-read: the `Tre Tucker` row was KILLED 8/25 as expired-not-refuted on the same open-WR1 premise — this row is the same job from the other side, and Bowers structurally caps whoever wins it",
+   "conviction": "Noted",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "Raiders Wire 8/14 (single source on the camp role); contract confirmed raiders.com 3/12 + ",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "raiders.com",
+     "date": "2026-09-05",
+     "url": "https://www.raiders.com/news/raiders-sign-wr-jalen-nailor-nfl-2026-free-agency-transactions"
+    },
+    {
+     "name": "si.com",
+     "date": "2026-09-05",
+     "url": "https://www.si.com/nfl/vikings/onsi/news/jalen-nailor-leaves-vikings-lands-three-year-deal-with-raiders"
+    },
+    {
+     "name": "sports.yahoo.com",
+     "date": "2026-09-05",
+     "url": "https://sports.yahoo.com/articles/raiders-wr-jalen-nailor-fantasy-175756496.html"
+    },
+    {
+     "name": "espn.com",
+     "date": "2026-09-05",
+     "url": "https://www.espn.com/nfl/story/_/id/49804802/raiders-name-kirk-cousins-starting-qb-week-1-fernando-mendoza"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/jalen-nailor.md",
+   "converge": null,
+   "counter": "",
+   "verdict": "Watch"
+  },
+  {
+   "id": "devaughn-vele-wr",
+   "phase": "draft",
+   "kind": "Usage",
+   "tone": "value",
+   "name": "Devaughn Vele",
+   "pos": "WR",
+   "team": "NO",
+   "title": "Devaughn Vele",
+   "consensus": "",
+   "edge": "**Time-boxed Wk1 volume the price has not seen.** Normally the Saints' WR3, but with rookie Jordyn Tyson sidelined by a hamstring FantasyPros (9/03) projects him into an expanded role as effectively **New Orleans' No. 2 receiver for the 9/13 opener**. He has the trailing production to support it: **19 of 26 targets for 239 yards and a TD over his final four games of 2025**, just under 10 half-PPR points per game across that stretch, with minimum WR4 production in all four. Priced #248",
+   "read": "Needs: A 2nd source on the Wk1 role, **or** Wk1 targets ≥6. **This row is deliberately short-dated — it dies on Tyson's return**, so re-check it at the first sweep after Tyson practises. **Falsifier: Tyson active Wk1.** ⚠ Counter: NO spent three separate offseason resources at WR (Tyson, Bryce Lance, Barion Brown) precisely because it does not see Vele as the answer",
+   "conviction": "Noted",
+   "theme": "Usage / Role",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "FantasyPros/Erickson 9/03 (single source)",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "fantasypros.com",
+     "date": "2026-09-05",
+     "url": "https://www.fantasypros.com/nfl/notes/427985/devaughn-vele-2026-outlook.php"
+    },
+    {
+     "name": "espn.com",
+     "date": "2026-09-05",
+     "url": "https://www.espn.com/nfl/story/_/id/47541318/saints-committed-tyler-shough-starting-qb-2026"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/devaughn-vele.md",
+   "converge": null,
+   "counter": "",
+   "verdict": "Watch"
+  },
+  {
+   "id": "cleveland-browns-dst",
+   "phase": "draft",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "Cleveland Browns",
+   "pos": "DST",
+   "team": "CLE",
+   "title": "Cleveland Browns",
+   "consensus": "",
+   "edge": "**The market is still paying 2025 tape.** FantasyPros' 9/04 consensus has CLE at **DST16 (range 12-25)** — after the Browns traded away **Myles Garrett, who had just set the NFL single-season sack record with 23** (to LAR for Jared Verse plus picks) **and** replaced DC Jim Schwartz with **first-time coordinator Mike Rutenberg**. ESPN's own framing: \"it'll take a collective effort\" to replace 23 sacks, with CLE expected to fall off its 13th-ranked 2025 points-allowed finish. Losing the franchise's best defender and the play-caller in one offseason is a double transition the DST16 price does not reflect",
+   "read": "Needs: Wks 1-3 sack and takeaway rate against the 2025 baseline. **Falsifier: Verse produces at a top-10 edge rate through Wk3 and the unit holds a top-12 points-allowed mark.** ⚠ Schedule compounds it — Wk1 at JAX and Wk2 at TB are both road games before a softer CAR spot. Counter: the Ward/Delpit/Campbell secondary can still generate takeaways independent of the rush, which is why the consensus range runs as wide as 12",
+   "conviction": "Noted",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "FantasyPros consensus table 9/04 (rank leg) + ESPN post-Garrett analysis (single source on",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "fantasypros.com",
+     "date": "2026-09-05",
+     "url": "https://www.fantasypros.com/2026/09/fantasy-football-rankings-draft-targets-defenses-d-st/amp/"
+    }
+   ],
+   "profile": "Research/profiles/players/DST/cleveland-browns.md",
+   "converge": null,
+   "counter": "",
+   "verdict": "Watch"
+  },
+  {
+   "id": "garrett-wilson-wr-watch",
+   "phase": "inseason",
+   "kind": "Value",
+   "tone": "buy",
+   "name": "Garrett Wilson",
+   "pos": "WR",
+   "team": "NYJ",
+   "title": "Garrett Wilson",
+   "consensus": "ADP WR15 / #37 *(2026-07-26: consensus #28 / WR15, unmoved)*",
+   "edge": "Post-injury ADP discount + secure alpha share → healthy ~90/1,000/5-7 floor with WR1 ceiling if the offense jumps. ~~\"best QB of his career (Geno Smith)\"~~ **← REFUTED, see correction**",
+   "read": "Watch 90/1: Draft as a WR2 with WR1 upside, a round after ADP. **⚠ CORRECTION 2026-07-26: the QB leg was FACTUALLY WRONG when written.** Geno Smith's 2025 NYJ season was 3,025 yd / 19 TD / 17 INT in 15 gms, PFF 58.2 — **36th among QBs**. That is not \"the best QB of his career\" by any measure; it only reads as \"best available vs Zach Wilson,\" which doesn't justify an unpriced edge. **Thesis rewritten around the two legs that DO verify:** (a) health — full participant OTAs/minicamp, no restrictions, no camp designation (NYJ 7/20); (b) scheme — new OC **Frank Reich**, Wilson: \"one of the offenses that I'm going to look back on in a few years and love the most… it's really player empowering\" (NYJ.com 7/21). Consensus rank unmoved #28→#28. **·· SWEEP 2026-08-25 ·· THE \"NARROWING\" READ IS REVERSED BY THE HARD DATA.** Consensus flat #28→#29 since June, but ADP moved 33→40 — the discount widened from 5 to 11 spots in nine days. Cannot demote on a narrowing that isn't happening; ADP moved away from consensus, not toward it. Supporting camp evidence: NYJ's 8/07 practice report has Geno targeting Wilson 5x in third-and-long team periods with no incompletion, plus a downfield completion over coverage (newyorkjets.com, pub 2026-08-07).",
+   "conviction": "Verified",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-06-02",
+   "date_verified": "2026-06-02",
+   "updated": "2026-08-30",
+   "sources": [
+    {
+     "name": "RotoBaller/sweep (consensus-lean) + DraftSharks OTA \"fully back\" report",
+     "date": "2026-06-02",
+     "url": ""
+    },
+    {
+     "name": "si.com",
+     "date": "2026-08-30",
+     "url": "https://www.si.com/onsi/fantasy/rankings/garrett-wilson-discounted-adp-makes-him-a-smart-2026-fantasy-football-target"
+    },
+    {
+     "name": "fantasylife.com",
+     "date": "2026-08-30",
+     "url": "https://www.fantasylife.com/articles/fantasy/geno-smith-fantasy-football-outlook-after-trade-to-new-york-jets-return-could-elevate-garrett-wilson"
+    },
+    {
+     "name": "cbssports.com",
+     "date": "2026-08-30",
+     "url": "https://www.cbssports.com/nfl/news/garrett-wilson-injury-update-jets-wr-knee/"
+    },
+    {
+     "name": "draftsharks.com",
+     "date": "2026-08-30",
+     "url": "https://www.draftsharks.com/fantasy-football-news/81936/jets-otas-open-with-garrett-wilson-and-braelon-allen-fully-back"
+    },
+    {
+     "name": "newyorkjets.com",
+     "date": "2026-08-30",
+     "url": "https://www.newyorkjets.com/news/jets-training-camp-practice-report-geno-smith-garrett-wilson-connection-08-07-2026"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/garrett-wilson.md",
+   "converge": null,
+   "counter": "**Field has caught up on the discount itself** — SI and 4for4 are both publishing the \"buy the dip\" thesis. Target competition also rose: Adonai Mitchell had a full in-scheme offseason, Tim Patrick signed in May (now active/PUP), and NYJ **traded back into Rd 1 for WR Omar Cooper Jr. at No. 30**. Geno also has an open NFL investigation (FL battery case declared inactive 7/14, no charges).",
+   "preseason": true,
+   "trigger": "90/1",
+   "verdict": "Buy"
+  },
+  {
+   "id": "colston-loveland-te-watch",
+   "phase": "inseason",
+   "kind": "Value",
+   "tone": "buy",
+   "name": "Colston Loveland",
+   "pos": "TE",
+   "team": "CHI",
+   "title": "Colston Loveland",
+   "consensus": "TE3 / #36; ADP 44 *(2026-07-26: consensus **#38 / TE3**, unmoved — sd 14.3, range 22–87)*",
+   "edge": "Overall TE1 over Bowers & McBride — Caleb Williams' go-to late (10+ tgts final 4 games), Ben Johnson Y2, 7th in FP/route-run as rookie",
+   "read": "Watch 7/29–8: Draft as your TE at TE3 cost with TE1 upside — don't pay up for Bowers/McBride. **Refresh 2026-07-26: IMPROVED, and the field has NOT moved (#36 → #38 over seven weeks) — this is now the cleanest still-open row on the board.** The decisive change is roster, not health: **the Bears traded D.J. Moore to Buffalo** (BUF sent a 2026 2nd; CHI sent Moore + a 5th), removing the offense's highest-volume incumbent target and ~$16.5M in cap. Second: this is Loveland's **first healthy offseason** — he missed most of the 2025 program after shoulder surgery from his final Michigan year and *still* led the team in receiving (58-713-6, first Bears rookie TE to lead the team in receiving yards since Ditka in 1961; 8-137 in the wild-card win). Attended Tight End University in late June. Ben Johnson at June minicamp: *\"He's one of the most consistent players I've been around… We've been able to take the route tree to the next level.\"* Healthy, no designation; CHI camp 7/29–8/27. *Refresh 2026-08-03 — **THE 'DECISIVE CHANGE' LEG IS FALSIFIED.** The D.J. Moore trade was NOT a July development: it was agreed **~March 4–5, 2026** and official at the new league year ~3/11 ([Chicago Sun-Times 2026/03/05](https://chicago.suntimes.com/bears/2026/03/05/bears-dj-moore-trade-bills-says-goodbye-nfl-fans-teammates-halas-hall); [Bills.com official](https://www.buffalobills.com/news/buffalo-bills-officially-acquire-wide-receiver-dj-moore-from-bears-via-trade)). A thesis premised on 'the field hasn't priced this yet' cannot rest on a five-month-old transaction — the market has had a full offseason and a draft. **This inverts the 7/26 reading:** seven flat weeks of consensus (#36→#38) after a fully-digested trade is the field **pricing** him, not missing him. **→ FLAGGED DEMOTE CANDIDATE (still NOT demoted — see 8/16 fold below for why).** **·· FRESHENED 2026-08-26 (research-diff item 4) ·· FIRST REAL POSITIVE SIGNAL since the flag went up.** Bears lost to Cincinnati 27-9 in preseason Wk2 (8/22); starters (incl. Caleb Williams) played only the opening series. Williams went 2-of-5, and BOTH completions were tight-end/WR: **Loveland (1 catch, 10 yds) and Odunze (1 catch, 18 yds)** — Williams also missed Loveland on a potential TD in the red zone on that same series. **Cole Kmet did not draw a target in the sample.** Read against the row's own 8/16 falsifiable trigger (\"If Loveland does not clearly out-target Kmet with the ones, DEMOTE at the next sweep\"): in the one series the starters played, Loveland clearly out-targeted Kmet (1 target + a near-TD vs. zero) — the trigger fired POSITIVE, not negative. Sample is tiny (one drive, five pass attempts) — directional confirm, not season-defining — and preseason Wk3 is very likely another starters-rest week (Ben Johnson has sat starters, or played them one series, in both Wk1 and Wk2), so this may be the last real data point before the draft. **Still NOT demoted**: field still at TE3/#37 vs the claim of overall TE1, no lead time to measure yet — demoting would still be premature. HOLD Active. What survives and is current: Loveland starred in the first fan-attended practice (4 catches in the two-minute period) and **Caleb Williams said he 'can become the best tight end in the league'** ([247Sports](https://247sports.com/nfl/chicago-bears/article/ahead-of-pivotal-year-two-colston-loveland-making-big-strides-in-chicago-bears-training-camp--288601899/)).* **·· PRESEASON WK1 FOLD 2026-08-16 ··** **HOLD in Active — run A decided against the requested demote, and the reasoning is the point.** The D.J. Moore leg above is **STRUCK** (falsified 8/03 — the trade was March, not July; a March transaction the field has had five months to digest is not an edge). But demoting to *Consensus* would be **factually wrong**: Consensus means the field caught up, and the field is still at **TE3 / #38** against a claim of overall **TE1 over Bowers and McBride**. The gap between claim and price is unchanged, so there is **no lead time to measure**, and demoting would corrupt the audit ledger the Consensus section exists to protect. **New situational leg replacing the dead one:** Ben Johnson intends **13-personnel with all three TEs on the field** — Chicago ran **94 three-TE snaps in 2025, 5th in the NFL** ([Sun-Times](https://chicago.suntimes.com/bears/2026/08/04/bears-coach-ben-johnson-now-has-3-premium-talents-at-tight-end-and-his-offense-is-about-to-get-wild) **pub 2026-08-04**). Logged neutrally on purpose — see Counter. **⏱ FALSIFIABLE TRIGGER SET, which this row has lacked since 8/03: the preseason Wk2 Loveland-vs-Kmet snap split and target distribution (8/20–23). If Loveland does not clearly out-target Kmet with the ones, DEMOTE at the next sweep.** Preseason Wk1 gave zero evidence either way — **neither tight end played.**",
+   "conviction": "Verified",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-05-31",
+   "date_verified": "2026-06-04",
+   "updated": "2026-08-26",
+   "sources": [
+    {
+     "name": "Pollizze/RotoBaller (consensus-lean) + R3 team research (led CHI 58-713-6 as rookie, proj ",
+     "date": "2026-06-04",
+     "url": ""
+    },
+    {
+     "name": "bleachernation.com",
+     "date": "2026-08-26",
+     "url": "https://www.bleachernation.com/bears/2026/05/30/colston-loveland-forecast/"
+    },
+    {
+     "name": "nfl.com",
+     "date": "2026-08-26",
+     "url": "https://www.nfl.com/news/bears-te-colston-loveland-embracing-larger-role-i-wouldn-t-want-it-any-other-way"
+    },
+    {
+     "name": "sportsmockery.com",
+     "date": "2026-08-26",
+     "url": "https://www.sportsmockery.com/chicago-bears/why-ben-johnsons-plans-for-colston-loveland-are-more-ambitious-than-ever/"
+    }
+   ],
+   "profile": "Research/profiles/players/TE/colston-loveland.md",
+   "converge": null,
+   "counter": "Target competition **shifted rather than disappeared**: CHI drafted **TE Sam Roush (Rd 3, No. 69)** explicitly to run more 12/13 personnel — Poles: *\"a team that runs a lot of 12 and 13 personnel… I think we're top five in both\"* — and the 2025 TE3 still played 293 snaps (25%). Kmet remains a real red-zone competitor. The Moore trade cuts both ways: it removes a target competitor **but also the defensive attention** that created Loveland's late-season middle-of-field windows (SI's Bears desk: \"a bigger bet than the Bears want to admit\"). Durability data point: a concussion late in the divisional loss to the Rams. **·· 2026-08-16 ··** **The 13-personnel fact cuts both ways and this row has to say so.** Three TEs on the field at once raises Loveland's **snap floor** (he is not platooning with Kmet, he plays alongside him) but works directly **against the target concentration an overall-TE1 season requires**. And the consensus has now been **flat #36 → #38 for seven-plus weeks across a fully-digested transaction** — under this board's own model, a field that has had five months and has not moved is a field that has **priced it**, not one that missed it.",
+   "preseason": true,
+   "trigger": "7/29–8",
+   "verdict": "Buy"
+  },
+  {
+   "id": "jaylen-warren-stealth-ppr-floor-rb-watch",
+   "phase": "inseason",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Jaylen Warren — stealth PPR floor",
+   "pos": "RB",
+   "team": "PIT",
+   "title": "Jaylen Warren — stealth PPR floor",
+   "consensus": "Priced as a committee back; the field prices touches, not passing-down security",
+   "edge": "Rodgers' fastest-TTT (2.59s) + bottom-4 aDOT profile overrides McCarthy's no-RB-routes scheme history — Warren's 89% catch rate + #2 pass-block grade (72.0) keep him on every passing down",
+   "read": "Watch 7/25: **VERIFY BAR CLEARED — promoted 2026-08-03.** Fittipaldo 7/25: he expects Warren to 'do a lot of the things that Gainwell did last year… you'll see him back in that role this year' — the second independent analyst call the row required. The 8/03 camp check did **not** contradict the passing-down claim. So-what: draft Warren as a PPR floor play, not a volume bet.",
+   "conviction": "Verified",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-06-07",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-03",
+   "sources": [
+    {
+     "name": "RB-recv topic layer (FP + PFF + nfelo) **+ Ray Fittipaldo (Post-Gazette beat), on air 7/25",
+     "date": "2026-08-03",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": {
+    "n": 2,
+    "layers": [
+     "RB-receiving",
+     "Backfield"
+    ],
+    "contested": true,
+    "line": "⚠ 2 layers contest this — RB-receiving, Backfield disagree"
+   },
+   "counter": "**Different axis, still open:** a 7/13 Steelers Depot review of McCarthy's five Dallas seasons found his top back averaged **66.9% of the two-man workload, lopsided in four of five years**, and **Rico Dowdle** enters with a pre-existing McCarthy relationship. As of the 8/1 report the RB1 job is genuinely unresolved and 'may come down to the hot hand.' The passing-down role looks secure; the total workload does not.",
+   "preseason": true,
+   "trigger": "7/25",
+   "verdict": "Buy"
+  },
+  {
+   "id": "ladd-mcconkey-wr-watch",
+   "phase": "inseason",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Ladd McConkey",
+   "pos": "WR",
+   "team": "LAC",
+   "title": "Ladd McConkey",
+   "consensus": "Consensus #32 / WR17, ESPN 40 / WR19, ADP 43 (2026-09-04 export)",
+   "edge": "Beats-ADP buy — priced off the injury-wrecked WR30 2025 season while everything rebounds at once: new OC McDaniel scheme, OL health (Slater/Alt both full-go), proj 25% target share as the alpha",
+   "read": "Watch 8/25: **PROMOTED 2026-09-05 — a 94-day Staging row, cleared on its own pre-committed rule.** The row set two Needs at the 8/25 sweep, either of which would resolve it: (a) a 2nd analyst top-15 WR ranking, or (b) an explanation of the bare `Questionable` CSV flag carried since 8/25 with no supporting text. (a) remains open — consensus is WR17, just outside top-15. (b) is now resolved: the 2026-09-05 volatile-field patch replaced the bare flag with a dated, sourced explanation (June-OTA hamstring tweak, declared \"full go\" for camp per NBC Sports 7/28 + CBS corroboration), and the row's own kill condition — \"kill at next sweep if (a) hasn't arrived AND (b) turns out to be a real designation\" — did not fire, because (b) turned out to be explainable, not a live designation. So-what: draft at ADP 43 as a WR2 with the McDaniel-scheme/OL-health rebound intact; the mechanical rank/ADP gap is unchanged, so this is a value hold, not a fresh catalyst.",
+   "conviction": "Verified",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-06-03",
+   "date_verified": "2026-09-05",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "R3 player research (Noted 2026-06-03) + CSV data-hygiene resolution 2026-09-05 (Questionab",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "nbcsports.com",
+     "date": "2026-08-26",
+     "url": "https://www.nbcsports.com/fantasy/football/news/what-mike-mcdaniels-offense-means-for-justin-herbert-ladd-mcconkey-and-omarion-hampton"
+    },
+    {
+     "name": "cbssports.com",
+     "date": "2026-08-26",
+     "url": "https://www.cbssports.com/fantasy/football/news/fantasy-football-today-bounceback-candidates-to-target-for-2026/"
+    },
+    {
+     "name": "draftsharks.com",
+     "date": "2026-08-26",
+     "url": "https://www.draftsharks.com/article/los-angeles-chargers-preview"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/ladd-mcconkey.md",
+   "converge": {
+    "n": 2,
+    "layers": [
+     "OL",
+     "Coaching"
+    ],
+    "contested": false,
+    "line": "🎯 2 layers agree: OL, Coaching"
+   },
+   "counter": "The ranking leg the row originally asked for still hasn't arrived (WR17, not top-15) — this promotion rests on the data-hygiene Need, which is a weaker trigger than a second analyst call. ⚠ No September re-check on the underlying 2025 calf/biceps/foot/ankle chain has ever been published — the health picture is absence-of-bad-news, not a fresh clearance. **Demote-candidate trigger: ADP inside 36 (field closes the gap), or a recurrence report.**",
+   "preseason": true,
+   "trigger": "8/25",
+   "verdict": "Buy"
+  },
+  {
+   "id": "chig-okonkwo-te-watch",
+   "phase": "inseason",
+   "kind": "Hype",
+   "tone": "buy",
+   "name": "Chig Okonkwo",
+   "pos": "TE",
+   "team": "WAS",
+   "title": "Chig Okonkwo",
+   "consensus": "TE21 / #167 — priced as a streamer",
+   "edge": "Post-hype value — left TEN for WAS as the receiving-TE upgrade for Jayden Daniels in OC David Blough's play-action offense. **He has won the move-TE role outright**",
+   "read": "Watch 8/1: **VERIFY BAR CLEARED 2026-08-03.** The Need was \"camp role + target share.\" Baltimore Banner, 8/1: *\"By the end of day, Chig Okonkwo was the talk of the Commanders offense. Daniels couldn't stop targeting him.\"* GM Adam Peters on record: *\"It's almost like we have four receivers on the field when he's out there.\"* Terry McLaurin: *\"He's gonna get a lot of opportunities here.\"* Independent second angle: WAS installed **Wes Welker** as his position coach specifically to accelerate the role (Riggo's Rag 7/29). So-what: a top-12 TE outcome is live at a TE21 price — the cheapest real TE upside on the board. **·· AMENDED 2026-09-04 — the gap WIDENED.** Across the post-cutdown refresh the field moved *away*: ADP **178→201** (−23) against a near-flat consensus (151→155). The 9/04 ESPN bridge is lower still at **219 / TE25**. A verified starting move-TE role is now available at close to free in Hai's room — the row is more actionable than when it was promoted, which is unusual and worth noting in the audit.",
+   "conviction": "Verified",
+   "theme": "Hype trains",
+   "date_in": "2026-06-02",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-30",
+   "sources": [
+    {
+     "name": "sweep (Noted 6/02) **+ Baltimore Banner beat report 8/1 + Riggo's Rag 7/29** — independent",
+     "date": "2026-08-03",
+     "url": ""
+    },
+    {
+     "name": "thebaltimorebanner.com",
+     "date": "2026-08-30",
+     "url": "https://www.thebaltimorebanner.com/"
+    },
+    {
+     "name": "riggosrag.com",
+     "date": "2026-08-30",
+     "url": "https://riggosrag.com/"
+    }
+   ],
+   "profile": "Research/profiles/players/TE/chig-okonkwo.md",
+   "converge": null,
+   "counter": "Still qualitative — no target-share number has been published, and \"talk of camp\" in early August is the single most over-fit signal in fantasy. Washington's target tree runs through McLaurin first, and Daniels' own availability is a live variable (7 games, 3 injuries in 2025).",
+   "preseason": true,
+   "trigger": "8/1",
+   "verdict": "Buy"
+  },
+  {
+   "id": "matthew-golden-wr-watch",
+   "phase": "inseason",
+   "kind": "Hype",
+   "tone": "buy",
+   "name": "Matthew Golden",
+   "pos": "WR",
+   "team": "GB",
+   "title": "Matthew Golden",
+   "consensus": "WR55 / #137 — priced as a crowded-room Year-2 flier",
+   "edge": "**Justified, not empty** — the hype question this row existed to settle is answered: Golden and Christian Watson are taking the lion's share of the STARTING OUTSIDE reps, with Jayden Reed in the slot. Doubs and Wicks both gone = ~131 vacated targets",
+   "read": "Watch 6/07: **VERIFY BAR CLEARED 2026-08-03 — and note WHAT cleared it.** The row's stated gap on 6/07 was *\"hype accelerating — teammate quotes only, zero camp production data; empty-leaning until evidence arrives.\"* The evidence arrived and it is on-field pecking-order reporting, not quotes: Demovsky has him \"making plays all over the field,\" Schneidman documents specific route wins vs rookie CB Brandon Cisse, and Huber: \"Golden has been superb.\" So-what: buy at WR55 — the justified-vs-empty coin landed justified. **·· PRESEASON WK1 FOLD 2026-08-16 ··** **ADVANCES — third consecutive confirming datapoint.** Golden **started in 12-personnel over incumbent slot man Jayden Reed** in the preseason opener. The justified-vs-empty question this row exists to settle keeps resolving **justified**, and it is now resolving on snaps rather than on beat quotes.",
+   "conviction": "Verified",
+   "theme": "Hype trains",
+   "date_in": "2026-06-02",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-31",
+   "sources": [
+    {
+     "name": "sweep (Noted 6/02) **+ Lombardi Ave 8/2 (citing WFRV's Carson Fowler + Packers On SI's Bil",
+     "date": "2026-08-03",
+     "url": ""
+    },
+    {
+     "name": "sports.yahoo.com",
+     "date": "2026-08-31",
+     "url": "https://sports.yahoo.com/articles/packers-wr-matthew-golden-shows-154719073.html"
+    },
+    {
+     "name": "lombardiave.com",
+     "date": "2026-08-31",
+     "url": "https://lombardiave.com/matthew-golden-and-3-packers-whose-stock-soaring-entering-preseason-finale"
+    },
+    {
+     "name": "lombardiave.com",
+     "date": "2026-08-31",
+     "url": "https://lombardiave.com/"
+    },
+    {
+     "name": "sportsnaut.com",
+     "date": "2026-08-31",
+     "url": "https://sportsnaut.com/"
+    },
+    {
+     "name": "packers.com",
+     "date": "2026-08-31",
+     "url": "https://www.packers.com/news/matthew-golden-kept-the-big-plays-coming-on-family-night-aug-8-2026"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/matthew-golden.md",
+   "converge": null,
+   "counter": "Green Bay's room is still genuinely crowded (Watson, Reed, plus Kraft returning at TE), and Matt LaFleur has historically spread targets to a fault — no Packers WR has cleared 1,000 yards since Davante Adams. Camp reps in shells are not September targets.",
+   "preseason": true,
+   "trigger": "6/07",
+   "verdict": "Buy"
+  },
+  {
+   "id": "harold-fannin-jr-te-watch",
+   "phase": "inseason",
+   "kind": "Usage",
+   "tone": "value",
+   "name": "Harold Fannin Jr.",
+   "pos": "TE",
+   "team": "CLE",
+   "title": "Harold Fannin Jr.",
+   "consensus": "TE6 / #69 — priced with the missed-offseason discount still in",
+   "edge": "Buy — **HC** Todd Monken *(← title corrected 2026-08-16; was \"OC\")* publicly comps him to Brock Bowers (~22% proj target share, Njoku gone); led CLE with **72-731-6 as a rookie**. The health watch that held this in Staging for two months is now CLEARED",
+   "read": "Watch 6/9-11: **VERIFY BAR CLEARED 2026-08-03 — and this row was the vault's longest-open question.** He missed the ENTIRE offseason program (OTAs + the 6/9-11 mandatory minicamp) on an undisclosed issue; the 7/26 pass could only confirm he wasn't on PUP/NFI. Now resolved at the source: he had **offseason groin surgery**, was cleared ~2 weeks before camp, and said at the Day-1 podium **\"I'll be full go.\"** Two separate writers quoting two separate availabilities. So-what: draft him as your TE at TE6 cost — the discount is for a risk that no longer exists. **·· PRESEASON WK1 FOLD 2026-08-16 ··** **HEALTH LEG NOW CLEAN, plus an attribution error fixed.** **(1) Title correction:** Todd Monken is Cleveland's **head coach**, not its offensive coordinator — hired **2026-01-28** after Kevin Stefanski was fired 1/05 (Stefanski is now Atlanta's head coach). Cleveland's OC is **Travis Switzer**. The Bowers comp itself is unaffected, and a *head coach* making it is stronger, not weaker. **Scope checked before writing:** `Research/profiles/teams/CLE.md` was already correct, so this was one stale cell on this board, not a broken team layer. **(2) Health:** full-go since **7/29**, and he played **9 of 10 first-team snaps (~90%) in the 8/15 preseason opener**, the one miss being a short-yardage package. The 'present but not participating' note is **refuted**. **Recommend re-theming this row Injury/Health → Usage/Role at the next sweep** — the health question it was built around is closed.",
+   "conviction": "Verified",
+   "theme": "Usage / Role / Scheme",
+   "date_in": "2026-06-03",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-16",
+   "sources": [
+    {
+     "name": "R3 player research (Noted 6/03) **+ two independent Day-1 beat reports 7/29** — Mary Kay C",
+     "date": "2026-08-03",
+     "url": ""
+    },
+    {
+     "name": "dawgsbynature.com",
+     "date": "2026-08-16",
+     "url": "https://www.dawgsbynature.com/cleveland-browns-news/126443/browns-minicamp-injuries-mason-graham-harold-fannin-maliek-collins-emw"
+    },
+    {
+     "name": "heavy.com",
+     "date": "2026-08-16",
+     "url": "https://heavy.com/sports/nfl/cleveland-browns/harold-fannin-injury-camp/"
+    },
+    {
+     "name": "playerprofiler.com",
+     "date": "2026-08-16",
+     "url": "https://www.playerprofiler.com/news/harold-fannin-jr-sitting-out-ota-practice-sessions/"
+    },
+    {
+     "name": "dawgpounddaily.com",
+     "date": "2026-08-16",
+     "url": "https://dawgpounddaily.com/harold-fannin-jr-s-ota-absence-feels-much-more-important-for-one-reason"
+    },
+    {
+     "name": "247sports.com",
+     "date": "2026-08-16",
+     "url": "https://247sports.com/nfl/cleveland-browns/longformarticle/cleveland-browns-otas-mason-graham-quinshon-judkins-carson-schwesinger-harold-fannin-jr-286093479/"
+    }
+   ],
+   "profile": "Research/profiles/players/TE/harold-fannin-jr.md",
+   "converge": null,
+   "counter": "One Day-1 podium quote is not a month of pads. He has still never completed a full NFL offseason program, and the groin is a recurrence-prone soft-tissue site. Watch for a missed padded practice; the 7/26 sweep already flagged him as \"the highest-leverage item nobody is pricing,\" which cuts both ways — if he's this good the field will notice fast. **·· 2026-08-16 ··** **Cleveland's QB1 is undecided as of 8/16.** Watson started the preseason opener (first half, two scoring drives, no interceptions) and has the inside track; **Sanders is scheduled to start the next preseason game vs Buffalo.** A target-leading-TE projection is resting on an offense whose quarterback is not settled — that is the live bear case now that health has retired. **·· HOUSEKEEPING 2026-08-26 ·· MOVED Injury/Health → Usage/Role** (no state/date change): health confirmed full-go since 7/29 + 9-of-10 first-team snaps in the 8/15 opener is a role-question row now, not a health-question row. Hard data flat: #71, ADP 64→65, now TE5.",
+   "preseason": true,
+   "trigger": "6/9-11",
+   "verdict": "Buy"
+  },
+  {
+   "id": "a-j-brown-wr-watch",
+   "phase": "inseason",
+   "kind": "Situation",
+   "tone": "buy",
+   "name": "A.J. Brown",
+   "pos": "WR",
+   "team": "NE",
+   "title": "A.J. Brown",
+   "consensus": "ADP WR12 / #26.5",
+   "edge": "Buy-low: traded PHI→NE as the clear WR1 vacuum-filler for Drake Maye; ~130 tgt / 86 / 1,216 / 7 projection = WR1 volume, but ADP still reflects the down-2025 PHI role. ~~Bye now Wk11 (CSV stale at 9)~~ **← STALE PARENTHETICAL STRUCK 2026-08-26: CSV has read bye 11 since the 7/26 export; the fix was already done, this was just an outdated caveat.**",
+   "read": "Watch 7/26: Buy at ADP as a high-floor WR2 / upside WR1; the bet is Maye's leap. Verify NE pass volume + Maye camp reports. **⚠ FLAGGED DEMOTE CANDIDATE 2026-08-26**: ADP 27→20 in nine days against flat consensus #12/WR8 — an 8-spot ADP lag, the same Step-4 signature that closed Parker Washington and Alec Pierce this sweep. Trigger: ADP inside 15, or a Tier-2 list publishing the Maye-leap WR1 case. Not demoted yet — the field hasn't fully arrived. **·· DEMOTE-CANDIDATE RE-FLAGGED 2026-09-04 (second sweep on the clock, not moving).** Trigger was \"ADP inside 15\"; ADP moved 20→18 across the refresh, consensus flat at **#12 / WR8**. Closer, not there. ESPN 20 / WR8 is in line with consensus, so no room-specific divergence to exploit either way.",
+   "conviction": "Verified",
+   "theme": "Situation / Personnel",
+   "date_in": "2026-06-02",
+   "date_verified": "2026-06-02",
+   "updated": "2026-08-26",
+   "sources": [
+    {
+     "name": "RotoBaller/sweep (consensus-lean) + confirmed PHI→NE trade",
+     "date": "2026-06-02",
+     "url": ""
+    },
+    {
+     "name": "patspulpit.com",
+     "date": "2026-08-26",
+     "url": "https://www.patspulpit.com/new-england-patriots-training-camp/130152/2026-wide-receiver-preview-aj-brown-romeo-doubs"
+    },
+    {
+     "name": "patriots.com",
+     "date": "2026-08-26",
+     "url": "https://www.patriots.com/news/analysis-inside-a-j-brown-s-first-patriots-practice-and-other-takeaways-from-otas"
+    },
+    {
+     "name": "espn.com",
+     "date": "2026-08-26",
+     "url": "https://www.espn.com/nfl/story/_/id/49032332/new-england-patriots-minicamp-aj-brown-impressions"
+    },
+    {
+     "name": "patriots.com",
+     "date": "2026-08-26",
+     "url": "https://www.patriots.com/news/analysis-breaking-down-the-patriots-competitive-camp-battle-at-wide-receiver"
+    },
+    {
+     "name": "patriots.com",
+     "date": "2026-08-26",
+     "url": "https://www.patriots.com/news/day-17-blogservations-maye-and-brown-find-their-deep-connection"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/aj-brown.md",
+   "converge": null,
+   "counter": "The whole thesis is Maye's Year-3 leap; NE pass volume and OL are unproven; the down-2025 output could be decline rather than situation.",
+   "preseason": true,
+   "trigger": "7/26",
+   "verdict": "Buy"
+  },
+  {
+   "id": "jonathan-taylor-ppr-ceiling-rb-watch",
+   "phase": "inseason",
+   "kind": "Situation",
+   "tone": "watch",
+   "name": "Jonathan Taylor — PPR ceiling",
+   "pos": "RB",
+   "team": "IND",
+   "title": "Jonathan Taylor — PPR ceiling",
+   "consensus": "Priced off a blended QB outcome; the field hasn't re-priced his receiving floor to the Jones-specific number",
+   "edge": "His receiving role is a QB derivative: 1.3 tgt/gm with Richardson vs 3.6 without (career-high routes/targets in 2025 with Jones) — the IND QB battle IS his PPR ceiling, and it has resolved to the good side",
+   "read": "Watch camp: **VERIFY BAR CLEARED 2026-08-03.** The Need was 'IND QB1 resolution at camp.' Resolved: **Daniel Jones cleared post-Achilles, avoided PUP, 'looked like himself' Day 1** ([colts.com](https://www.colts.com/news/colts-have-high-expectations-for-wr-josh-downs-to-begin-training-camp), Aug 2026). Jones is the high-RB-target QB in the split, so Taylor's PPR ceiling survives intact. So-what: pay for Taylor on the PPR projection, not the rushing-only one.",
+   "conviction": "Verified",
+   "theme": "Situation / Personnel",
+   "date_in": "2026-06-07",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-03",
+   "sources": [
+    {
+     "name": "Fantasy Points QB-tendencies (T1) **+ 8/03 camp confirmation that Jones is cleared and sta",
+     "date": "2026-08-03",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": null,
+   "counter": "**Taylor is unsigned** on the final year of 3yr/$42M — a hold-in is speculation (no player statement, no beat report of intent) but not zero. IND also has a stated **workload-reduction plan** for him, and Jones' Achilles was to his push-off foot, capping the downfield game that keeps boxes honest. DJ Giddens is the only real handcuff.",
+   "preseason": true,
+   "trigger": "camp",
+   "verdict": "Watch"
+  },
+  {
+   "id": "atlanta-qb-room-watch",
+   "phase": "inseason",
+   "kind": "Situation",
+   "tone": "watch",
+   "name": "Atlanta QB room",
+   "pos": "",
+   "team": "",
+   "title": "Atlanta QB room",
+   "consensus": "Projections for London (and Bijan's receiving script) were largely built on a Penix-led offense",
+   "edge": "**The board is stale on who starts.** Penix (left ACL, Wk11 2025) is still NOT cleared for 11-on-11 into August; **Tua Tagovailoa — signed by ATL in March — is the Week 1 starter.** Changes the passing funnel for Drake London and the receiving script for Bijan Robinson",
+   "read": "Watch preseason: **VERIFY BAR CLEARED 2026-08-03.** The Need was 'a 2nd source confirming the Week 1 starter.' Penix remains limited to individual/7-on-7 with full clearance **~4 weeks away by his own account**; Tua is the clear Week 1 favourite. So-what: re-check whether London's projection was built on Penix, and discount Bijan's receiving volume accordingly.",
+   "conviction": "Verified",
+   "theme": "Situation / Personnel",
+   "date_in": "2026-07-26",
+   "date_verified": "2026-08-03",
+   "updated": "2026-08-03",
+   "sources": [
+    {
+     "name": "7/26 sweep (ESPN/Raimondi 7/13 + AtlantaFalcons.com) **+ 8/03 camp confirmation — Penix sa",
+     "date": "2026-08-03",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": null,
+   "counter": "**Tua missed the camp opener with back tightness** and Atlanta added **Cooper Rush** — the room isn't fully stable either. Penix's 9–12 month window does open mid-camp, so a late-August clearance would flip this back before Week 1. **No player profile for either QB — cross-link gap.**",
+   "preseason": true,
+   "trigger": "preseason",
+   "verdict": "Watch"
+  },
+  {
+   "id": "jadarian-price-buy-rb-watch",
+   "phase": "inseason",
+   "kind": "Situation",
+   "tone": "watch",
+   "name": "Jadarian Price — buy",
+   "pos": "RB",
+   "team": "SEA",
+   "title": "Jadarian Price — buy",
+   "consensus": "CSV 2026-09-04: Consensus **#65 / RB24**, ADP 57, ESPN 58 / RB24 — field moved only 70→65 despite Charbonnet's reserve/PUP being an official public transaction since 8/30",
+   "edge": "Lead back in the post-Walker Seattle backfield — R1 capital + Shanahan-tree continuity (OC Fleury) + Charbonnet on reserve/PUP, with the position coach naming him the lead on the record",
+   "read": "Watch 8/30: **PROMOTED 2026-09-04 — all three Needs answered.** (1) Charbonnet timeline: resolved by transaction — reserve/PUP 8/30, out a minimum of four games. (2) The 3-way camp battle: Hammock casts Holani as the third-down/pass-pro back (CSV #242) and Emanuel Wilson as power/goal-line, leaving early downs to Price. (3) Second source on the role: Henderson independently reports the same plan. So-what: draft as an RB2 at an RB24 price with Weeks 1–4 lead volume effectively locked. ✅ **His CSV `Injury_Status` cell is FIXED (2026-09-05)** — the stale 8/13 \"lower-body soreness\" text was superseded by the 8/29 resolution and has now been replaced by the volatile-field patch (`Skills/patch-volatile-20260905.py`); the cell reads Healthy / confirmed Wk1 lead back.",
+   "conviction": "Verified",
+   "theme": "Situation / Personnel",
+   "date_in": "2026-06-08",
+   "date_verified": "2026-09-04",
+   "updated": "2026-09-04",
+   "sources": [
+    {
+     "name": "coaching-changes layer 2026-06-06 (Noted 6/08) **+ RB coach Thomas Hammock on the record v",
+     "date": "2026-09-04",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": {
+    "n": 3,
+    "layers": [
+     "RB-receiving",
+     "Backfield",
+     "Coaching"
+    ],
+    "contested": false,
+    "line": "🎯 3 layers agree: RB-receiving, Backfield, Coaching"
+   },
+   "counter": "Walker's departure also removes the offense's explosive element, so the lead role may come with worse scripts than the 2025 baseline. Hammock is a coach describing a plan, not a snap count — no first-team carry-share number has ever been published for this backfield. Emanuel Wilson at the goal line caps the TD equity, and Charbonnet returns around Week 5.",
+   "preseason": true,
+   "trigger": "8/30",
+   "verdict": "Watch"
+  },
+  {
+   "id": "tony-pollard-rb-watch",
+   "phase": "inseason",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "Tony Pollard",
+   "pos": "RB",
+   "team": "TEN",
+   "title": "Tony Pollard",
+   "consensus": "RB32 / #89; ADP 79.5 prices the 275-touch 2025 workload",
+   "edge": "Daboll publicly declared a two-back committee; Spears out-snapped Pollard 59%–42.6% post-IR in 2025; TEN drafted Nick Singleton in April — analysts cap him <230 carries",
+   "read": "Watch 70/30: Don't pay #89 for a committee back; Spears (#139) is the cheap side of the same backfield. *Refresh 2026-06-07: STRENGTHENED — run-lean layer ranks TEN the league's worst structural run outlook (OL #32 + bad defense = trailing scripts on top of the committee). Same-day RB-recv layer: Spears 3.8 tgt/gm + 90% catch; Pollard fell to 2.5 tgt/gm when Spears healthy — third independent support* **·· PRESEASON WK1 FOLD 2026-08-16 ··** **CONFIRMED BY SNAP DATA — the first hard usage evidence this row has ever had.** **Tyjae Spears out-snapped Pollard on a rotating basis in the preseason opener (5-5, 5-0, 3-3 by drive)**, against Pollard's ~70/30 lead share in 2025. The committee Daboll declared verbally in June is now visible on the field, which is the difference between a coach-speak row and a usage row. **·· DEMOTE-CANDIDATE RE-FLAGGED 2026-09-04 (not moving) — but the fade got MORE actionable.** Consensus 83→81, ADP 81→76: drifting toward the row, not yet caught up. The new signal is room-specific: **ESPN has him at 68 against consensus 81**, so in Hai's league Pollard goes *earlier* than ADP implies — meaning the overpay this row warns about is larger here than the market number suggests.",
+   "conviction": "Verified",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-06-03",
+   "date_verified": "2026-06-04",
+   "updated": "2026-08-25",
+   "sources": [
+    {
+     "name": "Daboll public statement via team coverage + R3 player research (Singleton pick + carry cap",
+     "date": "2026-06-04",
+     "url": ""
+    },
+    {
+     "name": "fantasylife.com",
+     "date": "2026-08-25",
+     "url": "https://www.fantasylife.com/articles/fantasy/tennessee-titans-2026-fantasy-football-cheat-sheet-cam-ward-carnell-tate-and-more"
+    },
+    {
+     "name": "titansized.com",
+     "date": "2026-08-25",
+     "url": "https://titansized.com/titans-immediately-put-their-entire-rb-room-on-notice-with-just-1-pick"
+    },
+    {
+     "name": "si.com",
+     "date": "2026-08-25",
+     "url": "https://www.si.com/nfl/titans/onsi/titans-running-backs-what-fans-need-to-know-about-each-player-on-the-roster-pollard-spears"
+    },
+    {
+     "name": "pff.com",
+     "date": "2026-08-25",
+     "url": "https://www.pff.com/news/nfl-preseason-2026-week-1-recap-immediate-takeaways-2026"
+    }
+   ],
+   "profile": "Research/profiles/players/RB/tony-pollard.md",
+   "converge": {
+    "n": 3,
+    "layers": [
+     "Run-lean",
+     "RB-receiving",
+     "Backfield"
+    ],
+    "contested": false,
+    "line": "🎯 3 layers agree: Run-lean, RB-receiving, Backfield"
+   },
+   "counter": "If Spears gets hurt (real injury history) Pollard inherits the workload his price assumes, and a Daboll backfield can still yield an RB2 if one back separates. Weakest counter on the board — the layers run against him. **⚠ FLAGGED DEMOTE CANDIDATE 2026-08-26**: ADP 81 vs consensus #83 — the gap is now ~zero. Trigger: ADP drifting past rank, or a Tier-2 fade list. Not demoted yet — the field hasn't crossed.",
+   "preseason": true,
+   "trigger": "70/30",
+   "verdict": "Fade"
+  },
+  {
+   "id": "cam-skattebo-rb-watch",
+   "phase": "inseason",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "Cam Skattebo",
+   "pos": "RB",
+   "team": "NYG",
+   "title": "Cam Skattebo",
+   "consensus": "Priced on the target rate, not the pass-block grade",
+   "edge": "Fade the third-down role — 4.0 tgt/gm (CMC/Bijan per-game tier) BUT **11.6 PFF pass-block, DEAD LAST of 67 qualifiers**, plus an RB-target-negative coaching history; Tyrone Tracy (47 tgt) lurks for passing downs",
+   "read": "Watch camp: **VERIFY BAR PARTIALLY CLEARED — promoted on the committee leg 2026-08-03.** Two of the three Needs answered. **Ankle: clean** — Schoen at the first practice: *\"He'll be out here, he'll be ready to go today, and he'll be doing everything\"*; Skattebo: \"I've felt 99%… the 100% is when I put shoulder pads on.\" **Committee: confirmed** — Giants.com has him and Tracy both taking first-team reps with Singletary mixing in, and Skattebo himself named Tracy, Singletary and Dante Miller as sharing the backfield. So-what: the fade holds on role, and the ankle bear case is retired. **·· STRENGTHENED 2026-09-04.** A third independent signal, and the strongest yet: PFF projects **no Giants RB finishes top-30**, resting on a specific structural fact — the Giants were **the only one of 32 teams running a true three-man preseason rotation** — plus a Harbaugh/2019-Ravens scheme comp. Critically the field is moving the *other* way: Skattebo is going **RB18** while Tyrone Tracy sits at RB44, so the fade is *more* unpriced than at verification, not less. Note also **ESPN 45 vs consensus 55** — his own room reaches for him harder than the market does.",
+   "conviction": "Verified",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-06-07",
+   "date_verified": "2026-08-03",
+   "updated": "2026-09-04",
+   "sources": [
+    {
+     "name": "PFF 2025 grades + RB-recv topic layer (Noted 6/07) **+ Giants.com 7/29 and AP wire 7/31** ",
+     "date": "2026-08-03",
+     "url": ""
+    },
+    {
+     "name": "nfl.com",
+     "date": "2026-09-04",
+     "url": "https://www.nfl.com/news/giants-cam-skattebo-speaks-on-ankle-rehab"
+    },
+    {
+     "name": "heavy.com",
+     "date": "2026-09-04",
+     "url": "https://heavy.com/sports/nfl/new-york-giants/boosted-promising-cam-skattebo-injury-update/"
+    },
+    {
+     "name": "empiresportsmedia.com",
+     "date": "2026-09-04",
+     "url": "https://empiresportsmedia.com/new-york-giants/cam-skattebo-gives-ny-giants-hope-but-also-a-real-question/"
+    },
+    {
+     "name": "pff.com",
+     "date": "2026-09-04",
+     "url": "https://www.pff.com/news/fantasy-football-bold-predictions-2026"
+    }
+   ],
+   "profile": "Research/profiles/players/RB/cam-skattebo.md",
+   "converge": {
+    "n": 2,
+    "layers": [
+     "RB-receiving",
+     "Backfield"
+    ],
+    "contested": false,
+    "line": "🎯 2 layers agree: RB-receiving, Backfield"
+   },
+   "counter": "**The pass-protection leg is still untested** — no camp pass-pro grade or rep report exists, and coverage explicitly notes pass-pro is hard to judge until pads/preseason. If he improved, the whole fade weakens. Note the ankle resolving clean is genuinely good news that cuts against the row.",
+   "preseason": true,
+   "trigger": "camp",
+   "verdict": "Fade"
+  },
+  {
+   "id": "rj-harvey-rb-watch",
+   "phase": "inseason",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "RJ Harvey",
+   "pos": "RB",
+   "team": "DEN",
+   "title": "RJ Harvey",
+   "consensus": "CSV: Consensus **#91 / RB32, ADP 83 (8/25 export)** — the field has already moved him off the June #74, and ADP has tightened further",
+   "edge": "**Fade — he has not won the job, ~~and now he is losing the early downs too~~ **← CLAUSE STRUCK 2026-08-16, see So-what**.** Dobbins is the listed RB1; R4 rookie Jonah Coleman (No. 108, Washington) is out-producing Harvey between the tackles in pads — which is precisely Harvey's rookie-year weakness (3.7 YPC)",
+   "read": "Watch 7/21: Don't pay ADP 88 for the third-best claim to early-down work in this backfield. For Denver exposure, Dobbins is *cheaper* (ADP 98) and listed RB1; Coleman (ADP 186) is the lottery ticket on the same room. ⚠ **Low timing-edge — flagged as a demote candidate in this same sweep; trigger = ADP crosses Dobbins.** **·· PRESEASON WK1 FOLD 2026-08-16 ··** **CLAIM AMENDED — an unsupported clause struck out.** The 'losing the early downs too' clause is **withdrawn**: adjudicated unsupported, and traced to a 7/21 radio opinion that the 8/11 depth chart contradicts. **What the preseason opener actually showed: Harvey started, and took roughly 79% of the first-two-series snaps.** Corrected reading — *Dobbins is the listed RB1 (8/11 chart) and Harvey remains RB2; he has not won the job, but he has not lost early downs either. R4 Jonah Coleman is now ahead of McLaughlin and Badie.* **The fade survives on price, not on a demotion that never happened** — that is a materially weaker row than it read on 8/11 and it should be sized accordingly. **·· SWEEP 2026-08-25 ·· TRIGGER CHECKED, NOT FIRED, AND THE FADE STRENGTHENED ON PRICE.** The 8/25 export has Harvey ADP 83.0 vs Dobbins ADP 87.0 — trigger (\"ADP crosses Dobbins\") did NOT fire. The fade actually strengthened instead: Harvey ADP 88→83 against consensus #92→#91 (gap widened from 4 to 8 spots ahead of rank), while Dobbins closed 98→87 (rank #105→#98) and Coleman 186→168 (#159→#152). Second source added: PFF's Wk1 preseason recap (pub 8/16) has Harvey handling the first 11 Denver RB snaps before Coleman relieved him. **·· AMENDED 2026-09-04 — the demote trigger has fired on ESPN's board but NOT on ADP.** The stated trigger was \"ADP crosses Dobbins.\" On FantasyPros it has not: Harvey ADP 85 vs Dobbins 89, the same 4-spot gap as at flagging. **But the 9/04 ESPN bridge has Dobbins ahead — ESPN 100 vs Harvey 108** — so in the room Hai actually drafts in, the field has already caught up. Held Active per the letter of the trigger; **trigger tightened: demote when FantasyPros ADP crosses, since ESPN already has.**",
+   "conviction": "Verified",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-06-03",
+   "date_verified": "2026-08-11",
+   "updated": "2026-08-26",
+   "sources": [
+    {
+     "name": "R3 team research (Noted 6/03) + 8/03 team-site refresh **+ 2026-08-11 blind re-derivation:",
+     "date": "2026-08-11",
+     "url": ""
+    },
+    {
+     "name": "si.com",
+     "date": "2026-08-26",
+     "url": "https://www.si.com/nfl/broncos/onsi/broncos-depth-chart-projection-entering-otas-features-some-new-names"
+    },
+    {
+     "name": "predominantlyorange.com",
+     "date": "2026-08-26",
+     "url": "https://predominantlyorange.com/updated-broncos-rb-depth-chart-proves-former-weakness-is-now-a-strength"
+    },
+    {
+     "name": "espn.com",
+     "date": "2026-08-26",
+     "url": "https://www.espn.com/nfl/story/_/id/47243809/rj-harvey-rookie-running-back-denver-broncos-career-high-rushing-yards-receptions"
+    },
+    {
+     "name": "pff.com",
+     "date": "2026-08-26",
+     "url": "https://www.pff.com/news/fantasy-football-preseason-week-1-recap-immediate-takeaways-2026"
+    }
+   ],
+   "profile": "Research/profiles/players/RB/rj-harvey.md",
+   "converge": null,
+   "counter": "**Dobbins left the 8/10 practice with a soft-tissue issue** (Payton: precautionary) — if it lingers, Harvey's early-down claim revives. Note the four outlets carrying that injury all trace to **one** Payton presser. And Coleman's ascent is camp-report-based: **no preseason snap counts exist yet** — first real evidence is the 8/14 opener.",
+   "preseason": true,
+   "trigger": "7/21",
+   "verdict": "Fade"
+  },
+  {
+   "id": "davante-adams-wr-watch",
+   "phase": "inseason",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "Davante Adams",
+   "pos": "WR",
+   "team": "LAR",
+   "title": "Davante Adams",
+   "consensus": "",
+   "edge": "TD-regression fade — 14 rec TD (11 inside the 10) on a career-low 53% catch rate; 9.3 PPR/gm in games without a TD; age-34 season at WR24 / #47",
+   "read": "Watch camp — 2nd analyst fade / camp route-share data; 13-personnel snap-trim chatter is Tier-3 only — don't double-count it *Refresh 2026-08-03: **CONFLICTED — the camp evidence runs AGAINST the fade.** Rams.com's own \"10 Observations\" series (Days 2, 4, 5) has Adams featured, not receding: first in line in individual drills **at Puka Nacua's request**, strong Stafford connections, and one **team-confirmed scheduled rest day** (not injury, not role). The 13-personnel snap-trim thesis exists (Turf Show Times) but reads as analyst projection and its date could not be confirmed — it may be pre-camp speculation. **No route-share or snap-count data has been published.** The TD-regression math (14 rec TD, 11 from inside the 10, 53% catch rate, 9.3 PPR/gm without a TD, age-34) is unchanged and still the strongest leg. Mark CONFLICTED like the Odunze row — do not kill, do not promote; preseason snaps decide.* **·· CHECK 2026-08-29 ·· STILL CONFLICTED, no new tilt.** Continued strong camp chemistry (an over-the-shoulder TD catch beating tight coverage) plus one scheduled rest day team-confirmed by McVay as non-injury. No route-share/snap-count data has surfaced and no 2nd analyst fade call has landed either — the TD-regression math is unchanged and still the strongest leg. HOLD.* **·· CHECK 2026-09-05 ·· HELD, Need corrected — the 'new' fade source is not a new source.** A fresh look at a widely-circulated 2nd fade call (Bleacher Report/Alex Kay, \"closer to WR50 than WR25\") traces to a quote already logged in `Data/research-sidecar.json` dated 2026-07-26 — a re-find of an already-known single source, not independent corroboration. It does not clear the two-source promotion bar. The camp-chemistry counter-evidence (Nacua-requested drills, Stafford connections, one team-confirmed rest day) still stands unrebutted, and the TD-regression math is unchanged. **Not promoted, not killed — still genuinely CONFLICTED.** Demote-candidate trigger: Weeks 1-3 route-share/target data, whichever direction it breaks.",
+   "conviction": "Noted",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-06-03",
+   "date_verified": "",
+   "updated": "2026-08-26",
+   "sources": [
+    {
+     "name": "R3 player research (single source)",
+     "date": "2026-06-03",
+     "url": ""
+    },
+    {
+     "name": "cbssports.com",
+     "date": "2026-08-26",
+     "url": "https://www.cbssports.com/fantasy/football/news/fantasy-football-2026-ramsdeep-dive/"
+    },
+    {
+     "name": "si.com",
+     "date": "2026-08-26",
+     "url": "https://www.si.com/nfl/rams/onsi/davante-adams-rams-roster-preview-2026"
+    },
+    {
+     "name": "si.com",
+     "date": "2026-08-26",
+     "url": "https://www.si.com/nfl/rams/los-angeles-fantasy-football-kyren-williams-puka-nacua-davante-adams-tennessee-titans"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/davante-adams.md",
+   "converge": null,
+   "counter": "",
+   "preseason": true,
+   "trigger": "camp",
+   "verdict": "Fade"
+  },
+  {
+   "id": "breece-hall-receiving-rebound-rb-watch",
+   "phase": "inseason",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Breece Hall — receiving rebound",
+   "pos": "RB",
+   "team": "NYJ",
+   "title": "Breece Hall — receiving rebound",
+   "consensus": "",
+   "edge": "Career-low 10.9% target share in 2025 = the outlier vs top-4 RB receiving in '23 AND '24; healthy, new deal, Clay flags the bounce. **CONFLICTED 2026-06-08:** the 6/06 coaching layer surfaces the OPPOSITE thesis — Reich's install removes the QB-run-era carry inflation while Geno elevates the pass game → a *fade* at RB18/#57 on stale usage. Two opposing reads (receiving-rebound buy vs usage fade) now tracked on the same player; the buy banks on route/target volume, the fade on lost rushing inflation — not mutually exclusive in PPR",
+   "read": "Watch 6/06 — 2nd analyst rebound call / camp route participation — AND the camp carry split (does the rushing volume actually drop?) to settle which thesis wins *Refresh 2026-08-03: **THE CONFLICT IS RESOLVING TOWARD THE FADE SIDE — on carries.** Jets Day 1 official practice report (newyorkjets.com, 7/29): *\"Breece Hall, Isaiah Davis and Braelon Allen took a majority of the rushes\"* — all three named together, not Hall alone. HC Aaron Glenn calls it a **\"three-headed monster\"**, and a projection carried in coverage has Hall at 250 carries vs Allen 130 / Davis 80, well down from his 279-touch 2025. Independent corroboration from LastWordOnSports (7/28) and SI's \"by-committee RB room\" preview. **The receiving-rebound half remains UNTESTED** — no route-participation or target-share camp data for Hall has surfaced. Net: the carry-inflation-removal fade is now better supported than in June; the PPR rebound is still an open question. Both halves stay live (they are not mutually exclusive in PPR).* **·· PRESEASON WK1 2026-08-16 ·· STRENGTHENS — but does not verify, and the distinction is deliberate.** **Hall played 10 of 11 snaps on the Jets' opening drive** (8/14) and **stayed on the field for two third downs** — far above his 2025 committee share; corroborated by two independent accounts (PFF's Friday recap + the Buccaneers' own game recap). Separately, **Isaiah Davis — the back described across outlets as the Jets' 2025 third-down man — is out with a knee injury** (AP wire 8/06, HC Aaron Glenn: 'a couple of weeks'; DNP the opener per CBS). **⚠ Honesty note, and it is why this stays Noted: the causal link 'Davis's absence clears the receiving work for Hall' is an INFERENCE, not a reported fact.** No outlet states it, and no source numerically establishes Davis as the *primary* rather than a co-third-down back. One opening drive in a preseason game with the incumbent third-down back injured is exactly the shape of evidence that looks like a role change and isn't. **The Need still standing: Wk2 route participation WITH Davis available** — the only test that separates a real role change from a one-drive script. **·· SWEEP 2026-08-25 ·· THE Wk2 TEST IS UNOBTAINABLE, NOT MISSING.** Hall suffered a right groin strain at the 8/17 practice (~2-3 weeks of practice missed, targeted for a clean Week 1 per HC Glenn 8/24), and Isaiah Davis is still knee-DNP — so the row's stated Need (Wk2 route participation WITH Davis available) required both on the field 8/20-23, and neither was. This does not need /research-diff — the event didn't occur, no fetch produces it. Both theses (receiving rebound vs carry-inflation fade) stay live/unresolved into draft day — treat as a coin-flip. Hard data 8/25: #39/RB13, ADP 33 (was #41/ADP 31), CSV now flagged Questionable. **New Need, re-scoped past the draft: Week 1 route participation with Davis active.** **·· CHECK 2026-09-05 ·· HELD — the Need is legitimately unobtainable pre-draft, not stalled.** The standing Need (Wk2 route participation WITH Isaiah Davis available) required both backs on the field 8/20-23; neither was (Hall's groin strain, Davis's knee DNP), and the preseason window that could have produced the test is now closed — there is no more preseason left to generate it before Sunday's draft. This is an evidentiary dead end, not new silence, so the row is held rather than re-flagged as stale. **Price note:** current CSV has Hall at ADP 33 vs consensus #39/RB13 — a 6-spot ADP premium over rank, meaning the market is pricing the receiving-rebound upside slightly ahead of the carry-inflation fade, the opposite lean of the row's own CONFLICTED framing. Both theses stay live into the draft; treat as a coin-flip per the 8/25 note. **New Need, re-scoped past the draft: Week 1 route participation with Davis active.**",
+   "conviction": "Noted",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-06-07",
+   "date_verified": "",
+   "updated": "2026-06-07",
+   "sources": [
+    {
+     "name": "Clay/ESPN RB profiles + JetsXFactor share stat (rebound) **vs** coaching-changes layer 202",
+     "date": "2026-06-07",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": {
+    "n": 3,
+    "layers": [
+     "RB-receiving",
+     "Backfield",
+     "Coaching"
+    ],
+    "contested": true,
+    "line": "⚠ 3 layers contest this — RB-receiving, Backfield, Coaching disagree"
+   },
+   "counter": "",
+   "preseason": true,
+   "trigger": "6/06",
+   "verdict": "Buy"
+  },
+  {
+   "id": "isaiah-likely-te-nyg-negative-watch",
+   "phase": "inseason",
+   "kind": "Usage",
+   "tone": "value",
+   "name": "Isaiah Likely (TE, NYG) ⚠️ **NEGATIVE**",
+   "pos": "",
+   "team": "",
+   "title": "Isaiah Likely (TE, NYG) ⚠️ **NEGATIVE**",
+   "consensus": "",
+   "edge": "**A committee tight end on a starter's contract.** Signed **3yr / $40M (upside $47.5M) on 2026-03-09** to follow John Harbaugh to New York (Harbaugh hired as Giants HC 2026-01-20 — both verified independently this pass), and is listed TE1 on the unofficial depth chart. But in the preseason opener he played **6 first-team snaps, all in 11-personnel / passing situations**, with **Theo Johnson (7 snaps) taking the run-down work** and Chris Manhertz (5) the heavy sets. PFF calls the usage concerning for a player expected to lead the room. CSV **#118 / TE13, ADP 113**.",
+   "read": "Watch 8/24 — **Wk2 snap split vs Theo Johnson**, specifically whether Likely takes any base-personnel snaps. ⚠ **Correction to the diff carried into this row: the first-team ran 16 snaps on that possession, not '10–11'** — so 6-of-16 is a *smaller* share than the diff implied, which makes the negative read stronger, not weaker. Contract guarantee is disputed ($26M vs $20.5M) and unresolved; not load-bearing. **·· SWEEP 2026-08-25 + FRESHENED 2026-08-26 ·· GAP WIDENED, Wk2 test a confirmed non-event.** Market moved against him while the Wk2 test went unrun (Likely rested Wk2, 8/24 vs MIA): consensus #118→#123 (TE13→TE14), ADP 113→106 (market now 17 spots ahead of rank, up from 5). The Wk1 snap split now has a soft SECOND source (2026-08-26 research-diff — independent WebSearch synthesis pulling from Giants beat coverage corroborates the same 6-of-16 first-team split) — still directionally single-narrative but no longer purely single-outlet. Still Noted, must not move a pick until fully corroborated. **·· CHECK 2026-09-05 ·· HELD, Need re-scoped — the Wk2 test failed to fire twice, and preseason is now exhausted.** The row's own Need (\"Wk2 snap split vs Theo Johnson, specifically base-personnel snaps\") never got a clean test: Likely was rested Wk2 (8/24 vs MIA) and preseason has now ended with no further padded snaps to observe. **Market moved slightly TOWARD him, not away**, since the last check (ADP 106→~unchanged, no new adverse signal) — a live fade would expect the opposite. **Need REPLACED (the Wk2/preseason version is no longer obtainable): Week 1 base-personnel snaps vs Theo Johnson** — the first real-game data this row can use. Still Noted; must not move a pick until fully corroborated.",
+   "conviction": "Noted",
+   "theme": "Usage / Role",
+   "date_in": "2026-08-16",
+   "date_verified": "",
+   "updated": "2026-08-16",
+   "sources": [
+    {
+     "name": "PFF **2026-08-16** + RotoBaller snap-count reporting — ⚠ **the snap split rests on a singl",
+     "date": "2026-08-16",
+     "url": ""
+    }
+   ],
+   "profile": "",
+   "converge": null,
+   "counter": "",
+   "preseason": true,
+   "trigger": "8/24",
+   "verdict": "Buy"
+  },
+  {
+   "id": "marshawn-lloyd-rb-watch",
+   "phase": "inseason",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "MarShawn Lloyd",
+   "pos": "RB",
+   "team": "GB",
+   "title": "MarShawn Lloyd",
+   "consensus": "",
+   "edge": "**Fade the presumption, not the player.** The field is pricing him as Jacobs' replacement at #110/RB but the lead role is **PRESUMED, never team-announced** — Packers.com (9/02) says only that he is \"quite likely\" the Wk1 feature back, and notes he has **six carries and one reception total as a pro** entering Year 3. LaFleur has been deliberately gradual with him all camp; GB traded for **Kaleb Johnson on 8/30** as soon as Jacobs went to the Exempt List; Footballguys' own share model has **Johnson 32% vs Lloyd 30%**, and its two writers split RB23 vs RB33 in the same piece. Missed all of 2025 with a chronic hamstring traced to a 2020 ACL",
+   "read": "Watch 9/02 — Wk1 carry split. **Falsifier: Lloyd takes ≥65% of GB carries in Wk1** → this is a straight buy, not a fade. Also watch whether GB ever announces him as the starter, which as of 9/05 it has not. ⚠ Cross-read: the Josh Jacobs row (CONSENSUS 8/31) is the parent event — this row is the unpriced half the Jacobs demotion left behind",
+   "conviction": "Noted",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "Packers.com 9/02 + Footballguys 8/30 (two independent, but both on the ROLE; the fade fram",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "fantasypros.com",
+     "date": "2026-09-05",
+     "url": "https://www.fantasypros.com/2026/08/fantasy-football-outlook-josh-jacobs-marshawn-lloyd-2026/"
+    },
+    {
+     "name": "packers.com",
+     "date": "2026-09-05",
+     "url": "https://www.packers.com/news/rb-marshawn-lloyd-as-ready-as-he-s-ever-been-to-help-packers-sep-2-2026"
+    },
+    {
+     "name": "footballguys.com",
+     "date": "2026-09-05",
+     "url": "https://www.footballguys.com/article/2026-jacobs-placed-on-commissioner-exempt-list-how-should-we-proceed"
+    },
+    {
+     "name": "atozsports.com",
+     "date": "2026-09-05",
+     "url": "https://atozsports.com/nfl/green-bay-packers-news/marshawn-lloyd-injury-update-training-camp/"
+    }
+   ],
+   "profile": "Research/profiles/players/RB/marshawn-lloyd.md",
+   "converge": null,
+   "counter": "",
+   "preseason": true,
+   "trigger": "9/02",
+   "verdict": "Fade"
+  },
+  {
+   "id": "pat-bryant-wr-watch",
+   "phase": "inseason",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Pat Bryant",
+   "pos": "WR",
+   "team": "DEN",
+   "title": "Pat Bryant",
+   "consensus": "",
+   "edge": "**Room-specific price dislocation — ESPN 263 vs consensus 176.** Camp momentum moved him past Troy Franklin for the DEN WR3 job across August: DEN's first unofficial depth chart lists Bryant WR4 **ahead of Franklin at WR6**, FantasyPros (9/03) calls him \"the favorite for the Broncos' No. 3 WR role,\" and a camp report has S Talanoa Hufanga naming him the team's most improved offensive player. 6'2\" contested-catch/red-zone edge over the 5'11\" Mims; Payton has invoked Michael Thomas as the skill-set comp",
+   "read": "Watch 9/03 — Wk1 snap share over Franklin/Mims. **Falsifier: Mims or Franklin opens as the clear No. 3.** ⚠ Note the ceiling even if he wins: Payton spreads the ball and Bryant would still be Denver's 4th option behind Sutton, Waddle and Engram. This was flagged as a gap in the board's own 9/04 frontmatter and is written here for the first time",
+   "conviction": "Noted",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "FantasyPros 9/03 + AtoZ/Yahoo 8/10 (two consensus-lean) — **but genuinely contested**: CBS",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "fantasypros.com",
+     "date": "2026-09-05",
+     "url": "https://www.fantasypros.com/nfl/notes/419268/pat-bryant-2026-outlook.php"
+    },
+    {
+     "name": "sports.yahoo.com",
+     "date": "2026-09-05",
+     "url": "https://sports.yahoo.com/articles/something-big-brewing-denver-broncos-184706908.html"
+    },
+    {
+     "name": "cbssports.com",
+     "date": "2026-09-05",
+     "url": "https://www.cbssports.com/fantasy/football/news/2026-outlook-pat-bryant/"
+    },
+    {
+     "name": "si.com",
+     "date": "2026-09-05",
+     "url": "https://www.si.com/onsi/fantasy/fantasy-football-depth-chart-debate-pat-bryant-vs-troy-franklin"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/pat-bryant.md",
+   "converge": null,
+   "counter": "",
+   "preseason": true,
+   "trigger": "9/03",
+   "verdict": "Buy"
+  },
+  {
+   "id": "ja-kobi-lane-wr-watch",
+   "phase": "inseason",
+   "kind": "Situation",
+   "tone": "watch",
+   "name": "Ja'Kobi Lane",
+   "pos": "WR",
+   "team": "BAL",
+   "title": "Ja'Kobi Lane",
+   "consensus": "",
+   "edge": "**Unpriced availability tail on the man in front of him.** 3rd-rd rookie (No. 80) has run with the **first team all camp** while the WR2 ahead of him, Rashod Bateman, has an **OPEN NFL Personal Conduct Policy review with no resolution date** — GM Eric DeCosta said on the record 9/02 that he does not know when the league will finalise it and that BAL is preparing for the possibility of opening without him. Lane started preseason Gm 1 and played into the 2nd qtr, then sat Gm 3 entirely (protection pattern, not a bubble pattern); Lamar Jackson publicly comped him to \"a combination of Odell Beckham Jr. and DeAndre Hopkins.\" Priced #205",
+   "read": "Watch 9/02 — Bateman discipline announced (either direction), **or** Lane Wk1 snap share ≥50%. **Falsifier: Bateman cleared and active Wk1 with Lane under 30% snaps.** ⚠ Counter that keeps this in Staging not Active: the scouting file says TD-or-bust red-zone specialist (limited separation, 4 drops in each of his last two college seasons), and BAL has never supported a fantasy-relevant WR3",
+   "conviction": "Noted",
+   "theme": "Situation / Personnel",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "Ravens beat + Yahoo (Jackson quote) 2026 (single source on the role); the Bateman procedur",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "sports.yahoo.com",
+     "date": "2026-09-05",
+     "url": "https://sports.yahoo.com/articles/lamar-jacksons-jakobi-lane-praise-183000002.html"
+    },
+    {
+     "name": "ebonybird.com",
+     "date": "2026-09-05",
+     "url": "https://ebonybird.com/baltimore-ravens-may-have-no-choice-but-to-get-this-viral-rookie-jakobi-lane-on-the-field-early"
+    },
+    {
+     "name": "fantasypros.com",
+     "date": "2026-09-05",
+     "url": "https://www.fantasypros.com/nfl/players/jakobi-lane.php"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/jakobi-lane.md",
+   "converge": null,
+   "counter": "",
+   "preseason": true,
+   "trigger": "9/02",
+   "verdict": "Watch"
+  },
+  {
+   "id": "malachi-fields-wr-watch",
+   "phase": "inseason",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Malachi Fields",
+   "pos": "WR",
+   "team": "NYG",
+   "title": "Malachi Fields",
+   "consensus": "",
+   "edge": "**Already holds the job the price says he doesn't.** Listed as the **starting WR2 opposite Malik Nabers** on the Giants' own 9/01 projected depth chart, ahead of veteran Darius Slayton — and he was **PFF's highest-graded and most-targeted Giants receiver of the 2026 preseason** (153.5 passer rating when targeted, both contested-catch chances converted, the team's only preseason offensive TD, on a Jaxson Dart fade). Played almost exclusively on the perimeter — one slot snap all preseason. Priced #215",
+   "read": "Watch 9/01 — A 2nd outlet naming him the Wk1 WR2, **or** Wk1 snap share ≥60% / 5+ targets. **Falsifier: Nabers and Slayton both healthy and active Wk1 with Fields under 40% snaps.** ⚠ Both squeeze-risks carry their own availability questions per the same 9/01 piece — Nabers' Wk1 readiness is in doubt and Slayton is recovering from sports hernia surgery after a quiet summer. Counter: 4.61 forty cooled his draft stock, and Dart is an inconsistent 2nd-yr passer",
+   "conviction": "Noted",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "Traina/SI Giants beat 9/01 (single source on the depth chart); PFN 8/29 covers the same pl",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "si.com",
+     "date": "2026-09-05",
+     "url": "https://www.si.com/nfl/giants/onsi/depth-chart-takeaways-01m1cbv7nx47"
+    },
+    {
+     "name": "sports.yahoo.com",
+     "date": "2026-09-05",
+     "url": "https://sports.yahoo.com/articles/updated-malachi-fields-fantasy-outlook-124410784.html"
+    },
+    {
+     "name": "giants.com",
+     "date": "2026-09-05",
+     "url": "https://www.giants.com/news/malachi-fields-scouting-report-notre-dame-wide-receiver-2026-nfl-draft-third-round-3-trade"
+    },
+    {
+     "name": "gmenhq.com",
+     "date": "2026-09-05",
+     "url": "https://gmenhq.com/new-york-giants-crowded-wr-depth-chart-is-finally-starting-to-take-shape"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/malachi-fields.md",
+   "converge": null,
+   "counter": "",
+   "preseason": true,
+   "trigger": "9/01",
+   "verdict": "Buy"
+  },
+  {
+   "id": "emanuel-wilson-rb-watch",
+   "phase": "inseason",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Emanuel Wilson",
+   "pos": "RB",
+   "team": "SEA",
+   "title": "Emanuel Wilson",
+   "consensus": "",
+   "edge": "**The cheap half of a backfield the board already likes.** $2.1M one-year ERFA-tier signing (SEA 3/13, ex-GB) with the **best per-touch profile of Seattle's three backs** — 82.9 PFF overall (2024), 73.9 PFF rushing (2025), 76.8% yards-after-contact rate, 4.5 career YPC and per RotoBaller the **3rd-best rushing success rate in the league** last season. Steps into the role vacated by Kenneth Walker III (left for KC in FA after Super Bowl LX MVP) while Zach Charbonnet sits on reserve/PUP, out 4 games minimum. SI's framing: \"NFL's Best Value Starting RB in 2026.\" Priced #244",
+   "read": "Watch 3/13 — Wk1-2 carry share vs Jadarian Price. **Falsifier: Price takes a clear early-down lead (≥55% of carries) through Wk2.** ⚠ **Cross-read — this row deliberately does NOT contradict the Active board.** `Jadarian Price — buy` was promoted to ACTIVE 9/04 on R1 capital plus the position coach naming him the lead, and that stands. This is the narrower claim that the per-touch evidence favours the $2.1M veteran while the market prices him 163 picks later, and that Charbonnet's return around Wk5 caps BOTH. Read the two rows together; do not draft them as the same bet",
+   "conviction": "Noted",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "SI Seahawks 4/09 (edge-lean, single source) + PFF grades via Buday; contract confirmed on ",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "seahawks.com",
+     "date": "2026-09-05",
+     "url": "https://www.seahawks.com/news/seahawks-sign-rb-emanuel-wilson"
+    },
+    {
+     "name": "si.com",
+     "date": "2026-09-05",
+     "url": "https://www.si.com/nfl/seahawks/onsi/seahawks-news/seattle-seahawks-emanuel-wilson-nfl-best-value-starting-rb-2026"
+    },
+    {
+     "name": "seahawks.com",
+     "date": "2026-09-05",
+     "url": "https://www.seahawks.com/news/seahawks-rb-zach-charbonnet-placed-on-pup-list"
+    }
+   ],
+   "profile": "Research/profiles/players/RB/emanuel-wilson.md",
+   "converge": null,
+   "counter": "",
+   "preseason": true,
+   "trigger": "3/13",
+   "verdict": "Buy"
+  },
+  {
+   "id": "jalen-nailor-wr-watch",
+   "phase": "inseason",
+   "kind": "Value",
+   "tone": "value",
+   "name": "Jalen Nailor",
+   "pos": "WR",
+   "team": "LV",
+   "title": "Jalen Nailor",
+   "consensus": "",
+   "edge": "**Starter money for a career WR3, priced as neither.** Signed **3yr/$35M with $23M guaranteed** in UFA on 3/09 after four Minnesota seasons — that is the front office paying for a starting outside receiver. Raiders Wire (8/14) has him expected to occupy the No. 1 receiver role and describes him as the most productive pass-catcher in team drills **behind only Brock Bowers**. Career-high 2025 of 29/444/4 at 15.4 yds per catch in a part-time No. 3 role, with 6 TD on 28 catches back in 2023. Priced #184",
+   "read": "Watch 3/09 — Wk1 target share ≥18%, **or** a 2nd beat naming him the LV WR1. **Falsifier: Tre Tucker or Jack Bech opens as the clear perimeter No. 1.** ⚠ Two cautions. (1) The \"Cousins chemistry\" line circulating in camp coverage is soft — the 2025 Minnesota chemistry reporting was about **J.J. McCarthy, not Cousins**. (2) Cross-read: the `Tre Tucker` row was KILLED 8/25 as expired-not-refuted on the same open-WR1 premise — this row is the same job from the other side, and Bowers structurally caps whoever wins it",
+   "conviction": "Noted",
+   "theme": "Rankings / Value-gaps",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "Raiders Wire 8/14 (single source on the camp role); contract confirmed raiders.com 3/12 + ",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "raiders.com",
+     "date": "2026-09-05",
+     "url": "https://www.raiders.com/news/raiders-sign-wr-jalen-nailor-nfl-2026-free-agency-transactions"
+    },
+    {
+     "name": "si.com",
+     "date": "2026-09-05",
+     "url": "https://www.si.com/nfl/vikings/onsi/news/jalen-nailor-leaves-vikings-lands-three-year-deal-with-raiders"
+    },
+    {
+     "name": "sports.yahoo.com",
+     "date": "2026-09-05",
+     "url": "https://sports.yahoo.com/articles/raiders-wr-jalen-nailor-fantasy-175756496.html"
+    },
+    {
+     "name": "espn.com",
+     "date": "2026-09-05",
+     "url": "https://www.espn.com/nfl/story/_/id/49804802/raiders-name-kirk-cousins-starting-qb-week-1-fernando-mendoza"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/jalen-nailor.md",
+   "converge": null,
+   "counter": "",
+   "preseason": true,
+   "trigger": "3/09",
+   "verdict": "Buy"
+  },
+  {
+   "id": "devaughn-vele-wr-watch",
+   "phase": "inseason",
+   "kind": "Usage",
+   "tone": "value",
+   "name": "Devaughn Vele",
+   "pos": "WR",
+   "team": "NO",
+   "title": "Devaughn Vele",
+   "consensus": "",
+   "edge": "**Time-boxed Wk1 volume the price has not seen.** Normally the Saints' WR3, but with rookie Jordyn Tyson sidelined by a hamstring FantasyPros (9/03) projects him into an expanded role as effectively **New Orleans' No. 2 receiver for the 9/13 opener**. He has the trailing production to support it: **19 of 26 targets for 239 yards and a TD over his final four games of 2025**, just under 10 half-PPR points per game across that stretch, with minimum WR4 production in all four. Priced #248",
+   "read": "Watch 9/03 — A 2nd source on the Wk1 role, **or** Wk1 targets ≥6. **This row is deliberately short-dated — it dies on Tyson's return**, so re-check it at the first sweep after Tyson practises. **Falsifier: Tyson active Wk1.** ⚠ Counter: NO spent three separate offseason resources at WR (Tyson, Bryce Lance, Barion Brown) precisely because it does not see Vele as the answer",
+   "conviction": "Noted",
+   "theme": "Usage / Role",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "FantasyPros/Erickson 9/03 (single source)",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "fantasypros.com",
+     "date": "2026-09-05",
+     "url": "https://www.fantasypros.com/nfl/notes/427985/devaughn-vele-2026-outlook.php"
+    },
+    {
+     "name": "espn.com",
+     "date": "2026-09-05",
+     "url": "https://www.espn.com/nfl/story/_/id/47541318/saints-committed-tyler-shough-starting-qb-2026"
+    }
+   ],
+   "profile": "Research/profiles/players/WR/devaughn-vele.md",
+   "converge": null,
+   "counter": "",
+   "preseason": true,
+   "trigger": "9/03",
+   "verdict": "Buy"
+  },
+  {
+   "id": "cleveland-browns-dst-watch",
+   "phase": "inseason",
+   "kind": "Fade",
+   "tone": "fade",
+   "name": "Cleveland Browns",
+   "pos": "DST",
+   "team": "CLE",
+   "title": "Cleveland Browns",
+   "consensus": "",
+   "edge": "**The market is still paying 2025 tape.** FantasyPros' 9/04 consensus has CLE at **DST16 (range 12-25)** — after the Browns traded away **Myles Garrett, who had just set the NFL single-season sack record with 23** (to LAR for Jared Verse plus picks) **and** replaced DC Jim Schwartz with **first-time coordinator Mike Rutenberg**. ESPN's own framing: \"it'll take a collective effort\" to replace 23 sacks, with CLE expected to fall off its 13th-ranked 2025 points-allowed finish. Losing the franchise's best defender and the play-caller in one offseason is a double transition the DST16 price does not reflect",
+   "read": "Watch 9/04 — Wks 1-3 sack and takeaway rate against the 2025 baseline. **Falsifier: Verse produces at a top-10 edge rate through Wk3 and the unit holds a top-12 points-allowed mark.** ⚠ Schedule compounds it — Wk1 at JAX and Wk2 at TB are both road games before a softer CAR spot. Counter: the Ward/Delpit/Campbell secondary can still generate takeaways independent of the rush, which is why the consensus range runs as wide as 12",
+   "conviction": "Noted",
+   "theme": "Contrarian / Fade",
+   "date_in": "2026-09-05",
+   "date_verified": "",
+   "updated": "2026-09-05",
+   "sources": [
+    {
+     "name": "FantasyPros consensus table 9/04 (rank leg) + ESPN post-Garrett analysis (single source on",
+     "date": "2026-09-05",
+     "url": ""
+    },
+    {
+     "name": "fantasypros.com",
+     "date": "2026-09-05",
+     "url": "https://www.fantasypros.com/2026/09/fantasy-football-rankings-draft-targets-defenses-d-st/amp/"
+    }
+   ],
+   "profile": "Research/profiles/players/DST/cleveland-browns.md",
+   "converge": null,
+   "counter": "",
+   "preseason": true,
+   "trigger": "9/04",
+   "verdict": "Fade"
+  },
+  {
+   "phase": "inseason",
+   "name": "ARI",
+   "pos": "",
+   "team": "ARI",
+   "title": "ARI — soft fantasy-playoff schedule (Wk 15-17)",
+   "kind": "Schedule",
+   "tone": "buy",
+   "consensus": "",
+   "edge": "Wk 15-17 pass-coverage difficulty 1.3/4 vs NYJ, NO, LV.",
+   "read": "Bump this team's pass-catchers up in the playoff weeks.",
+   "conviction": "Schedule",
+   "updated": "2026-09-05",
+   "profile": "",
+   "sched": [
+    {
+     "w": 15,
+     "opp": "NYJ",
+     "d": 2
+    },
+    {
+     "w": 16,
+     "opp": "NO",
+     "d": 1
+    },
+    {
+     "w": 17,
+     "opp": "LV",
+     "d": 1
+    }
+   ],
+   "sched_avg": 1.3,
+   "sources": [
+    {
+     "name": "schedule-2026.csv + defense layer",
+     "date": "2026-09-05",
+     "url": ""
+    }
+   ],
+   "id": "ari-playoff-sched",
+   "verdict": "Buy"
+  },
+  {
+   "phase": "inseason",
+   "name": "ATL",
+   "pos": "",
+   "team": "ATL",
+   "title": "ATL — soft fantasy-playoff schedule (Wk 15-17)",
+   "kind": "Schedule",
+   "tone": "buy",
+   "consensus": "",
+   "edge": "Wk 15-17 pass-coverage difficulty 1.3/4 vs WAS, TB, NO.",
+   "read": "Bump this team's pass-catchers up in the playoff weeks.",
+   "conviction": "Schedule",
+   "updated": "2026-09-05",
+   "profile": "",
+   "sched": [
+    {
+     "w": 15,
+     "opp": "WAS",
+     "d": 1
+    },
+    {
+     "w": 16,
+     "opp": "TB",
+     "d": 2
+    },
+    {
+     "w": 17,
+     "opp": "NO",
+     "d": 1
+    }
+   ],
+   "sched_avg": 1.3,
+   "sources": [
+    {
+     "name": "schedule-2026.csv + defense layer",
+     "date": "2026-09-05",
+     "url": ""
+    }
+   ],
+   "id": "atl-playoff-sched",
+   "verdict": "Buy"
+  },
+  {
+   "phase": "inseason",
+   "name": "IND",
+   "pos": "",
+   "team": "IND",
+   "title": "IND — soft fantasy-playoff schedule (Wk 15-17)",
+   "kind": "Schedule",
+   "tone": "buy",
+   "consensus": "",
+   "edge": "Wk 15-17 pass-coverage difficulty 1.7/4 vs TEN, CIN, CLE.",
+   "read": "Bump this team's pass-catchers up in the playoff weeks.",
+   "conviction": "Schedule",
+   "updated": "2026-09-05",
+   "profile": "",
+   "sched": [
+    {
+     "w": 15,
+     "opp": "TEN",
+     "d": 1
+    },
+    {
+     "w": 16,
+     "opp": "CIN",
+     "d": 1
+    },
+    {
+     "w": 17,
+     "opp": "CLE",
+     "d": 3
+    }
+   ],
+   "sched_avg": 1.7,
+   "sources": [
+    {
+     "name": "schedule-2026.csv + defense layer",
+     "date": "2026-09-05",
+     "url": ""
+    }
+   ],
+   "id": "ind-playoff-sched",
+   "verdict": "Buy"
+  },
+  {
+   "phase": "inseason",
+   "name": "PHI",
+   "pos": "",
+   "team": "PHI",
+   "title": "PHI — brutal fantasy-playoff schedule (Wk 15-17)",
+   "kind": "Schedule",
+   "tone": "fade",
+   "consensus": "",
+   "edge": "Wk 15-17 pass-coverage difficulty 3.3/4 vs SEA, HOU, SF.",
+   "read": "Discount this team's pass-catchers for your title run.",
+   "conviction": "Schedule",
+   "updated": "2026-09-05",
+   "profile": "",
+   "sched": [
+    {
+     "w": 15,
+     "opp": "SEA",
+     "d": 4
+    },
+    {
+     "w": 16,
+     "opp": "HOU",
+     "d": 4
+    },
+    {
+     "w": 17,
+     "opp": "SF",
+     "d": 2
+    }
+   ],
+   "sched_avg": 3.3,
+   "sources": [
+    {
+     "name": "schedule-2026.csv + defense layer",
+     "date": "2026-09-05",
+     "url": ""
+    }
+   ],
+   "id": "phi-playoff-sched",
+   "verdict": "Fade"
+  },
+  {
+   "phase": "inseason",
+   "name": "PIT",
+   "pos": "",
+   "team": "PIT",
+   "title": "PIT — soft fantasy-playoff schedule (Wk 15-17)",
+   "kind": "Schedule",
+   "tone": "buy",
+   "consensus": "",
+   "edge": "Wk 15-17 pass-coverage difficulty 1.7/4 vs BAL, CAR, TEN.",
+   "read": "Bump this team's pass-catchers up in the playoff weeks.",
+   "conviction": "Schedule",
+   "updated": "2026-09-05",
+   "profile": "",
+   "sched": [
+    {
+     "w": 15,
+     "opp": "BAL",
+     "d": 3
+    },
+    {
+     "w": 16,
+     "opp": "CAR",
+     "d": 1
+    },
+    {
+     "w": 17,
+     "opp": "TEN",
+     "d": 1
+    }
+   ],
+   "sched_avg": 1.7,
+   "sources": [
+    {
+     "name": "schedule-2026.csv + defense layer",
+     "date": "2026-09-05",
+     "url": ""
+    }
+   ],
+   "id": "pit-playoff-sched",
+   "verdict": "Buy"
+  },
+  {
+   "phase": "inseason",
+   "name": "LAC",
+   "pos": "",
+   "team": "LAC",
+   "title": "LAC — soft fantasy-playoff schedule (Wk 15-17)",
+   "kind": "Schedule",
+   "tone": "buy",
+   "consensus": "",
+   "edge": "Wk 15-17 pass-coverage difficulty 1.3/4 vs SF, MIA, KC.",
+   "read": "Bump this team's pass-catchers up in the playoff weeks.",
+   "conviction": "Schedule",
+   "updated": "2026-09-05",
+   "profile": "",
+   "sched": [
+    {
+     "w": 15,
+     "opp": "SF",
+     "d": 2
+    },
+    {
+     "w": 16,
+     "opp": "MIA",
+     "d": 1
+    },
+    {
+     "w": 17,
+     "opp": "KC",
+     "d": 1
+    }
+   ],
+   "sched_avg": 1.3,
+   "sources": [
+    {
+     "name": "schedule-2026.csv + defense layer",
+     "date": "2026-09-05",
+     "url": ""
+    }
+   ],
+   "id": "lac-playoff-sched",
+   "verdict": "Buy"
+  },
+  {
+   "phase": "inseason",
+   "name": "TEN",
+   "pos": "",
+   "team": "TEN",
+   "title": "TEN — soft fantasy-playoff schedule (Wk 15-17)",
+   "kind": "Schedule",
+   "tone": "buy",
+   "consensus": "",
+   "edge": "Wk 15-17 pass-coverage difficulty 1.7/4 vs IND, LV, PIT.",
+   "read": "Bump this team's pass-catchers up in the playoff weeks.",
+   "conviction": "Schedule",
+   "updated": "2026-09-05",
+   "profile": "",
+   "sched": [
+    {
+     "w": 15,
+     "opp": "IND",
+     "d": 2
+    },
+    {
+     "w": 16,
+     "opp": "LV",
+     "d": 1
+    },
+    {
+     "w": 17,
+     "opp": "PIT",
+     "d": 2
+    }
+   ],
+   "sched_avg": 1.7,
+   "sources": [
+    {
+     "name": "schedule-2026.csv + defense layer",
+     "date": "2026-09-05",
+     "url": ""
+    }
+   ],
+   "id": "ten-playoff-sched",
+   "verdict": "Buy"
+  }
+ ]
+}

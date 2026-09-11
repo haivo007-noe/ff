@@ -1,0 +1,433 @@
+{
+  "generated": "2026-09-05",
+  "schema_version": 1,
+  "_note": "SOURCE OF TRUTH for the draft board's Ideal-players tags. Edit THIS file, not the HTML: Board/draft-board.html embeds a verbatim copy of this document as the JS const IDEAL_BOARD_SEED (no fetch, so it works over file:// and GitHub Pages alike). At boot the board merges these tags into localStorage state.tags, and localStorage stays Hai's live in-draft scratch layer -- his hand-set values ALWAYS win. Mechanically: a JSON tag is applied only when the key is absent from state.tags, or when state.tags[key] is still exactly the value we last seeded (tracked in state.idealSeeded). Any value Hai set himself -- including a deliberate untag, which persists as null -- is left alone and never re-seeded. Notes are written only when there is no note, or when the existing note carries one of our own generated prefixes. tag:null means 'we previously seeded this key and are now retiring that call'; it clears the tag rather than leaving a stale one behind. Deliberately partial: ~30 entries, weighted to the Active edge board. Everything else is left untagged on purpose so Hai fills it in live.",
+  "tag_values": [
+    "target",
+    "value",
+    "sleeper",
+    "dnd",
+    null
+  ],
+  "sources": [
+    "seeded-from-edge-board",
+    "seeded-from-sidecar-flags",
+    "seeded-from-refresh-log"
+  ],
+  "counts": {
+    "target": 9,
+    "value": 4,
+    "sleeper": 5,
+    "dnd": 11,
+    "cleared": 1
+  },
+  "market_snapshot": "Data/players.csv as of 2026-09-05 (post volatile-field injury patch)",
+  "tags": {
+    "Garrett Wilson|WR": {
+      "tag": "target",
+      "label": "Target",
+      "note": "Verified Active edge (Rankings/Value-gaps): healthy alpha target share, and ADP still sits 9 spots behind his consensus rank (ADP 39 vs #30). Draft as a WR2 with WR1 upside a round after ADP. The QB leg of the original thesis was retracted 2026-07-26 as factually wrong; the price-and-role leg is what is still live.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 39,
+        "consensus": 30,
+        "espn": 29,
+        "pos_rank": "WR16"
+      },
+      "was_v1": "target"
+    },
+    "Colston Loveland|TE": {
+      "tag": "target",
+      "label": "Target",
+      "note": "Verified TE1-over-Bowers/McBride thesis and the cleanest still-open row on the board: consensus has held him at TE3/#34 for seven-plus weeks while ADP 40 and ESPN 42 both sit behind it. Take him as your TE at TE3 cost instead of paying up for Bowers or McBride.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 40,
+        "consensus": 34,
+        "espn": 42,
+        "pos_rank": "TE3"
+      },
+      "was_v1": "target"
+    },
+    "Jaylen Warren|RB": {
+      "tag": "target",
+      "label": "Target",
+      "note": "Role thesis, not a price one -- ADP 68 is actually 3 spots ahead of consensus #71. An 89% catch rate and the #2 pass-block grade among RBs keep him on every passing down behind Rodgers' 2.59s time-to-throw. You are paying for a PPR floor the 'committee back' label hides, not for touches.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 68,
+        "consensus": 71,
+        "espn": 77,
+        "pos_rank": "RB27"
+      },
+      "was_v1": "target"
+    },
+    "Harold Fannin Jr.|TE": {
+      "tag": "target",
+      "label": "Target",
+      "note": "Verified Usage/Role buy: HC Monken's own Brock Bowers comp with Njoku gone, roughly 22% projected target share, 72-731-6 as a rookie. The two-month health hold is retired -- the CSV cell reads full-go since 7/29 after groin surgery, 9 of 10 first-team reps. TE5 price (ADP 66 vs consensus #74) for a projected target leader.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 66,
+        "consensus": 74,
+        "espn": 69,
+        "pos_rank": "TE5"
+      },
+      "was_v1": "target"
+    },
+    "Emeka Egbuka|WR": {
+      "tag": "target",
+      "label": "Target",
+      "note": "Verified: Mike Evans left for SF vacating the alpha volume, and ~26% projected share under new OC Zac Robinson is top-15 WR volume at a WR21 price. Carry the caveat in the CSV cell -- the toe is 'headed in the right direction' per Bowles, which is progress, not resolution.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 42,
+        "consensus": 41,
+        "espn": 38,
+        "pos_rank": "WR21"
+      },
+      "was_v1": "target"
+    },
+    "A.J. Brown|WR": {
+      "tag": "target",
+      "label": "Target",
+      "note": "Buy-low on the PHI->NE trade: WR1 volume for Drake Maye at a price still anchored to the down-2025 Eagles role, and ADP 18 is still 6 behind consensus #12. But the edge board flagged this a demote candidate on 2026-08-26 (ADP 27->20 against flat consensus) -- the window is closing, so take him at ADP and do not reach past it.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 18,
+        "consensus": 12,
+        "espn": 20,
+        "pos_rank": "WR8"
+      },
+      "was_v1": "target"
+    },
+    "Jonathan Taylor|RB": {
+      "tag": "target",
+      "label": "Target",
+      "note": "Strengthened by a dated fact since the last seed: Daniel Jones was confirmed the IND Week-1 starter (Colts.com, 2026-09-03). Taylor's receiving role is a QB derivative -- 3.6 tgt/gm with Jones vs 1.3 with Richardson -- so pay the PPR projection, not the rushing-only one. ESPN #5 against consensus #10 means your room takes him early; plan for that.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 7,
+        "consensus": 10,
+        "espn": 5,
+        "pos_rank": "RB4"
+      },
+      "was_v1": "target"
+    },
+    "Chris Olave|WR": {
+      "tag": "target",
+      "label": "Target",
+      "note": "Promoted to Active 2026-09-04: the blood-clot issue is fully cleared ('full go' per Loomis) and a 4yr/$124M extension removed the contract-year overhang, and the market responded by moving exactly one spot (17->16). ADP 26 still carries a health discount the facts no longer support. Counter on file: the extension reportedly voids injury guarantees specifically for a clot recurrence.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 26,
+        "consensus": 16,
+        "espn": 24,
+        "pos_rank": "WR10"
+      }
+    },
+    "Jadarian Price|RB": {
+      "tag": "target",
+      "label": "Target",
+      "note": "Promoted to Active 2026-09-04, and the CSV cell was corrected 2026-09-05 to match: 'Healthy -- CONFIRMED SEA Wk1 lead back.' Charbonnet went to reserve/PUP on 8/30 (four-game minimum) and the position coach named Price the lead on the record. Role thesis, not price -- ADP 57 is already 8 spots ahead of consensus #65, so this is a 'take him, do not wait' rather than a discount.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 57,
+        "consensus": 65,
+        "espn": 58,
+        "pos_rank": "RB24"
+      }
+    },
+    "Brock Purdy|QB": {
+      "tag": "value",
+      "label": "Value",
+      "note": "Reclassified target->value 2026-09-05 because the case is entirely a price one: two independent Tier-1 rankings (NFL.com #9, PFF #10) against ADP 115 vs consensus #92 -- a 23-spot discount, the widest legitimate gap on the Active board once you exclude the structural late-round-QB artifact. Counter: Ricky Pearsall is out for the season and Kittle's Achilles is unresolved, so the receiver room is materially worse than the thesis assumed.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 115,
+        "consensus": 92,
+        "espn": 98,
+        "pos_rank": "QB11"
+      },
+      "was_v1": "target"
+    },
+    "Tucker Kraft|TE": {
+      "tag": "value",
+      "label": "Value",
+      "note": "Reclassified sleeper->value 2026-09-05: an ADP of 69 is not a late-round dart, and the edge board itself now says the remaining edge is the 'ESPN/room-specific discount'. ESPN ranks him #91 against consensus #77, so in your ESPN room he can plausibly last a round longer than market ADP implies. Health and role are both fully verified with no setback; fair at TE6 cost, a steal only if he slides.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 69,
+        "consensus": 77,
+        "espn": 91,
+        "pos_rank": "TE7"
+      },
+      "was_v1": "sleeper"
+    },
+    "Ladd McConkey|WR": {
+      "tag": "value",
+      "label": "Value",
+      "note": "Staging (Noted), and deliberately seeded value rather than target: the health leg is confirmed ('full go' for camp, his own words) but the second-analyst top-15-WR leg is still open, so what is actually actionable is the 11-spot price gap -- ADP 43 against consensus #32. Caveat straight from the 9/05 CSV cell: no September re-check exists, so this is five weeks of absence-of-bad-news.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 43,
+        "consensus": 32,
+        "espn": 40,
+        "pos_rank": "WR17"
+      }
+    },
+    "Josh Downs|WR": {
+      "tag": "value",
+      "label": "Value",
+      "note": "Pure price gap with a fresh mechanism behind it: ADP 119 against consensus #86 is a 33-spot discount, and the IND quarterback question that suppressed the whole passing game just resolved to Daniel Jones (Colts.com, 2026-09-03) -- the same resolution that prices Jonathan Taylor up. Sidecar carries research_flags.hype. ESPN #106 is also below consensus, so your own room is not the one bidding him up.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-sidecar-flags",
+      "market": {
+        "adp": 119,
+        "consensus": 86,
+        "espn": 106,
+        "pos_rank": "WR39"
+      }
+    },
+    "Chig Okonkwo|TE": {
+      "tag": "sleeper",
+      "label": "Sleeper",
+      "note": "Won the WAS move-TE role outright at a TE19/streamer price -- ADP 201, ESPN 219. Baltimore Banner 8/01: 'Daniels couldn't stop targeting him'; GM Peters on record that he functions as a fourth receiver. A starting role for a last-round pick. Still qualitative, though: no target-share number has been published and 'talk of camp' is the most over-fit signal in fantasy.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 201,
+        "consensus": 155,
+        "espn": 219,
+        "pos_rank": "TE19"
+      },
+      "was_v1": "sleeper"
+    },
+    "Matthew Golden|WR": {
+      "tag": "sleeper",
+      "label": "Sleeper",
+      "note": "Justified hype rather than empty: on-field pecking-order reporting (not teammate quotes) has him taking starting outside reps opposite Christian Watson with Doubs and Wicks both gone, roughly 131 vacated targets. ADP 127 for a starter in a re-opened target tree. Watch the room -- ESPN #103 is well above consensus #125, so he may not last to his market price in your league.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 127,
+        "consensus": 125,
+        "espn": 103,
+        "pos_rank": "WR51"
+      },
+      "was_v1": "sleeper"
+    },
+    "Dylan Sampson|RB": {
+      "tag": "sleeper",
+      "label": "Sleeper",
+      "note": "Locked passing-down role behind Judkins at effectively zero cost: ADP 170 against consensus #144. Jerome Ford left for WAS, Cleveland drafted no replacement, and in preseason Wk2 Judkins took the early-down and short-yardage work while Sampson led the team in receiving. Standalone PPR dart plus a genuine handcuff on the same ticket.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 170,
+        "consensus": 144,
+        "espn": 152,
+        "pos_rank": "RB47"
+      },
+      "was_v1": "sleeper"
+    },
+    "Tyler Allgeier|RB": {
+      "tag": "sleeper",
+      "label": "Sleeper",
+      "note": "Promoted to Active 2026-09-04 after the row's own falsifier failed twice: James Conner went to IR/designated-to-return at the 8/30 cutdown (out Weeks 1-4) and Jeremiyah Love is ~50/50 for Week 1, yet the field moved him only 135->134 in ten days. ADP 141, and ESPN is lower still at 150 -- the discount is bigger in your own room than in the market.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 141,
+        "consensus": 134,
+        "espn": 150,
+        "pos_rank": "RB43"
+      }
+    },
+    "Chris Rodriguez Jr.|RB": {
+      "tag": "sleeper",
+      "label": "Sleeper",
+      "note": "New from the 2026-09-05 volatile-field patch: LeQuint Allen is Doubtful (HC Coen, 9/02: 'I'd be pleasantly surprised if he was ready to go') and Rodriguez absorbs the passing-down work, with Coen specifically praising his pass protection. ADP 134 for the likely Week-1 JAX passing-down back. His own Week-1 clearance is INFERRED from ramp reporting, not stated anywhere -- treat it as a dart, not a plan.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-refresh-log",
+      "market": {
+        "adp": 134,
+        "consensus": 138,
+        "espn": 145,
+        "pos_rank": "RB45"
+      }
+    },
+    "Saquon Barkley|RB": {
+      "tag": "dnd",
+      "label": "Do Not Draft",
+      "note": "Verified Active fade at an RB6-8 price (ADP 14): 2025 YPC cratered 5.8->4.1 with a career-low 1.6 yards after contact, and A.J. Brown's box-lightening gravity left for New England, into a brand-new under-center wide-zone install he is still learning. Counter on file and it is a real one -- PHI's OL grades top-2 with all five starters back, which can absorb efficiency regression.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 14,
+        "consensus": 22,
+        "espn": 15,
+        "pos_rank": "RB8"
+      },
+      "was_v1": "dnd"
+    },
+    "Tony Pollard|RB": {
+      "tag": "dnd",
+      "label": "Do Not Draft",
+      "note": "Verified Active fade: Daboll publicly declared a two-back committee, Spears out-snapped him 59%-42.6% post-IR in 2025, and TEN drafted Nick Singleton in April. The 2026-09-05 run-lean refresh independently ranks TEN the league's worst structural run outlook (OL #32 plus trailing scripts). ADP 76 prices the departed 275-touch workload, and ESPN #68 means your room takes him even earlier than that.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 76,
+        "consensus": 81,
+        "espn": 68,
+        "pos_rank": "RB28"
+      },
+      "was_v1": "dnd"
+    },
+    "Cam Skattebo|RB": {
+      "tag": "dnd",
+      "label": "Do Not Draft",
+      "note": "Verified Active fade and the price has gotten worse: ADP 37 is now 18 spots ahead of consensus #55. A dead-last 11.6 PFF pass-block grade of 67 qualifiers means the passing-down role his price assumes is explicitly shared with Tyrone Tracy, and the 2026-09-05 run-lean refresh independently reads NYG as a genuine committee. He is also still Questionable off the Wk8-2025 fractured tibia and dislocated ankle.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 37,
+        "consensus": 55,
+        "espn": 45,
+        "pos_rank": "RB20"
+      },
+      "was_v1": "dnd"
+    },
+    "Ashton Jeanty|RB": {
+      "tag": "dnd",
+      "label": "Do Not Draft",
+      "note": "Availability fade, not a talent fade: ZERO practice reps in any capacity since the 8/23 ankle sprain as of 9/04, and ESPN ranks him #17 -- a second-round price in your room for a player who has not practiced. The edge board's separate receiving-bump thesis on him is already DEAD. Re-tag him if he practices before your pick lands; this is a Week-1-availability call, not a season-long one.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-refresh-log",
+      "market": {
+        "adp": 19,
+        "consensus": 28,
+        "espn": 17,
+        "pos_rank": "RB11"
+      }
+    },
+    "Josh Jacobs|RB": {
+      "tag": "dnd",
+      "label": "Do Not Draft",
+      "note": "The clearest ESPN-room trap on the board. He has been on the Commissioner's Exempt List since 8/30, INDEFINITE -- cannot practice, cannot play, not on the 53. Consensus has re-ranked him to #151; ESPN has NOT (still #81) and ADP is 70. Do not draft him; MarShawn Lloyd is the room's live claim, though the vault's own 9/05 pass retagged Lloyd 'unproven' (6 career carries).",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-refresh-log",
+      "market": {
+        "adp": 70,
+        "consensus": 151,
+        "espn": 81,
+        "pos_rank": "RB51"
+      }
+    },
+    "Jordyn Tyson|WR": {
+      "tag": "dnd",
+      "label": "Do Not Draft",
+      "note": "Caught by the 2026-09-05 injury patch: IR/designated-to-return since the 8/30 cutdown, right hamstring strained in the 8/13 joint practice, roughly two months per Rapoport. Out Weeks 1-4, first eligible Week 5 vs MIN. Until 9/05 the board was selling him as a draftable 'Questionable' at ADP 146 / ESPN 170, squarely inside a 12-team draft's live range.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-refresh-log",
+      "market": {
+        "adp": 146,
+        "consensus": 136,
+        "espn": 170,
+        "pos_rank": "WR55"
+      }
+    },
+    "Isiah Pacheco|RB": {
+      "tag": "dnd",
+      "label": "Do Not Draft",
+      "note": "Placed on IR 2026-09-01 (back injury plus a Grade-1 MCL), out a minimum of four games, GM non-committal beyond that. Consensus caught up to #192; ESPN did not (#144) and ADP is 159 -- inside a 12-team draft's 192 picks. Same ESPN-lag trap as Josh Jacobs: the number your leaguemates see has not absorbed the transaction.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-refresh-log",
+      "market": {
+        "adp": 159,
+        "consensus": 192,
+        "espn": 144,
+        "pos_rank": "RB59"
+      }
+    },
+    "Alvin Kamara|RB": {
+      "tag": "dnd",
+      "label": "Do Not Draft",
+      "note": "Sprained MCL on 8/18 with no practice since, absent again 9/02, listed Doubtful -- and the 2026-09-05 refresh confirms Travis Etienne as the NO Week-1 lead back and the only active-roster RB on the field. ADP 158 / ESPN 149 still prices a starter's tail. If you want New Orleans backfield exposure the price is on Etienne, not here.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-refresh-log",
+      "market": {
+        "adp": 158,
+        "consensus": 158,
+        "espn": 149,
+        "pos_rank": "RB52"
+      }
+    },
+    "Jeremiyah Love|RB": {
+      "tag": "dnd",
+      "label": "Do Not Draft",
+      "note": "Deliberately two-sided, and this note says so rather than pretending otherwise: the ROLE is confirmed (ARI lead back per camp reporting), the AVAILABILITY is not -- roughly 50/50 for Week 1 per Schefter, pub 2026-09-01. But ESPN ranks him #19, a second-round price, and a coin flip on Week 1 is not payable there. Read this as 'do not draft at ESPN's price', not 'never draft'. Tyler Allgeier is the cheap side of the same room and is seeded sleeper above.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-refresh-log",
+      "market": {
+        "adp": 30,
+        "consensus": 40,
+        "espn": 19,
+        "pos_rank": "RB14"
+      }
+    },
+    "Isaiah Likely|TE": {
+      "tag": "dnd",
+      "label": "Do Not Draft",
+      "note": "Staging, flagged NEGATIVE, and the gap widened rather than closed: 6 of 16 first-team snaps in the preseason opener, all in 11-personnel passing situations, with Theo Johnson taking the run-down work and Manhertz the heavy sets. The market is now 17 spots ahead of rank (ADP 105 vs consensus #118) on a committee tight end holding a 3yr/$40M starter's contract. The snap split still rests on a single outlet -- that is the one soft spot.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 105,
+        "consensus": 118,
+        "espn": 116,
+        "pos_rank": "TE12"
+      }
+    },
+    "Breece Hall|RB": {
+      "tag": "dnd",
+      "label": "Do Not Draft",
+      "note": "Two independent legs. (1) The 8/03 refresh resolved this row's long-running buy-vs-fade conflict toward the fade: the Jets' own practice report names Hall, Davis and Allen together, HC Glenn calls it a 'three-headed monster', and coverage carries Hall at 250 carries against his 279-touch 2025. (2) The CSV carries a right groin strain from the 8/17 practice. ADP 33 / ESPN 30 still prices the old workload. Note this is Staging, not Verified -- the least-confirmed DND in this seed.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-edge-board",
+      "market": {
+        "adp": 33,
+        "consensus": 39,
+        "espn": 30,
+        "pos_rank": "RB13"
+      }
+    },
+    "RJ Harvey|RB": {
+      "tag": null,
+      "label": "Cleared",
+      "note": "RETIRED from the 2026-08-30 seed, where he was tagged 'dnd'. The 2026-09-05 defense + RB-receiving refresh produced a dated fact the fade did not have: Harvey is Denver's clear receiving-down back, not a three-way tossup -- Sean Payton's own comp is 'Alvin Kamara lite'. The fade's core claim was 'he has not won the job'; in PPR he has won the job that matters, which makes ADP 85 roughly fair rather than a trap. The early-down case against him is unchanged (Dobbins listed RB1, rookie Coleman outproducing him in pads), so this is a clear-to-neutral and NOT a promotion to buy -- decide him live. Note the edge board's own demote trigger has still not fired: Harvey ADP 85, Dobbins ADP 89.",
+      "tagged_date": "2026-09-05",
+      "source": "seeded-from-refresh-log",
+      "market": {
+        "adp": 85,
+        "consensus": 91,
+        "espn": 108,
+        "pos_rank": "RB31"
+      },
+      "was_v1": "dnd"
+    }
+  }
+}

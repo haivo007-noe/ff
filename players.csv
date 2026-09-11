@@ -1,0 +1,528 @@
+Name,Position,NFL_Team,Consensus_Rank,Consensus_Pos_Rank,ESPN_Rank,ESPN_Pos_Rank,ADP,Bye_Week,Depth_Level,Injury_Status,Projection,Tier
+Ja'Marr Chase,WR,CIN,1,1,3,WR1,3.0,6,Starter,"Questionable — knee hyperextension 8/25; LIMITED in practice this week, HC says 'feels good' for Wk1 (NFL.com, pub 2026-09-01).",,1
+Jahmyr Gibbs,RB,DET,2,1,1,RB1,1.0,6,Starter,Healthy,,1
+Puka Nacua,WR,LAR,3,2,4,WR2,4.0,11,Starter,"Questionable — groin 'making good progress', McVay says on track for the opener (pub 2026-09-04).",,1
+Bijan Robinson,RB,ATL,4,2,2,RB2,2.0,11,Starter,Healthy,,1
+Jaxon Smith-Njigba,WR,SEA,5,3,6,WR3,6.0,11,Starter,Healthy,,1
+Amon-Ra St. Brown,WR,DET,6,4,8,WR4,8.0,6,Starter,Healthy,,1
+CeeDee Lamb,WR,DAL,7,5,10,WR5,10.0,14,Starter,Healthy,,2
+Justin Jefferson,WR,MIN,8,6,11,WR6,12.0,6,Starter,Healthy,,2
+Christian McCaffrey,RB,SF,9,3,7,RB4,5.0,8,Starter,"Healthy — RESOLVED: full practice, explosive; the August ramp-down/ramp-up was planned and explained by CMC himself (pub ~2026-09-03).",,2
+Jonathan Taylor,RB,IND,10,4,5,RB3,7.0,13,Starter,Healthy,,2
+Drake London,WR,ATL,11,7,18,WR7,20.0,11,Starter,"Healthy — STALE-2025 FLAG CLEARED: the bare 'Questionable' traced to a December 2025 PCL knee sprain (atlantafalcons.com's newest London injury-report entries are all 12/17/25-01/02/26, i.e. Wks 15-18 of last season). No 2026 injury reported — a falcons.com piece (pub 2026-09-02) carries a dated caption of London practicing Tue 2026-09-01 with no designation, and its injury storyline is the QB room, not him. ⚠ A WebSearch AI summary describing a Wk1 shoulder injury in a Falcons-Buccaneers loss was FABRICATED (that game has not been played) and is discarded.",,2
+A.J. Brown,WR,NE,12,8,20,WR8,18.0,11,Starter,Healthy,,2
+James Cook III,RB,BUF,13,5,9,RB5,9.0,7,Starter,Healthy,,3
+Nico Collins,WR,HOU,14,9,23,WR9,24.0,8,Starter,Healthy,,3
+Chase Brown,RB,CIN,15,6,14,RB8,13.0,6,Starter,Healthy,,3
+Chris Olave,WR,NO,16,10,24,WR10,26.0,8,Starter,Healthy,,3
+Trey McBride,TE,ARI,17,1,21,TE1,25.0,14,Starter,Healthy,,1
+George Pickens,WR,DAL,18,11,27,WR12,23.0,14,Backup,Healthy,,3
+Brock Bowers,TE,LV,19,2,22,TE2,22.0,13,Starter,Healthy,,1
+De'Von Achane,RB,MIA,20,7,12,RB6,11.0,6,Starter,"Questionable — calf injury since mid-August; returned to practice Mon 9/01 and HC Mike McDaniel expects him to play Wk1 vs IND barring a setback (NFL.com 'Around the NFL' roundup, pub 2026-09-01). Dated and trending up; no official designation exists yet because no Wk1 injury report is due until ~9/10.",,3
+DeVonta Smith,WR,PHI,21,12,34,WR15,32.0,10,Starter,"Healthy — RESOLVED: hamstring resolved, full practice participant.",,3
+Saquon Barkley,RB,PHI,22,8,15,RB9,14.0,10,Starter,Healthy,,3
+Malik Nabers,WR,NYG,23,13,33,WR14,27.0,8,Starter,"Questionable — made the 53 clean off rehab, but the PLAYER HIMSELF remains non-committal on Wk1 as of 9/01; Harbaugh says it is 'reasonable to assume' (Yahoo/AtoZ, pub 2026-09-01).",,4
+Kenneth Walker III,RB,KC,24,9,28,RB13,17.0,5,Starter,Healthy,,4
+Omarion Hampton,RB,LAC,25,10,13,RB7,15.0,7,Starter,Healthy,,4
+Josh Allen,QB,BUF,26,1,26,QB1,21.0,7,Starter,Healthy,,1
+Rashee Rice,WR,KC,27,14,25,WR11,31.0,5,Starter,"Healthy — NO 2026 suspension (six-game ban was served in 2025; do not re-open). May-2026 knee debridement ramp is COMPLETE: full 11-on-11 since early Aug, several consecutive full practices, TD from Mahomes late in camp. No preseason snaps by design. Expected full-go Wk1 vs DEN.",,4
+Ashton Jeanty,RB,LV,28,11,17,RB11,19.0,13,Starter,"Questionable — sprained ankle 8/23; ZERO practice reps in any capacity through 9/02 (side work only), no date given by Kubiak or GM Spytek, no IR move, 3 RBs on the 53 (Athlon/Yahoo, pub 2026-09-03).",,4
+Zay Flowers,WR,BAL,29,15,37,WR17,35.0,13,Starter,"Healthy — returned to practice 9/03 after ~2 weeks out (quad) (NFL.com, pub 2026-09-03).",,4
+Garrett Wilson,WR,NYJ,30,16,29,WR13,39.0,13,Starter,Healthy,,4
+Lamar Jackson,QB,BAL,31,2,43,QB2,36.0,13,Starter,Healthy,,1
+Ladd McConkey,WR,LAC,32,17,40,WR19,43.0,7,Starter,"Healthy — offseason hamstring strain at June OTAs; declared himself 'full go' for the start of training camp (NBC Sports player-news, pub 2026-07-28, corroborated by CBS Sports). ⚠ NO September re-check found: this is ~5 weeks of absence-of-bad-news, not a fresh positive confirmation.",,4
+Jaylen Waddle,WR,DEN,33,18,48,WR22,46.0,10,Starter,"Healthy — RESOLVED: leg tightness fully resolved, back to full practice.",,4
+Colston Loveland,TE,CHI,34,3,42,TE3,40.0,10,Starter,Healthy,,2
+Tetairoa McMillan,WR,CAR,35,19,36,WR16,38.0,5,Starter,Healthy,,4
+Tee Higgins,WR,CIN,36,20,41,WR20,41.0,6,Backup,"Questionable — NEW heel contusion, 'not a major concern' per HC (NFL.com, pub 2026-09-01).",,5
+Drake Maye,QB,NE,37,3,56,QB4,52.0,11,Starter,Healthy,,2
+Derrick Henry,RB,BAL,38,12,16,RB10,16.0,13,Starter,Healthy,,5
+Breece Hall,RB,NYJ,39,13,30,RB14,33.0,13,Starter,"Questionable — right groin strain suffered 8/17 practice; HC Aaron Glenn: on track to play Week 1 vs Titans (TWSN/SleeperNFL, pub 2026-08-24)",,5
+Jeremiyah Love,RB,ARI,40,14,19,RB12,30.0,14,Starter,Questionable — ankle; ~50/50 for Wk1 per Schefter (pub 2026-09-01). Tyler Allgeier next man up.,,5
+Emeka Egbuka,WR,TB,41,21,38,WR18,42.0,10,Starter,"Healthy — toe 'headed in the right direction' per Bowles (NFL.com, pub 2026-09-02).",,5
+Kyren Williams,RB,LAR,42,15,32,RB16,29.0,11,Starter,Healthy,,5
+Javonte Williams,RB,DAL,43,16,31,RB15,28.0,14,Starter,Healthy,,5
+Joe Burrow,QB,CIN,44,4,64,QB5,54.0,6,Starter,Healthy,,2
+Travis Etienne Jr.,RB,NO,45,17,35,RB17,34.0,8,Starter,"Healthy — CONFIRMED NO Wk1 lead back; only active-roster RB on the field 9/02 (Louisiana Sports, on-site, pub 2026-09-02).",,5
+Luther Burden III,WR,CHI,46,22,59,WR27,53.0,10,Backup,"Healthy — practiced 9/01, 'firmly on track' for Wk1 (SI.com, pub 2026-09-01).",,5
+Terry McLaurin,WR,WAS,47,23,50,WR23,55.0,7,Starter,Healthy,,5
+Davante Adams,WR,LAR,48,24,44,WR21,50.0,11,Backup,Healthy,,5
+DJ Moore,WR,BUF,49,25,51,WR24,48.0,7,Starter,Healthy,,5
+D'Andre Swift,RB,CHI,50,18,46,RB20,44.0,10,Starter,"Questionable — minor: left practice Thu 2026-09-03 in discomfort (reported as a cramp, some coverage quad-related), expected back before the 9/13 opener vs CAR (Chicago Sun-Times practice report, pub 2026-09-03, dateline in URL; corroborated by an NBC Sports player-news item the same day).",,5
+Jameson Williams,WR,DET,51,26,53,WR25,58.0,6,Backup,Healthy,,5
+Tyler Warren,TE,IND,52,4,52,TE4,51.0,13,Starter,Healthy,,3
+Bucky Irving,RB,TB,53,19,49,RB22,47.0,10,Starter,"Healthy — confirmed full-go for camp, shoulder fully healed, no restrictor plates, no ramp-up period, first-team reps (Buccaneers.com/Todd Bowles; BVM Sports, pub 2026-07-22)",,6
+Christian Watson,WR,GB,54,27,74,WR34,65.0,11,Starter,Healthy,,6
+Cam Skattebo,RB,NYG,55,20,45,RB19,37.0,8,Starter,"Questionable, trending to play — rehabbing the Wk8 2025 fractured tibia / dislocated ankle; told a Giants Town Hall 'I'm a little ways out. Not too far, but I'll be ready to go. Week 1, I'll be ready to go' (NFL.com, Kevin Patra, 'Around the NFL'). ⚠ PUB DATE NOT VERIFIED — the page carries no stamp; its Related Content chain places it late Aug / very early Sept 2026. Consistent with the 8/03 clean-ankle clearance already on the edge board (Schoen: 'he'll be ready to go today').",,6
+Jalen Hurts,QB,PHI,56,5,66,QB6,62.0,10,Starter,Healthy,,3
+Jayden Daniels,QB,WAS,57,6,55,QB3,61.0,7,Starter,Healthy,,3
+Rome Odunze,WR,CHI,58,28,54,WR26,59.0,10,Starter,Healthy,,6
+Parker Washington,WR,JAC,59,29,76,WR35,63.0,7,Backup,"Healthy — day-to-day w/ undisclosed injury ~8/13-8/22, returned to practice 8/23, no Week 1 concern (News4Jax, pub 2026-08-23)",,6
+David Montgomery,RB,HOU,60,21,57,RB23,49.0,8,Starter,Healthy,,6
+Mike Evans,WR,SF,61,30,62,WR29,67.0,8,Starter,Healthy,,6
+Quinshon Judkins,RB,CLE,62,22,39,RB18,45.0,11,Starter,Healthy,,6
+Caleb Williams,QB,CHI,63,7,87,QB10,78.0,10,Starter,Healthy,,3
+Bhayshul Tuten,RB,JAC,64,23,47,RB21,56.0,7,Starter,Healthy,,6
+Jadarian Price,RB,SEA,65,24,58,RB24,57.0,11,Starter,"Healthy — CONFIRMED SEA Wk1 lead back. The 8/13 lower-body soreness this cell used to carry is superseded: returned to practice 8/18 (Macdonald: 'He's just like any other return to play guy. He's on his return plan. It's good to see him out there' — mynorthwest.com / Seattle Sports, Cameron Van Til, pub 2026-08-18, verified), encouraging 8/21 joint practice vs TEN (11-on-11 reps, over-the-shoulder catch), then RESTED — not scratched — for the final two preseason games; Charbonnet on Reserve/PUP since 8/30 (min. 4 games). Stale cell reconciled 2026-09-05.",,6
+Carnell Tate,WR,TEN,66,31,61,WR28,75.0,9,Starter,Healthy,,6
+Marvin Harrison Jr.,WR,ARI,67,32,63,WR30,72.0,14,Starter,Healthy,,6
+TreVeyon Henderson,RB,NE,68,25,60,RB25,60.0,11,Starter,Healthy,,6
+Justin Herbert,QB,LAC,69,8,84,QB9,83.0,7,Starter,Healthy,,3
+Rhamondre Stevenson,RB,NE,70,26,65,RB26,64.0,11,Backup,Healthy,,6
+Jaylen Warren,RB,PIT,71,27,77,RB28,68.0,9,Starter,Healthy,,6
+Chris Godwin Jr.,WR,TB,72,33,104,WR43,87.0,10,Backup,Healthy,,6
+Trevor Lawrence,QB,JAC,73,9,94,QB11,88.0,7,Starter,Healthy,,3
+Harold Fannin Jr.,TE,CLE,74,5,69,TE5,66.0,11,Starter,Healthy — full-go since 7/29 (groin surgery cleared); 9 of 10 first-team snaps preseason Wk1,,4
+Dak Prescott,QB,DAL,75,10,75,QB7,74.0,14,Starter,"Healthy — no 2026 injury reported. The only 2026 item is minor knee soreness/fluid at mandatory minicamp: missed Day 1 (6/16), returned Day 2, Schottenheimer 'Nothing we're concerned about' (pub 2026-06-20, verified). A Cowboys 2026 injury tracker last updated 2026-08-23 does not list him, and 8/31 roster-cut coverage has him as clear QB1 with no injury mention (pub 2026-08-31, verified). ⚠ A 'limited in Wednesday's practice / hip' item was DISCARDED as stale — it cites a 'Monday night victory over the Raiders,' a game not on Dallas' 2026 schedule.",,4
+Kyle Pitts Sr.,TE,ATL,76,6,70,TE6,71.0,11,Starter,Healthy,,4
+Tucker Kraft,TE,GB,77,7,91,TE9,69.0,11,Starter,"Healthy — FULL GO. Full participant incl. pads and contact in the 8/26 joint practice vs ARI ('not doing the rep count stuff anymore'). On the 53, no reserve tag. SUPERSEDES the 8/14 report of a midseason snap count.",,4
+DK Metcalf,WR,PIT,78,34,71,WR32,80.0,9,Starter,Healthy,,7
+Brian Thomas Jr.,WR,JAC,79,35,96,WR41,84.0,7,Starter,"Healthy — shoulder scare on a TD catch resolved, full-go 9/01-9/02 (NBC Sports, pub 2026-09-02).",,7
+Michael Pittman Jr.,WR,PIT,80,36,67,WR31,94.0,9,Backup,Healthy,,7
+Tony Pollard,RB,TEN,81,28,68,RB27,76.0,9,Starter,Healthy,,7
+Wan'Dale Robinson,WR,TEN,82,37,82,WR36,103.0,9,Backup,Healthy,,7
+Courtland Sutton,WR,DEN,83,38,73,WR33,77.0,10,Backup,Healthy,,7
+Rico Dowdle,RB,PIT,84,29,88,RB33,79.0,9,Backup,"Nagging injury (unspecified, soft-tissue type) — DNP preseason Wk1 (Dulac)",,7
+Sam LaPorta,TE,DET,85,8,78,TE8,73.0,6,Starter,Healthy,,4
+Josh Downs,WR,IND,86,39,106,WR45,119.0,13,Backup,Healthy,,7
+Michael Wilson,WR,ARI,87,40,85,WR37,86.0,14,Backup,Healthy,,7
+Jonathon Brooks,RB,CAR,88,30,83,RB31,81.0,5,Starter,Healthy,,7
+Quentin Johnston,WR,LAC,89,41,117,WR48,104.0,7,Backup,Healthy,,7
+Stefon Diggs,WR,WAS,90,42,89,WR38,98.0,7,Unknown,Healthy,,7
+RJ Harvey,RB,DEN,91,31,108,RB39,85.0,10,Backup,Healthy,,7
+Brock Purdy,QB,SF,92,11,98,QB12,115.0,8,Starter,Healthy,,4
+George Kittle,TE,SF,93,9,72,TE7,82.0,8,Starter,"Questionable — TRENDING UP: first team-drill reps 8/31 per GM John Lynch (pub 2026-09-01), two positive practice days by 9/02, TRAVELED to Melbourne 9/03. No official designation yet.",,4
+Kenny Gainwell,RB,TB,94,32,79,RB29,93.0,10,Backup,Healthy,,7
+Bo Nix,QB,DEN,95,12,112,QB14,114.0,10,Starter,"Healthy — no 2026 injury reported. The ankle fracture was the 2026-01-17 Divisional Round vs BUF (NOT the AFC Championship — Stidham started that), with two surgeries including an April clean-up (Yahoo/AtoZ, byline 2026-04-29); full unrestricted participant from Day 1 of camp and played preseason with no setback: 'I feel great. I feel normal. Nothing's holding me back.' ⚠ WEAKEST-SOURCED clearance of this pass — no September-dated page was retrievable, and denverbroncos.com's injury archive's newest Nix entry is a stale Wk13 2025 report.",,4
+Travis Kelce,TE,KC,96,10,102,TE10,92.0,5,Starter,Healthy,,4
+Jaxson Dart,QB,NYG,97,13,80,QB8,96.0,8,Starter,Healthy,,4
+Chuba Hubbard,RB,CAR,98,33,92,RB34,90.0,5,Starter,"Hamstring — week-to-week per Canales, team expects Wk1 return",,7
+Alec Pierce,WR,IND,99,43,90,WR39,91.0,13,Starter,Healthy — CLEARED: full participant in team period 9/03 per Steichen (pub 2026-09-03). Clean ramp since the 8/27 PUP activation.,,7
+J.K. Dobbins,RB,DEN,100,34,100,RB37,89.0,10,Starter,"Soft tissue — left practice 8/10, returned 8/11, DNP preseason Wk1",,8
+Jayden Reed,WR,GB,101,44,119,WR49,121.0,11,Backup,Healthy,,8
+Patrick Mahomes II,QB,KC,102,14,109,QB13,109.0,5,Starter,"Healthy — full first-team reps in camp, cleared for contact, no injury tag; ‘extremely confident’ for Week 1 vs Denver, DNP preseason by coach's choice not injury (ClutchPoints/Sam McDowell, pub 2026-08-23)",,5
+Jared Goff,QB,DET,103,15,132,QB18,126.0,6,Starter,Healthy,,5
+Matthew Stafford,QB,LAR,104,16,113,QB15,97.0,11,Starter,Healthy,,5
+Jordan Addison,WR,MIN,105,45,105,WR44,107.0,6,Backup,Healthy,,8
+Jakobi Meyers,WR,JAC,106,46,93,WR40,123.0,7,Rotational,Healthy,,8
+KC Concepcion,WR,CLE,107,47,135,WR55,125.0,11,Starter,Healthy,,8
+Makai Lemon,WR,PHI,108,48,115,WR47,113.0,10,Backup,Healthy,,8
+Blake Corum,RB,LAR,109,35,111,RB40,99.0,11,Backup,Healthy,,8
+MarShawn Lloyd,RB,GB,110,36,86,RB32,100.0,11,Starter,"Questionable — PRESUMED lead GB back with Jacobs on the exempt list, but NOT team-announced; NFL.com frames it as GB needing 'larger contributions from Lloyd, Brooks and Johnson'. LaFleur has been cautious/gradual with him (chronic hamstring, missed all of 2025). Committee risk from Kaleb Johnson (traded in from PIT 8/30) and Chris Brooks. Fragile RB3/flex, not a bellcow.",,8
+Dalton Kincaid,TE,BUF,111,11,126,TE15,122.0,7,Starter,Healthy,,5
+Rachaad White,RB,WAS,112,37,99,RB36,118.0,7,Backup,"DNP preseason Wk1, NOT on the rested list — reason NOT REPORTED",,8
+Jordan Mason,RB,MIN,113,38,130,RB43,102.0,6,Starter,Healthy,,8
+Kyler Murray,QB,MIN,114,17,122,QB16,137.0,6,Starter,Healthy,,5
+Jacory Croskey-Merritt,RB,WAS,115,39,118,RB41,110.0,7,Starter,"Healthy — returned to practice 9/01, groin resolved; presumptive WAS RB1 ahead of Rachaad White and Kaytron Allen.",,8
+Jordan Love,QB,GB,116,18,159,QB21,147.0,11,Starter,Healthy,,5
+Aaron Jones Sr.,RB,MIN,117,40,95,RB35,120.0,6,Backup,Healthy,,8
+Isaiah Likely,TE,NYG,118,12,116,TE13,105.0,8,Starter,Healthy,,5
+Baker Mayfield,QB,TB,119,19,142,QB19,140.0,10,Starter,Healthy,,5
+Jake Ferguson,TE,DAL,120,13,114,TE12,117.0,14,Starter,Healthy,,5
+Dallas Goedert,TE,PHI,121,14,107,TE11,112.0,10,Starter,Healthy,,5
+Kyle Monangai,RB,CHI,122,41,101,RB38,106.0,10,Backup,"Questionable — hyperextended right knee in an 11-on-11 session 2026-08-16; HC Ben Johnson called him week-to-week and CHI did NOT place him on IR at cutdowns. As of 9/02 not yet practicing but progressed to running (Adam Hoge/CHGO), with D'Andre Swift saying '[Monangai] looks good to me' (SI.com Bears On SI, Mike Moraitis, pub 2026-09-02, verified). Wk1 in real doubt but trending slightly positive; Chicago's first official Wk1 injury report isn't due until ~9/09.",,8
+De'Zhaun Stribling,WR,SF,123,49,121,WR50,111.0,8,Rotational,Healthy,,8
+Khalil Shakir,WR,BUF,124,50,110,WR46,148.0,7,Backup,Healthy,,8
+Matthew Golden,WR,GB,125,51,103,WR42,127.0,11,Rotational,Healthy,,8
+Tyler Shough,QB,NO,126,20,129,QB17,154.0,8,Starter,Healthy,,5
+Jalen Coker,WR,CAR,127,52,125,WR53,142.0,5,Backup,Healthy,,8
+Juwan Johnson,TE,NO,128,15,148,TE16,149.0,8,Starter,Healthy,,5
+Romeo Doubs,WR,NE,129,53,124,WR52,129.0,11,Backup,Healthy,,8
+Malik Willis,QB,MIA,130,21,169,QB22,168.0,6,Starter,Healthy,,5
+Xavier Worthy,WR,KC,131,54,123,WR51,130.0,5,Backup,"Healthy — sprained (not torn) right shoulder in 8/1 practice, same shoulder as Jan-2026 labrum surgery; DNP into preseason Wk1, returned to practice 8/10, no setback since, active through camp (ClutchPoints, pub 2026-08-04 & 2026-08-23)",,8
+Mark Andrews,TE,BAL,132,16,120,TE14,128.0,13,Starter,Healthy,,6
+Woody Marks,RB,HOU,133,42,133,RB44,131.0,8,Backup,Healthy,,9
+Tyler Allgeier,RB,ARI,134,43,150,RB50,141.0,14,Starter,Healthy,,9
+Sam Darnold,QB,SEA,135,22,203,QB24,184.0,11,Starter,Healthy,,6
+Jordyn Tyson,WR,NO,136,55,170,WR66,146.0,8,Unknown,"IR — IR/designated-to-return: right hamstring strain in the 8/13 joint practice vs JAX (Rapoport reported ~2 months out, pub 2026-08-18); NO placed him on IR-DTR at the 8/30 cut to 53 alongside LB Jaylan Ford. OUT Wks 1-4, NOT eligible to return until Wk5 vs MIN (NBC Sports player-news + CBS Sports + PFT + Yahoo, pub 2026-08-30). ⚠ Missed by the 8/31 all-32 cutdown sweep, which checked his TEAM and not his transaction.",,9
+Tyjae Spears,RB,TEN,137,44,127,RB42,143.0,9,Backup,Healthy,,9
+Chris Rodriguez Jr.,RB,JAC,138,45,145,RB48,134.0,7,Backup,"Healthy — INFERRED, not stated: missed the whole offseason program after left-foot surgery (injured Day 1 of the program), fully medically cleared and deliberately ramped, taking 11-on-11 snaps by late August; HC Liam Coen 9/02: 'I think C-Rod's done a great job in pass protection specifically' (SI.com Jaguars On SI, John Shipley, pub 2026-09-02, verified). ⚠ No explicit 'cleared for Wk1' statement exists — the read is an active-rotation description with no setback. With LeQuint Allen Jr. likely out, he absorbs the work.",,9
+C.J. Stroud,QB,HOU,139,23,202,QB23,181.0,8,Starter,Healthy,,6
+Deebo Samuel Sr.,WR,SF,140,56,131,WR54,135.0,8,Unknown,Healthy,,9
+Rashid Shaheed,WR,SEA,141,57,162,WR59,144.0,11,Backup,Healthy,,9
+Daniel Jones,QB,IND,142,24,147,QB20,178.0,13,Starter,"Healthy — recovering from the Wk14 2025 torn Achilles; has taken nearly every first-team camp rep and feels '100 percent,' missing only live-game contact: 'Completed each phase of the process. Last part is playing in a game, full-speed contact game. But I feel like I've simulated all of that stuff with the exception of the hits' (Colts.com media-availability video titled '...2026 Media availability, September 3', pub 2026-09-03). Official team source, high confidence.",,6
+Jonah Coleman,RB,DEN,143,46,141,RB46,152.0,10,Backup,Healthy,,9
+Dylan Sampson,RB,CLE,144,47,152,RB52,170.0,11,Backup,Healthy,,9
+Keaton Mitchell,RB,LAC,145,48,155,RB53,161.0,7,Backup,Healthy,,9
+Mike Washington Jr.,RB,LV,146,49,151,RB51,138.0,13,Backup,Healthy,,9
+Denzel Boston,WR,CLE,147,58,163,WR60,172.0,11,Starter,Healthy,,9
+Zach Charbonnet,RB,SEA,148,50,139,RB45,145.0,11,Backup,"IR — RESERVE/PUP at the 8/30 cutdown (ACL 1/17/26, surgery 2/20). OUT Wks 1-4 minimum, earliest return Wk5; a Feb ACL repair points to a realistic ~November return. NO team-stated return date. SEA backfield Wks1-4 = Price/Holani/E.Wilson.",,9
+Cam Ward,QB,TEN,149,25,222,QB26,231.0,9,Starter,Healthy,,6
+Tre Tucker,WR,LV,150,59,171,WR67,173.0,13,Starter,Healthy,,9
+Josh Jacobs,RB,GB,151,51,81,RB30,70.0,11,Unknown,"Out — COMMISSIONER'S EXEMPT LIST 8/30, INDEFINITE: cannot practice, cannot play, still paid; not on the 53. Charged 8/27 by the Brown County DA with two MISDEMEANORS (battery, criminal damage to property) — the five booking counts incl. felony strangulation were NOT filed. Next court date 11/17/26. NO NFL discipline announced (exempt list is administrative, not a determination). UNDRAFTABLE at ADP; late-round stash only.",,9
+Brenton Strange,TE,JAC,152,17,198,TE21,157.0,7,Starter,Healthy,,6
+Houston Texans,DST,HOU,153,1,138,DST1,101.0,8,Unknown,Healthy,,1
+Dalton Schultz,TE,HOU,154,18,210,TE23,175.0,8,Starter,Healthy,,6
+Chig Okonkwo,TE,WAS,155,19,219,TE25,201.0,7,Starter,Healthy,,6
+Hunter Henry,TE,NE,156,20,153,TE17,156.0,11,Starter,Healthy,,6
+Adonai Mitchell,WR,NYJ,157,60,166,WR63,235.0,13,Rotational,Healthy,,9
+Alvin Kamara,RB,NO,158,52,149,RB49,158.0,8,Backup,"Doubtful — sprained MCL 8/18; NO practice since ~8/18, absent again 9/02, NO injury designation and still on the 53 (Louisiana Sports beat, on-site, pub 2026-09-02). Mechanically invisible: no roster/API source can flag this.",,9
+Bryce Young,QB,CAR,159,26,221,QB25,212.0,5,Starter,Healthy,,6
+Tank Bigsby,RB,PHI,160,53,174,RB57,169.0,10,Backup,"Healthy — PHI kept only 3 RBs and released Dameon Pierce; now the clear, uncontested Saquon Barkley handcuff.",,9
+Kayshon Boutte,WR,HOU,161,61,213,WR81,197.0,8,Rotational,Healthy,,9
+Jerry Jeudy,WR,CLE,162,62,164,WR61,179.0,11,Rotational,Questionable,,9
+Tyrone Tracy Jr.,RB,NYG,163,54,246,RB74,192.0,8,Backup,"Questionable — neck, designation dated 2026-08-29 (CBS NYG injury table, current through 2026-09-01). This is the Giants RB designation that had been sitting on Najee Harris's row.",,10
+Denver Broncos,DST,DEN,164,2,140,DST2,116.0,10,Unknown,Healthy,,2
+Los Angeles Rams,DST,LAR,165,3,184,DST5,108.0,11,Unknown,Healthy,,2
+Jalen McMillan,WR,TB,166,63,136,WR56,206.0,10,Rotational,Healthy,,10
+Seattle Seahawks,DST,SEA,167,4,183,DST4,124.0,11,Unknown,Healthy,,2
+Braelon Allen,RB,NYJ,168,55,173,RB56,200.0,13,Backup,Healthy,,10
+Jauan Jennings,WR,MIN,169,64,204,WR74,205.0,6,Rotational,Healthy,,10
+Dontayvion Wicks,WR,PHI,170,65,177,WR70,257.0,10,Rotational,Healthy,,10
+Omar Cooper Jr.,WR,NYJ,171,66,212,WR80,225.0,13,Backup,Healthy,,10
+Brian Robinson Jr.,RB,ATL,172,56,160,RB55,165.0,11,Backup,Healthy,,10
+Emmett Johnson,RB,KC,173,57,241,RB69,185.0,5,Rotational,Healthy,,10
+Tre' Harris,WR,LAC,174,67,207,WR77,238.0,7,Rotational,Healthy,,10
+Philadelphia Eagles,DST,PHI,175,5,186,DST7,139.0,10,Unknown,Healthy,,2
+Pat Bryant,WR,DEN,176,68,263,WR95,278.0,10,Rotational,Healthy,,10
+Ryan Flournoy,WR,DAL,177,69,208,WR78,232.0,14,Rotational,Healthy,,10
+T.J. Hockenson,TE,MIN,178,21,154,TE18,167.0,6,Starter,Healthy,,7
+Ray Davis,RB,BUF,179,58,180,RB58,229.0,7,Rotational,Healthy,,10
+Malik Washington,WR,MIA,180,70,214,WR82,223.0,6,Backup,Healthy,,10
+Brandon Aubrey,K,DAL,181,1,97,K1,95.0,14,Starter,Healthy,,1
+Minnesota Vikings,DST,MIN,182,6,299,DST21,162.0,6,Unknown,Healthy,,2
+Pittsburgh Steelers,DST,PIT,183,7,182,DST3,151.0,9,Unknown,Healthy,,2
+Jalen Nailor,WR,LV,184,71,172,WR68,202.0,13,Backup,Healthy,,10
+New England Patriots,DST,NE,185,8,188,DST9,153.0,11,Unknown,Healthy,,2
+Jacksonville Jaguars,DST,JAC,186,9,255,DST15,166.0,7,Unknown,Healthy,,2
+Keenan Allen,WR,IND,187,72,156,WR58,163.0,13,Unknown,Healthy,,10
+Jacoby Brissett,QB,ARI,188,27,223,QB27,221.0,14,Starter,Healthy,,7
+Ka'imi Fairbairn,K,HOU,189,2,143,K4,132.0,8,Starter,Healthy,,1
+Cameron Dicker,K,LAC,190,3,128,K2,133.0,7,Starter,Healthy,,1
+Los Angeles Chargers,DST,LAC,191,10,191,DST12,171.0,7,Unknown,Healthy,,2
+Isiah Pacheco,RB,DET,192,59,144,RB47,159.0,6,Unknown,"IR — placed 9/01 (back injury + Grade-1 MCL). Out minimum 4 games, earliest return Wk5; GM Holmes non-committal on a season return (Lions.com wire + Detroit News/ESPN, pub 2026-09-01/02). Sione Vaki next behind Gibbs.",,10
+Baltimore Ravens,DST,BAL,193,11,185,DST6,155.0,13,Unknown,Healthy,,2
+Kimani Vidal,RB,LAC,194,60,215,RB62,242.0,7,Rotational,Healthy,,10
+Travis Hunter,WR,JAC,195,73,167,WR64,219.0,7,Rotational,Questionable,,10
+Terrance Ferguson,TE,LAR,196,22,161,TE19,199.0,11,Starter,Healthy,,7
+Jaylin Noel,WR,HOU,197,74,179,WR72,277.0,8,Rotational,Healthy,,10
+Cam Little,K,JAC,198,4,193,K8,150.0,7,Starter,Healthy,,1
+Jason Myers,K,SEA,199,5,134,K3,136.0,11,Starter,Healthy,,1
+AJ Barner,TE,SEA,200,23,220,TE26,209.0,11,Starter,"Healthy — NFL.com official Week 1 injury report lists SEA as 'No Injuries Reported' for the Wed 9/09 game vs NE (nfl.com/injuries/league/2026/reg1, fetched 2026-09-05). Prior Questionable tag was unsupported: the only 'questionable/calf' sourcing is from Nov 2025 (last season) resurfacing as undated evergreen URLs. Seahawks.com (Aug 2026) separately has him feeling good after offseason surgeries.",,7
+Calvin Ridley,WR,TEN,201,75,165,WR62,193.0,9,Rotational,Healthy,,10
+Aaron Rodgers,QB,PIT,202,28,270,QB30,236.0,9,Starter,Healthy,,7
+Sean Tucker,RB,TB,203,61,247,RB75,248.0,10,Rotational,Healthy,,11
+Eddy Pineiro,K,SF,204,6,158,K6,180.0,8,Starter,Healthy,,2
+Ja'Kobi Lane,WR,BAL,205,76,201,WR73,176.0,13,Rotational,Healthy,,11
+Kansas City Chiefs,DST,KC,206,12,190,DST11,191.0,5,Unknown,Healthy,,3
+Gunnar Helm,TE,TEN,207,24,218,TE24,279.0,9,Starter,Healthy,,8
+Green Bay Packers,DST,GB,208,13,238,DST14,190.0,11,Unknown,Healthy,,3
+Tyler Loop,K,BAL,209,7,195,K10,182.0,13,Starter,Healthy,,2
+Kenyon Sadiq,TE,NYJ,210,25,175,TE20,174.0,13,Starter,"Hernia-surgery setback — still not playing, hopeful Wk1",,8
+Nicholas Singleton,RB,TEN,211,62,267,RB82,239.0,9,Rotational,Healthy,,11
+Oronde Gadsden II,TE,LAC,212,26,291,TE32,220.0,7,Starter,Healthy,,8
+Geno Smith,QB,NYJ,213,29,268,QB28,382.0,13,Starter,Healthy,,8
+Jake Bates,K,DET,214,8,194,K9,160.0,6,Starter,Healthy,,2
+Malachi Fields,WR,NYG,215,77,205,WR75,228.0,8,Rotational,Healthy,,11
+Isaac TeSlaa,WR,DET,216,78,262,WR94,240.0,6,Starter,Healthy — DET kept only 4 WRs and Kendrick Law went to IR; WR3 role is now uncontested.,,11
+Cooper Kupp,WR,SEA,217,79,226,WR83,210.0,11,Rotational,Healthy,,11
+Rashod Bateman,WR,BAL,218,80,176,WR69,281.0,13,Backup,"Questionable — PCP review still OPEN, no discipline announced; GM Eric DeCosta 9/02 says he does not know when the NFL will finalize it and BAL is preparing for the possibility of being WITHOUT him to start the season (ClutchPoints/Hensley-ESPN, pub 2026-09-02). Current practice status NOT REPORTED.",,11
+Cairo Santos,K,CHI,219,9,196,K11,194.0,10,Starter,Healthy,,2
+Chris Bell,WR,MIA,220,81,233,WR88,245.0,6,Rotational,"Healthy — cleared NFI and MADE the MIA initial 53 (7 WRs kept). No forced absence. Depth WR, not a starter.",,11
+Kaelon Black,RB,SF,221,63,200,RB61,196.0,8,Rotational,Healthy,,11
+Zachariah Branch,WR,ATL,222,82,211,WR79,267.0,11,Backup,Healthy,,11
+Evan McPherson,K,CIN,223,10,257,K15,186.0,6,Starter,Healthy,,2
+James Conner,RB,ARI,224,64,,,273.0,14,Rotational,"IR — IR/designated-to-return at the 8/30 cutdown (foot). OUT Wks 1-4 minimum, eligible Wk5 (10/11 vs DET). Jeremiyah Love is the lead back, Allgeier early-down/goal-line.",,11
+Detroit Lions,DST,DET,225,14,189,DST10,183.0,6,Unknown,Healthy,,3
+Pat Freiermuth,TE,PIT,226,27,209,TE22,246.0,9,Starter,Healthy,,8
+Andy Borregales,K,NE,227,11,,,214.0,11,Starter,Healthy,,2
+Darnell Mooney,WR,NYG,228,83,294,WR103,301.0,8,Rotational,Healthy,,11
+Troy Franklin,WR,DEN,229,84,,,291.0,10,Rotational,Healthy,,11
+Harrison Mevis,K,LAR,230,12,146,K5,164.0,11,Starter,Healthy,,2
+Germie Bernard,WR,PIT,231,85,206,WR76,284.0,9,Rotational,Healthy,,11
+Chase McLaughlin,K,TB,232,13,240,K14,217.0,10,Starter,Healthy,,2
+Buffalo Bills,DST,BUF,233,15,,,189.0,7,Unknown,Healthy,,3
+Tank Dell,WR,HOU,234,86,137,WR57,204.0,8,Rotational,"IR — IR/designated-to-return at the 8/30 cutdown. OUT Wks 1-4 minimum, eligible Wk5 (10/11 vs TEN). HOU kept only 5 WRs; targets concentrate to Nico Collins.",,11
+Caleb Douglas,WR,MIA,235,87,168,WR65,213.0,6,Rotational,"Healthy — no Sep 2026 source supports a Questionable designation. Left practice early 8/17 with a lower-body issue but returned 8/18 with it described as minor (CBS/RotoWire, pub 2026-08-18); reporting through 9/04 has him practicing fully and listed among MIA's top three WRs on the first camp depth chart. Re-check the official MIA Week 1 report before kickoff.",,11
+Cade Otton,TE,TB,236,28,261,TE29,241.0,10,Starter,Healthy,,8
+Malik Davis,RB,DAL,237,65,228,RB68,268.0,14,Rotational,Healthy,,11
+Kaytron Allen,RB,WAS,238,66,280,RB87,249.0,7,Rotational,Healthy,,11
+Justice Hill,RB,BAL,239,67,199,RB60,224.0,13,Backup,Healthy,,11
+Cleveland Browns,DST,CLE,240,16,187,DST8,198.0,11,Unknown,Healthy,,3
+Jaylen Wright,RB,MIA,241,68,216,RB63,255.0,6,Backup,Healthy,,11
+George Holani,RB,SEA,242,69,245,RB73,260.0,11,Starter,Healthy,,11
+Antonio Williams,WR,WAS,243,88,236,WR91,272.0,7,Backup,Healthy,,11
+Emanuel Wilson,RB,SEA,244,70,251,RB79,311.0,11,Rotational,Healthy,,11
+Najee Harris,RB,NYG,245,71,181,RB59,237.0,8,Unknown,"Healthy — does not appear on the Giants injury report at all (CBS NYG injury table, current through 2026-09-01). The Questionable tag appears to have been applied to the wrong back; Tyrone Tracy Jr. (neck, 8/29) is the RB who carries it. Signed with NYG 8/18 and made his preseason debut 8/28 (11 car, 39 yds). Separate standing note: self-reported 8/19 as 'not fully in football shape', under one year from a Sept 2025 Achilles tear.",,11
+Ted Hurst III,WR,TB,246,89,284,WR102,294.0,10,Rotational,Healthy,,11
+Greg Dulcich,TE,MIA,247,29,259,TE27,216.0,6,Starter,Healthy,,8
+Devaughn Vele,WR,NO,248,90,178,WR71,253.0,8,Rotational,Healthy,,11
+Keon Coleman,WR,BUF,249,91,254,WR93,296.0,7,Rotational,Healthy,,11
+Evan Engram,TE,DEN,250,30,289,TE30,361.0,10,Starter,Healthy,,8
+Jack Bech,WR,LV,251,92,274,WR100,298.0,13,Rotational,Healthy,,11
+Chris Brooks,RB,GB,252,72,225,RB66,274.0,11,Rotational,Healthy,,11
+Harrison Butker,K,KC,253,14,192,K7,177.0,5,Starter,Healthy,,2
+Chris Boswell,K,PIT,254,15,239,K13,208.0,9,Starter,Healthy,,2
+David Njoku,TE,LAC,255,31,290,TE31,215.0,7,Backup,Healthy,,8
+Fernando Mendoza,QB,LV,256,30,269,QB29,227.0,13,Starter,Healthy,,8
+Kaleb Johnson,RB,GB,257,73,266,RB81,218.0,11,Backup,"Healthy — TRADED PIT->GB on 8/30 (NFL_Team cell still reads PIT; needs an export/team fix). Behind MarShawn Lloyd for now, but the cheapest lottery ticket in the GB backfield with Jacobs on the exempt list.",,11
+Demond Claiborne,RB,MIN,258,74,278,RB85,312.0,6,Rotational,Healthy,,12
+Samaje Perine,RB,CIN,259,75,157,RB54,275.0,6,Backup,Healthy,,12
+Chimere Dike,WR,TEN,260,93,,,263.0,9,Rotational,Healthy,,12
+Elic Ayomanor,WR,TEN,261,94,,,315.0,9,Rotational,Healthy,,12
+Cyrus Allen,WR,KC,262,95,,,203.0,5,Rotational,Healthy,,12
+Isaiah Davis,RB,NYJ,263,76,242,RB70,653.0,13,Rotational,Knee — DNP preseason Wk1,,12
+Ollie Gordon II,RB,MIA,264,77,217,RB64,417.0,6,Rotational,Healthy,,12
+Tyquan Thornton,WR,KC,265,96,253,WR92,425.0,5,Rotational,Healthy,,12
+Colby Parkinson,TE,LAR,266,32,,,310.0,11,Backup,Healthy,,9
+LeQuint Allen Jr.,RB,JAC,267,78,244,RB72,430.0,7,Rotational,"Doubtful — soft-tissue injury, out the rest of training camp; NOT placed on IR-DTR, which is mildly positive. HC Liam Coen 9/02: 'LeQuint, look, we definitely miss the presence for sure... I'd be pleasantly surprised if he was ready to go, but I know that this guy has attacked it' (SI.com Jaguars On SI, John Shipley, pub 2026-09-02, verified). No update after 9/02; Chris Rodriguez Jr. absorbs the work.",,12
+Ty Johnson,RB,BUF,268,79,224,RB65,302.0,7,Backup,Healthy,,12
+Jordan James,RB,SF,269,80,249,RB77,230.0,8,Backup,Healthy,,12
+Will Reichard,K,MIN,270,16,197,K12,188.0,6,Starter,Healthy,,3
+Wil Lutz,K,DEN,271,17,,,207.0,10,Starter,Healthy,,3
+Tory Horton,WR,SEA,272,97,275,WR101,297.0,11,Rotational,Questionable,,12
+Seth McGowan,RB,IND,273,81,248,RB76,288.0,13,Rotational,Healthy,,12
+Elijah Sarratt,WR,BAL,274,98,,,349.0,13,Rotational,Healthy,,12
+Tua Tagovailoa,QB,ATL,275,31,296,QB32,285.0,11,Backup,Healthy,,9
+Darius Slayton,WR,NYG,276,99,235,WR90,495.0,8,Backup,Questionable,,12
+Michael Penix Jr.,QB,ATL,277,32,,,282.0,11,Starter,Questionable,,9
+Mason Taylor,TE,NYJ,278,33,,,287.0,13,Backup,Healthy,,9
+Xavier Legette,WR,CAR,279,100,229,WR84,505.0,5,Rotational,Healthy,,12
+Christian Kirk,WR,SF,280,101,,,258.0,8,Rotational,IR — IR/designated-to-return at the 8/30 cutdown (calf). OUT Wks 1-4 minimum. Wk5 stash only.,,12
+Marvin Mims Jr.,WR,DEN,281,102,264,WR96,299.0,10,Rotational,"Undisclosed — left practice early, DNP preseason Wk1",,12
+Kendre Miller,RB,NO,282,82,276,RB83,324.0,8,Rotational,Healthy — MADE the NO 53 as RB4 behind Travis Etienne Jr. and Kamara. No forced absence.,,12
+Kirk Cousins,QB,LV,283,33,,,300.0,13,Backup,Healthy,,9
+DJ Giddens,RB,IND,284,83,281,RB88,435.0,13,Backup,Healthy,,12
+Theo Johnson,TE,NYG,285,34,,,325.0,8,Backup,Healthy,,9
+Deshaun Watson,QB,CLE,286,34,271,QB31,402.0,11,Backup,Healthy,,9
+Kyle Williams,WR,NE,287,103,,,261.0,11,Rotational,Healthy,,12
+San Francisco 49ers,DST,SF,288,17,286,DST18,233.0,8,Unknown,Healthy,,4
+Atlanta Falcons,DST,ATL,289,18,,,234.0,11,Unknown,Healthy,,4
+Shedeur Sanders,QB,CLE,290,35,,,252.0,11,Starter,Healthy,,9
+Brashard Smith,RB,KC,291,84,227,RB67,341.0,5,Backup,Healthy,,12
+Eli Stowers,TE,PHI,292,35,,,259.0,10,Backup,Questionable,,9
+New Orleans Saints,DST,NO,293,19,256,DST16,250.0,8,Unknown,Healthy,,4
+Devin Singletary,RB,NYG,294,85,,,262.0,8,Rotational,Healthy,,12
+Mack Hollins,WR,NE,295,104,295,WR104,669.0,11,Rotational,Healthy,,12
+Skyler Bell,WR,BUF,296,105,,,317.0,7,Rotational,Healthy,,12
+Jaydon Blue,RB,PHI,297,86,,,271.0,10,Unknown,Unknown — WAIVED by DAL at the 8/30 cutdown (the day's biggest surprise cut). Live waiver claim. DAL backfield = Javonte Williams / Malik Davis / Hunter Luepke; Davis won RB2 outright.,,12
+Hollywood Brown,WR,PHI,298,106,,,336.0,10,Unknown,Healthy,,12
+Adam Randall,RB,BAL,299,87,,,674.0,13,Rotational,Healthy,,12
+Devin Neal,RB,FA,300,88,,,340.0,,Unknown,IR — placed on IR at the 8/30 cutdown with NO return designation: SEASON OVER. Injury nature NOT REPORTED (secondary reports split hamstring vs knee).,,12
+Emari Demercado,RB,DAL,301,89,252,RB80,378.0,14,Unknown,Unknown — WAIVED by KC at the 8/30 cutdown. KC now carries only Emmett Johnson and Brashard Smith behind Kenneth Walker III.,,12
+Isaiah Bond,WR,CLE,302,107,,,652.0,11,Rotational,Healthy,,12
+Mike Gesicki,TE,CIN,303,36,292,TE33,368.0,6,Starter,Healthy,,9
+Trevor Etienne,RB,CAR,304,90,,,659.0,5,Rotational,IR — IR/designated-to-return at the 8/30 cutdown. OUT Wks 1-4 minimum. Injury nature NOT REPORTED. Jonathon Brooks absorbs passing downs.,,12
+Indianapolis Colts,DST,IND,305,20,298,DST20,276.0,13,Unknown,Healthy,,4
+Brandon Aiyuk,WR,SF,306,108,,,269.0,8,Rotational,Out,,12
+Trey Benson,RB,ARI,307,91,,,330.0,14,Rotational,"IR — CONFLICT RESOLVED: waived/injured, cleared waivers, reverted to ARI IR 8/25 (procedural, not a release). Season over in ARI; settlement 'expected' but NOT confirmed (SI/Cardinals On SI, pub 2026-08-25; nothing newer through 9/04).",,12
+DeMario Douglas,WR,NE,308,109,234,WR89,615.0,11,Rotational,Healthy,,12
+Darren Waller,TE,CAR,309,37,260,TE28,427.0,5,Unknown,Questionable,,10
+Andrei Iosivas,WR,CIN,310,110,265,WR97,424.0,6,Rotational,Healthy,,13
+Jake Tonges,TE,SF,311,38,,,308.0,8,Backup,Questionable,,10
+Chicago Bears,DST,CHI,312,21,,,195.0,10,Unknown,Healthy,,5
+Tahj Brooks,RB,CIN,313,92,277,RB84,515.0,6,Rotational,Healthy,,13
+Will Shipley,RB,PHI,314,93,250,RB78,568.0,10,Rotational,Healthy,,13
+Isaac Guerendo,RB,SF,315,94,,,585.0,8,Rotational,"IR — RESERVE/PUP at the 8/30 cutdown (torn pec, lifting, late May). OUT Wks 1-4 minimum. SF backfield behind CMC = Kaelon Black / Jordan James.",,13
+Audric Estime,RB,NO,316,95,,,342.0,8,Rotational,Healthy,,13
+Michael Mayer,TE,LV,317,39,293,TE34,466.0,13,Backup,Healthy,,10
+Darnell Washington,TE,PIT,318,40,,,295.0,9,Backup,Healthy,,10
+Jerome Ford,RB,WAS,319,96,,,536.0,7,Rotational,Healthy,,13
+Tyreek Hill,WR,FA,320,111,,,247.0,,Unknown,Questionable,,13
+Charlie Kolar,TE,LAC,321,41,,,534.0,7,Rotational,Healthy,,10
+Jahan Dotson,WR,ATL,322,112,230,WR85,537.0,11,Rotational,Healthy,,13
+Oscar Delp,TE,NO,323,42,,,647.0,8,Rotational,Healthy,,10
+Charlie Smyth,K,NO,324,18,,,305.0,8,Starter,Healthy,,4
+Jaleel McLaughlin,RB,CLE,325,97,,,619.0,11,Unknown,Unknown — RELEASED by DEN at the 8/30 cutdown while Tyler Badie made the 53. Clarifies RJ Harvey as the clear DEN lead.,,13
+Jarquez Hunter,RB,FA,326,98,,,416.0,,Unknown,"Unknown — traded LAR->MIA 8/27-28 for Tutu Atwell, then WAIVED by MIA 8/30. NFL_Team cell still reads LAR. Best pure waiver-claim RB on the board.",,13
+Bryce Lance,WR,NO,327,113,,,478.0,8,Rotational,Healthy,,13
+Xavier Hutchinson,WR,HOU,328,114,231,WR86,665.0,8,Rotational,Healthy,,13
+Elijah Arroyo,TE,SEA,329,43,,,354.0,11,Backup,Healthy,,10
+Kareem Hunt,RB,FA,330,99,,,401.0,,Unknown,Healthy,,13
+Jalen Tolbert,WR,MIA,331,115,232,WR87,575.0,6,Rotational,Healthy,,13
+Carson Beck,QB,ARI,332,36,,,444.0,14,Rotational,Healthy,,10
+Dallas Cowboys,DST,DAL,333,22,297,DST19,187.0,14,Unknown,Healthy,,5
+Eli Raridon,TE,NE,334,44,,,404.0,11,Rotational,Healthy,,10
+Dawson Knox,TE,BUF,335,45,,,320.0,7,Backup,Healthy,,10
+Cole Kmet,TE,CHI,336,46,,,293.0,10,Backup,Healthy,,10
+Kendrick Bourne,WR,ARI,337,116,,,660.0,14,Rotational,Healthy,,13
+Bam Knight,RB,ARI,338,100,,,475.0,14,Unknown,Healthy,,13
+Tyler Higbee,TE,LAR,339,47,,,346.0,11,Rotational,Healthy,,10
+Erick All Jr.,TE,CIN,340,48,,,502.0,6,Rotational,Questionable,,10
+Olamide Zaccheaus,WR,ATL,341,117,,,620.0,11,Rotational,Healthy,,13
+Tez Johnson,WR,TB,342,118,,,459.0,10,Rotational,Healthy,,13
+Konata Mumpfield,WR,LAR,343,119,,,381.0,11,Rotational,Healthy,,13
+J.J. McCarthy,QB,MIN,344,37,,,251.0,6,Backup,Healthy,,10
+Jalen Royals,WR,KC,345,120,,,493.0,5,Rotational,Healthy,,13
+Max Klare,TE,LAR,346,49,,,393.0,11,Rotational,Healthy,,10
+Brenen Thompson,WR,LAC,347,121,,,661.0,7,Rotational,Healthy,,13
+Joshua Palmer,WR,BUF,348,122,,,345.0,7,Rotational,Healthy,,13
+Noah Gray,TE,KC,349,50,,,364.0,5,Backup,Healthy,,10
+Malik Benson,WR,LV,350,123,,,549.0,13,Rotational,Healthy,,13
+Jacob Saylors,RB,DET,351,101,243,RB71,422.0,6,Rotational,Healthy,,13
+Jake Elliott,K,PHI,352,19,,,243.0,10,Starter,Healthy,,4
+Tyler Bass,K,BUF,353,20,,,226.0,7,Starter,Questionable,,4
+Mac Jones,QB,SF,354,38,,,482.0,8,Backup,Questionable,,10
+Luke McCaffrey,WR,WAS,355,124,,,332.0,7,Rotational,Healthy,,13
+Chris Brazzell II,WR,CAR,356,125,,,682.0,5,Rotational,Questionable,,13
+Roman Wilson,WR,PIT,357,126,,,506.0,9,Rotational,Healthy,,13
+Joe Mixon,RB,FA,358,102,,,264.0,,Unknown,Questionable,,13
+Cedric Tillman,WR,NO,359,127,,,,8,Rotational,Healthy,,13
+Ja'Tavion Sanders,TE,CAR,360,51,,,348.0,5,Backup,Healthy,,10
+Justin Fields,QB,KC,361,39,,,343.0,5,Backup,Healthy,,11
+Trey Smack,K,GB,362,21,287,K17,211.0,11,Starter,Healthy,,5
+Kalif Raymond,WR,CHI,363,128,,,429.0,10,Rotational,Healthy,,14
+Treylon Burks,WR,WAS,364,129,,,645.0,7,Rotational,Healthy,,14
+New York Giants,DST,NYG,365,23,,,222.0,8,Unknown,Healthy,,6
+Zavion Thomas,WR,CHI,366,130,,,303.0,10,Rotational,Healthy,,14
+Eli Heidenreich,RB,PIT,367,103,,,421.0,9,Rotational,Healthy,,14
+Carolina Panthers,DST,CAR,368,24,,,254.0,5,Unknown,Healthy,,6
+Ty Simpson,QB,LAR,369,40,,,270.0,11,Backup,Healthy,,11
+Roschon Johnson,RB,CHI,370,104,,,339.0,10,Rotational,Healthy,,14
+Kevin Coleman Jr.,WR,MIA,371,131,272,WR98,677.0,6,Rotational,Healthy,,14
+Odell Beckham Jr.,WR,NYG,372,132,,,283.0,8,Rotational,Healthy,,14
+KaVontae Turpin,WR,DAL,373,133,273,WR99,351.0,14,Rotational,Healthy,,14
+Colbie Young,WR,CIN,374,134,,,347.0,6,Rotational,Healthy,,14
+Demarcus Robinson,WR,SF,375,135,,,405.0,8,Rotational,Healthy,,14
+Michael Carter,RB,TEN,376,105,,,581.0,9,Rotational,Healthy,,14
+Savion Williams,WR,GB,377,136,,,658.0,11,Rotational,IR — IR/designated-to-return at the 8/30 cutdown (ankle). OUT Wks 1-4 minimum.,,14
+Anthony Richardson Sr.,QB,IND,378,41,,,426.0,13,Backup,Healthy,,11
+Tutu Atwell,WR,LAR,379,137,,,635.0,11,Rotational,Healthy,,14
+Tampa Bay Buccaneers,DST,TB,380,25,237,DST13,286.0,10,Unknown,Healthy,,6
+John Metchie III,WR,CAR,381,138,,,650.0,5,Rotational,Healthy,,14
+Sione Vaki,RB,DET,382,106,282,RB89,469.0,6,Rotational,Healthy,,14
+Raheim Sanders,RB,CLE,383,107,,,644.0,11,Rotational,Healthy,,14
+Noah Fant,TE,NO,384,52,,,457.0,8,Backup,Healthy,,11
+Kyle Juszczyk,RB,SF,385,108,,,406.0,8,Unknown,Healthy,,14
+Joe Flacco,QB,CIN,386,42,,,338.0,6,Backup,Healthy,,11
+Rasheen Ali,RB,BAL,387,109,279,RB86,,13,Rotational,Healthy,,14
+Dont'e Thornton Jr.,WR,LV,388,139,,,613.0,13,Rotational,Healthy,,14
+Jameis Winston,QB,NYG,389,43,,,314.0,8,Backup,Healthy,,11
+Daniel Carlson,K,NO,390,22,,,,8,Unknown,Healthy,,5
+Tennessee Titans,DST,TEN,391,26,,,266.0,9,Unknown,Healthy,,6
+Tommy Tremble,TE,CAR,392,53,,,390.0,5,Starter,Healthy,,11
+CJ Daniels,WR,LAR,393,140,,,359.0,11,Rotational,Healthy,,14
+Zane Gonzalez,K,FA,394,23,,,483.0,,Starter,Healthy,,5
+Jaylin Lane,WR,WAS,395,141,,,599.0,7,Rotational,Healthy,,14
+Jawhar Jordan,RB,HOU,396,110,,,663.0,8,Rotational,Healthy,,14
+Spencer Shrader,K,IND,397,24,288,K18,244.0,13,Backup,Questionable,,5
+Ben Sinnott,TE,WAS,398,54,,,662.0,7,Backup,Healthy,,11
+Justin Joly,TE,MIA,399,55,,,409.0,6,Rotational,Healthy,,11
+Cincinnati Bengals,DST,CIN,400,27,300,DST22,256.0,6,Unknown,Healthy,,6
+J'Mari Taylor,RB,JAC,401,111,,,,7,Rotational,Healthy,,14
+Ashton Dulin,WR,IND,402,142,,,410.0,13,Rotational,Healthy,,14
+Barion Brown,WR,NO,403,143,,,355.0,8,Unknown,Healthy,,14
+Nick Folk,K,ATL,404,25,258,K16,366.0,11,Starter,Healthy,,5
+Cade Klubnik,QB,NYJ,405,44,,,511.0,13,Backup,Healthy,,11
+Marcus Mariota,QB,WAS,406,45,,,518.0,7,Backup,Healthy,,11
+Blake Grupe,K,NYJ,407,26,,,306.0,13,Starter,Healthy,,5
+Mitchell Evans,TE,CAR,408,56,,,464.0,5,Rotational,Healthy,,11
+Las Vegas Raiders,DST,LV,409,28,,,265.0,13,Unknown,Healthy,,6
+Daniel Bellinger,TE,TEN,410,57,,,603.0,9,Backup,Healthy,,11
+Jonnu Smith,TE,GB,411,58,,,407.0,11,Backup,Healthy — SIGNED WITH GREEN BAY 8/29 (NFL_Team cell still reads FA; needs an export/team fix). TE2 behind Kraft with Musgrave on reserve/PUP.,,11
+Dylan Laube,RB,LV,412,112,,,,13,Rotational,Healthy,,14
+Ryan Fitzgerald,K,CAR,413,27,,,335.0,5,Starter,Healthy,,5
+Jeremy McNichols,RB,WAS,414,113,,,,7,Rotational,IR — IR/designated-to-return at the 8/30 cutdown. OUT Wks 1-4 minimum. WAS down to 3 RBs; JCM + Rachaad White absorb passing-down work.,,14
+Luke Musgrave,TE,GB,415,59,,,509.0,11,Backup,IR — RESERVE/PUP at the 8/30 cutdown (neck). OUT Wks 1-4 minimum. GB TE room = Kraft + Jonnu Smith (signed 8/29).,,11
+Nick Westbrook-Ikhine,WR,FA,416,144,,,671.0,,Unknown,"Unknown — RELEASED by IND at the 8/30 cutdown. Benefits Josh Downs, Alec Pierce, Keenan Allen.",,14
+Joey Slye,K,TEN,417,28,,,322.0,9,Starter,Healthy,,5
+Washington Commanders,DST,WAS,418,29,,,280.0,7,Unknown,Healthy,,6
+Jordan Whittington,WR,LAR,419,145,,,370.0,11,Rotational,Healthy,,14
+Devontez Walker,WR,BAL,420,146,,,318.0,13,Rotational,Healthy,,14
+Phil Mafah,RB,FA,421,114,,,,,Rotational,Healthy,,14
+Isaiah Williams,WR,NYJ,422,147,,,657.0,13,Unknown,Healthy,,14
+Jam Miller,RB,FA,423,115,,,583.0,,Rotational,Healthy,,14
+Elijah Higgins,TE,ARI,424,60,,,373.0,14,Backup,Healthy,,12
+Corey Kiner,RB,NE,425,116,,,,11,Unknown,Healthy,,15
+Miami Dolphins,DST,MIA,426,30,,,292.0,6,Unknown,Healthy,,7
+Chad Ryland,K,ARI,427,29,,,313.0,14,Starter,Healthy,,6
+Khalil Herbert,RB,FA,428,117,,,,,Unknown,Healthy,,15
+Austin Hooper,TE,ATL,429,61,,,490.0,11,Backup,Healthy,,12
+Ben Sauls,K,FA,430,30,,,316.0,,Backup,Healthy,,6
+Hunter Luepke,RB,DAL,431,118,,,508.0,14,Unknown,Healthy,,15
+Matt Hibner,TE,BAL,432,62,,,,13,Unknown,Healthy,,12
+Deion Burks,WR,IND,433,148,,,521.0,13,Rotational,Healthy,,15
+Tyler Goodson,RB,ATL,434,119,,,,11,Unknown,Healthy,,15
+Austin Ekeler,RB,FA,435,120,,,470.0,,Unknown,Healthy,,15
+Brandon McManus,K,FA,436,31,,,394.0,,Unknown,Healthy,,6
+Ronnie Rivers,RB,LAR,437,121,,,558.0,11,Rotational,Healthy,,15
+Dohnte Meyers,WR,CIN,438,149,,,331.0,6,Unknown,Healthy,,15
+Tai Felton,WR,MIN,439,150,,,685.0,6,Rotational,Healthy,,15
+Marlin Klein,TE,HOU,440,63,,,555.0,8,Rotational,Questionable,,12
+Dameon Pierce,RB,PHI,441,122,,,,10,Unknown,"Unknown — RELEASED by PHI at the 8/30 cutdown. PHI kept only 3 RBs, making Tank Bigsby the clear Barkley handcuff.",,15
+Dyami Brown,WR,WAS,442,151,,,500.0,7,Rotational,Healthy,,15
+John Bates,TE,WAS,443,64,,,656.0,7,Rotational,Healthy,,12
+Antonio Williams,RB,FA,444,123,,,,,Unknown,Healthy,,15
+New York Jets,DST,NYJ,445,31,285,DST17,387.0,13,Unknown,Healthy,,7
+Joe Milton III,QB,DAL,446,46,,,480.0,14,Rotational,Healthy,,12
+Zavier Scott,RB,CHI,447,124,,,,10,Rotational,Healthy,,15
+Drew Stevens,K,WAS,448,32,,,309.0,7,Unknown,Healthy,,6
+Ameer Abdullah,RB,JAC,449,125,,,,7,Unknown,Healthy,,15
+AJ Dillon,RB,CAR,450,126,,,398.0,5,Unknown,Healthy,,15
+Terrell Jennings,RB,FA,451,127,,,,,Unknown,"Unknown — RELEASED from IR with an injury settlement earlier in camp; he is a FREE AGENT, not on an NFL roster (patriots.com 8/30). Supersedes the prior 'IR — SEASON OVER (placed 8/13)' framing; the 8/13 date is unconfirmed by the official source.",,15
+Marquez Valdes-Scantling,WR,FA,452,152,,,588.0,,Rotational,Healthy,,15
+Josh Williams,RB,TB,453,128,,,379.0,10,Unknown,Healthy,,15
+Jahdae Walker,WR,CHI,454,153,,,446.0,10,Rotational,Healthy,,15
+Jacob Cowing,WR,SF,455,154,,,681.0,8,Unknown,Healthy,,15
+Greg Dortch,WR,BUF,456,155,,,678.0,7,Unknown,Unknown — RELEASED by DET at the 8/30 cutdown (the club's own writer called it a surprise). DET is down to 4 WRs and will likely add a body before Wk1.,,15
+Arizona Cardinals,DST,ARI,457,32,,,307.0,14,Unknown,Healthy,,7
+Jalen Reagor,WR,FA,458,156,,,,,Unknown,Healthy,,15
+Max Bredeson,RB,MIN,459,129,,,651.0,6,Unknown,Healthy,,15
+Elijah Moore,WR,PHI,460,157,,,385.0,10,Rotational,Healthy,,15
+Tommy Myers,TE,FA,461,65,,,,,Unknown,Healthy,,12
+Chris Blair,WR,ATL,462,158,,,,11,Unknown,Healthy,,15
+Reggie Virgil,WR,ARI,463,159,,,698.0,14,Unknown,Healthy,,15
+Patrick Ricard,RB,NYG,464,130,,,540.0,8,Unknown,Healthy,,15
+Kene Nwangwu,RB,NYJ,465,131,283,RB90,,13,Unknown,Healthy,,15
+Zach Ertz,TE,FA,466,66,,,596.0,,Unknown,Questionable,,12
+Julius Chestnut,RB,TEN,467,132,,,,9,Unknown,Healthy,,15
+Josh Oliver,TE,MIN,468,67,,,363.0,6,Backup,Questionable,,12
+Reggie Gilliam,RB,NE,469,133,,,539.0,11,Unknown,Healthy,,15
+Antonio Gibson,RB,FA,470,134,,,607.0,,Unknown,Questionable,,15
+Drew Allar,QB,PIT,471,47,,,333.0,9,Unknown,Healthy,,12
+Josh Cameron,WR,JAC,472,160,,,423.0,7,Unknown,Healthy,,15
+Jordan Watkins,WR,SF,473,161,,,,8,Unknown,Healthy,,15
+Jackson Hawes,TE,BUF,474,68,,,436.0,7,Unknown,Healthy,,12
+Xavier Smith,WR,LAR,475,162,,,461.0,11,Rotational,Healthy,,15
+Alec Ingold,RB,LAC,476,135,,,673.0,7,Unknown,Healthy,,15
+Jaydn Ott,RB,KC,477,136,,,,5,Rotational,Healthy,,15
+Xavier Restrepo,WR,TEN,478,163,,,,9,Rotational,Healthy,,15
+Riley Leonard,QB,IND,479,48,,,637.0,13,Rotational,Healthy,,12
+Kalel Mullings,RB,TEN,480,137,,,,9,Unknown,Healthy,,15
+Miles Sanders,RB,FA,481,138,,,,,Unknown,Questionable,,15
+Gardner Minshew II,QB,ARI,482,49,,,365.0,14,Backup,Healthy,,12
+Isaiah Williams,WR,FA,483,164,,,,,Unknown,Healthy,,15
+Taylen Green,QB,CLE,484,50,,,,11,Unknown,Healthy,,12
+Nate Boerkircher,TE,JAC,485,69,,,431.0,7,Rotational,Healthy,,12
+Tyler Badie,RB,DEN,486,139,,,,10,Rotational,Healthy,,15
+Adam Trautman,TE,DEN,487,70,,,432.0,10,Backup,Healthy,,12
+Theo Wease Jr.,WR,LAC,488,165,,,,7,Rotational,Healthy,,15
+Jimmy Horn Jr.,WR,CAR,489,166,,,437.0,5,Unknown,Healthy,,15
+Tanner Koziol,TE,JAC,490,71,,,587.0,7,Unknown,Healthy,,12
+Jason Sanders,K,FA,491,33,,,304.0,,Starter,Healthy,,6
+Dominic Zvada,K,NYG,492,34,,,358.0,8,Unknown,Healthy,,6
+Tyrod Taylor,QB,GB,493,51,,,362.0,11,Unknown,Healthy,,12
+Jake Browning,QB,FA,494,52,,,541.0,,Unknown,Healthy,,12
+Tyson Bagent,QB,CHI,495,53,,,497.0,10,Unknown,Healthy,,12
+Damien Martinez,RB,FA,496,140,,,,,Rotational,Healthy,,15
+Tim Patrick,WR,NYJ,497,167,,,,13,Rotational,Healthy — MADE the NYJ 53 as WR6. Never converted; no forced absence.,,15
+Davis Mills,QB,HOU,498,54,,,525.0,8,Unknown,Healthy,,12
+Lew Nichols III,RB,PIT,499,141,,,,9,Unknown,Healthy,,15
+Brandin Cooks,WR,FA,500,168,,,,,Unknown,Healthy,,15
+Scotty Miller,WR,CHI,501,169,,,,10,Unknown,Healthy,,15
+Kaden Wetjen,WR,PIT,502,170,,,389.0,9,Unknown,Healthy,,15
+Noah Whittington,RB,HOU,503,142,,,,8,Unknown,Healthy,,15
+Juice Wells Jr.,WR,FA,504,171,,,,,Unknown,Healthy,,16
+Jalen Milroe,QB,SEA,505,55,,,566.0,11,Unknown,Healthy,,13
+Luke Schoonmaker,TE,DAL,506,72,,,372.0,14,Rotational,Healthy,,13
+Tyler Lockett,WR,LV,507,172,,,,13,Unknown,Healthy,,16
+Drew Sample,TE,CIN,508,73,,,492.0,6,Rotational,Healthy,,13
+Michael Woods II,WR,DEN,509,173,,,,10,Unknown,Questionable,,16
+Quinn Ewers,QB,JAC,510,56,,,352.0,7,Backup,Healthy,,13
+Tanner Hudson,TE,CIN,511,74,,,,6,Unknown,Healthy,,13
+Trey Lance,QB,LAC,512,57,,,498.0,7,Unknown,Healthy,,13
+Cash Jones,RB,ATL,513,143,,,,11,Unknown,Healthy,,16
+Kevin Austin Jr.,WR,NO,514,174,,,,8,Unknown,Healthy,,16
+Jack Strand,QB,ATL,515,58,,,357.0,11,Unknown,Healthy,,13
+Brock Wright,TE,DET,516,75,,,367.0,6,Unknown,Healthy,,13
+Lan Larison,RB,NE,517,144,,,,11,Unknown,Healthy,,16
+DeAndre Hopkins,WR,BAL,518,175,,,591.0,13,Unknown,Healthy,,16
+Dean Connors,RB,LAR,519,145,,,552.0,11,Unknown,Healthy,,16
+Mitch Tinsley,WR,HOU,520,176,,,,8,Rotational,Healthy,,16
+Brittain Brown,RB,CHI,521,146,,,,10,Unknown,Healthy,,16
+Kendrick Law,WR,DET,522,177,,,,6,Unknown,Healthy,,16
+Will Kacmarek,TE,MIA,523,76,,,600.0,6,Unknown,Healthy,,13
+Jelani Woods,TE,NYJ,524,77,,,438.0,13,Unknown,Healthy,,13
+Foster Moreau,TE,HOU,525,78,,,667.0,8,Unknown,Healthy,,13
+Lil'Jordan Humphrey,WR,DEN,526,178,,,344.0,10,Rotational,Healthy,,16
+Taysom Hill,TE,FA,527,79,,,458.0,,Unknown,Healthy,,13
